@@ -14,10 +14,6 @@ web:
     - "3000:3000"
   links:
     - db
-  environment:
-    - DEV_DB_NAME=bitubi_development
-    - DEV_DB_USERNAME=root
-    - DEV_DB_PASSWORD=asdasd123123
 
 bundle:
   # 'image' will vary depending on your docker-compose
