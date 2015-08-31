@@ -51,6 +51,9 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     builder (3.2.2)
+    bundler-audit (0.4.0)
+      bundler (~> 1.2)
+      thor (~> 0.18)
     byebug (6.0.2)
     capistrano (3.4.0)
       i18n
@@ -88,8 +91,15 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -187,6 +197,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -235,11 +247,14 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   bootstrap-sass (~> 3.3.5)
+  bundler-audit
   byebug
   capistrano-rails
   coffee-rails (~> 4.1.0)
   devise
   dotenv-rails
+  email_validator
+  factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
@@ -250,6 +265,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   simple_form
   slim-rails
   spring

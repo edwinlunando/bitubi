@@ -36,18 +36,13 @@ gem 'paperclip'
 gem 'kaminari'
 # Form object
 gem 'simple_form'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
+# Email validation
+gem 'email_validator'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do
@@ -57,5 +52,17 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'bundler-audit'
+
+  # Capistrano for deployment
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rvm'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
 end
 
