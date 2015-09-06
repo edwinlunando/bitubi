@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'alamat' => 'home#address'
   get 'pesanan' => 'home#orders'
   get 'daleman' => 'home#order'
+  get 'login' => 'home#login'
+  get 'daftar' => 'home#register'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

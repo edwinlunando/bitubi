@@ -10,9 +10,9 @@
                   span.glyphicon.glyphicon-shopping-cart
                   | Shopping Cart
               .col-xs-6
-                button.btn.btn-primary.btn-sm.btn-block type="button"
+                = link_to produk_path, class: 'btn btn-primary btn-block btn-small'
                   span.glyphicon.glyphicon-share-alt
-                  | Continue shopping
+                  | Lanjut belanja
         .panel-body
           .row
             .col-xs-2
@@ -53,14 +53,6 @@
               .col-xs-2
                 button.btn.btn-link.btn-xs type="button"
                   span.glyphicon.glyphicon-trash
-          hr
-          .row
-            .text-center
-              .col-xs-8
-                h6.text-right Added items?
-              .col-xs-4
-                button.btn.btn-default.btn-sm.btn-block type="button"
-                  | Update cart
         .panel-footer
           .row.text-center
             .col-xs-8
@@ -68,5 +60,4 @@
                 | Total
                 strong $50.00
             .col-xs-4
-              button.btn.btn-success.btn-block type="button"
-                | Checkout
+              = link_to 'Checkout', alamat_path, class: 'btn btn-success btn-block'

@@ -24,4 +24,30 @@ class HomeController < ApplicationController
   def order
   end
 
+  def login
+    # if user_signed_in?
+    #   redirect_to root_path and return
+    # end
+    render('devise/sessions/new')
+  end
+
+  def register
+  end
+
+  def create_user
+    @user = User.new(user_params)
+    @user.role = 'user'
+    if @user.save
+      flash[:success] = 'User baru dibuat!'
+      redirect_to root_path
+    else
+      render action: :auth
+    end
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
 end

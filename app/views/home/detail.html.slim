@@ -1,11 +1,6 @@
 .container
   .row
-    .col-md-3
-      .list-group
-        a class="list-group-item" Category 1
-        a class="list-group-item" Category 2
-        a class="list-group-item" Category 3
-    .col-md-9
+    .col-md-8.col-md-offset-2.col-xs-12
       .thumbnail
         img class="img-responsive" src="http://placehold.it/800x300"
         .caption-full
@@ -14,6 +9,9 @@
             a Product name
           p See more snippets like these online store reviews at
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+          .row
+            .col-xs-4.col-xs-offset-8
+              = link_to 'Beli', keranjang_path, class: 'btn btn-primary btn-block'
         .ratings
           p class="pull-right" 3 reviews
           p
@@ -25,7 +23,7 @@
             |  4.0 stars
       .well
         .text-right
-          a class="btn btn-success" Leave a Review
+          a class="btn btn-success" Kirim Ulasan
         hr
         .row
           .col-md-12

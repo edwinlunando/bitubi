@@ -45,6 +45,10 @@ gem 'email_validator'
 gem 'money-rails'
 # Admin interface
 gem 'activeadmin', '~> 1.0.0.pre1'
+# Slug
+gem 'friendly_id'
+# State machine
+gem 'aasm'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

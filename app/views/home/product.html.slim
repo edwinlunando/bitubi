@@ -7,67 +7,12 @@
         a class="list-group-item" Category 3
     .col-md-9
       .row
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
-        .col-sm-4.col-lg-4.col-md-4
-          .thumbnail
-            img src="http://placehold.it/320x200"
-            .caption
-              h4 class="pull-right" $24.99
-              h4
-                a href="#" First Product
-              p See more snippets like this online store item at
+        - 12.times do |p|
+          .col-sm-4.col-lg-4.col-md-4
+            .thumbnail
+              img src="http://placehold.it/320x200"
+              .caption
+                h4 class="pull-right" $24.99
+                h4
+                  = link_to 'Nama Produk', detil_path
+                p See more snippets like this online store item at
