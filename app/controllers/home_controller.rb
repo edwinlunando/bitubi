@@ -25,13 +25,14 @@ class HomeController < ApplicationController
   end
 
   def login
-    # if user_signed_in?
-    #   redirect_to root_path and return
-    # end
+    if user_signed_in?
+      redirect_to root_path and return
+    end
     render('devise/sessions/new')
   end
 
   def register
+    render('devise/registrations/new')
   end
 
   def create_user

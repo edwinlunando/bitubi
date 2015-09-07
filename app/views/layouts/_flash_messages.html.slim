@@ -1,0 +1,7 @@
+- flash.each do |type, message|
+  div class=['alert', bootstrap_class_for(type), 'fade', 'in', 'flash-message'] role='alert'
+    button.close data-dismiss='alert'
+      span aria-hidden='true'
+        | &times;
+    p.text-center
+      = message

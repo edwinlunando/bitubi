@@ -4,7 +4,7 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
- body {
+body {
   margin-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
@@ -320,3 +320,7 @@ footer {
   border-color: #1CA347;
 }
 
+.flash-message {
+  margin-top: -30px;
+  margin-bottom: 30px;
+}

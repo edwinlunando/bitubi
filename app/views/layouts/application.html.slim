@@ -8,6 +8,7 @@ head
   = csrf_meta_tags
 
 body
+  = render partial: "layouts/flash_messages", flash: flash
   = render 'layouts/navigation'
   == yield
   div class="container"

@@ -49,6 +49,10 @@ gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'friendly_id'
 # State machine
 gem 'aasm'
+# SMS API
+gem 'twilio-ruby', '~> 4.2.1'
+# Phone validation
+gem 'phony_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

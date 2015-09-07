@@ -5,15 +5,16 @@
         .panel-heading
           .row
             .col-xs-6
-              a#register-form-link.active href="#"  Masuk
+              = link_to 'Masuk', login_path
             .col-xs-6
-              = link_to 'Daftar', daftar_path
+              a#register-form-link.active href="#"  Daftar
           hr/
         .panel-body
           .row
             .col-lg-12
-              = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'register-form' }) do |f|
+              = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
                 = f.input :email, required: true, autofocus: true
                 = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-                = f.button :submit, "Masuk"
-
+                = f.input :password_confirmation, required: true
+                = f.input :phone_number, required: true
+                = f.button :submit, "Daftar"
