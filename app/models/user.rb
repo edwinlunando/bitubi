@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     role == 'user'
   end
 
+  def country_code
+    'ID'
+  end
+
 end
