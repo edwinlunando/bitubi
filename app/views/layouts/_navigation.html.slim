@@ -9,8 +9,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top. role="navigation"
       a.navbar-brand Start Bootstrap
     div.collapse.navbar-collapse id="bs-example-navbar-collapse-1"
       ul.nav.navbar-nav
-        li
-          = link_to 'Daftar', daftar_path
+        - if !user_signed_in?
+          li
+            = link_to 'Daftar', daftar_path
         li
           = link_to 'Produk', produk_path
       ul.nav.navbar-nav.navbar-right

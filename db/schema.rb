@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907151039) do
+ActiveRecord::Schema.define(version: 20150910151414) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -118,9 +118,9 @@ ActiveRecord::Schema.define(version: 20150907151039) do
     t.integer  "failed_attempts",        limit: 4,   default: 0,  null: false
     t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
+    t.string   "phone_number",           limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.string   "phone_number",           limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -128,9 +128,21 @@ ActiveRecord::Schema.define(version: 20150907151039) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  create_table "wholesale_prices", force: :cascade do |t|
+    t.decimal  "price",                      precision: 10
+    t.integer  "minimum_quantity", limit: 4
+    t.boolean  "active"
+    t.integer  "product_id",       limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "wholesale_prices", ["product_id"], name: "index_wholesale_prices_on_product_id", using: :btree
+
   add_foreign_key "addresses", "states"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "users"
+  add_foreign_key "wholesale_prices", "products"
 end
