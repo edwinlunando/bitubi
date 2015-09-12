@@ -1,38 +1,41 @@
 .container
   .row
     .col-md-3
-      .list-group
-        a class="list-group-item" Category 1
-        a class="list-group-item" Category 2
-        a class="list-group-item" Category 3
+      .row
+        .col-xs-12
+          = simple_form_for('search') do |f|
+            = f.input :q, label: false, placeholder: 'Cari barang'
+            = f.submit 'Cari', class: 'btn btn-primary btn-block'
+      br
+      .row
+        .col-xs-12
+          .list-group
+            - @categories.each do |category|
+              a.list-group-item href='#'
+                = category.name
     .col-md-9
       .row
-        - 12.times do |p|
+        - @products.each do |product|
           .col-sm-4.col-lg-4.col-md-4
             .thumbnail
               img src="http://placehold.it/320x200"
               .caption
                 h4
-                  = link_to 'Nama Produk', detil_path
-                h4 @ IDR 5.000.000
+                  = link_to product.name, detil_path
+                h4 @ #{ product.price_dropship_money }
                 table.table
-                  caption Harga grosir
-                  thead
-                    tr
-                      th #
-                      th Jumlah minimal
-                      th Harga
-                  tbody
-                    tr
-                      th scope="row"  1
-                      td 10
-                      td IDR 50.000
-                    tr
-                      th scope="row"  2
-                      td 20
-                      td IDR 40.000
-                    tr
-                      th scope="row"  3
-                      td 30
-                      td IDR 35.000
+                  - if product.wholesale_prices.present?
+                    caption Harga grosir
+                    thead
+                      tr
+                        th #
+                        th Jumlah minimal
+                        th Harga
+                    tbody
+                      - product.wholesale_prices.each_with_index do |price, index|
+                        tr
+                          th scope="row"  #{ index + 1 }
+                          td #{ price.minimum_quantity }
+                          td #{ price.price_money }
+
 

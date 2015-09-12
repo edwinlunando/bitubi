@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910151414) do
+ActiveRecord::Schema.define(version: 20150912082356) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -36,12 +36,26 @@ ActiveRecord::Schema.define(version: 20150910151414) do
     t.datetime "updated_at"
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope",          limit: 255
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "line_items", force: :cascade do |t|
-    t.integer  "product_id", limit: 4
-    t.integer  "quantity",   limit: 4
-    t.integer  "order_id",   limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "product_id",    limit: 4
+    t.integer  "quantity",      limit: 4
+    t.integer  "order_id",      limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "purchase_type", limit: 4
   end
 
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
@@ -69,19 +83,21 @@ ActiveRecord::Schema.define(version: 20150910151414) do
   add_index "product_images", ["product_id"], name: "index_product_images_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.string   "slug",            limit: 255
-    t.text     "description",     limit: 65535
-    t.decimal  "price_dropship",                precision: 10
-    t.decimal  "price_wholesale",               precision: 10
-    t.integer  "stock",           limit: 4
-    t.string   "unit",            limit: 255
-    t.decimal  "weight",                        precision: 10
-    t.integer  "user_id",         limit: 4
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "name",           limit: 255
+    t.string   "slug",           limit: 255
+    t.text     "description",    limit: 65535
+    t.decimal  "price_dropship",               precision: 10
+    t.integer  "stock",          limit: 4
+    t.string   "unit",           limit: 255
+    t.decimal  "weight",                       precision: 10
+    t.integer  "user_id",        limit: 4
+    t.integer  "category_id",    limit: 4
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
+  add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+  add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
 
   create_table "provinces", force: :cascade do |t|
@@ -89,6 +105,17 @@ ActiveRecord::Schema.define(version: 20150910151414) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "var",        limit: 255,   null: false
+    t.text     "value",      limit: 65535
+    t.integer  "thing_id",   limit: 4
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "states", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -143,6 +170,7 @@ ActiveRecord::Schema.define(version: 20150910151414) do
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "product_images", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
   add_foreign_key "wholesale_prices", "products"
 end

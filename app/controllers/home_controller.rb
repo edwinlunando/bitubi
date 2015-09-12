@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def product
+    @categories = Category.all
     @products = Product.page(params[:page])
   end
 

@@ -1,40 +1,10 @@
 .container
   .row
     .col-md-4.col-md-offset-4
-      form.form-horizontal
-        fieldset
-          /! Address form
-          h2 Address
-          /! address-line1 input
-          .control-group
-            label.control-label Address Line 1
-            .controls
-              input#address-line1.form-control name="address-line1" placeholder=("address line 1") type="text" /
-              p.help-block Street address, P.O. box, company name, c/o
-          /! address-line2 input
-          .control-group
-            label.control-label Address Line 2
-            .controls
-              input#address-line2.form-control name="address-line2" placeholder=("address line 2") type="text" /
-              p.help-block Apartment, suite , unit, building, floor, etc.
-          /! city input
-          .control-group
-            label.control-label City / Town
-            .controls
-              input#city.form-control name="city" placeholder="city" type="text" /
-              p.help-block
-          /! region input
-          .control-group
-            label.control-label State / Province / Region
-            .controls
-              input#region.form-control name="region" placeholder=("state / province / region") type="text" /
-              p.help-block
-          /! postal-code input
-          .control-group
-            label.control-label Zip / Postal Code
-            .controls
-              input#postal-code.form-control name="postal-code" placeholder=("zip or postal code") type="text" /
-              p.help-block
-          .control-group
-            button type="submit" class="btn btn-default btn-block" Kirim
-
+      h1 Alamat Pengiriman
+      = simple_form_for('address', html: { class: '' }) do |f|
+        = f.input :province
+        = f.input :city
+        = f.input :state
+        = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap'
+        = f.submit 'Bayar'

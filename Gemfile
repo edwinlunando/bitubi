@@ -55,6 +55,11 @@ gem 'twilio-ruby', '~> 4.2.1'
 gem 'phony_rails'
 # Environment variable
 gem 'dotenv-rails'
+# Annotate all model
+gem 'annotate'
+# Global settings
+gem "rails-settings-cached", "~> 0.4.0"
+gem 'activeadmin_settings_cached'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

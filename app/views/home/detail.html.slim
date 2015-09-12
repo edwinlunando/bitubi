@@ -36,7 +36,7 @@
           .row
             .col-xs-12
               = simple_form_for('', html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
-                = f.input :purchase_type, placeholder: 'Jenis pembelian'
+                = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types, include_blank: 'Tipe Pemesanan'
                 = f.input :quantity, placeholder: 'Jumlah'
                 = f.submit 'Beli', class: 'btn btn-default'
         .ratings
