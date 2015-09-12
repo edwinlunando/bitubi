@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+
+  # Relation
   has_many :line_items
   accepts_nested_attributes_for :line_items
   has_many :products , through: :line_items
