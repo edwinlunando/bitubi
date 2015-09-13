@@ -66,6 +66,8 @@ gem 'asset_sync'
 # opsworks workaround
 gem 'web-console', '~> 2.0'
 gem "better_errors"
+# web server
+gem 'unicorn'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
