@@ -1,15 +1,84 @@
-p#notice = notice
+.container
+  .row
+    .col-md-8.col-md-offset-2.col-xs-12
+      .thumbnail
+        - if @product.product_images.present?
+          = image_tag @product.get_first_image.data.url(:large), class: 'img-responsive'
+        .product-container
+          .row
+            .col-md-12
+              h1
+                = @product.name
+              h4 @ #{ @product.price_dropship_money }
+              - if @product.wholesale_prices.present?
+                table.table
+                  caption Harga grosir
+                  thead
+                    tr
+                      th #
+                      th Jumlah minimal
+                      th Harga satuan
+                  tbody
+                    - @product.wholesale_prices.each_with_index do |price, index|
+                      tr
+                        th scope="row"  #{ index + 1 }
+                        td #{ price.minimum_quantity }
+                        td #{ price.price_money }
+              dl
+                dt Berat
+                dd #{ @product.weight } gram
+              p
+                = @product.description
+          .row
+            .col-xs-12
+              = simple_form_for('', html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
+                = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types, include_blank: 'Tipe Pemesanan'
+                = f.input :quantity, placeholder: 'Jumlah'
+                = f.submit 'Beli', class: 'btn btn-default'
+        .ratings
+          p class="pull-right" 3 reviews
+          p
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star-empty"
+            |  4.0 stars
+      .well
+        .text-right
+          a class="btn btn-success" Kirim Ulasan
+        hr
+        .row
+          .col-md-12
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star-empty"
+            | Anonymous
+            span class="pull-right" 10 hari yang lalu
+            p Produk ini keren parah
+        hr
+        .row
+          .col-md-12
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star-empty"
+            | Anonymous
+            span class="pull-right" 10 hari yang lalu
+            p Produk ini keren parah
+        hr
+        .row
+          .col-md-12
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star"
+            span class="glyphicon glyphicon-star-empty"
+            | Anonymous
+            span class="pull-right" 10 hari yang lalu
+            p Produk ini keren parah
 
-p
-  strong Name:
-  = @product.name
-p
-  strong Slug:
-  = @product.slug
-p
-  strong Description:
-  = @product.description
 
-= link_to 'Edit', edit_product_path(@product)
-'|
-= link_to 'Back', products_path

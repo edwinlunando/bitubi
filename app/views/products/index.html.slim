@@ -1,25 +1,41 @@
-h1 Listing products
+.container
+  .row
+    .col-md-3
+      .row
+        .col-xs-12
+          = simple_form_for('search') do |f|
+            = f.input :q, label: false, placeholder: 'Cari barang'
+            = f.submit 'Cari', class: 'btn btn-primary btn-block'
+      br
+      .row
+        .col-xs-12
+          .list-group
+            - @categories.each do |category|
+              a.list-group-item href='#'
+                = category.name
+    .col-md-9
+      .row
+        - @products.each do |product|
+          .col-sm-4.col-lg-4.col-md-4
+            .thumbnail
+              = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
+              .caption
+                h4
+                  = link_to product.name, product_path(product)
+                h4 @ #{ product.price_dropship_money }
+                - if product.wholesale_prices.present?
+                  table.table
+                    caption Harga grosir
+                    thead
+                      tr
+                        th #
+                        th Jumlah minimal
+                        th Harga
+                    tbody
+                      - product.wholesale_prices.each_with_index do |price, index|
+                        tr
+                          th scope="row"  #{ index + 1 }
+                          td #{ price.minimum_quantity }
+                          td #{ price.price_money }
 
-table
-  thead
-    tr
-      th Name
-      th Slug
-      th Description
-      th
-      th
-      th
 
-  tbody
-    - @products.each do |product|
-      tr
-        td = product.name
-        td = product.slug
-        td = product.description
-        td = link_to 'Show', product
-        td = link_to 'Edit', edit_product_path(product)
-        td = link_to 'Destroy', product, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Product', new_product_path

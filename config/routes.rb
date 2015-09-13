@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  get 'produk' => 'home#product'
-  get 'detil' => 'home#detail'
+  resources :products, path: 'produk'
+
   get 'saldo' => 'home#topup'
   get 'keranjang' => 'home#cart'
   get 'alamat' => 'home#address'

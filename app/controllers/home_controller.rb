@@ -9,6 +9,7 @@ class HomeController < ApplicationController
   end
 
   def detail
+    @product = Product.friendly.find(params[:id])
   end
 
   def topup
