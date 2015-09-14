@@ -10,52 +10,35 @@
                   span.glyphicon.glyphicon-shopping-cart
                   | Keranjang Belanja
               .col-xs-6
-                = link_to produk_path, class: 'btn btn-primary btn-block btn-small'
+                = link_to products_path, class: 'btn btn-primary btn-block btn-small'
                   span.glyphicon.glyphicon-share-alt
                   | Lanjut belanja
         .panel-body
-          .row
-            .col-xs-2
-              img.img-responsive src="http://placehold.it/100x70" /
-            .col-xs-4
-              h4.product-name
-                strong Keripik Pisang
-              h4
-                small Grosir
-            .col-xs-6
-              .col-xs-6.text-right
-                h6
-                  | 25 x IDR 2.000
-              .col-xs-4
-                h6
-                  strong IDR 50.000
+          - @order.line_items.each do |line_item|
+            .row
               .col-xs-2
-                button.btn.btn-link.btn-xs type="button"
-                  span.glyphicon.glyphicon-trash
-          hr
-          .row
-            .col-xs-2
-              img.img-responsive src="http://placehold.it/100x70" /
-            .col-xs-4
-              h4.product-name
-                strong Pai Susu
-              h4
-                small Dropship
-            .col-xs-6
-              .col-xs-6.text-right
-                h6
-                  | 20 x IDR 4.500
+                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
               .col-xs-4
-                h6
-                  strong IDR 90.000
-              .col-xs-2
-                button.btn.btn-link.btn-xs type="button"
-                  span.glyphicon.glyphicon-trash
+                h4.product-name
+                  strong #{ line_item.product.name }
+                h4
+                  small #{ line_item.purchase_type }
+              .col-xs-6
+                .col-xs-6.text-right
+                  h6
+                    | #{ line_item.quantity } x #{ number_to_currency(line_item.get_price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                .col-xs-4
+                  h6
+                    strong #{ number_to_currency(line_item.get_price, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                .col-xs-2
+                  = link_to delete_from_cart_path(line_item), class: 'btn btn-link btn-xs', method: :delete
+                    span.glyphicon.glyphicon-trash
+            hr
         .panel-footer
           .row.text-center
             .col-xs-8
               h4.text-right
                 | Total
-                strong  IDR 500.000
+                strong  #{ number_to_currency(@order.get_total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
             .col-xs-4
               = link_to 'Checkout', alamat_path, class: 'btn btn-success btn-block'

@@ -2,9 +2,9 @@
   .row
     .col-md-4.col-md-offset-4
       h1 Alamat Pengiriman
-      = simple_form_for('address', html: { class: '' }) do |f|
-        = f.input :province
-        = f.input :city
-        = f.input :state
+      = simple_form_for(@address, url: finish_path, html: { class: '' }) do |f|
+        = f.input :province, collection: Province.all
+        = f.input :city, collection: City.all
+        = f.association :state
         = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap'
-        = f.submit 'Bayar'
+        = f.submit 'Bayar', class: 'btn btn-primary btn-block'

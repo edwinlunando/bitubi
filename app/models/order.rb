@@ -55,4 +55,8 @@ class Order < ActiveRecord::Base
       transitions :to => :done
     end
   end
+
+  def get_total
+    line_items.inject(0) { |result, element| result + element.get_price }
+  end
 end

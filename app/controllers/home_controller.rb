@@ -27,10 +27,36 @@ class HomeController < ApplicationController
     @top_up = TopUp.new
   end
 
+  def remove_from_cart
+    @order = current_user.get_last_order
+    @line_item = LineItem.find(params[:id])
+    @line_item.destroy
+    flash[:success] = 'Barang berhasil dibuang!'
+    redirect_to keranjang_path
+  end
+
   def cart
+    @order = current_user.get_last_order
+  end
+
+  def finish
+    @address = Address.new(address_params)
+    @order = current_user.get_last_order
+    @order.address = @address
+    @order.save
+    current_user.credit -= @order.get_total
+    current_user.save
+    flash[:success] = 'Transaksi berhasil'
+    redirect_to root_path
   end
 
   def address
+    @order = current_user.get_last_order
+    if current_user.credit < @order.get_total
+      flash[:error] = 'Saldo kamu tidak cukup untuk menyelesaikan transaksi ini! Silahkan top up terlebih dahulu.'
+      return redirect_to keranjang_path
+    end
+    @address = Address.new
   end
 
   def orders
@@ -69,6 +95,10 @@ class HomeController < ApplicationController
 
   def top_up_params
     params.require(:top_up).permit(:name, :amount, :bank)
+  end
+
+  def address_params
+    params.require(:address).permit(:state, :name)
   end
 
 end

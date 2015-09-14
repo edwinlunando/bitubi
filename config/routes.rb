@@ -8,11 +8,17 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :products, path: 'produk'
+  resources :products, path: 'produk' do
+    member do
+      post 'add_to_cart'
+    end
+  end
 
   get 'saldo' => 'home#topup'
   post 'saldo' => 'home#topup_credit', as: 'tambah_saldo'
+  delete 'keranjang/:id/buang' => 'home#remove_from_cart', as: 'delete_from_cart'
   get 'keranjang' => 'home#cart'
+  post 'alamat' => 'home#finish', as: 'finish'
   get 'alamat' => 'home#address'
   get 'pesanan' => 'home#orders'
   get 'daleman' => 'home#order'

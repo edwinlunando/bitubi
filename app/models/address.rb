@@ -10,5 +10,6 @@
 #
 
 class Address < ActiveRecord::Base
+  attr_accessor :province, :city
   belongs_to :state
 end

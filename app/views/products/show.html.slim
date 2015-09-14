@@ -31,8 +31,8 @@
                 = @product.description
           .row
             .col-xs-12
-              = simple_form_for('', html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
-                = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types, include_blank: 'Tipe Pemesanan'
+              = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
+                = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
                 = f.input :quantity, placeholder: 'Jumlah'
                 = f.submit 'Beli', class: 'btn btn-default'
         .ratings

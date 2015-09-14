@@ -6,12 +6,15 @@ nav.navbar.navbar-inverse.navbar-fixed-top. role="navigation"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand Start Bootstrap
+      a.navbar-brand Bitubi
     div.collapse.navbar-collapse id="bs-example-navbar-collapse-1"
       ul.nav.navbar-nav
         - if !user_signed_in?
           li
             = link_to 'Daftar', daftar_path
+        - else
+          li
+            = link_to 'Keranjang', keranjang_path
         li
           = link_to 'Produk', products_path
       ul.nav.navbar-nav.navbar-right

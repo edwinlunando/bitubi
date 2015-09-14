@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :products
+  has_many :orders
   phony_normalize :phone_number, :default_country_code => 'ID'
   validates :phone_number, phony_plausible: true, presence: true
 
@@ -56,6 +57,24 @@ class User < ActiveRecord::Base
 
   def country_code
     'ID'
+  end
+
+  def get_last_order
+    if orders.count == 0
+      order = Order.new
+      order.user = self
+      order.save
+      return order
+    else
+      if orders.last.state != :done
+        return orders.last
+      else
+        order = Order.new
+        order.user = self
+        order.save
+        return order
+      end
+    end
   end
 
 end
