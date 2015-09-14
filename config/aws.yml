@@ -1,3 +1,16 @@
+development: &DEFAULTS
+  bucket: bitubi_dev
+  access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_KEY_ID'] %>
+
+test:
+  <<: *DEFAULTS
+  bucket: bitubi_test
+
 production:
-  access_key_id: ENV['AWS_ACCESS_KEY_ID']
-  secret_access_key: ENV['AWS_SECRET_KEY_ID']
+  <<: *DEFAULTS
+  bucket: bitubi
+
+staging:
+  <<: *DEFAULTS
+  bucket: bitubi_staging
