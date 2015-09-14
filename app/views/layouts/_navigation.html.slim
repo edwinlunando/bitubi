@@ -9,23 +9,23 @@ nav.navbar.navbar-inverse.navbar-fixed-top. role="navigation"
       a.navbar-brand Bitubi
     div.collapse.navbar-collapse id="bs-example-navbar-collapse-1"
       ul.nav.navbar-nav
+
+      ul.nav.navbar-nav.navbar-right
         - if !user_signed_in?
           li
             = link_to 'Daftar', daftar_path
-        - else
-          li
-            = link_to 'Keranjang', keranjang_path
         li
           = link_to 'Produk', products_path
-      ul.nav.navbar-nav.navbar-right
-        li.dropdown
-          a.dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-            | Menu
-            span.caret
-          ul.dropdown-menu
-            li
-              = link_to 'Top up', saldo_path
-            - if user_signed_in?
-              li
-                = link_to('Keluar', destroy_user_session_path, :method => :get)
+        - if user_signed_in?
+          li.dropdown
+            a.dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              | Menu
+              span.caret
+            ul.dropdown-menu
+                li
+                  = link_to 'Top up', saldo_path
+                li
+                  = link_to 'Keranjang', keranjang_path
+                li
+                  = link_to('Keluar', destroy_user_session_path, :method => :get)
 
