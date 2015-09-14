@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912082356) do
+ActiveRecord::Schema.define(version: 20150914082117) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -124,6 +124,17 @@ ActiveRecord::Schema.define(version: 20150912082356) do
     t.datetime "updated_at"
   end
 
+  create_table "top_ups", force: :cascade do |t|
+    t.decimal  "amount",                 precision: 10
+    t.string   "name",       limit: 255
+    t.boolean  "approved"
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "top_ups", ["user_id"], name: "index_top_ups_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -172,5 +183,6 @@ ActiveRecord::Schema.define(version: 20150912082356) do
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
+  add_foreign_key "top_ups", "users"
   add_foreign_key "wholesale_prices", "products"
 end

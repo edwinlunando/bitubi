@@ -12,7 +12,11 @@ class HomeController < ApplicationController
     @product = Product.friendly.find(params[:id])
   end
 
+  def topup_credit
+  end
+
   def topup
+    @top_up = TopUp.new
   end
 
   def cart

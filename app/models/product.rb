@@ -23,8 +23,8 @@ class Product < ActiveRecord::Base
   # Relation
   belongs_to :user
   belongs_to :category
-  has_many :product_images
-  has_many :wholesale_prices
+  has_many :product_images, dependent: :destroy
+  has_many :wholesale_prices, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :wholesale_prices
 

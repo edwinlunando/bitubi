@@ -14,5 +14,5 @@
 # RailsSettings Model
 class Setting < RailsSettings::CachedSettings
   defaults[:confirmation_amount] = 1000000
-  defaults[:account_number] = '72834578934'
+  defaults[:account_number] = ''
 end
