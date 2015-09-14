@@ -2,7 +2,7 @@ ActiveAdmin.register Product do
 
   permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id,
                 wholesale_prices_attributes: [:price, :minimum_quantity],
-                product_images_attributes: [:data]
+                product_images_attributes: [:data, :_destroy]
 
   index do
     selectable_column
