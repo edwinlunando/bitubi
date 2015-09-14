@@ -30,6 +30,7 @@ ActiveAdmin.register Product do
       end
       f.has_many :product_images, heading: 'Images' do |a|
         a.input :data, :hint => image_tag(a.object.data.url(:medium))
+        a.input :_destroy, as: :boolean
       end
     end
     f.actions
