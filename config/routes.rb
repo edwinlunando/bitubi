@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :products, path: 'produk'
 
   get 'saldo' => 'home#topup'
+  post 'saldo' => 'home#topup_credit', as: 'tambah_saldo'
   get 'keranjang' => 'home#cart'
   get 'alamat' => 'home#address'
   get 'pesanan' => 'home#orders'

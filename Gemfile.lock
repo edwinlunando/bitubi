@@ -108,6 +108,7 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    certifi (2015.08.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -144,6 +145,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.34.0)
@@ -300,6 +303,7 @@ GEM
       money (~> 6.5.0)
       railties (>= 3.0)
     multi_json (1.11.2)
+    multipart-post (2.0.0)
     mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -386,6 +390,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sentry-raven (0.14.0)
+      certifi
+      faraday (>= 0.7.6)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     simple_form (3.1.0)
@@ -480,6 +487,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sentry-raven
   shoulda-matchers
   simple_form
   slim-rails

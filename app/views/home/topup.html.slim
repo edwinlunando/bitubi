@@ -1,26 +1,14 @@
 .container
   .row
     .col-md-3
-      p Saldo kamu: IDR 3.000.000
+      p Saldo kamu: IDR #{ current_user.credit }
     .col-md-9
-      p Top up:
-      form class="form-horizontal"
-        .form-group
-          label class="col-sm-2 control-label" Nama akun Bank
-          .col-sm-6
-            input type="email" class="form-control"
-        .form-group
-          label class="col-sm-2 control-label" Jumlah transfer
-          .col-sm-6
-            input type="text" class="form-control"
-        .form-group
-          label class="col-sm-2 control-label" Bank tujuan
-          .col-sm-6
-            input type="text" class="form-control"
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            button type="submit" class="btn btn-default" Tambah
-
+      h1 Top Up
+      = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
+        = f.input :name
+        = f.input :amount
+        = f.input :bank
+        = f.submit 'Isi Saldo', class: 'btn btn-primary'
 
 
 

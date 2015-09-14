@@ -3,8 +3,7 @@
 # Table name: wholesale_prices
 #
 #  id               :integer          not null, primary key
-#  price_cents      :integer          default(0), not null
-#  price_currency   :string(255)      default("USD"), not null
+#  price            :decimal(10, )
 #  minimum_quantity :integer
 #  active           :boolean
 #  product_id       :integer
