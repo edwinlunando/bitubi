@@ -9,5 +9,5 @@ execute 'rake assets:precompile' do
               'DEVISE_SECRET_KEY' => new_resource.environment['SECRET_KEY_BASE'],
               'FOG_DIRECTORY' => new_resource.environment['FOG_DIRECTORY'],
               'AWS_ACCESS_KEY_ID' => new_resource.environment['AWS_ACCESS_KEY_ID'],
-              'AWS_SECRET_ACCESS_KEY' => new_resource.environment['AWS_SECRET_ACCESS_KEY'],
+              'AWS_SECRET_ACCESS_KEY' => new_resource.environment['AWS_SECRET_ACCESS_KEY']
 end
