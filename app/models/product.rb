@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :product_images
   has_many :wholesale_prices
-  accepts_nested_attributes_for :product_images, allow_destroy: true
+  accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :wholesale_prices
 
   friendly_id :name, use: :slugged

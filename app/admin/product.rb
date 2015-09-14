@@ -2,7 +2,7 @@ ActiveAdmin.register Product do
 
   permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id,
                 wholesale_prices_attributes: [:price, :minimum_quantity],
-                product_images_attributes: [:data, :_destroy]
+                product_images_attributes: [:id, :data, :_destroy]
 
   index do
     selectable_column
@@ -29,6 +29,7 @@ ActiveAdmin.register Product do
         a.input :minimum_quantity
       end
       f.has_many :product_images, heading: 'Images' do |a|
+        a.input :id, as: :hidden
         a.input :data, :hint => image_tag(a.object.data.url(:medium))
         a.input :_destroy, as: :boolean
       end
