@@ -61,7 +61,7 @@ gem 'annotate'
 gem "rails-settings-cached", "~> 0.4.0"
 gem 'activeadmin_settings_cached'
 # AWS S3
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem "fog"
 gem 'asset_sync'
 # opsworks workaround
