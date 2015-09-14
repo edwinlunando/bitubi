@@ -76,4 +76,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Assets sync
+  config.action_controller.asset_host = "//s3-ap-southeast-1.amazonaws.com/#{ENV['FOG_DIRECTORY']}"
+  config.assets.initialize_on_precompile = true
 end

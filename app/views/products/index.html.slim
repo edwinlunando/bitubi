@@ -18,7 +18,8 @@
         - @products.each do |product|
           .col-sm-4.col-lg-4.col-md-4
             .thumbnail
-              = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
+              - if product.product_images.present?
+                = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
               .caption
                 h4
                   = link_to product.name, product_path(product)
