@@ -1,6 +1,6 @@
 .container
   .row
-    .col-xs-12
+    .col-xs-12.col-md-offset-2.col-md-8
       .panel.panel-info
         .panel-heading
           .panel-title
@@ -30,9 +30,6 @@
                 .col-xs-4
                   h6
                     strong #{ number_to_currency(line_item.get_price, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-                .col-xs-2
-                  = link_to delete_from_cart_path(line_item), class: 'btn btn-link btn-xs', method: :delete
-                    span.glyphicon.glyphicon-trash
             hr
         .panel-footer
           .row.text-center
