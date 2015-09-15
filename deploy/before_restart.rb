@@ -13,3 +13,10 @@ execute 'rake assets:precompile' do
               'AWS_SECRET_ACCESS_KEY' => new_resource.environment['AWS_SECRET_ACCESS_KEY']
 
 end
+
+Chef::Log.info('Remove Cache')
+execute 'sudo rm -rf tmp/cache' do
+  cwd release_path
+  command "sudo rm -rf tmp/cache"
+
+end
