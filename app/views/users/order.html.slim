@@ -26,18 +26,13 @@
                 .col-xs-6.text-right
                   h6
                     | #{ line_item.quantity } x #{ number_to_currency(line_item.get_price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-                .col-xs-4
+                .col-xs-6
                   h6
                     strong #{ number_to_currency(line_item.get_price, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-                .col-xs-2
-                  = link_to delete_from_cart_path(line_item), class: 'btn btn-link btn-xs', method: :delete
-                    span.glyphicon.glyphicon-trash
             hr
         .panel-footer
           .row.text-center
-            .col-xs-8
+            .col-xs-12
               h4.text-right
                 | Total
                 strong  #{ number_to_currency(@order.get_total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-            .col-xs-4
-              = link_to 'Checkout', alamat_path, class: 'btn btn-success btn-block'

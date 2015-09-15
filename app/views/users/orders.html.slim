@@ -1,0 +1,18 @@
+.container
+  .row.col-md-8.col-md-offset-2.custyle
+    table.table.table-striped.custab
+      thead
+        tr
+          th ID
+          th Tanggal Pesan
+          th State
+          th Total
+          th.text-center
+      - @orders.each_with_index do |order, index|
+        tr
+          td #{ order.id }
+          td #{ order.created_at }
+          td #{ order.state }
+          td #{ order.get_total }
+          td.text-center
+            = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'

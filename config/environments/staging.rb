@@ -25,11 +25,15 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
+  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.action_controller.asset_host = "//s3-ap-southeast-1.amazonaws.com/#{ENV['FOG_DIRECTORY']}"
+  config.assets.initialize_on_precompile = true
+  config.assets.cache_store = :null_store  # Disables the Asset cache
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
@@ -38,4 +42,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_host_name => 's3-ap-southeast-1.amazonaws.com',
+    :bucket => ENV['FOG_DIRECTORY']
+  }
 end
