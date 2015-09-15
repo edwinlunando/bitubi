@@ -13,6 +13,6 @@
           td #{ order.id }
           td #{ order.created_at }
           td #{ order.state }
-          td #{ order.get_total }
+          td #{ number_to_currency(order.get_total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
           td.text-center
             = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'

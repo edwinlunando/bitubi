@@ -18,6 +18,8 @@ ActiveAdmin.register Order do
     end
   end
 
+  filter :id
+
   member_action :confirmed, method: :put do
     if resource.confirm?
       resource.confirming
