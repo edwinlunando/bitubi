@@ -1,9 +1,7 @@
-Chef::Log.info('Running deploy/before_migrate.rb...')
-
-Chef::Log.info('Pecompile Assets')
-execute 'rake assets:precompile' do
+Chef::Log.info('Clear cache')
+execute 'rake tmp:cache:clear' do
   cwd release_path
-  command "bundle exec rake assets:precompile"
+  command "rake tmp:cache:clear"
 
   environment 'RAILS_ENV' => new_resource.environment['RAILS_ENV'],
               'SECRET_KEY_BASE' => new_resource.environment['SECRET_KEY_BASE'],
