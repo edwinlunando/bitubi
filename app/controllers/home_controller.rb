@@ -38,21 +38,35 @@ class HomeController < ApplicationController
 
   def cart
     @order = current_user.get_last_order
+    if @order.cart?
+      @order.checkout
+      @order.save
+    end
   end
 
   def finish
     @address = Address.new(address_params)
     @order = current_user.get_last_order
     @order.address = @address
-    @order.save
-    current_user.credit -= @order.get_total
-    current_user.save
-    flash[:success] = 'Transaksi berhasil'
-    redirect_to root_path
+    if @order.save
+      @order.pay
+      @order.save
+      current_user.credit -= @order.get_total
+      current_user.save
+      flash[:success] = 'Transaksi berhasil'
+      redirect_to root_path
+    else
+      render action: :address
+    end
   end
 
   def address
     @order = current_user.get_last_order
+    if @order.address?
+      @order.addressing
+      @order.save
+    end
+
     if current_user.credit < @order.get_total
       flash[:error] = 'Saldo kamu tidak cukup untuk menyelesaikan transaksi ini! Silahkan top up terlebih dahulu.'
       return redirect_to keranjang_path
