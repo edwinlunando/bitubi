@@ -30,8 +30,9 @@ Rails.application.configure do
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.serve_static_files = true
-  config.assets.digest = false
-  # config.assets.cache_store = :null_store  # Disables the Asset cache
+  config.assets.digest = true
+  config.assets.cache_store = :memory_store, { size: 32.megabytes }
+  config.sass.cache = false
   config.assets.raise_runtime_errors = true
   AssetSync.config.enabled = false
 
