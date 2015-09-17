@@ -12,7 +12,7 @@ ActiveAdmin.register Product do
     actions
   end
 
-  filter :active
+  filter :id
 
   show :title => :name do |post|
 
