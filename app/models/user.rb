@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :products
   has_many :orders
   phony_normalize :phone_number, :default_country_code => 'ID'
-  validates :phone_number, phony_plausible: true, presence: true
+  validates :phone_number, phony_plausible: true
 
   def self.roles
     [
