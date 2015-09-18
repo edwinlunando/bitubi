@@ -11,10 +11,12 @@
 #  updated_at       :datetime         not null
 #
 
+# wholesale price for products
 class WholesalePrice < ActiveRecord::Base
   belongs_to :product
 
   scope :ordered, -> { order(minimum_quantity: :desc) }
+  scope :by_quantity, -> (quantity) { where('minimum_quantity <= ? AND maximum_quantity >= ?', quantity, quantity) }
 
   def price_money
     ActionController::Base.helpers.number_to_currency(price, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')

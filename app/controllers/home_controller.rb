@@ -49,10 +49,11 @@ class HomeController < ApplicationController
     @address = Address.new(address_params)
     @order = current_user.get_last_order
     @order.address = @address
+    # todo transaction
     if @order.save
       @order.pay
       @order.save
-      current_user.credit -= @order.get_total
+      current_user.credit -= @order.total
       current_user.save
       flash[:success] = 'Transaksi berhasil'
       redirect_to root_path
@@ -68,7 +69,7 @@ class HomeController < ApplicationController
       @order.save
     end
 
-    if current_user.credit < @order.get_total
+    if current_user.credit < @order.total
       flash[:error] = 'Saldo kamu tidak cukup untuk menyelesaikan transaksi ini! Silahkan top up terlebih dahulu.'
       return redirect_to keranjang_path
     end

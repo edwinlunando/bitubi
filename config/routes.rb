@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: 'registrations' }
   ActiveAdmin.routes(self)
   mount ActiveadminSettingsCached::Engine => '/admin'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'daleman' => 'home#order'
   get 'login' => 'home#login'
   get 'daftar' => 'home#register'
+  get 'provinsi' => 'addresses#province'
+  get 'kota' => 'addresses#city'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

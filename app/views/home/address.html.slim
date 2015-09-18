@@ -5,6 +5,6 @@
       = simple_form_for(@address, url: finish_path, html: { class: '' }) do |f|
         = f.input :province, collection: Province.all
         = f.input :city, collection: City.all
-        = f.association :state
-        = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap'
+        = f.association :state, collection: nil
+        = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text
         = f.submit 'Bayar', class: 'btn btn-primary btn-block'
