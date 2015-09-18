@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use mysql2 as the database for Active Record
@@ -70,7 +69,11 @@ gem "better_errors"
 # web server
 gem 'unicorn'
 # error reporting
-gem "sentry-raven"
+gem 'sentry-raven'
+# spreadsheet
+gem 'spreadsheet'
+# preferences
+gem 'preferences'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

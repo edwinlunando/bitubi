@@ -1,5 +1,4 @@
 ActiveAdmin.register Product do
-
   permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id,
                 wholesale_prices_attributes: [:id, :price, :minimum_quantity, :_destroy],
                 product_images_attributes: [:id, :data, :_destroy]
@@ -15,7 +14,6 @@ ActiveAdmin.register Product do
   filter :id
 
   show :title => :name do |post|
-
     attributes_table do
       rows :name, :description, :price_dropship, :stock, :weight, :unit, :category, :user
     end
@@ -32,6 +30,7 @@ ActiveAdmin.register Product do
       attributes_table_for post.wholesale_prices do
         row :price
         row :minimum_quantity
+        row :maximum_quantity
       end
     end
 

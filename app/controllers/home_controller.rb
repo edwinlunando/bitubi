@@ -1,12 +1,13 @@
+# Main controller for pretty much everything
 class HomeController < ApplicationController
-  before_action :authenticate_user!, only: [:topup, :topup_credit]
+  before_action :authenticate_user!, only: [:topup, :topup_credit, :cart, :remove_from_cart]
 
   def index
   end
 
   def product
     @categories = Category.all
-    @products = Product.page(params[:page])
+    @products = products.page(params[:page])
   end
 
   def detail

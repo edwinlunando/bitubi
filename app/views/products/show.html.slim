@@ -31,10 +31,13 @@
                 = @product.description
           .row
             .col-xs-12
-              = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
-                = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
-                = f.input :quantity, placeholder: 'Jumlah'
-                = f.submit 'Beli', class: 'btn btn-default'
+              - if user_signed_in?
+                = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
+                  = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
+                  = f.input :quantity, placeholder: 'Jumlah'
+                  = f.submit 'Beli', class: 'btn btn-default'
+              - else
+                = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-primary'
         .ratings
           p class="pull-right" 3 reviews
           p

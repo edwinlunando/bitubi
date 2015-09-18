@@ -1,12 +1,11 @@
 ActiveAdmin.register TopUp do
-
   permit_params :name, :amount, :user_id, :approved, :bank
 
   member_action :approve, method: :put do
     if resource.approve
-      redirect_to resource_path, notice: "Approved!"
+      redirect_to resource_path, notice: 'Approved!'
     else
-      redirect_to collection_path, alert: "Failed to approved!"
+      redirect_to collection_path, alert: 'Failed to approved!'
     end
   end
 
@@ -26,7 +25,7 @@ ActiveAdmin.register TopUp do
   filter :active
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs 'Admin Details' do
       f.input :name
       f.input :amount
       f.input :bank
@@ -34,5 +33,4 @@ ActiveAdmin.register TopUp do
     end
     f.actions
   end
-
 end

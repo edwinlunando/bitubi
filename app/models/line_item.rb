@@ -26,7 +26,7 @@ class LineItem < ActiveRecord::Base
     if purchase_type == :dropship
       product.price_dropship
     else
-      product.wholesale_prices.ordered.where("minimum_quantity <= ?", quantity).first.price
+      product.wholesale_prices.ordered.where("minimum_quantity <= ? AND minimum_quantity >= ?", quantity, quantity).first.price
     end
   end
 
