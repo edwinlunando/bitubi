@@ -3,8 +3,8 @@
     .col-md-3
       .row
         .col-xs-12
-          = simple_form_for('search') do |f|
-            = f.input :q, label: false, placeholder: 'Cari barang'
+          = simple_form_for('', method: :get) do |f|
+            = f.input :q, input_html: { value: params[:q] }, label: false, placeholder: 'Cari barang'
             = f.submit 'Cari', class: 'btn btn-primary btn-block'
       br
       .row

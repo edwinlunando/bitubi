@@ -1,8 +1,14 @@
+# Product controller for list and show
 class ProductsController < InheritedResources::Base
+  before_action :authenticate_user!, only: [:add_to_cart]
 
   def index
     @categories = Category.all
-    @products = Product.page(params[:page])
+    products = Product.all
+    if params[:q].present?
+      products = products.where('lower(name) LIKE ?', '%' + params[:q].downcase + '%')
+    end
+    @products = products.page(params[:page])
   end
 
   def show
@@ -20,19 +26,17 @@ class ProductsController < InheritedResources::Base
       flash[:success] = 'Berhasil masuk keranjang!'
       redirect_to keranjang_path
     else
-      raise
       render action: :show
     end
   end
 
   private
 
-    def product_params
-      params.require(:product).permit(:name, :slug, :description)
-    end
+  def product_params
+    params.require(:product).permit(:name, :slug, :description)
+  end
 
-    def line_item_params
-      params.require(:line_item).permit(:purchase_type, :quantity)
-    end
+  def line_item_params
+    params.require(:line_item).permit(:purchase_type, :quantity)
+  end
 end
-
