@@ -16,6 +16,7 @@
 #  updated_at     :datetime         not null
 #
 
+# model to represent a product in a store
 class Product < ActiveRecord::Base
   extend FriendlyId
 

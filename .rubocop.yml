@@ -1,2 +1,7 @@
+AllCops:
+  RunRailsCops: true
 Metrics/LineLength:
   Max: 119
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 20
