@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-3
-      p Saldo kamu: IDR #{ current_user.credit }
+      p Saldo kamu: #{ number_format(current_user.credit) }
     .col-md-9
       h1 Top Up
       = simple_form_for(@top_up, url: tambah_saldo_path) do |f|

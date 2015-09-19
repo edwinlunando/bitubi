@@ -1,4 +1,9 @@
+# Global helper
 module ApplicationHelper
+  def number_format(number)
+    ActionController::Base.helpers.number_to_currency(number, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
+  end
+
   def resource_name
     :user
   end
