@@ -24,5 +24,10 @@ ready = ->
         return
       return
 
+  # Bootstrap fix for dropdown (turbolinks)
+  if $('.dropdown-toggle').length != 0
+    $('.dropdown-toggle').click ->
+      $(this).dropdown()
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
