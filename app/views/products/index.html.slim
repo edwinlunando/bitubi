@@ -11,7 +11,7 @@
         .col-xs-12
           .list-group
             - @categories.each do |category|
-              a.list-group-item href='#'
+              a.list-group-item href='#{ products_path(category_id: category.id) }'
                 = category.name
     .col-md-9
       .row
@@ -30,13 +30,13 @@
                     thead
                       tr
                         th #
-                        th Jumlah minimal
+                        th Pembelian
                         th Harga
                     tbody
                       - product.wholesale_prices.each_with_index do |price, index|
                         tr
                           th scope="row"  #{ index + 1 }
-                          td #{ price.minimum_quantity }
+                          td #{ price.minimum_quantity - price.maximum_quantity }
                           td #{ price.price_money }
 
 
