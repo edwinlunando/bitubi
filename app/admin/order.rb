@@ -41,7 +41,7 @@ ActiveAdmin.register Order do
     attributes_table do
       rows :special_instruction, :state, :user
       row :total do |order|
-        ActionController::Base.helpers.number_to_currency(order.get_total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
+        ActionController::Base.helpers.number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
       end
     end
 

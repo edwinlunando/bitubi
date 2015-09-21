@@ -11,6 +11,7 @@
 #  purchase_type :integer
 #
 
+# model to represent an item in an order/cart
 class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
@@ -22,15 +23,16 @@ class LineItem < ActiveRecord::Base
   validates_presence_of :order_id
   validates_presence_of :purchase_type
 
-  def get_price_per_quantity
+  def price_per_quantity
     if purchase_type == :dropship
       product.price_dropship
     else
-      product.wholesale_prices.ordered.where("minimum_quantity <= ? AND minimum_quantity >= ?", quantity, quantity).first.price
+      fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
+      product.wholesale_prices.ordered.by_quantity(quantity).first.price
     end
   end
 
-  def get_price
-    quantity * get_price_per_quantity
+  def price
+    quantity * price_per_quantity
   end
 end

@@ -1,3 +1,4 @@
+# Controller to show user data things
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
@@ -8,5 +9,4 @@ class UsersController < ApplicationController
   def order
     @order = current_user.orders.find(params[:id])
   end
-
 end

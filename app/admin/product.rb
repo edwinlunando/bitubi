@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
   permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id,
-                wholesale_prices_attributes: [:id, :price, :minimum_quantity, :_destroy],
+                wholesale_prices_attributes: [:id, :price, :minimum_quantity, :maximum_quantity, :_destroy],
                 product_images_attributes: [:id, :data, :_destroy]
 
   index do
@@ -12,8 +12,9 @@ ActiveAdmin.register Product do
   end
 
   filter :id
+  filter :category_id
 
-  show :title => :name do |post|
+  show title: :name do |post|
     attributes_table do
       rows :name, :description, :price_dropship, :stock, :weight, :unit, :category, :user
     end
@@ -33,11 +34,10 @@ ActiveAdmin.register Product do
         row :maximum_quantity
       end
     end
-
   end
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs 'Admin Details' do
       f.input :name
       f.input :description
       f.input :stock
@@ -50,15 +50,15 @@ ActiveAdmin.register Product do
         a.input :id, as: :hidden
         a.input :price, placeholder: 'harga satuan dalam IDR'
         a.input :minimum_quantity
+        a.input :maximum_quantity
         a.input :_destroy, as: :boolean
       end
       f.has_many :product_images, heading: 'Images' do |a|
         a.input :id, as: :hidden
-        a.input :data, :hint => image_tag(a.object.data.url(:medium))
+        a.input :data, hint: image_tag(a.object.data.url(:medium))
         a.input :_destroy, as: :boolean
       end
     end
     f.actions
   end
-
 end
