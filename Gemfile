@@ -57,15 +57,15 @@ gem 'dotenv-rails'
 # Annotate all model
 gem 'annotate'
 # Global settings
-gem "rails-settings-cached", "~> 0.4.0"
+gem 'rails-settings-cached', '~> 0.4.0'
 gem 'activeadmin_settings_cached'
 # AWS S3
 gem 'aws-sdk', '< 2.0'
-gem "fog"
+gem 'fog'
 gem 'asset_sync'
 # opsworks workaround
 gem 'web-console', '~> 2.0'
-gem "better_errors"
+gem 'better_errors'
 # web server
 gem 'unicorn'
 # error reporting
@@ -74,6 +74,8 @@ gem 'sentry-raven'
 gem 'spreadsheet'
 # preferences
 gem 'preferences'
+# rich text editor
+gem 'ckeditor'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

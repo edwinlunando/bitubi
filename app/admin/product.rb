@@ -39,7 +39,7 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs 'Admin Details' do
       f.input :name
-      f.input :description
+      f.input :description, as: :ckeditor
       f.input :stock
       f.input :unit
       f.input :weight, placeholder: 'dalam gram'
