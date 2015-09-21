@@ -28,7 +28,7 @@
                 dt Berat
                 dd #{ @product.weight } gram
               p
-                = @product.description
+                = @product.description.html_safe
           .row
             .col-xs-12
               - if user_signed_in?
