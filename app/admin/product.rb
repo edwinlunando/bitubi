@@ -12,7 +12,7 @@ ActiveAdmin.register Product do
   end
 
   filter :id
-  filter :category_id
+  filter :category
 
   show title: :name do |post|
     attributes_table do
