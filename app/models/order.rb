@@ -14,7 +14,7 @@
 # model to represent a User order
 class Order < ActiveRecord::Base
   # Relation
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
   accepts_nested_attributes_for :line_items
   has_many :products, through: :line_items
   belongs_to :address
