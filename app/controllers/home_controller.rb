@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   before_action :authenticate_user!, only: [:topup, :topup_credit, :cart, :remove_from_cart]
 
   def index
+    @categories = Category.all
+    @products = Product.page(params[:page])
+    render controller: :products, action: :index
   end
 
   def product
