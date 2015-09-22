@@ -14,6 +14,7 @@ ActiveAdmin.register Product do
   filter :name
   filter :id
   filter :category
+  filter :user
 
   show title: :name do |post|
     attributes_table do
