@@ -37,5 +37,4 @@ class Product < ActiveRecord::Base
   def price_dropship_money
     ActionController::Base.helpers.number_to_currency(price_dropship, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
   end
-
 end
