@@ -11,6 +11,7 @@ ActiveAdmin.register Product do
     actions
   end
 
+  filter :name
   filter :id
   filter :category
 
