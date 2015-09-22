@@ -7,7 +7,7 @@
       = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
         = f.input :name
         = f.input :amount
-        = f.input :bank
+        = f.input :bank, collection: TopUp.bank_list, input_html: { class: 'selectize' }
         = f.submit 'Isi Saldo', class: 'btn btn-primary'
 
 

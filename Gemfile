@@ -76,6 +76,8 @@ gem 'spreadsheet'
 gem 'preferences'
 # rich text editor
 gem 'ckeditor'
+# selectize
+gem 'selectize-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -98,4 +100,3 @@ group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
 end
-

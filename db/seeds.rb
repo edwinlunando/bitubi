@@ -9,3 +9,7 @@
 Category.create(name: 'Elektronik')
 Category.create(name: 'Makanan ringan')
 Category.create(name: 'Makanan berat')
+
+ShipmentType.create(name: 'jne_reguler', display_name: 'JNE Reguler')
+ShipmentType.create(name: 'jne_oke', display_name: 'JNE Oke')
+ShipmentType.create(name: 'jne_yes', display_name: 'JNE Yes')
