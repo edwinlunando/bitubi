@@ -27,6 +27,8 @@
               dl
                 dt Berat
                 dd #{ @product.weight } gram
+                dt Stok
+                dd #{ @product.stock } #{ @product.unit }
               p
                 = @product.description.html_safe
           .row

@@ -20,6 +20,14 @@ class Order < ActiveRecord::Base
   belongs_to :address
   belongs_to :user
 
+  # Method
+  def finish_order
+    line_items.each do |line_item|
+      line_item.product.stock -= line_item.quantity
+      line_item.product.save
+    end
+  end
+
   # State
   include AASM
 
@@ -52,9 +60,14 @@ class Order < ActiveRecord::Base
     end
 
     event :finish do
+      before do
+        finish_order
+      end
       transitions to: :done
     end
   end
+
+
 
   def total
     line_items.inject(0) { |result, element| result + element.price }

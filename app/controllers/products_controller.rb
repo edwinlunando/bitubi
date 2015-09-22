@@ -22,6 +22,10 @@ class ProductsController < InheritedResources::Base
   def add_to_cart
     @product = Product.friendly.find(params[:id])
     @line_item = LineItem.new(line_item_params)
+    if @line_item.quantity > @product.stock
+      flash[:error] = 'Stok tidak mencukupi'
+      return render action: :show
+    end
     order = current_user.get_last_order
     @line_item.order = order
     @line_item.product = @product
