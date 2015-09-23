@@ -5,8 +5,9 @@
         = link_to product_path(product)
           = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
     .caption
-      h4
-        = link_to product.name, product_path(product)
+      .thumbnail-name
+        h4
+          = link_to product.name, product_path(product)
       hr
       h4 Dropship
       h5 @ #{ product.price_dropship_money }
