@@ -16,7 +16,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
 
-  enum purchase_type: [:dropship, :grosir]
+  enum purchase_type: [:dropship, :wholesale]
 
   validates_presence_of :product_id
   validates_presence_of :quantity
@@ -39,9 +39,5 @@ class LineItem < ActiveRecord::Base
 
   def price
     quantity * price_per_quantity
-  end
-
-  def wholesale?
-    purchase_type == 'grosir'
   end
 end
