@@ -24,7 +24,7 @@ class LineItem < ActiveRecord::Base
   validates_presence_of :purchase_type
 
   def price_per_quantity
-    if purchase_type == 'dropship'
+    if dropship?
       product.price_dropship
     else
       fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0

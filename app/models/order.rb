@@ -9,6 +9,7 @@
 #  user_id             :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  address_id          :integer
 #
 
 # model to represent a User order
@@ -19,6 +20,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :line_items
   belongs_to :address
   belongs_to :user
+  belongs_to :state_shipment_price
 
   # Method
   def finish_order
@@ -67,9 +69,32 @@ class Order < ActiveRecord::Base
     end
   end
 
-
+  def total_without_shipment
+    line_items.inject(0) { |result, element| result + element.price }
+  end
 
   def total
-    line_items.inject(0) { |result, element| result + element.price }
+    total_without_shipment + shipment_price
+  end
+
+  def total_weight
+    return nil if state_shipment_price.nil?
+    total_weight = line_items.inject(0) { |result, element| result + (element.quantity * element.product.weight) } / 1000.0
+  end
+
+  def display_weight
+    weight = total_weight
+    if weight % 1 < 0.3
+      weight.floor
+    else
+      weight.ceil
+    end
+    weight
+  end
+
+  def shipment_price
+    return nil if state_shipment_price.nil?
+    weight = display_weight
+    weight * state_shipment_price.price
   end
 end

@@ -48,18 +48,25 @@ class HomeController < ApplicationController
     end
   end
 
-  def finish
+  def addressing
     @address = Address.new(address_params)
+    if StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).count == 0
+      flash.now[:error] = 'Harga pengiriman tidak ditemukan'
+      return render action: :address
+    end
+    @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
     @order = current_user.get_last_order
     @order.address = @address
+    @order.state_shipment_price = @shipment_price
     # todo transaction
     if @order.save
-      @order.pay
-      @order.save
-      current_user.credit -= @order.total
-      current_user.save
-      flash[:success] = 'Transaksi berhasil'
-      redirect_to root_path
+      redirect_to konfirmasi_path
+      # @order.pay
+      # @order.save
+      # current_user.credit -= @order.total
+      # current_user.save
+      # flash[:success] = 'Transaksi berhasil'
+      # redirect_to root_path
     else
       render action: :address
     end
@@ -73,8 +80,7 @@ class HomeController < ApplicationController
     end
 
     if current_user.credit < @order.total
-      flash[:error] = 'Saldo kamu tidak cukup untuk menyelesaikan transaksi ini! Silahkan top up terlebih dahulu.'
-      return redirect_to keranjang_path
+      return redirect_to keranjang_path, error: 'Saldo kamu tidak cukup untuk menyelesaikan transaksi ini! Silahkan top up terlebih dahulu.'
     end
     @address = Address.new
   end
@@ -107,6 +113,21 @@ class HomeController < ApplicationController
     end
   end
 
+  def confirmation
+    @order = current_user.get_last_order
+  end
+
+  def finish
+    @order = current_user.get_last_order
+    return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
+    @order.pay
+    @order.save
+    current_user.credit -= @order.total
+    current_user.save
+    flash[:success] = 'Transaksi berhasil'
+    redirect_to root_path
+  end
+
   private
 
   def user_params
@@ -118,7 +139,6 @@ class HomeController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:state, :name)
+    params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type)
   end
-
 end

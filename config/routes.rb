@@ -19,13 +19,17 @@ Rails.application.routes.draw do
   post 'saldo' => 'home#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'home#remove_from_cart', as: 'delete_from_cart'
   get 'keranjang' => 'home#cart'
-  post 'alamat' => 'home#finish', as: 'finish'
+  post 'alamat' => 'home#addressing', as: 'addressing'
   get 'alamat' => 'home#address'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
   get 'daleman' => 'home#order'
   get 'login' => 'home#login'
   get 'daftar' => 'home#register'
+  get 'konfirmasi' => 'home#confirmation'
+  post 'konfirmasi' => 'home#finish', as: 'finish'
+
+  # AJAX
   get 'provinsi' => 'addresses#province'
   get 'kota' => 'addresses#city'
 

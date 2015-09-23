@@ -30,6 +30,11 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  validates :weight, presence: true
+  validates :stock, presence: true
+  validates :name, presence: true
+  validates :unit, presence: true
+
   def get_first_image
     product_images.try(:first)
   end

@@ -26,6 +26,7 @@
 #  phone_number           :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  credit                 :decimal(10, )    default(0)
 #
 
 require 'test_helper'
