@@ -29,6 +29,10 @@ class ProductsController < InheritedResources::Base
     order = current_user.get_last_order
     @line_item.order = order
     @line_item.product = @product
+    unless @line_item.wholesale? && @line_item.check_wholesale_price
+      flash[:error] = 'Harga tidak tersedia'
+      return render action: :show
+    end
     if @line_item.save
       flash[:success] = 'Berhasil masuk keranjang!'
       redirect_to keranjang_path

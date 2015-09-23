@@ -32,7 +32,16 @@ class LineItem < ActiveRecord::Base
     end
   end
 
+  def check_wholesale_price
+    true if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
+    false
+  end
+
   def price
     quantity * price_per_quantity
+  end
+
+  def wholesale?
+    purchase_type == 'grosir'
   end
 end
