@@ -33,7 +33,7 @@ class HomeController < ApplicationController
   end
 
   def remove_from_cart
-    @order = current_user.get_last_order
+    @order = current_user.last_order
     @line_item = LineItem.find(params[:id])
     @line_item.destroy
     flash[:success] = 'Barang berhasil dibuang!'
@@ -41,7 +41,7 @@ class HomeController < ApplicationController
   end
 
   def cart
-    @order = current_user.get_last_order
+    @order = current_user.last_order
     if @order.cart?
       @order.checkout
       @order.save
@@ -55,33 +55,24 @@ class HomeController < ApplicationController
       return render action: :address
     end
     @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
-    @order = current_user.get_last_order
+    @order = current_user.last_order
     @order.address = @address
     @order.state_shipment_price = @shipment_price
     # todo transaction
     if @order.save
       redirect_to konfirmasi_path
-      # @order.pay
-      # @order.save
-      # current_user.credit -= @order.total
-      # current_user.save
-      # flash[:success] = 'Transaksi berhasil'
-      # redirect_to root_path
     else
       render action: :address
     end
   end
 
   def address
-    @order = current_user.get_last_order
+    @order = current_user.last_order
     if @order.address?
       @order.addressing
       @order.save
     end
 
-    if current_user.credit < @order.total
-      return redirect_to keranjang_path, error: 'Saldo kamu tidak cukup untuk menyelesaikan transaksi ini! Silahkan top up terlebih dahulu.'
-    end
     @address = Address.new
   end
 
@@ -114,11 +105,11 @@ class HomeController < ApplicationController
   end
 
   def confirmation
-    @order = current_user.get_last_order
+    @order = current_user.last_order
   end
 
   def finish
-    @order = current_user.get_last_order
+    @order = current_user.last_order
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
     @order.pay
     @order.save

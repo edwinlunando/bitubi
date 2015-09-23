@@ -60,22 +60,21 @@ class User < ActiveRecord::Base
     'ID'
   end
 
-  def get_last_order
+  def last_order
     if orders.count == 0
       order = Order.new
       order.user = self
       order.save
       return order
     else
-      if orders.last.state != :done
-        return orders.last
-      else
+      if orders.last.confirm? || orders.last.delivery? || orders.last.done?
         order = Order.new
         order.user = self
         order.save
         return order
+      else
+        return orders.last
       end
     end
   end
-
 end

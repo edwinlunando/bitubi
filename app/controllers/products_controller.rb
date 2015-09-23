@@ -26,7 +26,7 @@ class ProductsController < InheritedResources::Base
       flash[:error] = 'Stok tidak mencukupi'
       return render action: :show
     end
-    order = current_user.get_last_order
+    order = current_user.last_order
     @line_item.order = order
     @line_item.product = @product
     if @line_item.wholesale? && !@line_item.check_wholesale_price
