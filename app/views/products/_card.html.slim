@@ -1,0 +1,18 @@
+.col-sm-4.col-lg-4.col-md-4
+  .thumbnail
+    - if product.product_images.present?
+      = link_to product_path(product)
+        = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
+    .caption
+      h4
+        = link_to product.name, product_path(product)
+      hr
+      h4 Dropship
+      h5 @ #{ product.price_dropship_money }
+      hr
+      - if product.wholesale_prices.present?
+        h4
+          | Grosir
+          small  mulai dari
+        h5 @ #{ number_format(product.price_wholesale_minimum.price) }
+

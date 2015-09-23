@@ -37,4 +37,9 @@ class Product < ActiveRecord::Base
   def price_dropship_money
     ActionController::Base.helpers.number_to_currency(price_dropship, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
   end
+
+  def price_wholesale_minimum
+    return nil if wholesale_prices.count == 0
+    wholesale_prices.cheapest.first
+  end
 end
