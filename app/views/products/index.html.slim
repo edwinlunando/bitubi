@@ -3,7 +3,7 @@
     .col-md-3
       .row
         .col-xs-12
-          = simple_form_for('', method: :get) do |f|
+          = simple_form_for('', url: products_path, method: :get) do |f|
             = f.input :q, input_html: { value: params[:q] }, label: false, placeholder: 'Cari barang'
             = f.submit 'Cari', class: 'btn btn-primary btn-block'
       br
@@ -16,27 +16,9 @@
     .col-md-9
       .row
         - @products.each do |product|
-          .col-sm-4.col-lg-4.col-md-4
-            .thumbnail
-              - if product.product_images.present?
-                = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
-              .caption
-                h4
-                  = link_to product.name, product_path(product)
-                h4 @ #{ product.price_dropship_money }
-                - if product.wholesale_prices.present?
-                  table.table
-                    caption Harga grosir
-                    thead
-                      tr
-                        th #
-                        th Pembelian
-                        th Harga
-                    tbody
-                      - product.wholesale_prices.each_with_index do |price, index|
-                        tr
-                          th scope="row"  #{ index + 1 }
-                          td #{ price.minimum_quantity - price.maximum_quantity }
-                          td #{ price.price_money }
+          = render 'card', product: product
+      .row
+        .col-md-12.text-center
+          = paginate @products
 
 

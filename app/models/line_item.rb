@@ -16,7 +16,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
 
-  enum purchase_type: [:dropship, :grosir]
+  enum purchase_type: [:dropship, :wholesale]
 
   validates_presence_of :product_id
   validates_presence_of :quantity
@@ -24,12 +24,17 @@ class LineItem < ActiveRecord::Base
   validates_presence_of :purchase_type
 
   def price_per_quantity
-    if purchase_type == :dropship
+    if dropship?
       product.price_dropship
     else
       fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
       product.wholesale_prices.ordered.by_quantity(quantity).first.price
     end
+  end
+
+  def check_wholesale_price
+    false if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
+    true
   end
 
   def price

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921142741) do
+ActiveRecord::Schema.define(version: 20150923100625) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -78,14 +78,17 @@ ActiveRecord::Schema.define(version: 20150921142741) do
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.decimal  "total",                             precision: 10
-    t.text     "special_instruction", limit: 65535
-    t.string   "state",               limit: 255
-    t.integer  "user_id",             limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.integer  "address_id",          limit: 4
+    t.decimal  "total",                                 precision: 10
+    t.text     "special_instruction",     limit: 65535
+    t.string   "state",                   limit: 255
+    t.integer  "user_id",                 limit: 4
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "address_id",              limit: 4
+    t.integer  "state_shipment_price_id", limit: 4
   end
+
+  add_index "orders", ["state_shipment_price_id"], name: "index_orders_on_state_shipment_price_id", using: :btree
 
   create_table "product_images", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255
@@ -140,6 +143,17 @@ ActiveRecord::Schema.define(version: 20150921142741) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  create_table "state_shipment_prices", force: :cascade do |t|
+    t.integer  "state_id",         limit: 4
+    t.integer  "shipment_type_id", limit: 4
+    t.decimal  "price",                      precision: 10
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "state_shipment_prices", ["shipment_type_id"], name: "index_state_shipment_prices_on_shipment_type_id", using: :btree
+  add_index "state_shipment_prices", ["state_id"], name: "index_state_shipment_prices_on_state_id", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -207,9 +221,12 @@ ActiveRecord::Schema.define(version: 20150921142741) do
   add_foreign_key "addresses", "states"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
+  add_foreign_key "orders", "state_shipment_prices"
   add_foreign_key "product_images", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
+  add_foreign_key "state_shipment_prices", "shipment_types"
+  add_foreign_key "state_shipment_prices", "states"
   add_foreign_key "top_ups", "users"
   add_foreign_key "wholesale_prices", "products"
 end

@@ -2,9 +2,10 @@
   .row
     .col-md-4.col-md-offset-4
       h1 Alamat Pengiriman
-      = simple_form_for(@address, url: finish_path, html: { class: '' }) do |f|
-        = f.input :province, collection: Province.all
-        = f.input :city, collection: City.all
-        = f.association :state, collection: nil
+      = simple_form_for(@address, url: addressing_path, html: { class: '' }) do |f|
+        = f.input :province, collection: Province.all, label: 'Provinsi'
+        = f.input :city, collection: City.all, label: 'Kota'
+        = f.association :state, collection: nil, label: 'Kecamatan'
+        = f.input :shipment_type, collection: ShipmentType.all, label_method: lambda { |shipment_type| shipment_type.display_name }, label: 'Jenis pengiriman'
         = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text
         = f.submit 'Bayar', class: 'btn btn-primary btn-block'

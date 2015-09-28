@@ -29,5 +29,7 @@ ready = ->
     $('.dropdown-toggle').click ->
       $(this).dropdown()
 
+  $('.selectize').selectize()
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -30,6 +30,11 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  validates :weight, presence: true
+  validates :stock, presence: true
+  validates :name, presence: true
+  validates :unit, presence: true
+
   def get_first_image
     product_images.try(:first)
   end
@@ -38,4 +43,8 @@ class Product < ActiveRecord::Base
     ActionController::Base.helpers.number_to_currency(price_dropship, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
   end
 
+  def price_wholesale_minimum
+    return nil if wholesale_prices.count == 0
+    wholesale_prices.cheapest.first
+  end
 end

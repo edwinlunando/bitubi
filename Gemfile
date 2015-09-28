@@ -76,6 +76,10 @@ gem 'spreadsheet'
 gem 'preferences'
 # rich text editor
 gem 'ckeditor'
+# selectize
+gem 'selectize-rails'
+# static pages
+gem 'high_voltage', '~> 2.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -98,4 +102,3 @@ group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
 end
-

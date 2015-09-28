@@ -11,8 +11,10 @@ ActiveAdmin.register Product do
     actions
   end
 
+  filter :name
   filter :id
-  filter :category_id
+  filter :category
+  filter :user
 
   show title: :name do |post|
     attributes_table do
