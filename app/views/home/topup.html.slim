@@ -1,7 +1,12 @@
 .container
   .row
     .col-md-4
-      p Saldo kamu: #{ number_format(current_user.credit) }
+      .row
+        .col-md-12
+          p Saldo kamu: #{ number_format(current_user.credit) }
+      .row
+        .col-md-12
+          p BCA: 1283 812 7389
     .col-md-4
       h1 Top Up
       = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
