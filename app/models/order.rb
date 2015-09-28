@@ -93,7 +93,7 @@ class Order < ActiveRecord::Base
   end
 
   def shipment_price
-    return nil if state_shipment_price.nil?
+    return 0 if state_shipment_price.nil?
     weight = display_weight
     weight * state_shipment_price.price
   end

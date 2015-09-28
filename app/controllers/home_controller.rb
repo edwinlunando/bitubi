@@ -76,12 +76,6 @@ class HomeController < ApplicationController
     @address = Address.new
   end
 
-  def orders
-  end
-
-  def order
-  end
-
   def login
     if user_signed_in?
       redirect_to root_path and return
