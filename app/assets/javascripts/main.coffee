@@ -1,5 +1,7 @@
 ready = ->
 
+  Turbolinks.enableProgressBar()
+
   province = $('#address_province')
 
   if province.length > 0
@@ -28,8 +30,6 @@ ready = ->
   if $('.dropdown-toggle').length != 0
     $('.dropdown-toggle').click ->
       $(this).dropdown()
-
   $('.selectize').selectize()
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+$(document).on('ready page:load', ready)
