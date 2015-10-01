@@ -1,7 +1,5 @@
 ready = ->
 
-  Turbolinks.enableProgressBar()
-
   province = $('#address_province')
 
   if province.length > 0
@@ -33,3 +31,5 @@ ready = ->
   $('.selectize').selectize()
 
 $(document).on('ready page:load', ready)
+
+Turbolinks.enableProgressBar()

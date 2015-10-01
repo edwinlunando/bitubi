@@ -27,21 +27,22 @@
                   h6
                     strong #{ number_format(line_item.price) }
             hr
-          .row
-            .col-xs-2
-              | Ongkos kirim
-            .col-xs-4
-              h4.product-name
-                | #{ @order.address.name }
-              h4
-                small #{ @order.state_shipment_price.shipment_type.display_name }
-            .col-xs-6
-              .col-xs-6.text-right
-                h6
-                  | #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
+          - if @order.address.present?
+            .row
+              .col-xs-2
+                | Ongkos kirim
+              .col-xs-4
+                h4.product-name
+                  | #{ @order.address.name }
+                h4
+                  small #{ @order.state_shipment_price.shipment_type.display_name }
               .col-xs-6
-                h6
-                  strong #{ number_format(@order.shipment_price) }
+                .col-xs-6.text-right
+                  h6
+                    | #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
+                .col-xs-6
+                  h6
+                    strong #{ number_format(@order.shipment_price) }
         .panel-footer
           .row.text-center
             .col-xs-8
