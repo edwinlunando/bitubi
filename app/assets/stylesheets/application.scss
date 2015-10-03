@@ -1,17 +1,5 @@
 // Example using 'yeti' bootswatch
 
-//Import bootstrap-sprockets
-@import "bootstrap-sprockets";
-
-// Import yeti variables
-@import "bootswatch/yeti/variables";
-
-// Then bootstrap itself
-@import "bootstrap";
-
-// And finally bootswatch style itself
-@import "bootswatch/yeti/bootswatch";
-
 @import "main";
 
 @import "selectize";

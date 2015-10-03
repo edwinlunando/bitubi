@@ -37,6 +37,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :unit, presence: true
   validates :price_dropship, presence: true
+  validates :wholesale_prices, length: { :minimum => 1 }
 
   def get_first_image
     product_images.try(:first)
