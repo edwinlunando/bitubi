@@ -5,8 +5,8 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore frontend dependencies (bower + node)
-/_frontend/node_modules
 /_frontend/bower_components
+/_frontend/node_modules
 
 # Ignore bundler config.
 /.bundle

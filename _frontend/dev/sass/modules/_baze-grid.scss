@@ -1,0 +1,95 @@
+/*! Baze Grid v2.0.2 | (c) 2014 @_bobbylie | https://github.com/ImBobby/Baze-Grid */
+
+// Config
+// --------------------------------------------------------------------------- */
+
+$BZG_COUNT      : 12 !default;
+$BZG_GUTTER     : 25 * 1px !default;
+$BZG_MEDIUM     : 40 * 1em !default;
+$BZG_LARGE      : 64 * 1em !default;
+
+@function bzgSize($size) {
+    @return $size / $BZG_COUNT * 100%;
+}
+
+
+// Style
+// --------------------------------------------------------------------------- */
+
+%bzg_clearfix:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.bzg {
+    @extend %bzg_clearfix;
+
+    margin-left: $BZG_GUTTER * -1;
+    box-sizing: border-box;
+}
+
+.bzg--no-gutter {
+    margin-left: 0;
+
+    > .bzg_c {
+        padding-left: 0;
+    }
+
+}
+
+.bzg_c {
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: $BZG_GUTTER;
+    box-sizing: border-box;
+}
+
+@for $i from 1 through $BZG_COUNT {
+
+    .bzg_c[data-col*="s#{$i}"] {
+        width: bzgSize($i);
+    }
+
+    .bzg_c[data-offset*="s#{$i}"] {
+        margin-left: bzgSize($i);
+    }
+
+}
+
+@media screen and (min-width: #{$BZG_MEDIUM} ) {
+
+    .bzg_c[data-col*="m"] {
+        margin-left: 0;
+    }
+
+    @for $i from 1 through $BZG_COUNT {
+        .bzg_c[data-col*="m#{$i}"] {
+            width: bzgSize($i);
+        }
+
+        .bzg_c[data-offset*="m#{$i}"] {
+            margin-left: bzgSize($i);
+        }
+    }
+
+}
+
+@media screen and (min-width: #{$BZG_LARGE}) {
+
+    .bzg_c[data-col*="l"] {
+        margin-left: 0;
+    }
+
+    @for $i from 1 through $BZG_COUNT {
+        .bzg_c[data-col*="l#{$i}"] {
+            width: bzgSize($i);
+        }
+
+        .bzg_c[data-offset*="l#{$i}"] {
+            margin-left: bzgSize($i);
+        }
+    }
+
+}

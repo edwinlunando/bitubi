@@ -1,0 +1,168 @@
+/* Override UGG site */
+#main {
+	width: 100%; 
+	padding:0;
+}
+.content-asset p {
+	margin:0 auto;
+}
+
+/* Helpers */
+/**************************/
+.margin-top-10 {
+	padding-top:10px;
+}
+.margin-bot-10 {
+	padding-bottom:10px;
+}
+
+/* Typography */
+/**************************/
+.parallax-container {
+	h1 {
+		font-family:'Oswald', sans-serif; 
+		font-size:24px; 
+		font-weight:400; 
+		text-transform: uppercase; 
+		color:black; 
+		padding:0; 
+		margin:0;
+	}
+	h2 {
+		font-family:'Oswald', sans-serif; 
+		font-size:70px; 
+		letter-spacing:10px; 
+		text-align:center; 
+		color:white; 
+		font-weight:400; 
+		text-transform:uppercase; 
+		z-index:10; 
+		opacity:.8;
+		@media screen and (max-width: 767px) {
+			font-size:30px;
+		}
+	}
+	h3 {
+		font-family:'Oswald', sans-serif; 
+		font-size:14px; 
+		line-height:0; 
+		font-weight:400; 
+		letter-spacing:8px; 
+		text-transform: uppercase; 
+		color:black;
+	}
+	p {
+		font-family:'Lato', sans-serif; 
+		font-weight:400; 
+		font-size:14px; 
+		line-height:24px;
+	}
+	.title {
+		background: white; 
+		padding: 60px; 
+		margin:0 auto; 
+		text-align:center;
+		h1 {
+			font-size:35px; 
+			letter-spacing:8px;
+		}
+	}
+	.block {
+		padding: 60px; 
+		width:820px; 
+		margin:0 auto; 
+		text-align:justify;
+		@media screen and (max-width: 959px) and (min-width: 768px) {
+			padding: 40px; width:620px;
+		}
+		@media screen and (max-width: 767px) {
+			padding: 30px; width:420px;
+		}
+		@media screen and (max-width: 479px) {
+			padding: 30px 15px; width:290px;
+		}
+	}
+	.block-gray {
+		background: #f2f2f2;
+		padding: 60px;
+	}
+	.section-overlay-mask {
+		position: absolute; 
+		top: 0; 
+		left: 0; 
+		width: 100%; 
+		height: 100%; 
+		background-color: black; 
+		opacity: 0.70;
+	}
+	.parallax-one {
+		padding-top: 200px; 
+		padding-bottom: 200px; 
+		overflow: hidden; 
+		position: relative; 
+		width: 100%; 
+		background-image: url(http://dw2.web.deckers.demandware.net/on/demandware.static/Sites-UGG-US-Site/Sites-UGG-US-Library/default/v1389110192142/images/southern-cali.jpg); 
+		background-attachment: fixed; 
+		background-size: cover; 
+		-moz-background-size: cover; 
+		-webkit-background-size: cover; 
+		background-repeat: no-repeat; 
+		background-position: top center;
+		@media screen and (max-width: 767px) {
+			padding-top:100px; padding-bottom:100px;
+		}
+	}
+	.parallax-two {
+		padding-top: 200px; 
+		padding-bottom: 200px; 
+		overflow: hidden; 
+		position: relative; 
+		width: 100%; 
+		background-image: url(http://dw2.web.deckers.demandware.net/on/demandware.static/Sites-UGG-US-Site/Sites-UGG-US-Library/default/v1389110192142/images/new-york.jpg); 
+		background-attachment: fixed; 
+		background-size: cover; 
+		-moz-background-size: cover; 
+		-webkit-background-size: cover; 
+		background-repeat: no-repeat; 
+		background-position: center center;
+		@media screen and (max-width: 767px) {
+			padding-top:100px; padding-bottom:100px;
+		}
+	}
+	.parallax-three {
+		padding-top: 200px; 
+		padding-bottom: 200px; 
+		overflow: hidden; 
+		position: relative; 
+		width: 100%; 
+		background-image: url(http://dw2.web.deckers.demandware.net/on/demandware.static/Sites-UGG-US-Site/Sites-UGG-US-Library/default/v1389110192142/images/ugg-joelene.jpg); 
+		background-attachment: fixed; 
+		background-size: cover; 
+		-moz-background-size: cover;
+		-webkit-background-size: cover; 
+		background-repeat: no-repeat; 
+		background-position: center center;
+		@media screen and (max-width: 767px) {
+			padding-top:100px; padding-bottom:100px;
+		}
+	}
+	.line-break {
+		border-bottom:1px solid black; 
+		width: 150px; 
+		margin:0 auto;
+	}
+}
+.first-character {
+	font-weight:400; 
+	float: left; 
+	font-size: 84px; 
+	line-height: 64px; 
+	padding-top: 4px; 
+	padding-right: 8px; 
+	padding-left: 3px; 
+	font-family: 'Lato', sans-serif;
+}
+
+.sc {color: #3b8595;}
+.ny {color: #3d3c3a;}
+.atw {color: #c48660;}
