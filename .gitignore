@@ -4,6 +4,10 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore frontend dependencies (bower + node)
+/_frontend/node_modules
+/_frontend/bower_components
+
 # Ignore bundler config.
 /.bundle
 
