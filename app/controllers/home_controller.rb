@@ -1,20 +1,12 @@
 # Main controller for pretty much everything
 class HomeController < ApplicationController
+
   before_action :authenticate_user!, only: [:topup, :topup_credit, :cart, :remove_from_cart]
 
   def index
     @categories = Category.all
     @products = Product.page(params[:page])
     render controller: :products, action: :index
-  end
-
-  def product
-    @categories = Category.all
-    @products = products.page(params[:page])
-  end
-
-  def detail
-    @product = Product.friendly.find(params[:id])
   end
 
   def topup_credit
@@ -77,9 +69,7 @@ class HomeController < ApplicationController
   end
 
   def login
-    if user_signed_in?
-      redirect_to root_path and return
-    end
+    return redirect_to root_path if user_signed_in?
     render('devise/sessions/new')
   end
 
@@ -126,4 +116,5 @@ class HomeController < ApplicationController
   def address_params
     params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type)
   end
+
 end

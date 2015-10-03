@@ -22,7 +22,7 @@ staging:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: <%= ENV['TEST_DB_HOSTNAME'] %>
+  host: db
   database: <%= ENV['TEST_DB_NAME'] %>
   username: <%= ENV['TEST_DB_USERNAME'] %>
   password: <%= ENV['TEST_DB_PASSWORD'] %>

@@ -148,6 +148,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.5.0)
+      i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     fission (0.5.0)
@@ -482,6 +484,7 @@ DEPENDENCIES
   dotenv-rails
   email_validator
   factory_girl_rails
+  faker
   fog
   friendly_id
   high_voltage (~> 2.4.0)
@@ -501,7 +504,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selectize-rails
   sentry-raven
-  shoulda-matchers
+  shoulda-matchers (~> 2.8.0)
   simple_form
   slim-rails
   spreadsheet

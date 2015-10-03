@@ -9,6 +9,10 @@
 #  updated_at :datetime         not null
 #
 
+# category class the has many products
 class Category < ActiveRecord::Base
+
   has_many :products
+  validates_presence_of :name
+
 end

@@ -5,3 +5,12 @@ Metrics/LineLength:
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 20
+Metrics/BlockNesting:
+  Max: 5
+Metrics/ParameterLists:
+  Max: 10
+  CountKeywordArgs: true
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+Style/EmptyLinesAroundBlockBody:
+  EnforcedStyle: empty_lines
