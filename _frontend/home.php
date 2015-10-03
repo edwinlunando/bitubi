@@ -305,7 +305,7 @@
             </div>
             <div class="grid-flex np-top">
                 <div class="grid-flex__col grid-flex__col--12  np-top">
-                    <center><a href="" class="btn btn-green">Lihat Semua</a></center> 
+                    <center><a href="" class="btn btn-orange">Lihat Semua</a></center> 
                 </div>
             </div>
         </div>

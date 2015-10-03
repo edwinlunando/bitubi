@@ -34,7 +34,7 @@ $bread_separator    : '';
         }
     }
     .active {
-        background: $darkgreen;
+        background: $darkorange;
         a {
             color: white;
         }
@@ -50,9 +50,9 @@ $bread_separator    : '';
 .page-notification--container {
     .breadcrumb,
     .page-notification--message {
-        border-top: 1px solid $green;
-        border-bottom: 1px solid $green;
-        background: $lightgreen;
+        border-top: 1px solid $orange;
+        border-bottom: 1px solid $orange;
+        background: $lightorange;
         li {
             &:after {
                 content: '/';
@@ -85,7 +85,7 @@ $bread_separator    : '';
 .mid-menu-breadcrumb--container {
     .breadcrumb {
         .mid-menu-open {
-            background: $green !important;
+            background: $orange !important;
             color: white !important;
             span:before {
                 @include rotate-transform(135deg);
@@ -96,7 +96,7 @@ $bread_separator    : '';
             display: block;
             border: none;
             background: $black20;
-            color: $darkgreen;
+            color: $darkorange;
             padding: 10px 5px;
             cursor: pointer;
             @media #{$medium} { 
@@ -144,7 +144,7 @@ $bread_separator    : '';
                 text-transform: uppercase;
                 font-weight: bold;
                 &:hover {
-                    color: $darkgreen;
+                    color: $darkorange;
                 }
             }
             &:first-child:after {

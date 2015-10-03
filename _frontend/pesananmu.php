@@ -40,7 +40,7 @@
 
                         <div class="flex-grid">
                             <div class="flex-grid__col flex-grid__col--12">
-                                <h2 class="darkgreen">YOUR ORDERS</h2>
+                                <h2 class="darkorange">YOUR ORDERS</h2>
                                 <div class="table-container">
                                     <table class="table">
                                         <thead>

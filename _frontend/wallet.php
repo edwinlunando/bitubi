@@ -15,7 +15,7 @@
                         <br>
                         <div class="grid-flex">
                             <div class="grid-flex__col grid-flex__col--6">
-                                <h3 class="darkgreen">Instruksi</h3>
+                                <h3 class="darkorange">Instruksi</h3>
                                 <span>Silahkan transfer ke rekening yang tersedia di bawah dan konfirmasi dengan mengisi form di samping</span>
                                 <ol class="instruction-set">
                                     <li> 
@@ -45,7 +45,7 @@
                                 </ol>
                             </div>
                             <div class="grid-flex__col grid-flex__col--6">
-                                <center class="darkgreen"><h3>Top Up Form</h3></center>
+                                <center class="darkorange"><h3>Top Up Form</h3></center>
                                 <form action="" class="wallet-form">
                                     <div class="form-row">
                                         <label for="nama">Nama: </label>

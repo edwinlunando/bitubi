@@ -28,6 +28,12 @@ $lightgreen			: #F2FFFA;
 $darkgreen			: #399976;
 $darkergreen		: #2A755A;
 $darkergreen5		: darken($darkergreen, 5%);
+
+$lightorange		: #FFDEBF;
+$orange				: #FF9F52;
+$darkorange			: #FF6739;
+$darkerorange		: #EA602D;
+
 $red				: rgb(213, 77, 77);
 $warningred			: lighten($red, 5%);
 $brighterred		: lighten($red, 20%);

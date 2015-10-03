@@ -62,8 +62,10 @@ textarea {
     font-family: $base_font_family;
 }
 
-.green {color: $green;}
+.orange {color: $green;}
 .darkgreen {color: $darkgreen}
+.orange {color: $orange}
+.darkorange {color: $darkorange}
 .black {color: $black70;}
 
 /* 3 Header
@@ -99,7 +101,7 @@ textarea {
 		}
 		letter-spacing: 2px;
 		text-transform: uppercase;
-		color: $green;
+		color: $orange;
 		margin-bottom: 10px;
 	}
 	.product-title {
@@ -117,7 +119,7 @@ textarea {
 			margin: 0 10px;
 		}
 		span {
-			color: $darkgreen;
+			color: $darkorange;
 		}
 	}
 
@@ -126,7 +128,7 @@ textarea {
 		text-align: left;
 		border-bottom: 1px solid $black30;
 		.static-title__description-faq-q {
-			color: $darkgreen;
+			color: $darkorange;
 			font-weight: bold;
 		}
 		margin: 20px;
@@ -143,9 +145,9 @@ textarea {
 	.category-title__cta {
 		a {
 			@include animate-transition(.25s);
-			color: $green;
+			color: $orange;
 			&:hover {
-				color: $darkgreen;
+				color: $darkorange;
 			}
 		}
 		span {
@@ -161,7 +163,7 @@ textarea {
 			@include animate-transition(.25s);
 			color: $black70;
 			&:hover {
-				color: $darkgreen;
+				color: $darkorange;
 			}
 		}
 	}
@@ -216,15 +218,15 @@ textarea {
 		}
 	}
 	h2 {
-		color: $green;
+		color: $orange;
 	}
 	i, a {
 		margin-top: 10px;
 		margin-right: 3px;
 		@include animate-transition(.25s);
-		color: $darkgreen;
+		color: $darkorange;
 		&:hover {
-			color: $green;
+			color: $orange;
 		}
 	}
 	p {
@@ -285,7 +287,7 @@ textarea {
 
 .commend-container {
 	li {
-		color: $darkgreen;
+		color: $darkorange;
 	}
 }
 
@@ -316,7 +318,7 @@ textarea {
 		width: 80%;
 	}
 	.available {
-		background: $darkgreen;
+		background: $darkorange;
 	}
 	.unavailable {
 		background: $warningred;
@@ -362,7 +364,7 @@ footer {
 
 	.copyright, h3 {
 		font-size: 1em;
-		color: $darkgreen;
+		color: $darkorange;
 	}
 	h3 {
 		margin-bottom: 25px;
@@ -377,7 +379,7 @@ footer {
 		color: $black70;
 		@include animate-transition(.25s);
 		&:hover {
-			color: $darkgreen;
+			color: $darkorange;
 			@include animate-transition(.25s);
 		}
 	}
@@ -483,7 +485,7 @@ footer {
 			span {
 				margin: 0 10px;
 				padding-top: 2px;
-				background-color: $darkgreen;
+				background-color: $darkorange;
 				color: white;
 				display: inline-block;
 				width: 30px;
@@ -496,7 +498,7 @@ footer {
 		.current {
 			opacity: 1;
 			font-weight: bold;
-			background-color: $green;
+			background-color: $orange;
 			color: white;
 			display: block;
 			width: 100%;
@@ -510,7 +512,7 @@ footer {
 .instruction-set {
 	li {
 		margin-bottom: 10px;
-		color: $darkgreen;
+		color: $darkorange;
 		div {
 			vertical-align: middle;
 			color: $black80;

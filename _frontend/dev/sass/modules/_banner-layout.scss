@@ -14,7 +14,7 @@
 		h1 {
 			font-size: 2.75em;
 			letter-spacing: 8px;
-			color: $darkgreen;
+			color: $darkorange;
 			@media #{$medium} {
 				font-size: 4.375em;
 			}
@@ -54,7 +54,7 @@
 		h1 {
 			font-size: 1.75em;
 			letter-spacing: 3px;
-			color: $darkgreen;
+			color: $darkorange;
 			@media #{$medium} {
 				color: white;
 				font-size: 3em;
@@ -106,35 +106,35 @@
 			}
 			input {
 				font-family: 'Lato', sans-serif;
-				border: 2px solid $green;
+				border: 2px solid $orange;
 				outline: none;
 				float: left;
 				padding: 5px 10px;
-				border: 1px solid $green;
+				border: 1px solid $orange;
 				width: 90%;
 				@media #{$medium} {
 					padding: 10px 20px;
-					border: 2px solid $green;
+					border: 2px solid $orange;
 				}
 			}
 			button {
 				float: left;
 				border: none;
-				background: $green;
+				background: $orange;
 				color: white;
 				outline: none;
 				width: 10%;
 				padding: 1px 10px 2px 8px;
 				font-size: 0.75em;
-				border: 1px solid $green;
+				border: 1px solid $orange;
 				@media #{$medium} {
 					padding: 6px 20px 7px;
 					font-size: 1em;
-					border: 2px solid $green;
+					border: 2px solid $orange;
 				}
 			}
 			button:active {
-				background: $darkgreen;
+				background: $darkorange;
 			}
 		}
 	}
@@ -146,7 +146,7 @@
 --------------------------------------------------------------------------- */
 
 .surfari-home-category {
-	color:$green;
+	color:$orange;
 	font-weight: bold;
 	text-transform: uppercase;
 }

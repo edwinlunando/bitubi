@@ -9,7 +9,7 @@
 #surfari-tabs .nav { 
 	overflow: hidden; 
 	margin: 0 0 10px 0; 
-	border-bottom: 2px solid $green;
+	border-bottom: 2px solid $orange;
 }
 
 #surfari-tabs .nav li { 
@@ -39,7 +39,7 @@
 }
 
 #surfari-tabs .nav li a:hover { 
-	background-color: $green; 
+	background-color: $orange; 
 	color: $black70;
 }
 
@@ -61,7 +61,7 @@ ul.tab-3 li > a:hover,
 #surfari-tabs li.nav-four > a.current, 
 ul.tab-4 li > a:hover 
 { 
-	background-color: $darkgreen; 
+	background-color: $darkorange; 
 	color: white; 
 }
 

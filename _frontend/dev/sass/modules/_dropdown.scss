@@ -375,7 +375,7 @@ body {
 }
 
 .cd-active.cd-dropdown > span {
-	color: $green;
+	color: $orange;
 }
 
 .cd-active.cd-dropdown > span,
@@ -392,6 +392,6 @@ body {
 }
 
 .cd-active.cd-dropdown ul li span:hover {
-	background: $green;
+	background: $orange;
 	color: #fff;
 }

@@ -39,10 +39,10 @@
                         </ul>
 
                         <div class="list-wrap">
-                            <h2 class="darkgreen">Your Products</h2>
+                            <h2 class="darkorange">Your Products</h2>
                             <div class="table-container">
                                 <p>
-                                    <a href="" class="btn btn-green">Tambah Produk</a>
+                                    <a href="" class="btn btn-orange">Tambah Produk</a>
                                 </p>
                                 <table class="table">
                                     <thead>

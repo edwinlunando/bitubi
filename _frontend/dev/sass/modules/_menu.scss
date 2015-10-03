@@ -21,7 +21,7 @@
     }
     height: 100%;
     margin:  0 auto;
-    color: $green;
+    color: $orange;
     font-size: 2em;
     input {
       background: none;
@@ -56,9 +56,9 @@
     @media #{$medium} {
       font-size: 1em;
     }
-    color: $darkgreen;
+    color: $darkorange;
     &:hover {
-      color: $darkgreen;
+      color: $darkorange;
     }
 
   }
@@ -71,7 +71,7 @@
   text-align: center;
   font-family: 'Lato';
   font-weight: bold;
-  color: $darkgreen;
+  color: $darkorange;
   display: inline-block;
   .nav-lang__submenu--square {
     width: 50px;
@@ -83,23 +83,23 @@
     padding: 13px;
     float:left;
     ul  {
-      background-color: $green;
+      background-color: $orange;
       li {
         list-style: none;
         width: 100%;
         padding-top: 10px;
-        border-top: 1px solid $darkgreen;
+        border-top: 1px solid $darkorange;
         a {
           color: white;
         }
         &:hover {
           @include animate-transition(.15s);
-          background-color: $darkgreen;
+          background-color: $darkorange;
         }
       }
     }
     a {
-      color: $darkgreen;
+      color: $darkorange;
       span {
         display: none;
         @media #{$medium} {
@@ -109,7 +109,7 @@
     }
     &:hover {
       @include animate-transition(.15s);
-      background-color: $darkgreen;
+      background-color: $darkorange;
       a {
         color: white;
       }
@@ -125,7 +125,7 @@
     position: absolute;
     height: 4px;
     width: 70%;
-    background: $darkgreen;
+    background: $darkorange;
     border-radius: 9px;
     opacity: 1;
     left: 15%;
@@ -154,7 +154,7 @@
 
 .open {
   .nav-icon {
-    background-color: $darkgreen;
+    background-color: $darkorange;
     span {
       background-color: white;
     }
@@ -214,7 +214,7 @@ nav {
     a {
       padding: 10px 20px;
       display: block;
-      color: $darkgreen;
+      color: $darkorange;
       font-size: 0.75em;
       @media #{medium} {
         font-size: 0.9em;
@@ -260,7 +260,7 @@ nav {
           figcaption {
             @include animate-transition(.5s);
             text-align: center;
-            color: $darkgreen;
+            color: $darkorange;
             font-size: 1.25em;
             text-decoration: none;
           }
@@ -280,13 +280,13 @@ nav {
           margin-left: 10px;
           padding: 3px 10px;
           border-radius: 2px;
-          background: $darkergreen;
+          background: $darkerorange;
           color: white;
         }
       }
       div:hover i{
         @include animate-transition(.5s);
-        color: $green;
+        color: $orange;
       }
     }
   }
@@ -296,7 +296,7 @@ nav {
   left: 0;
 }
 .submenu-open {
-  background-color: $darkgreen;
+  background-color: $darkorange;
   a {
     color: white !important;
   }
@@ -306,7 +306,7 @@ nav {
   }
   ul {
     li {
-      background-color: $green;
+      background-color: $orange;
       a {
         color: white;
       }

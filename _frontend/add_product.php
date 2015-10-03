@@ -18,7 +18,7 @@
                 <div class="grid-flex__col grid-flex__col--12">
     <!-- ====================== LIST WRAP ====================== -->
                     <form action="" class="form__row">
-                        <h2 class="green">Tambah Produk</h2>
+                        <h2 class="orange">Tambah Produk</h2>
 
                         <div class="grid-flex">
                             <div class="grid-flex__col grid-flex__col--4">

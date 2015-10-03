@@ -24,7 +24,7 @@
 		font-size:24px; 
 		font-weight:400; 
 		text-transform: uppercase; 
-		color:black; 
+		// color:black; 
 		padding:0; 
 		margin:0;
 	}
@@ -33,7 +33,7 @@
 		font-size:70px; 
 		letter-spacing:10px; 
 		text-align:center; 
-		color:white; 
+		color: $darkerorange; 
 		font-weight:400; 
 		text-transform:uppercase; 
 		z-index:10; 
@@ -49,7 +49,7 @@
 		font-weight:400; 
 		letter-spacing:8px; 
 		text-transform: uppercase; 
-		color:black;
+		// color:black;
 	}
 	p {
 		font-family:'Lato', sans-serif; 

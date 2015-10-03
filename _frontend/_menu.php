@@ -89,13 +89,13 @@
     <div class="login-register__container">
         <div class="login-register__form-container">
             <center class="login-register__close-btn">x</center>
-            <center><h2 class="darkgreen">Login</h2></center>
+            <center><h2 class="darkorange">Login</h2></center>
             <form action="" class="login-form">
                 <input type="text" placeholder="Email">
                 <input type="password" placeholder="Password">
                 Belum punya akun ? <a href="">Daftar</a>
                 <br><br>
-                <center><input type="submit" class="btn btn-green"></center>
+                <center><input type="submit" class="btn btn-orange"></center>
             </form>
         </div>
     </div>

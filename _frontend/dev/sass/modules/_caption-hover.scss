@@ -24,7 +24,7 @@
 				color: $black90;
 			}
 			span {
-				color: $darkgreen;
+				color: $darkorange;
 			}
 		}
 		margin: 0; padding: 0;
@@ -99,7 +99,7 @@
 						margin: 0 5px 0 3px;
 					}
 				}
-				color: $darkgreen;
+				color: $darkorange;
 			}
 			.caption-square__fav {
 				left: 40px;
@@ -120,7 +120,7 @@
 			.caption-square__bid, .caption-square__fav {
 				&:hover {
 					@include animate-transition(.25s);
-					color: $darkergreen;
+					color: $darkerorange;
 					&:after, &:before {
 						@include animate-transition(.25s);
 						text-transform: uppercase;
@@ -150,8 +150,8 @@
 				@media #{$large2} {
 					display: block;
 					padding: 5px 10px;
-					border: 2px solid $darkgreen;
-					color: $darkgreen;
+					border: 2px solid $darkorange;
+					color: $darkorange;
 					font-size: 1.25em;
 				}
 			}
@@ -210,8 +210,8 @@
 	}
 	figcaption {
 		span {
-		    color: $darkgreen;
-		    background: $darkgreen;
+		    color: $darkorange;
+		    background: $darkorange;
 		    color: white;
 		    padding: 4px 10px;
 		    margin: 0 15px;
@@ -220,7 +220,7 @@
 		    @include animate-transition(.25s);
 		    border:1px solid rgba(255,255,255, .75);
 		    &:hover {
-		    	background: $green;
+		    	background: $orange;
 		    }
 		}
 		h3 {
@@ -273,7 +273,7 @@
 		-webkit-transition: -webkit-transform 1s, opacity 0.1s 0.3s;
 		-moz-transition: -moz-transform 1s, opacity 0.1s 0.3s;
 		transition: transform 1s, opacity 0.1s 0.3s;
-		background: $darkgreen;
+		background: $darkorange;
 		top: 0; 
 		left: 0;
 		position: absolute;

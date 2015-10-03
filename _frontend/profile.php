@@ -40,7 +40,7 @@
 
                         <div class="list-wrap">
                             <form action="" class="form__row">
-                                <h2 class="green">Edit Profile</h2>
+                                <h2 class="orange">Edit Profile</h2>
                                 <div class="grid-flex">
                                     <div class="grid-flex__col grid-flex__col--6">
                                         <label for="name" class="form-label">Name</label>

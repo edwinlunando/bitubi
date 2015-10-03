@@ -3,13 +3,13 @@
   <div class="parallax-container wrapper">
     <section>
       <div class="title">
-        <h3>Tentang</h3>
-        <h1>Larisni</h1>
+        <h3 class="orange">Tentang</h3>
+        <h1 class="darkorange">Larisni</h1>
       </div>
     </section>
 
     <section>
-        <div class="parallax-one">
+        <div class="parallax-one" style="background-image:url('http://previews.123rf.com/images/lisafx/lisafx0910/lisafx091000045/5719470-Handsome-delivery-man-with-packages-on-a-hand-cart-giving-a-thumbs-up-Isolated-on-white--Stock-Photo.jpg')">
           <h2>Apa yang Kami Lakukan?</h2>
         </div>
     </section>
@@ -23,7 +23,7 @@
     </section>
 
     <section>
-      <div class="parallax-two">
+      <div class="parallax-two" style="background-image:url('https://d1li5256ypm7oi.cloudfront.net/wcielectric/2014/10/Warehouse_Indoor_-lighting.jpg')">
         <h2>Sejarah</h2>
       </div>
     </section>
@@ -37,7 +37,7 @@
     </section>
 
     <section>
-      <div class="parallax-three">
+      <div class="parallax-three" style="background-image:url('https://cdn3.vox-cdn.com/thumbor/ST3W8A3Kum8HlwddNHoF07WWrhk=/0x0:1920x1080/1600x900/cdn0.vox-cdn.com/uploads/chorus_image/image/46147742/cute-success-kid-1920x1080.0.0.jpg')">
         <h2>Visi Misi</h2>
       </div>
     </section>

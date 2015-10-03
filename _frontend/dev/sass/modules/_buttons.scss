@@ -37,9 +37,17 @@ $BTN_PADDING: $space/3 $space;
 }
 
 .fa-btn,
-.btn-green, .btn-black{
+.btn-green, .btn-black, .btn-orange{
     color: white;
     @include animate-transition(.15s);
+}
+
+.btn-orange {
+    background: $darkorange;
+    &:hover {
+        background: $orange;
+        color: white;
+    }
 }
 
 .btn-black {
