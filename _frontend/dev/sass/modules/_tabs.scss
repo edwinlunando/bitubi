@@ -1,0 +1,72 @@
+#surfari-tabs { 
+	padding: 1.5em 0;
+	@media #{$medium} {
+		padding: 1.5em 1em; 
+	}
+	margin-bottom: 5em;
+}
+
+#surfari-tabs .nav { 
+	overflow: hidden; 
+	margin: 0 0 10px 0; 
+	border-bottom: 2px solid $orange;
+}
+
+#surfari-tabs .nav li { 
+	width: auto; 
+	float: left; 
+	margin: 0 10px 0 0; 
+}
+
+#surfari-tabs .nav li.last { 
+	margin-right: 0; 
+}
+
+#surfari-tabs > .nav li a { 
+	@include animate-transition(.25s);
+	display: block; 
+	padding: 5px 10px; 
+	background: $black70; 
+	color: white; 
+	text-align: center; 
+	border: 0; 
+	span {
+		display: none;
+		@media #{$medium} {
+			display: inline-block;
+		}
+	}
+}
+
+#surfari-tabs .nav li a:hover { 
+	background-color: $orange; 
+	color: $black70;
+}
+
+#surfari-tabs ul { 
+	list-style: none; 
+}
+
+#surfari-tabs ul li a { 
+	display: block; 
+	padding: 4px; 
+}
+
+#surfari-tabs li.nav-one > a.current, 
+ul.tab-1 li > a:hover,
+#surfari-tabs li.nav-two > a.current, 
+ul.tab-2 li > a:hover,
+#surfari-tabs li.nav-three > a.current, 
+ul.tab-3 li > a:hover,
+#surfari-tabs li.nav-four > a.current, 
+ul.tab-4 li > a:hover 
+{ 
+	background-color: $darkorange; 
+	color: white; 
+}
+
+.hide { 
+	position: absolute; 
+	top: -9999px; 
+	left: -9999px; 
+}
