@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
       to: resource.phone_number,
       body: 'Halo, kamu harus transfer 1 juta ke saya!'
     )
+    UserMailer.welcome(resource).deliver_now
     root_path
   end
 end
