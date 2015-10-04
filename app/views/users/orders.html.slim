@@ -1,18 +1,148 @@
-.container
-  .row.col-md-8.col-md-offset-2.custyle
-    table.table.table-striped.custab
-      thead
-        tr
-          th ID
-          th Tanggal Pesan
-          th State
-          th Total
-          th.text-center
-      - @orders.each_with_index do |order, index|
-        tr
-          td #{ order.id }
-          td #{ order.created_at }
-          td #{ order.state }
-          td #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-          td.text-center
-            = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'
+/ .container
+/   .row.col-md-8.col-md-offset-2.custyle
+/     table.table.table-striped.custab
+/       thead
+/         tr
+/           th ID
+/           th Tanggal Pesan
+/           th State
+/           th Total
+/           th.text-center
+/       - @orders.each_with_index do |order, index|
+/         tr
+/           td #{ order.id }
+/           td #{ order.created_at }
+/           td #{ order.state }
+/           td #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+/           td.text-center
+/             = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'
+
+.wrapper
+  .container
+    .grid-flex
+      .grid-flex.top-mg
+        .grid-flex__col.grid-flex__col-12.transaction-tabs
+          ol
+            li.current
+              span> 1
+              | Cart & Orders
+            li
+              span> 2
+              | Data Peme sanan
+            li
+              span> 3
+              | Pembayaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs
+          ul.nav
+            li.nav-one
+              a href="/keranjang" 
+                i.fa.fa-shopping-cart
+                span Cart
+            li.nav-two
+              a.current href="/order" 
+                i.fa.fa-phone
+                span Orders
+          .list-wrap
+            .flex-grid
+              .flex-grid__col.flex-grid__col--12
+                h2.darkorange YOUR ORDERS
+                .table-container
+                  table.table
+                    thead
+                      tr align="center" 
+                        th Order Id
+                        th Jumlah Item
+                        th Total
+                        th Status
+                        th Action
+                    tbody
+                      tr align="center" 
+                        td ASD123
+                        td 12
+                        td align="right"  3000000
+                        td On Delivery
+                        td align="center" 
+                          button.btn-clear.order-expandable data-target="orderb" 
+                            i.fa-btn.btn-green.fa.fa-folder-open title="view" 
+                      tr#orderb.none
+                        td colspan="5" 
+                          table.table
+                            thead
+                              tr
+                                th align="center"  Thumbnail
+                                th Item
+                                th Jumlah
+                                th Tipe
+                                th Harga
+                            tbody
+                              tr
+                                td align="center" 
+                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                                td
+                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                                td 12
+                                td Wholesale
+                                td align="right"  3000000
+                              tr
+                                td align="center" 
+                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                                td
+                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                                td 1
+                                td Dropship
+                                td align="right"  500000
+                            tfoot
+                              tr
+                                td
+                                td
+                                td
+                                td
+                                  b Total
+                                td align="right" 
+                                  b 3500000
+                      tr align="center" 
+                        td ASD123
+                        td 12
+                        td align="right"  3000000
+                        td On Delivery
+                        td align="center" 
+                          button.btn-clear.order-expandable data-target="ordera" 
+                            i.fa-btn.btn-green.fa.fa-folder-open title="view" 
+                      tr#ordera.none
+                        td colspan="5" 
+                          table.table
+                            thead
+                              tr
+                                th align="center"  Thumbnail
+                                th Item
+                                th Jumlah
+                                th Tipe
+                                th Harga
+                            tbody
+                              tr
+                                td align="center" 
+                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                                td
+                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                                td 12
+                                td Wholesale
+                                td align="right"  3000000
+                              tr
+                                td align="center" 
+                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                                td
+                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                                td 1
+                                td Dropship
+                                td align="right"  500000
+                            tfoot
+                              tr
+                                td
+                                td
+                                td
+                                td
+                                  b Total
+                                td align="right" 
+                                  b 3500000

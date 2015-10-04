@@ -1,0 +1,101 @@
+header.header-main
+  nav.main-navigation role="navigation" 
+    dl
+      dt.panel-group
+        a href="#"  Account
+      dd.panel-body
+        ul
+          li.panel-profile
+            a href="##" 
+              figure
+                div
+                  img.lazy alt="profile-picture" data-original="assets/img/defaultpic.png" /
+                figcaption User's Name
+          li
+            a href="##"  Pengaturan
+          li
+            a href="##"  Cart
+          li
+            a href="##"  Log Out
+      dt.panel-group
+        a href="#"  Dompet
+      dd.panel-body
+        ul
+          li
+            a
+              i.fa.fa-money.fa-lg
+              span - Rp 0
+          li
+            a href="##"  Isi Dompet
+      dt
+        a href="#"  Produk
+      dt.panel-group
+        a href="#"  Kategori Produk
+      dd.panel-body
+        ul
+          li
+            a href="##"  Automotif
+          li
+            a href="##"  Elektronik
+          li
+            a href="##"  Furniture
+          li
+            a href="##"  Kesehatan
+          li
+            a href="##"  Mesin
+          li
+            a href="##"  Mainan
+          li
+            a href="##"  Pakaian
+          li
+            a href="##"  Lainnya
+      dt
+        a href="#"  FAQ
+      dt
+        a href="#"  Kontak Kami
+  /! /push menu right
+  .header-main__top-bar
+    .nav-icon.nav-toggle
+      span
+      span
+      span
+    .header-logo
+      h1 itemscope="" itemtype="http://schema.org/Organization" 
+        a itemprop="url" 
+          span.icon.icon-logo itemprop="name"  Larisni
+    .nav-lang.nav-toggle
+      .nav-lang__submenu
+        a#login-register-btn href="" 
+          i.fa.fa-sign-in
+          span Login / Register
+      /! Change login to logout if user is already logged in
+        | <div class="nav-lang__submenu">
+        | <a href=""><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+        | </div>
+      .nav-lang__submenu
+        a#search-menu href="" 
+          i.fa.fa-search
+          span Search
+      #cart-menu.nav-lang__submenu.nav-lang__submenu--square
+        a href="" 
+          i.fa.fa-shopping-cart
+.menu-search__container
+  .menu-search__form-row
+    form action="" 
+      i.fa.fa-search
+      input placeholder=("Search . . .") type="text" /
+.login-register__container
+  .login-register__form-container
+    center.login-register__close-btn x
+    center
+      h2.darkorange Login
+    form.login-form action="" 
+      input placeholder="Email" type="text" /
+      input placeholder="Password" type="password" /
+      | Belum punya akun ?
+      a href=""  Daftar
+      br/
+      br/
+      center
+        input.btn.btn-orange type="submit" /
+.overlay

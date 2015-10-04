@@ -1,16 +1,17 @@
 doctype html
-html
+/![if IE 8] <html class="no-js lt-ie9" lang="en"
+/! [if gt IE 8]><!
+html.no-js lang="en" 
+  /! <![endif]
   head
-    title Bitubi
-    meta charset="utf-8"
-    meta content="notranslate" name="google"
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
-
+    = render 'layouts/headstyle'
+    = render 'layouts/headscript'
   body
-    = render partial: "layouts/flash_messages", flash: flash
-    = render 'layouts/navigation'
+    = render 'layouts/header'
+    = render 'layouts/flash_messages'
+    /![if lt IE 8]
+      | <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+
     == yield
-    div class="container"
-      = render 'layouts/footer'
+    = render 'layouts/footer'
+    = render 'layouts/footscript'

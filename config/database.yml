@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  host: db
+  host: localhost
   database: <%= ENV['DEV_DB_NAME'] %>
   username: <%= ENV['DEV_DB_USERNAME'] %>
   password: <%= ENV['DEV_DB_PASSWORD'] %>

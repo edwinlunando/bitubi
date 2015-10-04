@@ -1,19 +1,69 @@
-.container
-  .row
-    .col-md-4
-      .row
-        .col-md-12
-          p Saldo kamu: #{ number_format(current_user.credit) }
-      .row
-        .col-md-12
-          p BCA: 1283 812 7389
-    .col-md-4
-      h1 Top Up
-      = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
-        = f.input :name
-        = f.input :amount
-        = f.input :bank, collection: TopUp.bank_list, input_html: { class: 'selectize' }
-        = f.submit 'Isi Saldo', class: 'btn btn-primary'
+/ .container
+/   .row
+/     .col-md-4
+/       .row
+/         .col-md-12
+/           p Saldo kamu: #{ number_format(current_user.credit) }
+/       .row
+/         .col-md-12
+/           p BCA: 1283 812 7389
+/     .col-md-4
+/       h1 Top Up
+/       = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
+/         = f.input :name
+/         = f.input :amount
+/         = f.input :bank, collection: TopUp.bank_list, input_html: { class: 'selectize' }
+/         = f.submit 'Isi Saldo', class: 'btn btn-primary'
 
-
-
+.wrapper
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12.top-mg
+        .static-title.np-top
+          center
+            h2.static-title__title Pengisian Dompet
+            span.category-title__detailed-description
+              | Silahkan isi form berikut untuk konfirmasi pengisian dompet Anda
+          br/
+          .grid-flex
+            .grid-flex__col.grid-flex__col--6
+              h3.darkorange Instruksi
+              span Silahkan transfer ke rekening yang tersedia di bawah dan konfirmasi dengan mengisi form di samping
+              ol.instruction-set
+                li
+                  b Rekening BCA
+                  .clear-pm
+                    img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80" /
+                    div
+                      b
+                        | 080 989 4444
+                        br/
+                        | a.n. PT Laris Banget Nich
+                li
+                  b Rekening Mandiri
+                  .clear-pm
+                    img alt="" src="http://www.creatifprint.com/wp-content/uploads/2013/11/logo-bank-mandiri.jpg" width="80" /
+                    div
+                      b
+                        | 080 989 4444
+                        br/
+                        | a.n. PT Laris Banget Nich
+            .grid-flex__col.grid-flex__col--6
+              center.darkorange
+                h3 Top Up Form
+              form.wallet-form action="" 
+                .form-row
+                  label for="nama"  Nama:
+                  input name="name" placeholder=("nama pemilik") type="text" /
+                .form-row
+                  label for="amount"  Jumlah:
+                  input name="amount" placeholder=("jumlah top up") type="number" /
+                .form-row
+                  label for="bank"  Bank:
+                  select id="" name="bank" 
+                    option value=""  -- Nama Bank --
+                    option value=""  Bank Toyib
+                    option value=""  Bank Rupt
+                br/
+                center
+                  button.btn.btn-green type="submit"  Bayar

@@ -15,16 +15,16 @@
     var assets = {
         _async          : 'https://cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js',
         _jquery_cdn     : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-        _jquery_local   : path.js + 'jquery.min.js',
-        _fastclick      : path.js + 'fastclick.min.js',
-        _lazyLoad       : path.js + 'jquery.lazyload.min.js',
-        _throttle       : path.js + 'jquery.throttledresize.min.js',
-        _debounce       : path.js + 'jquery.debouncedresize.min.js',
-        _waitForImages  : path.js + 'jquery.waitforimages.min.js',
+        _jquery_local   : path.js + 'jquery.js',
+        _fastclick      : path.js + 'fastclick.js',
+        _lazyLoad       : path.js + 'jquery.lazyload.js',
+        _throttle       : path.js + 'jquery.throttledresize.js',
+        _debounce       : path.js + 'jquery.debouncedresize.js',
+        _waitForImages  : path.js + 'jquery.waitforimages.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
-        _circslider     : path.js + 'jquery.tinycircleslider.min.js',
-        _slider         : path.js + 'slick.min.js',
+        _circslider     : path.js + 'jquery.tinycircleslider.js',
+        _slider         : path.js + 'slick.js',
     };
 
     var Site = {

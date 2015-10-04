@@ -1,7 +1,6 @@
 - flash.each do |type, message|
-  div class=['alert', bootstrap_class_for(type), 'fade', 'in', 'flash-message'] role='alert'
-    button.close data-dismiss='alert'
-      span aria-hidden='true'
-        | &times;
-    p.text-center
-      = message
+  /! =============== End of Navigation Menu ================
+  /! Tambah class "message-error" di container kalau error
+  .grid-flex--no-pad.page-notification--container
+    .page-notification--message
+  	  = message

@@ -15,5 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require selectize
-//= require bitubi/main
+//= require js/vendor/modernizr
+//= require js/main
 //= require main
