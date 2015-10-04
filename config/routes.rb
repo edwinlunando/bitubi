@@ -90,6 +90,8 @@
 #                        alamat GET    /alamat(.:format)                        home#address
 #                  order_detail GET    /pesanan/:id(.:format)                   users#order
 #                       pesanan GET    /pesanan(.:format)                       users#orders
+#                      dagangan GET    /dagangan(.:format)                      users#products
+#                 dagangan_baru GET    /dagangan/baru(.:format)                 users#new_product
 #                       daleman GET    /daleman(.:format)                       home#order
 #                         login GET    /login(.:format)                         home#login
 #                        daftar GET    /daftar(.:format)                        home#register
@@ -113,6 +115,7 @@
 #
 
 Rails.application.routes.draw do
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, controllers: { registrations: 'registrations' }
   ActiveAdmin.routes(self)
@@ -124,9 +127,13 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :products, path: 'produk' do
+
     member do
+
       post 'add_to_cart'
+
     end
+
   end
 
   get 'saldo' => 'home#topup'
@@ -137,6 +144,8 @@ Rails.application.routes.draw do
   get 'alamat' => 'home#address'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
+  get 'dagangan' => 'users#products'
+  get 'dagangan/baru' => 'users#new_product'
   get 'daleman' => 'home#order'
   get 'login' => 'home#login'
   get 'daftar' => 'home#register'
@@ -195,4 +204,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

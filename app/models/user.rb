@@ -30,6 +30,7 @@
 #
 
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -37,24 +38,9 @@ class User < ActiveRecord::Base
 
   has_many :products
   has_many :orders
-  phony_normalize :phone_number, :default_country_code => 'ID'
+  phony_normalize :phone_number, default_country_code: 'ID'
   validates :phone_number, phony_plausible: true
-
-  def self.roles
-    [
-      ['Admin', 'admin'],
-      ['User', 'user'],
-      ['Supplier', 'supplier']
-    ]
-  end
-
-  def admin?
-    role == 'admin'
-  end
-
-  def user?
-    role == 'user'
-  end
+  enum role: { admin: 'admin', user: 'user', suuplier: 'suuplier' }
 
   def country_code
     'ID'
@@ -77,4 +63,5 @@ class User < ActiveRecord::Base
       end
     end
   end
+
 end

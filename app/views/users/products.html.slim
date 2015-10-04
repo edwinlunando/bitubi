@@ -1,0 +1,12 @@
+.container
+  .row.col-md-8.col-md-offset-2.custyle
+    = link_to 'Jual Barang', dagangan_baru_path
+    table.table.table-striped.custab
+      thead
+        tr
+          th ID
+          th Nama
+      - @products.each_with_index do |product, index|
+        tr
+          td #{ product.id }
+          td #{ product.name }
