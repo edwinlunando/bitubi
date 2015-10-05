@@ -1,12 +1,89 @@
-.container
-  .row.col-md-8.col-md-offset-2.custyle
-    = link_to 'Jual Barang', dagangan_baru_path
-    table.table.table-striped.custab
-      thead
-        tr
-          th ID
-          th Nama
-      - @products.each_with_index do |product, index|
-        tr
-          td #{ product.id }
-          td #{ product.name }
+/ .container
+/   .row.col-md-8.col-md-offset-2.custyle
+/     = link_to 'Jual Barang', dagangan_baru_path
+/     table.table.table-striped.custab
+/       thead
+/         tr
+/           th ID
+/           th Nama
+/       - @products.each_with_index do |product, index|
+/         tr
+/           td #{ product.id }
+/           td #{ product.name }
+
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          a href=""  Home
+        li
+          a href=""  Profil
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs
+          ul.nav
+            li.nav-one
+              a href="#tab1" 
+                i.fa.fa-user
+                span Profil
+            li.nav-two
+              a.current href="#tab2" 
+                i.fa.fa-dropbox
+                span Produk Dijual
+            li.nav-three
+              a href="#tab3" 
+                i.fa.fa-archive
+                span Pesananmu
+            li.nav-four
+              a href="#tab4" 
+                i.fa.fa-shopping-cart
+                span Cart & Order
+          .list-wrap
+            h2.darkorange Your Products
+            .table-container
+              p
+                a.btn.btn-orange href=""  Tambah Produk
+              table.table
+                thead
+                  tr
+                    th align="center"  Thumbnail
+                    th Item
+                    th Stok
+                    th Tipe
+                    th Harga
+                    th align="center"  Action
+                tbody
+                  tr
+                    td align="center" 
+                      img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                    td
+                      a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                    td 12
+                    td Wholesale
+                    td align="right"  3000000
+                    td align="center" 
+                      a href="" 
+                        i.fa-btn.btn-green.fa.fa-money title=("set sold") 
+                      a href="" 
+                        i.fa-btn.btn-yellow.fa.fa-edit title="edit" 
+                      form.form-manage action="" 
+                        button.btn-clear type="submit" 
+                          i.fa-btn.btn-red.fa.fa-trash title="delete" 
+                  tr
+                    td align="center" 
+                      img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                    td
+                      a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                    td 1
+                    td Dropship
+                    td align="right"  500000
+                    td align="center" 
+                      a href="" 
+                        i.fa-btn.btn-green.fa.fa-money title=("set sold") 
+                      a href="" 
+                        i.fa-btn.btn-yellow.fa.fa-edit title="edit" 
+                      form.form-manage action="" 
+                        button.btn-clear type="submit" 
+                          i.fa-btn.btn-red.fa.fa-trash title="delete" 
