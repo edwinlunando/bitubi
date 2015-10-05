@@ -1,12 +1,12 @@
 header.header-main
-  nav.main-navigation role="navigation" 
+  nav.main-navigation role="navigation"
     dl
       dt.panel-group
         a href="#"  Account
       dd.panel-body
         ul
           li.panel-profile
-            a href="##" 
+            a href="##"
               figure
                 div
                   img.lazy alt="profile-picture" data-original="/assets/img/defaultpic.png" /
@@ -60,28 +60,29 @@ header.header-main
       span
       span
     .header-logo
-      h1 itemscope="" itemtype="http://schema.org/Organization" 
-        a href="/" itemprop="url" 
+      h1 itemscope="" itemtype="http://schema.org/Organization"
+        a href="/" itemprop="url"
           span.icon.icon-logo itemprop="name"  Larisni
     .nav-lang.nav-toggle
       .nav-lang__submenu
-        a#login-register-btn href="" 
-          i.fa.fa-sign-in
-          span Login / Register
-      /! Change login to logout if user is already logged in
-        | <div class="nav-lang__submenu">
-        | <a href=""><i class="fa fa-sign-out"></i> <span>Logout</span></a>
-        | </div>
+        - if !user_signed_in?
+          a#login-register-btn href=""
+            i.fa.fa-sign-in
+            span Login / Register
+        - else
+          = link_to destroy_user_session_path, :method => :get
+            i.fa.fa-sign-out
+            span Logout
       .nav-lang__submenu
-        a#search-menu href="" 
+        a#search-menu href=""
           i.fa.fa-search
           span Search
       #cart-menu.nav-lang__submenu.nav-lang__submenu--square
-        a href="" 
+        a href=""
           i.fa.fa-shopping-cart
 .menu-search__container
   .menu-search__form-row
-    form action="" 
+    form action="/produk"
       i.fa.fa-search
       input placeholder=("Search . . .") type="text" /
 .login-register__container
@@ -89,7 +90,7 @@ header.header-main
     center.login-register__close-btn x
     center
       h2.darkorange Login
-    form.login-form action="" 
+    form.login-form action=""
       input placeholder="Email" type="text" /
       input placeholder="Password" type="password" /
       | Belum punya akun ?
