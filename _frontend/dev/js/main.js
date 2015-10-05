@@ -120,6 +120,7 @@
                     e.preventDefault();
                     $('.menu-search__container').toggleClass('open-down');
                     $('.menu-search__form-row').slideToggle();
+                    $('.menu-search__form-row input').focus();
                 });
                 $('.main-cart h2 span').on('click', function(e) {
                     if(!$(this).hasClass('selected')) {
