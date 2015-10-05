@@ -1,2 +1,20 @@
-p
-  | contact
+.wrapper
+  .container
+    .grid-flex
+      grid-flex__col.grid-flex__col--12.top-mg
+        center
+          h2.darkorange.clear-pm Kontak
+    .grid-flex
+      .grid-flex__col.grid-flex__col--6
+        = simple_form_for(resource, as: resource_name, url: kontak_path, html: { id: 'contact-form', class: 'form__row' }) do |f|
+          = f.label :email, class: 'form-label'
+          = f.input :email, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'email'}, autofocus: true, label: false, wrapper: false
+          = f.label :phone_number, class: 'form-label'
+          = f.input :phone_number, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'nomor telepon'}, label: false
+
+		  br/
+          input.form-input.form-input--block.form-input--error name="test" placeholder=("your test") type="text" /
+          span.form-input--error-message Salah bro
+          br/
+          br/
+          button.btn.btn-green type="submit"  Daftar

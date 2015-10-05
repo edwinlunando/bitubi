@@ -1,24 +1,23 @@
 header.header-main
-  nav.main-navigation role="navigation"
+  nav.main-navigation role="navigation" 
     dl
       dt.panel-group
         a href="#"  Account
       dd.panel-body
         ul
           li.panel-profile
-            a href="##"
+            a href="##" 
               figure
                 div
                   img.lazy alt="profile-picture" data-original="/assets/img/defaultpic.png" /
                 figcaption User's Name
           li
-            a href="##"  Pengaturan
+            / a href="/keranjang"  Keranjang
+            = link_to 'Keranjang', keranjang_path
           li
-            a href="##"  Cart
-          li
-            a href="##"  Log Out
+            a href="/logout"  Log Out
       dt.panel-group
-        a href="#"  Dompet
+        a href="/saldo"  Dompet
       dd.panel-body
         ul
           li
@@ -26,9 +25,9 @@ header.header-main
               i.fa.fa-money.fa-lg
               span - Rp 0
           li
-            a href="##"  Isi Dompet
+            = link_to 'Saldo', saldo_path
       dt
-        a href="#"  Produk
+        = link_to 'Produk', products_path
       dt.panel-group
         a href="#"  Kategori Produk
       dd.panel-body
@@ -50,9 +49,7 @@ header.header-main
           li
             a href="##"  Lainnya
       dt
-        a href="#"  FAQ
-      dt
-        a href="#"  Kontak Kami
+        = link_to 'Kontak', kontak_path
   /! /push menu right
   .header-main__top-bar
     .nav-icon.nav-toggle
@@ -60,29 +57,28 @@ header.header-main
       span
       span
     .header-logo
-      h1 itemscope="" itemtype="http://schema.org/Organization"
-        a href="/" itemprop="url"
+      h1 itemscope="" itemtype="http://schema.org/Organization" 
+        a href="/" itemprop="url" 
           span.icon.icon-logo itemprop="name"  Larisni
     .nav-lang.nav-toggle
       .nav-lang__submenu
-        - if !user_signed_in?
-          a#login-register-btn href=""
-            i.fa.fa-sign-in
-            span Login / Register
-        - else
-          = link_to destroy_user_session_path, :method => :get
-            i.fa.fa-sign-out
-            span Logout
+        a#login-register-btn href="" 
+          i.fa.fa-sign-in
+          span Login / Register
+      /! Change login to logout if user is already logged in
+        | <div class="nav-lang__submenu">
+        | <a href=""><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+        | </div>
       .nav-lang__submenu
-        a#search-menu href=""
+        a#search-menu href="" 
           i.fa.fa-search
           span Search
       #cart-menu.nav-lang__submenu.nav-lang__submenu--square
-        a href=""
+        a href="" 
           i.fa.fa-shopping-cart
 .menu-search__container
   .menu-search__form-row
-    form action="/produk"
+    form action="" 
       i.fa.fa-search
       input placeholder=("Search . . .") type="text" /
 .login-register__container
@@ -90,7 +86,7 @@ header.header-main
     center.login-register__close-btn x
     center
       h2.darkorange Login
-    form.login-form action=""
+    form.login-form action="" 
       input placeholder="Email" type="text" /
       input placeholder="Password" type="password" /
       | Belum punya akun ?
