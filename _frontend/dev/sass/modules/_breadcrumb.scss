@@ -19,7 +19,7 @@ $bread_separator    : '';
 
     > li {
         position: relative;
-        display: inline-block;
+        display: inline;
         padding: 0 $bread_space;
 
         &:after {
