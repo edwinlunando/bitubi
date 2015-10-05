@@ -80,13 +80,18 @@ gem 'ckeditor'
 gem 'selectize-rails'
 # static pages
 gem 'high_voltage', '~> 2.4.0'
+# contact form
+gem 'mail_form'
 
 group :development, :test do
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
 end
 
 group :development do
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'bundler-audit'
@@ -99,8 +104,10 @@ group :development do
 end
 
 group :test do
+
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'factory_girl_rails'
   gem 'faker'
+
 end

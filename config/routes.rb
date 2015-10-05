@@ -153,6 +153,7 @@ Rails.application.routes.draw do
   post 'konfirmasi' => 'home#finish', as: 'finish'
   get 'tentang' => 'high_voltage/pages#show', id: 'about'
   get 'aturan' => 'high_voltage/pages#show', id: 'terms_and_condition'
+  get 'kontak' => 'high_voltage/pages#show', id: 'contact'
 
   # AJAX
   get 'provinsi' => 'addresses#province'
