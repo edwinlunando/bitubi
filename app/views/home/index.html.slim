@@ -15,8 +15,8 @@
 /                 = category.name
 /     .col-md-9
 /       .row
-/         - @products.each do |product|
-/           = render 'products/card', product: product
+        / - @products.each do |product|
+        /   = render 'products/card', product: product
 /       .row
 /         .col-md-12.text-center
 /           = paginate @products
@@ -25,13 +25,13 @@
   .section-surfari-home.slider data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
     .banner-item
       a href="" 
-        img.lazy alt="" data-original="assets/img/bg-main.jpg" /
+        img.lazy alt="" data-original="/assets/img/bg-main.jpg" /
     .banner-item
       a href="" 
-        img.lazy alt="" data-original="assets/img/bg-sm-transport.jpg" /
+        img.lazy alt="" data-original="/assets/img/bg-sm-transport.jpg" /
     .banner-item
       a href="" 
-        img.lazy alt="" data-original="assets/img/bg-sm-foodntools.jpg" /
+        img.lazy alt="" data-original="/assets/img/bg-sm-foodntools.jpg" /
   .grid-flex--no-pad.surfari-home-category
     .container
       .grid-flex.mid-menu-breadcrumb--container
@@ -39,52 +39,13 @@
           center Produk berdasarkan kategori
           ul.breadcrumb
             li.mid-menu-breadcrumb--displayer
-              span Pakaian
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-dog.png" /
-                | Automotif
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-cat.png" /
-                | Elektronik
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-reptile.png" /
-                | Furniture
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-smallpet.png" /
-                | Kesehatan
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-smallpet.png" /
-                | Mesin
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-smallpet.png" /
-                | Mainan
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-smallpet.png" /
-                | Makanan
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-smallpet.png" /
-                | Pakaian
-            li
-              a href="#" 
-                i.menu-icon
-                  img alt="" src="assets/img/flat-icon-smallpet.png" /
-                | Lainnya
+              span Kategori
+            - @categories.each do |category|
+              li
+                a.list-group-item href='#{ products_path(category_id: category.id) }'
+                  i.menu-icon
+                    img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+                  = category.name
   .container
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top
@@ -93,199 +54,9 @@
           p.category-title__description
             | Barang-barang yang baru saja tercatat dalam platform kami
         .product-cards-container
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
+          - @products.each do |product|
+            = render 'products/card', product: product
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top
         center
-          a.btn.btn-orange href=""  Lihat Semua
+          a.btn.btn-orange href="/produk"  Lihat Semua

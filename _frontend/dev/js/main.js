@@ -8,8 +8,8 @@
 ;(function ( window, document, undefined ) {
 
     var path = {
-        css: myPrefix + 'assets/css/',
-        js : myPrefix + 'assets/js/vendor/'
+        css: myPrefix + '/assets/css/',
+        js : myPrefix + '/assets/js/vendor/'
     };
 
     var assets = {
@@ -23,7 +23,6 @@
         _waitForImages  : path.js + 'jquery.waitforimages.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
-        _circslider     : path.js + 'jquery.tinycircleslider.js',
         _slider         : path.js + 'slick.js',
     };
 
@@ -160,18 +159,6 @@
                 })
             },
 
-            this.circleSliderInit = function () {
-                Modernizr.load({
-                    load    : assets._circslider,
-                    complete: function () {
-                        $("#circleslider2").tinycircleslider({
-                            interval : true
-                        ,   dotsSnap : true
-                        });
-                    }
-                });
-            },
-
             this.storeManageImageViewerInit = function () {
                 $("#banner").change(function(){
                     Site.readURL(this, $("#banner-target"));
@@ -179,13 +166,19 @@
                 $("#profpic").change(function(){
                     Site.readURL(this, $("#profpic-target"));
                 });
-            }
+            },
 
             this.orderTableInit = function () {
                 $('.order-expandable').click(function() {
                     var target = '#'+$(this).data('target');
                     $('.list-wrap').height('auto');
                     $(target).toggle();
+                });
+            },
+
+            this.notifCloseInit = function() {
+                $('.page-notification--close-btn').click(function() {
+                    $('.page-notification--container').fadeToggle('fast');
                 });
             }
         },
@@ -220,9 +213,9 @@
                     ui.menuInit();
                     ui.midMenuInit();
                     ui.imageViewerInit();
-                    ui.circleSliderInit();
                     ui.storeManageImageViewerInit();
                     ui.orderTableInit();
+                    ui.notifCloseInit();
                     // Site.organicTabs("#surfari-tabs");
                 }
             })

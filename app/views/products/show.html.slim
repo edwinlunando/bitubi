@@ -10,20 +10,20 @@
 /               h1
 /                 = @product.name
 /               h4 @ #{ @product.price_dropship_money }
-/               - if @product.wholesale_prices.present?
-/                 table.table
-/                   caption Harga grosir
-/                   thead
-/                     tr
-/                       th #
-/                       th Jumlah minimal
-/                       th Harga satuan
-/                   tbody
-/                     - @product.wholesale_prices.each_with_index do |price, index|
-/                       tr
-/                         th scope="row"  #{ index + 1 }
-/                         td #{ price.minimum_quantity }
-/                         td #{ price.price_money }
+              / - if @product.wholesale_prices.present?
+              /   table.table
+              /     caption Harga grosir
+              /     thead
+              /       tr
+              /         th #
+              /         th Jumlah minimal
+              /         th Harga satuan
+              /     tbody
+              /       - @product.wholesale_prices.each_with_index do |price, index|
+              /         tr
+              /           th scope="row"  #{ index + 1 }
+              /           td #{ price.minimum_quantity }
+              /           td #{ price.price_money }
 /               dl
 /                 dt Berat
 /                 dd #{ @product.weight } gram
@@ -33,77 +33,38 @@
 /                 = @product.description.html_safe
 /           .row
 /             .col-xs-12
-/               - if user_signed_in?
-/                 = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
-/                   = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
-/                   = f.input :quantity, placeholder: 'Jumlah'
-/                   = f.submit 'Beli', class: 'btn btn-default'
-/               - else
-/                 = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-primary'
+              / - if user_signed_in?
+              /   = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
+              /     = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
+              /     = f.input :quantity, placeholder: 'Jumlah'
+              /     = f.submit 'Beli', class: 'btn btn-default'
+              / - else
+              /   = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-primary'
 
 .wrapper
   .container
-    .grid-flex.mid-menu-breadcrumb--container
-      .grid-flex__col.grid-flex__col--12.top-mg
-        ul.breadcrumb
-          li.mid-menu-breadcrumb--displayer
-            span Categories
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-dog.png" /
-              | Automotif
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-cat.png" /
-              | Elektronik
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-reptile.png" /
-              | Furniture
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Kesehatan
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Mesin
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Mainan
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Makanan
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Pakaian
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Lainnya
+    / .grid-flex.mid-menu-breadcrumb--container
+    /   .grid-flex__col.grid-flex__col--12.top-mg
+    /     ul.breadcrumb
+    /       li.mid-menu-breadcrumb--displayer
+    /         span Categories
+    /       - @categories.each do |category|
+    /           li
+    /             a.list-group-item href='#{ products_path(category_id: category.id) }'
+    /               i.menu-icon
+    /                 img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+    /               = category.name
   .grid-flex--no-pad.page-breadcrumb--container
-    .grid-flex--no-gutter.grid-flex__col--12
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
           a href=""  Home
         li
           a href=""  Produk
         li
-          a href=""  Kategori
+          a href=""  = @product.category.name
         li
-          a href=""  Besi Suspensi Import Jerman
+          a href=""  = @product.name
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
@@ -122,38 +83,46 @@
                 img.lazy alt="" data-original="/assets/img/SF3.jpg" /
       .grid-flex__col.grid-flex__col--6
         .category-title.pad-bot-only
-          h2.category-title__title.product-title Besi Suspensi Import Jerman
+          h2.category-title__title.product-title 
+            = @product.name
           .category-title__description
             center
               | Stok:
-              span 99
+              span
+                = ' ' + @product.stock.to_s
               b \
               | Berat:
-              span 99 kg
+              span 
+                = ' ' + @product.weight.to_s + ' ' + @product.unit
               b \
               | Harga:
-              span 800000
+              span 
+                = ' ' + @product.price_dropship_money
           hr/
-          form.product-form action="" 
-            span
-              b Beli:
-            select id="" name="" 
-              option value="0"  -- Jenis Pembelian --
-              option value=""  Dropship
-              option value=""  Wholesale
-            input placeholder="Jumlah" type="number" /
-            button.btn.btn-green type="button" 
-              i.fa.fa-cart-plus
+          - if user_signed_in?
+            = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|
+              span 
+                b Beli:
+              = f.input :purchase_type, placeholder: 'Jenis pembelian', wrapper: false, label: false, collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
+              = f.input :quantity, placeholder: 'Jumlah', wrapper: false, label: false
+              button.btn.btn-green type="button" 
+                i.fa.fa-cart-plus
+          - else
+            = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-primary'
           br/
-          table.table
-            thead
-              tr
-                th Jumlah
-                th Harga
-            tbody
-              tr
-                td 1
-                td 10000
+          - if @product.wholesale_prices.present?
+            table.table
+              thead
+                tr
+                  th #
+                  th Jumlah Minimal
+                  th Harga Satuan
+              tbody
+                - @product.wholesale_prices.each_with_index do |price, index|
+                  tr
+                    th scope="row"  #{ index + 1 }
+                    td #{ price.minimum_quantity }
+                    td #{ price.price_money }
           p.category-title__detailed-description
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis purus risus, sed congue magna imperdiet eget. Donec dictum faucibus felis sagittis efficitur. Curabitur rutrum ullamcorper feugiat. Nam aliquet, nisi vitae aliquam cursus, felis dui volutpat tortor, quis ultricies nunc erat ac libero. Integer consequat dignissim massa vitae cursus. Suspendisse vestibulum mattis nisi scelerisque dapibus. Curabitur nunc lacus, tempus id metus in, hendrerit varius tellus. Aliquam sagittis euismod massa id lacinia. Nullam vitae augue sed sapien interdum laoreet. Fusce placerat sem dui, ut auctor diam fringilla nec. Donec nunc nisl, congue vel ipsum eget, elementum lobortis neque. Proin commodo at enim eu feugiat. Fusce semper, mi a blandit fermentum, dui justo suscipit felis, ac facilisis mi odio ultricies tortor. Cras pellentesque, odio et ornare accumsan, massa velit facilisis nisl, at pharetra nunc turpis feugiat ex.
+            = @product.description.html_safe
           hr/

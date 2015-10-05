@@ -33,59 +33,20 @@
       .grid-flex__col.grid-flex__col--12
         ul.breadcrumb
           li.mid-menu-breadcrumb--displayer
-            span Categories
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-dog.png" /
-              | Automotif
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-cat.png" /
-              | Elektronik
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-reptile.png" /
-              | Furniture
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Kesehatan
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Mesin
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Mainan
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Makanan
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Pakaian
-          li
-            a href="#" 
-              i.menu-icon
-                img alt="" src="/assets/img/flat-icon-smallpet.png" /
-              | Lainnya
+            span Kategori
+          - @categories.each do |category|
+              li
+                a.list-group-item href='#{ products_path(category_id: category.id) }'
+                  i.menu-icon
+                    img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+                  = category.name
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12
       ul.breadcrumb
         li
           a href=""  Home
         li
-          a href=""  Pets
+          a href=""  Produk
   .grid-flex--no-pad.filter-container
     .grid-flex--no-gutter.grid-flex__col--12.filter-type-container
       .grid-flex--no-pad
@@ -111,75 +72,5 @@
           p.category-title__description
             | Barang-barang yang baru saja tercatat dalam platform kami
         .product-cards-container
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      span Stok: 99
-                      br/
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      span Stok: 99
-                      br/
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      span Stok: 99
-                      br/
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
-          .cards
-            a href="" 
-              figure
-                .cards-image
-                  img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
-                figcaption
-                  .cards-information-block
-                    .cards-information-block__title
-                      span
-                        b Kategori
-                      br/
-                      | Barang Baru Murah Masuk Kemarin Sore
-                    .cards-information-block__price
-                      span Stok: 99
-                      br/
-                      | per kg
-                      br/
-                      | Rp 100.000.000,-
+          - @products.each do |product|
+            = render 'products/card', product: product

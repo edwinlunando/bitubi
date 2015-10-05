@@ -50,14 +50,17 @@ $bread_separator    : '';
 .page-notification--container {
     .breadcrumb,
     .page-notification--message {
-        border-top: 1px solid $orange;
-        border-bottom: 1px solid $orange;
         background: $lightorange;
         li {
             &:after {
                 content: '/';
             }
         }
+    }
+    .page-notification--close-btn {
+        float: right;
+        margin-right: 20px;
+        cursor: pointer
     }
 }
 
@@ -70,7 +73,7 @@ $bread_separator    : '';
     .page-notification--message {
         padding: 10px 0;
         width: 100%;
-        background-color: $darkgreen;
+        background-color: lighten($darkgreen, 10%);
         font-weight: bold;
         text-align: center;
     }

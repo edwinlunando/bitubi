@@ -18,3 +18,47 @@
                 = f.input :password_confirmation, required: true
                 = f.input :phone_number, required: true
                 = f.button :submit, "Daftar"
+
+/ .wrapper
+/   .container
+/     .grid-flex
+/       grid-flex__col.grid-flex__col--12.top-mg
+/         center
+/           h2.darkorange.clear-pm Login dan Pendaftaran
+/     .grid-flex
+/       .grid-flex__col.grid-flex__col--6
+/         label.form-label for="profpic" /
+/         h3 Login
+/         form.form__row action="" 
+/           label.form-label for="email"  Email
+/           input.form-input.form-input--block name="email" placeholder=("your email") type="email" /
+/           label.form-label for="password"  Password
+/           input.form-input.form-input--block name="email" placeholder=("change password") type="password" /
+/           br/
+/           br/
+/           button.btn.btn-green type="submit"  Login
+/       .grid-flex__col.grid-flex__col--6
+/         label.form-label for="profpic" /
+/         h3 Daftar Baru
+/         form action="" 
+/           label.form-label for="type"  Tipe Pendaftaran
+/           select.form-select.form-input--block id="" name="type" 
+/             option value=""  -- Daftar Sebagai --
+/             option data-registrar="pembeli" value="buyer"  Pembeli
+/             option data-registrar="vendor" value="vendor"  Vendor
+/           label.form-label for="name"  Name
+/           input.form-input.form-input--block.form-input--error name="name" placeholder=("your name") type="text" /
+/           span.form-input--error-message Salah bro
+/           label.form-label for="email"  Email
+/           input.form-input.form-input--block name="email" placeholder=("your email") type="email" /
+/           label.form-label for="password"  Password
+/           input.form-input.form-input--block name="email" placeholder=("change password") type="password" /
+/           label.form-label for="phone"  Phone Number
+/           input.form-input.form-input--block name="phone" placeholder=("phone number") type="text" /
+/           label.form-label for="norek"  Nomor Rekening
+/           input.form-input.form-input--block name="norek" placeholder=("nomor rekening") type="text" /
+/           label.form-label for="address"  Alamat
+/           textarea.form-input.form-input--block id="" name="address" placeholder=("alamat lengkap") rows="3" 
+/           br/
+/           br/
+/           button.btn.btn-green type="submit"  Daftar
