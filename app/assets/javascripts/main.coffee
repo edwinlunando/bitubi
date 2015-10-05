@@ -28,7 +28,8 @@ ready = ->
   if $('.dropdown-toggle').length != 0
     $('.dropdown-toggle').click ->
       $(this).dropdown()
-  $('.selectize').selectize()
+  if $('.selectize').length != 0
+    $('.selectize').selectize()
 
 $(document).on('ready page:load', ready)
 

@@ -151,6 +151,8 @@ Rails.application.routes.draw do
   get 'daftar' => 'home#register'
   get 'konfirmasi' => 'home#confirmation'
   post 'konfirmasi' => 'home#finish', as: 'finish'
+  get 'tentang' => 'high_voltage/pages#show', id: 'about'
+  get 'aturan' => 'high_voltage/pages#show', id: 'terms_and_condition'
 
   # AJAX
   get 'provinsi' => 'addresses#province'

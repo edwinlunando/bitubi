@@ -29,6 +29,7 @@
 #  credit                 :decimal(10, )    default(0)
 #
 
+# standard user class with devise
 class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
@@ -41,6 +42,13 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, default_country_code: 'ID'
   validates :phone_number, phony_plausible: true
   enum role: { admin: 'admin', user: 'user', suuplier: 'suuplier' }
+
+  # callback
+  before_save :default_values
+
+  def default_values
+    self.role ||= User.roles[:user]
+  end
 
   def country_code
     'ID'
