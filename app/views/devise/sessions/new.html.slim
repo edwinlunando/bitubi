@@ -1,62 +1,37 @@
-.container
-  .row
-    .col-md-6.col-md-offset-3
-      .panel.panel-login
-        .panel-heading
-          .row
-            .col-xs-6
-              a#register-form-link.active href="#"  Masuk
-            .col-xs-6
-              = link_to 'Daftar', daftar_path
-          hr/
-        .panel-body
-          .row
-            .col-lg-12
-              = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'register-form' }) do |f|
-                = f.input :email, required: true, autofocus: true
-                = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-                = f.button :submit, "Masuk"
+/ .container
+/   .row
+/     .col-md-6.col-md-offset-3
+/       .panel.panel-login
+/         .panel-heading
+/           .row
+/             .col-xs-6
+/               a#register-form-link.active href="#"  Masuk
+/             .col-xs-6
+/               = link_to 'Daftar', daftar_path
+/           hr/
+/         .panel-body
+/           .row
+/             .col-lg-12
+/               = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'register-form' }) do |f|
+/                 = f.input :email, required: true, autofocus: true
+/                 = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+/                 = f.button :submit, "Masuk"
 
-/ .wrapper
-/   .container
-/     .grid-flex
-/       grid-flex__col.grid-flex__col--12.top-mg
-/         center
-/           h2.darkorange.clear-pm Login dan Pendaftaran
-/     .grid-flex
-/       .grid-flex__col.grid-flex__col--6
-/         label.form-label for="profpic" /
-/         h3 Login
-/         form.form__row action="" 
-/           label.form-label for="email"  Email
-/           input.form-input.form-input--block name="email" placeholder=("your email") type="email" /
-/           label.form-label for="password"  Password
-/           input.form-input.form-input--block name="email" placeholder=("change password") type="password" /
-/           br/
-/           br/
-/           button.btn.btn-green type="submit"  Login
-/       .grid-flex__col.grid-flex__col--6
-/         label.form-label for="profpic" /
-/         h3 Daftar Baru
-/         form action="" 
-/           label.form-label for="type"  Tipe Pendaftaran
-/           select.form-select.form-input--block id="" name="type" 
-/             option value=""  -- Daftar Sebagai --
-/             option data-registrar="pembeli" value="buyer"  Pembeli
-/             option data-registrar="vendor" value="vendor"  Vendor
-/           label.form-label for="name"  Name
-/           input.form-input.form-input--block.form-input--error name="name" placeholder=("your name") type="text" /
-/           span.form-input--error-message Salah bro
-/           label.form-label for="email"  Email
-/           input.form-input.form-input--block name="email" placeholder=("your email") type="email" /
-/           label.form-label for="password"  Password
-/           input.form-input.form-input--block name="email" placeholder=("change password") type="password" /
-/           label.form-label for="phone"  Phone Number
-/           input.form-input.form-input--block name="phone" placeholder=("phone number") type="text" /
-/           label.form-label for="norek"  Nomor Rekening
-/           input.form-input.form-input--block name="norek" placeholder=("nomor rekening") type="text" /
-/           label.form-label for="address"  Alamat
-/           textarea.form-input.form-input--block id="" name="address" placeholder=("alamat lengkap") rows="3" 
-/           br/
-/           br/
-/           button.btn.btn-green type="submit"  Daftar
+.wrapper
+  .container
+    .grid-flex
+      grid-flex__col.grid-flex__col--12.top-mg
+        center
+          h2.darkorange.clear-pm Login
+    .grid-flex
+      .grid-flex__col.grid-flex__col--6
+        label.form-label for="profpic" /
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'login-form', class: 'form__row' }) do |f|
+          = f.label :email, class: 'form-label'
+          = f.input :email, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'email'}, autofocus: true, label: false, wrapper: false
+          = f.label :password, class: 'form-label'
+          = f.input :password, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'password'}, label: false, wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+          a href="" Lupa password?
+          br/
+          br/
+          button.btn.btn-green type="submit"  Login

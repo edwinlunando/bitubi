@@ -38,8 +38,8 @@ $input_bg               : #fff;
 }
 
 .form-input--error {
-    border-color: #d32c31;
-
+    border: 1px solid #d32c31;
+    outline: none;
     &:focus {
         border-color: #d32c31;
     }
@@ -47,6 +47,7 @@ $input_bg               : #fff;
 
 .form-input--error-message {
     color: $red;
+    padding-right: 30px !important; 
 }
 
 .form-input--success {
@@ -161,4 +162,13 @@ $input_bg               : #fff;
       }
     }
   }
+}
+
+#register-form, #login-form {
+  width: 100%;
+  @media #{$medium} {
+    width: 500px;
+    min-height: 300px;
+  }
+  margin: 0 auto;
 }

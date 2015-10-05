@@ -108,7 +108,8 @@
               button.btn.btn-green type="button" 
                 i.fa.fa-cart-plus
           - else
-            = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-primary'
+            center
+              = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-green'
           br/
           - if @product.wholesale_prices.present?
             table.table
