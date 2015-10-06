@@ -103,6 +103,18 @@ class HomeController < ApplicationController
     redirect_to root_path
   end
 
+  def send_contact
+    @contact_form = ContactForm.new(contact_params)
+
+    @contact_form.deliver if @contact_form.valid?
+
+    render :contact
+  end
+
+  def contact
+    @contact_form = ContactForm.new
+  end
+
   private
 
   def user_params
@@ -115,6 +127,10 @@ class HomeController < ApplicationController
 
   def address_params
     params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type)
+  end
+
+  def contact_params
+    params.require(:contact_form).permit(:name, :email, :message)
   end
 
 end

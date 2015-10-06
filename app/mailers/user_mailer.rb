@@ -1,3 +1,4 @@
+# send user based email
 class UserMailer < ApplicationMailer
 
   def welcome(user)
