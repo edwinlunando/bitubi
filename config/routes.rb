@@ -144,6 +144,7 @@ Rails.application.routes.draw do
   get 'alamat' => 'home#address'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
+  get 'penjualan' => 'users#sell'
   get 'dagangan' => 'users#products'
   get 'dagangan/baru' => 'users#new_product'
   get 'daleman' => 'home#order'

@@ -1,7 +1,7 @@
 - flash.each do |type, message|
   /! =============== End of Navigation Menu ================
   /! Tambah class "message-error" di container kalau error
-  .grid-flex--no-pad.page-notification--container
+  div class="#{ type == 'error'? 'message-error' : '' } page-notification--container grid-flex--no-pad"
     .page-notification--message
-  	  = message
+      = message
       span.page-notification--close-btn x

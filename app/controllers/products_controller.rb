@@ -1,5 +1,6 @@
 # Product controller for list and show
 class ProductsController < InheritedResources::Base
+
   before_action :authenticate_user!, only: [:add_to_cart]
 
   def index

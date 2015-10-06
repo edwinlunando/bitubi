@@ -1,4 +1,6 @@
+# devise override registration controller
 class RegistrationsController < Devise::RegistrationsController
+
   protected
 
   def after_sign_up_path_for(resource)
@@ -11,4 +13,5 @@ class RegistrationsController < Devise::RegistrationsController
     UserMailer.welcome(resource).deliver_now
     root_path
   end
+
 end
