@@ -29,9 +29,10 @@
       figcaption
         .cards-information-block
           .cards-information-block__title
-            span
-              b
-                = product.category.name
+            - if product.category.present?
+              span
+                b
+                  = product.category.name
             br/
             = product.name
           .cards-information-block__price
