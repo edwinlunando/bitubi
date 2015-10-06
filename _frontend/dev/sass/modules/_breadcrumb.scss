@@ -85,6 +85,12 @@ $bread_separator    : '';
     }
 }
 
+.message-warning {
+    .page-notification--message {
+        background-color: $darkorange !important;
+    }
+}
+
 .mid-menu-breadcrumb--container {
     .breadcrumb {
         .mid-menu-open {
