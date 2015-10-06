@@ -19,4 +19,8 @@ class UsersController < ApplicationController
     @product = Product.new
   end
 
+  def sell
+
+  end
+
 end

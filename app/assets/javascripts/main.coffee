@@ -1,5 +1,7 @@
 ready = ->
 
+  window.Site.init()
+
   province = $('#address_province')
 
   if province.length > 0
@@ -30,6 +32,8 @@ ready = ->
       $(this).dropdown()
   if $('.selectize').length != 0
     $('.selectize').selectize()
+
+
 
 $(document).on('ready page:load', ready)
 

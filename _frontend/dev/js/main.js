@@ -93,7 +93,7 @@
         },
 
         ui: function() {
-            // ========================== LAYOUT INIT ========================== 
+            // ========================== LAYOUT INIT ==========================
             // for every layouting that need reinit, could be placed here
 
             this.menuInit = function () {
@@ -149,7 +149,7 @@
                     displayer.on('click', function() {
                         displayer.toggleClass('mid-menu-open');
                         displayer.siblings().slideToggle();
-                    });        
+                    });
                 }
             },
 
@@ -271,7 +271,7 @@
         readURL: function (input, target) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                
+
                 reader.onload = function (e) {
                     target.attr('src', e.target.result);
                 }
@@ -294,7 +294,7 @@
         //             "top": 0,
         //             "left": 0,
         //             "display": "none"
-        //         }); 
+        //         });
         //         base.$nav.delegate("li > a", "click", function() {
         //             // Figure out current list via CSS class
         //             var curList = base.$el.find("a.current").attr("href").substring(1),
@@ -306,7 +306,7 @@
         //             $allListWrap = base.$el.find(".list-wrap"),
         //             curListHeight = $allListWrap.height();
         //             $allListWrap.height(curListHeight);
-                                            
+
         //             if ((listID != curList) && ( base.$el.find(":animated").length == 0)) {
         //                 // Fade out current list
         //                 base.$el.find("#"+curList).fadeOut(base.options.speed, function() {
@@ -321,9 +321,9 @@
         //                     // Remove highlighting - Add to just-clicked tab
         //                     base.$el.find(".nav li a").removeClass("current");
         //                     $newList.addClass("current");
-                                
+
         //                 });
-        //             }   
+        //             }
         //             // Don't behave like a regular link
         //             // Stop propegation and bubbling
         //             return false;
