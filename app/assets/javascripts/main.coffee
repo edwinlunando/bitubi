@@ -1,6 +1,6 @@
 ready = ->
 
-  window.Site.init()
+  # window.Site.init()
 
   province = $('#address_province')
 

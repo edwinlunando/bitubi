@@ -32,6 +32,29 @@ class LineItem < ActiveRecord::Base
     end
   end
 
+  def weight
+    quantity * product.weight
+  end
+
+  def weight_kilograms
+    weight / 1000.0
+  end
+
+  def weight_normalized
+    weight_total = weight_kilograms
+    return 1.0 if weight_total < 1.0
+
+    if weight_total % 1 < 0.3
+      weight_total.floor
+    else
+      weight_total.ceil
+  end
+
+  def shipping_cost
+    weight_total = quantity * product.weight
+
+  end
+
   def check_wholesale_price
     false if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
     true
