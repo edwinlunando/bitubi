@@ -20,9 +20,9 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href=""  Home
+          a href="/"  Home
         li
-          a href=""  Dompet
+          a href="/saldo"  Dompet
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
@@ -34,43 +34,59 @@
           br/
           .grid-flex
             .grid-flex__col.grid-flex__col--6
-              h3.darkorange Instruksi
-              span Silahkan transfer ke rekening yang tersedia di bawah dan konfirmasi dengan mengisi form di samping
-              ol.instruction-set
-                li
-                  b Rekening BCA
-                  .clear-pm
-                    img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80" /
-                    div
-                      b
-                        | 080 989 4444
-                        br/
-                        | a.n. PT Laris Banget Nich
-                li
-                  b Rekening Mandiri
-                  .clear-pm
-                    img alt="" src="http://www.creatifprint.com/wp-content/uploads/2013/11/logo-bank-mandiri.jpg" width="80" /
-                    div
-                      b
-                        | 080 989 4444
-                        br/
-                        | a.n. PT Laris Banget Nich
-            .grid-flex__col.grid-flex__col--6
-              center.darkorange
-                h3 Top Up Form
-              form.wallet-form action="" 
-                .form-row
-                  label for="nama"  Nama:
-                  input name="name" placeholder=("nama pemilik") type="text" /
-                .form-row
-                  label for="amount"  Jumlah:
-                  input name="amount" placeholder=("jumlah top up") type="number" /
-                .form-row
-                  label for="bank"  Bank:
-                  select id="" name="bank" 
-                    option value=""  -- Nama Bank --
-                    option value=""  Bank Toyib
-                    option value=""  Bank Rupt
-                br/
-                center
+              div
+                h3.darkorange Top Up Form
+                = simple_form_for(@top_up, url: tambah_saldo_path, html: {class: 'wallet-form'}) do |f|
+                  .form-row
+                    = f.label :name
+                    = f.input :name, wrapper: false, label: false, input_html: {placeholder: 'nama'}
+                  = f.label :amount
+                  = f.input :amount, wrapper: false, label: false, input_html: {placeholder: 'jumlah'}
+                  = f.label :bank
+                  = f.input :bank, collection: TopUp.bank_list, wrapper: false, label: false
+                  br/ 
+                  br/
                   button.btn.btn-green type="submit"  Bayar
+
+              hr/ 
+
+              div
+                h3.darkorange Instruksi
+                span Silahkan transfer ke rekening yang tersedia di bawah dan konfirmasi dengan mengisi form di samping
+                ol.instruction-set
+                  li
+                    b Rekening BCA
+                    .clear-pm
+                      img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80" /
+                      div
+                        b
+                          | 080 989 4444
+                          br/
+                          | a.n. PT Laris Banget Nich
+                  li
+                    b Rekening Mandiri
+                    .clear-pm
+                      img alt="" src="http://www.creatifprint.com/wp-content/uploads/2013/11/logo-bank-mandiri.jpg" width="80" /
+                      div
+                        b
+                          | 080 989 4444
+                          br/
+                          | a.n. PT Laris Banget Nich
+            .grid-flex__col.grid-flex__col--6
+              h3.darkorange Top Up History
+              span 
+                b.darkorange Saldo kamu: 
+                span.darkgreen #{ number_format(current_user.credit) }
+              br/
+              .table-container
+                  table.table
+                    thead
+                      tr
+                        th Tanggal
+                        th Jumlah
+                        th Bank
+                    tbody
+                        tr
+                          td 1 Oktober 2015
+                          td IDR 2000000
+                          td Bank

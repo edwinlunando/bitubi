@@ -463,6 +463,16 @@ footer {
 	}
 }
 
+.wallet-form {
+	text-align: left;
+	label {
+		width: 100%;
+	}
+	input, select {
+		margin: 0;
+	}
+}
+
 .transaction-tabs {
 	border-top: 1px solid $black30;
 	border-bottom: 1px solid $black30;

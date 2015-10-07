@@ -169,13 +169,13 @@
                 });
             },
 
-            // this.orderTableInit = function () {
-            //     $('.order-expandable').click(function() {
-            //         var target = '#'+$(this).data('target');
-            //         $('.list-wrap').height('auto');
-            //         $(target).toggle();
-            //     });
-            // },
+            this.orderTableInit = function () {
+                $('.order-expandable').click(function() {
+                    var target = '#'+$(this).data('target');
+                    $('.list-wrap').height('auto');
+                    $(target).toggle();
+                });
+            },
 
             this.notifCloseInit = function() {
                 $('.page-notification--close-btn').click(function() {
@@ -215,7 +215,7 @@
                     ui.midMenuInit();
                     ui.imageViewerInit();
                     ui.storeManageImageViewerInit();
-                    // ui.orderTableInit();
+                    ui.orderTableInit();
                     ui.notifCloseInit();
                     // Site.organicTabs("#surfari-tabs");
                 }

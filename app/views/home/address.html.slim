@@ -42,38 +42,15 @@
             span.category-title__detailed-description
               | Silahkan mengisi alamat pengiriman dari pesanan Anda
           br/
-          form.order-form action="" 
-            .form-row
-              label for="provinsi"  Provinsi
-              select id="" name="provinsi" 
-                option value=""  -- Provinsi--
-                option value=""  DJ Akarta
-                option value=""  BD Lampung
-            .form-row
-              label for="kabupaten"  Kabupaten:
-              select id="" name="kabupaten" 
-                option value=""  -- Kabupaten Kota --
-                option value=""  Raja Ampat
-                option value=""  Raja Singa
-            .form-row
-              label for="kecamatan"  Kecamatan:
-              select id="" name="kecamatan" 
-                option value=""  -- Kecamatan --
-                option value=""  Waslilah
-                option value=""  Siantar Ujung
-            .form-row
-              label for="pengiriman"  Jenis Pengiriman:
-              select id="" name="pengiriman" 
-                option value=""  -- Jenis Pengiriman --
-                option value=""  Dion Express
-                option value=""  Wiantar Express
-            .form-row
-              label for="pengiriman"  Alamat:
-              input.form-input--error placeholder=("Alamat lengkap") type="text" /
-              .form-input--error-message Your Input is Invalid
-            .form-row
-              label for="pengiriman"  Pesan:
-              textarea name="pesan" placeholder=("Pesan pembeli") rows="4" 
+          = simple_form_for(@address, url: addressing_path, html: { class: 'order-form' }) do |f|
+            = f.input :province, collection: Province.all, label: 'Provinsi'
+            = f.input :city, collection: City.all, label: 'Kota'
+            = f.association :state, collection: nil, label: 'Kecamatan'
+            = f.input :shipment_type, collection: ShipmentType.all, label_method: lambda { |shipment_type| shipment_type.display_name }, label: 'Jenis pengiriman'
+            = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text, input_html: {rows: 4}
+            / Contoh Error
+            / input.form-input--error placeholder=("Alamat lengkap") type="text" /
+            / .form-input--error-message Your Input is Invalid
             br/
             center
               button.btn.btn-green type="submit"  Bayar

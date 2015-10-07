@@ -1,3 +1,72 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          a href="/"  Home
+        li
+          a href="/keranjang"  Keranjang
+        li
+          a href="/alamat"  Alamat Kirim
+        li
+          a href="/konfirmasi"  Pembayaran
+  .container
+    .grid-flex
+      .grid-flex
+        .grid-flex__col.grid-flex__col-12.transaction-tabs
+          ol
+            li
+              span> 1
+              | Cart & Orders
+            li
+              span> 2
+              | Data Pemesanan
+            li.current
+              span> 3
+              | Pembayaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        .static-title.np-top
+          center
+            h2.static-title__title Form Konfirmasi
+            span.category-title__detailed-description
+              | Provinsi, Kabupaten, Kecamatan,
+              br/
+              | Alamat lengkap pengiriman barang
+          br/
+          .table-container
+            table.table
+              thead
+                tr
+                  th align="center"  Thumbnail
+                  th Item
+                  th Tipe
+                  th Jumlah
+                  th Harga
+              tbody
+                - @order.line_items.each do |line_item|
+                  .tr
+                    td align="center"
+                      = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                    td #{ line_item.product.name }
+                    td #{ line_item.purchase_type }
+                    td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
+                    td #{ number_format(line_item.price) }
+                - if @order.address.present?
+                  td align="center" colspan="3"  Pengiriman
+                  td #{ @order.state_shipment_price.shipment_type.display_name }
+                  td #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
+                  td #{ number_format(@order.shipment_price) }
+              tfoot
+                tr
+                  td colspan="3" 
+                  td
+                    b Total
+                  td align="right" 
+                    b #{ number_format(@order.total) }
+            form action="" 
+              = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
+
 / .container
 /   .row
 /     .col-xs-12.col-md-offset-2.col-md-8
@@ -51,87 +120,3 @@
 /                 strong  #{ number_format(@order.total) }
 /             .col-xs-4
 /               = link_to 'Bayar', finish_path, class: 'btn btn-success btn-block', method: :post
-
-
-.wrapper
-  .grid-flex--no-pad.page-breadcrumb--container
-    .grid-flex--no-gutter.grid-flex__col--12.top-mg
-      ul.breadcrumb
-        li
-          a href=""  Home
-        li
-          a href=""  Carts
-        li
-          a href=""  Alamat Kirim
-        li
-          a href=""  Pembayaran
-  .container
-    .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li
-              span> 1
-              | Cart & Orders
-            li
-              span> 2
-              | Data Pemesanan
-            li.current
-              span> 3
-              | Pembayaran
-    .grid-flex
-      .grid-flex__col.grid-flex__col--12
-        .static-title.np-top
-          center
-            h2.static-title__title Form Konfirmasi
-            span.category-title__detailed-description
-              | Provinsi, Kabupaten, Kecamatan,
-              br/
-              | Alamat lengkap pengiriman barang
-          br/
-          .table-container
-            table.table
-              thead
-                tr
-                  th align="center"  Thumbnail
-                  th Item
-                  th Jumlah
-                  th Tipe
-                  th Harga
-              tbody
-                tr
-                  td align="center" 
-                    img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                  td
-                    a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                  td 12
-                  td Wholesale
-                  td align="right"  3000000
-                tr
-                  td align="center" 
-                    img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                  td
-                    a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                  td 1
-                  td Dropship
-                  td align="right"  500000
-                tr.highlight-info
-                  td align="center" colspan="3"  Pengiriman
-                  td Wiantar Express
-                  td align="right"  30000
-              tfoot
-                tr
-                  td colspan="3" 
-                  td
-                    b Total
-                  td align="right" 
-                    b 3500000
-            form action="" 
-              tr
-                td colspan="3" 
-                td
-                td align="right" 
-                  input type="hidden" /
-                  button.btn.btn-green
-                    i.fa.fa-money
-                    | Checkout

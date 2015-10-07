@@ -58,13 +58,13 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href=""  Home
+          a href="/"  Home
         li
-          a href=""  Produk
+          a href="/produk"  Produk
         li
-          a href=""  = @product.category.name
+          a href="/produk?category_id=#{@product.category.id}"  = @product.category.name
         li
-          a href=""  = @product.name
+          a href="/produk/#{@product.slug}"  = @product.name
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
