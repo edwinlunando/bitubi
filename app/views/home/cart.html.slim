@@ -25,11 +25,11 @@
         #surfari-tabs
           ul.nav
             li.nav-one
-              a.current href="/keranjang" 
+              a.current href="/keranjang"
                 i.fa.fa-shopping-cart
                 span Cart
             li.nav-two
-              a href="/order" 
+              a href="/order"
                 i.fa.fa-phone
                 span Orders
           .list-wrap
@@ -47,30 +47,19 @@
                         th Harga
                         th align="center"  Action
                     tbody
-                      tr
-                        td align="center" 
-                          img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                        td
-                          a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                        td 12
-                        td Wholesale
-                        td align="right"  3000000
-                        td align="center" 
-                          form.form-manage action="" 
-                            button.btn-clear type="submit" 
-                              i.fa-btn.btn-red.fa.fa-trash title="delete" 
-                      tr
-                        td align="center" 
-                          img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                        td
-                          a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                        td 1
-                        td Dropship
-                        td align="right"  500000
-                        td align="center" 
-                          form.form-manage action="" 
-                            button.btn-clear type="submit" 
-                              i.fa-btn.btn-red.fa.fa-trash title="delete" 
+                      - @order.line_items.each do |line_item|
+                        tr
+                          td align="center"
+                            img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
+                          td
+                            a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
+                          td 12
+                          td Wholesale
+                          td align="right"  3000000
+                          td align="center"
+                            form.form-manage action=""
+                              button.btn-clear type="submit"
+                                i.fa-btn.btn-red.fa.fa-trash title="delete"
                     tfoot
                       tr
                         td
@@ -78,10 +67,10 @@
                         td
                         td
                           b Total
-                        td align="right" 
+                        td align="right"
                           b 3500000
-                        td align="center" 
-                          form action="" 
+                        td align="center"
+                          form action=""
                             input type="hidden" /
                             button.btn.btn-green
                               i.fa.fa-money
@@ -93,23 +82,23 @@
                 .table-container
                   table.table
                     thead
-                      tr align="center" 
+                      tr align="center"
                         th Order Id
                         th Jumlah Item
                         th Total
                         th Status
                         th Action
                     tbody
-                      tr align="center" 
+                      tr align="center"
                         td ASD123
                         td 12
                         td align="right"  3000000
                         td On Delivery
-                        td align="center" 
-                          button.btn-clear.order-expandable data-target="orderb" 
-                            i.fa-btn.btn-green.fa.fa-folder-open title="view" 
+                        td align="center"
+                          button.btn-clear.order-expandable data-target="orderb"
+                            i.fa-btn.btn-green.fa.fa-folder-open title="view"
                       tr#orderb.none
-                        td colspan="5" 
+                        td colspan="5"
                           table.table
                             thead
                               tr
@@ -120,7 +109,7 @@
                                 th Harga
                             tbody
                               tr
-                                td align="center" 
+                                td align="center"
                                   img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
                                 td
                                   a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
@@ -128,7 +117,7 @@
                                 td Wholesale
                                 td align="right"  3000000
                               tr
-                                td align="center" 
+                                td align="center"
                                   img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
                                 td
                                   a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
@@ -142,18 +131,18 @@
                                 td
                                 td
                                   b Total
-                                td align="right" 
+                                td align="right"
                                   b 3500000
-                      tr align="center" 
+                      tr align="center"
                         td ASD123
                         td 12
                         td align="right"  3000000
                         td On Delivery
-                        td align="center" 
-                          button.btn-clear.order-expandable data-target="ordera" 
-                            i.fa-btn.btn-green.fa.fa-folder-open title="view" 
+                        td align="center"
+                          button.btn-clear.order-expandable data-target="ordera"
+                            i.fa-btn.btn-green.fa.fa-folder-open title="view"
                       tr#ordera.none
-                        td colspan="5" 
+                        td colspan="5"
                           table.table
                             thead
                               tr
@@ -164,7 +153,7 @@
                                 th Harga
                             tbody
                               tr
-                                td align="center" 
+                                td align="center"
                                   img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
                                 td
                                   a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
@@ -172,7 +161,7 @@
                                 td Wholesale
                                 td align="right"  3000000
                               tr
-                                td align="center" 
+                                td align="center"
                                   img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
                                 td
                                   a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
@@ -186,5 +175,5 @@
                                 td
                                 td
                                   b Total
-                                td align="right" 
+                                td align="right"
                                   b 3500000
