@@ -342,6 +342,7 @@
                 complete: Site.init
             }
         ]);
+        $(document).on('page:load', Site.init)
     };
 
     Modernizr.load({
