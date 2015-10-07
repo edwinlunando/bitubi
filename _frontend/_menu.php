@@ -74,7 +74,7 @@
                     <a href="" id="search-menu"><i class="fa fa-search"></i> <span>Search</span></a>
                 </div>
                 <div class="nav-lang__submenu nav-lang__submenu--square" id="cart-menu">
-                    <a href=""><i class="fa fa-shopping-cart"></i></a>
+                    <a href="/keranjang"><i class="fa fa-shopping-cart"></i></a>
                 </div>
             </div>
         </div>
