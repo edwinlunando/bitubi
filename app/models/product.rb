@@ -18,6 +18,7 @@
 
 # model to represent a product in a store
 class Product < ActiveRecord::Base
+
   extend FriendlyId
 
   # Relation
@@ -51,4 +52,5 @@ class Product < ActiveRecord::Base
     return nil if wholesale_prices.count == 0
     wholesale_prices.cheapest.first
   end
+
 end

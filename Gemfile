@@ -82,6 +82,8 @@ gem 'selectize-rails'
 gem 'high_voltage', '~> 2.4.0'
 # contact form
 gem 'mail_form'
+# breadcrumps
+gem 'breadcrumbs_on_rails'
 
 group :development, :test do
 

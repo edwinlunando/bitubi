@@ -23,6 +23,29 @@ class LineItem < ActiveRecord::Base
   validates_presence_of :order_id
   validates_presence_of :purchase_type
 
+  # State
+  include AASM
+
+  aasm column: :state do # default column: aasm_state
+    state :confirm, initial: true
+    state :delivery
+    state :receive
+    state :done
+
+    event :confirmation do
+      transitions from: :confirm, to: :delivery
+    end
+
+    event :deliver do
+      transitions from: :delivery, to: :receive
+    end
+
+    event :receivement do
+      transitions from: :receive, to: :done
+    end
+
+  end
+
   def price_per_quantity
     if dropship?
       product.price_dropship
@@ -48,6 +71,7 @@ class LineItem < ActiveRecord::Base
       weight_total.floor
     else
       weight_total.ceil
+    end
   end
 
   def shipping_cost

@@ -14,6 +14,7 @@
 
 # model to represent a User order
 class Order < ActiveRecord::Base
+
   # Relation
   has_many :line_items, dependent: :destroy
   accepts_nested_attributes_for :line_items
@@ -25,8 +26,10 @@ class Order < ActiveRecord::Base
   # Method
   def finish_order
     line_items.each do |line_item|
+
       line_item.product.stock -= line_item.quantity
       line_item.product.save
+
     end
   end
 
@@ -34,39 +37,39 @@ class Order < ActiveRecord::Base
   include AASM
 
   def self.states
-    [:cart, :address, :payment, :confirm, :delivery, :done]
+    [:cart, :address, :payment, :done]
   end
 
   aasm column: :state do # default column: aasm_state
+
     state :cart, initial: true
     state :address
     state :payment
-    state :confirm
-    state :delivery
     state :done
 
     event :checkout do
+
       transitions from: :cart, to: :address
+
     end
 
     event :addressing do
+
       transitions from: :address, to: :payment
-    end
 
-    event :pay do
-      transitions from: :payment, to: :confirm
-    end
-
-    event :confirming do
-      transitions from: :confirm, to: :delivery
     end
 
     event :finish do
+
       before do
+
         finish_order
+
       end
       transitions to: :done
+
     end
+
   end
 
   def total_without_shipment

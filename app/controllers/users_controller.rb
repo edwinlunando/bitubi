@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def sell
-
+    @line_items = LineItem.joins(:product, :order).where('products.user_id = ?', current_user.id).where('orders.state = ?', :done)
   end
 
 end

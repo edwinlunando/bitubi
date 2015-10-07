@@ -70,20 +70,16 @@
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
         .grid-flex
           .grid-flex__col.grid-flex__col--10.profnprod-viewer__frame
-            img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
+            - if @product.get_first_image.present?
+              img.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }"
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
-              li.profnprod-viewer__thumb
-                img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
-              li.profnprod-viewer__thumb
-                img.lazy alt="" data-original="/assets/img/SF1.jpg" /
-              li.profnprod-viewer__thumb
-                img.lazy alt="" data-original="/assets/img/SF2.jpg" /
-              li.profnprod-viewer__thumb
-                img.lazy alt="" data-original="/assets/img/SF3.jpg" /
+              - @product.product_images.each do |image|
+                li.profnprod-viewer__thumb
+                  img.lazy alt="" data-original="#{ image.data.url(:large) }"
       .grid-flex__col.grid-flex__col--6
         .category-title.pad-bot-only
-          h2.category-title__title.product-title 
+          h2.category-title__title.product-title
             = @product.name
           .category-title__description
             center
@@ -92,20 +88,20 @@
                 = ' ' + @product.stock.to_s
               b \
               | Berat:
-              span 
+              span
                 = ' ' + @product.weight.to_s + ' ' + @product.unit
               b \
               | Harga:
-              span 
+              span
                 = ' ' + @product.price_dropship_money
           hr/
           - if user_signed_in?
             = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|
-              span 
+              span
                 b Beli:
               = f.input :purchase_type, placeholder: 'Jenis pembelian', wrapper: false, label: false, collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
               = f.input :quantity, placeholder: 'Jumlah', wrapper: false, label: false
-              button.btn.btn-green type="button" 
+              button.btn.btn-green type="submit"
                 i.fa.fa-cart-plus
           - else
             center
