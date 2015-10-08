@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
 
   has_many :products
   has_many :orders
+  has_many :top_ups
   phony_normalize :phone_number, default_country_code: 'ID'
   validates :phone_number, phony_plausible: true
   enum role: { admin: 'admin', user: 'user', suuplier: 'suuplier' }

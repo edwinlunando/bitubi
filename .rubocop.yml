@@ -13,4 +13,4 @@ Metrics/ParameterLists:
 Style/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 Style/EmptyLinesAroundBlockBody:
-  EnforcedStyle: empty_lines
+  Enabled: false

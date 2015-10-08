@@ -48,26 +48,18 @@ class Order < ActiveRecord::Base
     state :done
 
     event :checkout do
-
       transitions from: :cart, to: :address
-
     end
 
     event :addressing do
-
       transitions from: :address, to: :payment
-
     end
 
     event :finish do
-
       before do
-
         finish_order
-
       end
       transitions to: :done
-
     end
 
   end
@@ -100,4 +92,5 @@ class Order < ActiveRecord::Base
     weight = display_weight
     weight * state_shipment_price.price
   end
+
 end

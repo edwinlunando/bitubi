@@ -136,8 +136,8 @@ Rails.application.routes.draw do
 
   end
 
-  get 'saldo' => 'home#topup'
-  post 'saldo' => 'home#topup_credit', as: 'tambah_saldo'
+  get 'saldo' => 'users#topup'
+  post 'saldo' => 'users#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'home#remove_from_cart', as: 'delete_from_cart'
   get 'keranjang' => 'home#cart'
   post 'alamat' => 'home#addressing', as: 'addressing'

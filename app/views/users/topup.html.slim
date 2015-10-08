@@ -43,12 +43,12 @@
                   = f.label :amount
                   = f.input :amount, wrapper: false, label: false, input_html: {placeholder: 'jumlah'}
                   = f.label :bank
-                  = f.input :bank, collection: TopUp.bank_list, wrapper: false, label: false
-                  br/ 
+                  = f.input :bank, collection: TopUp.bank_list, wrapper: false, label: false, include_blank: 'Pilih Bank Anda'
+                  br/
                   br/
                   button.btn.btn-green type="submit"  Bayar
 
-              hr/ 
+              hr/
 
               div
                 h3.darkorange Instruksi
@@ -74,8 +74,8 @@
                           | a.n. PT Laris Banget Nich
             .grid-flex__col.grid-flex__col--6
               h3.darkorange Top Up History
-              span 
-                b.darkorange Saldo kamu: 
+              span
+                b.darkorange Saldo kamu:
                 span.darkgreen #{ number_format(current_user.credit) }
               br/
               .table-container
@@ -85,8 +85,11 @@
                         th Tanggal
                         th Jumlah
                         th Bank
+                        th Konfirmasi
                     tbody
+                      - current_user.top_ups.each do |top_up|
                         tr
-                          td 1 Oktober 2015
-                          td IDR 2000000
-                          td Bank
+                          td #{ top_up.created_at }
+                          td #{ number_format(top_up.amount) }
+                          td #{ top_up.bank }
+                          td #{ top_up.approved ? 'Ya' : 'Tidak' }
