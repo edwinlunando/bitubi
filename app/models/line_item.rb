@@ -13,10 +13,13 @@
 
 # model to represent an item in an order/cart
 class LineItem < ActiveRecord::Base
+
   belongs_to :product
   belongs_to :order
 
   enum purchase_type: [:dropship, :wholesale]
+
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
 
   validates_presence_of :product_id
   validates_presence_of :quantity
@@ -76,7 +79,6 @@ class LineItem < ActiveRecord::Base
 
   def shipping_cost
     weight_total = quantity * product.weight
-
   end
 
   def check_wholesale_price
@@ -87,4 +89,5 @@ class LineItem < ActiveRecord::Base
   def price
     quantity * price_per_quantity
   end
+
 end

@@ -58,9 +58,8 @@
                           td #{line_item.purchase_type}
                           td align="right" #{ line_item.quantity*line_item.price_per_quantity }
                           td align="center"
-                            form.form-manage action=""
-                              button.btn-clear
-                                i.fa-btn.btn-red.fa.fa-trash title="delete"
+                            = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete
+                              i.fa-btn.btn-red.fa.fa-trash title="delete"
                     tfoot
                       tr
                         td
@@ -69,11 +68,10 @@
                         td
                           b Total
                         td align="right"
-                          b 
+                          b
                             = @order.total
                         td align="center"
-                          form action=""
-                            input type="hidden" /
-                            button.btn.btn-green
-                              i.fa.fa-money
-                              | Checkout
+                          = link_to alamat_path, class: 'btn btn-green'
+                            i.fa.fa-money
+                              |  Checkout
+
