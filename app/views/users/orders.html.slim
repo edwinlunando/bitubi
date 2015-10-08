@@ -76,7 +76,7 @@
                               button.btn-clear.order-expandable data-target="#{ order.id }" 
                                 i.fa-btn.btn-green.fa.fa-folder-open title="view" 
                           tr.none[id='#{ order.id }']
-                            td colspan="5" 
+                            td colspan="4" 
                               table.table
                                 thead
                                   tr
@@ -93,4 +93,5 @@
                                       td #{item.product.name}
                                       td #{item.quantity}
                                       td #{item.purchase_type}
-                                      td align="right" #{ item.price }
+                                      td align="left" #{ item.price }
+                            td

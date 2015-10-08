@@ -45,7 +45,7 @@
                   th Harga
               tbody
                 - @order.line_items.each do |line_item|
-                  .tr
+                  tr
                     td align="center"
                       = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                     td #{ line_item.product.name }
@@ -53,10 +53,11 @@
                     td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
                     td #{ number_format(line_item.price) }
                 - if @order.address.present?
-                  td align="center" colspan="3"  Pengiriman
-                  td #{ @order.state_shipment_price.shipment_type.display_name }
-                  td #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
-                  td #{ number_format(@order.shipment_price) }
+                  tr.highlight-info
+                    td align="center" colspan="3"  Pengiriman
+                    td #{ @order.state_shipment_price.shipment_type.display_name }
+                    td #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
+                    td #{ number_format(@order.shipment_price) }
               tfoot
                 tr
                   td colspan="3" 

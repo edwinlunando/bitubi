@@ -37,13 +37,9 @@
               div
                 h3.darkorange Top Up Form
                 = simple_form_for(@top_up, url: tambah_saldo_path, html: {class: 'wallet-form'}) do |f|
-                  .form-row
-                    = f.label :name
-                    = f.input :name, wrapper: false, label: false, input_html: {placeholder: 'nama'}
-                  = f.label :amount
-                  = f.input :amount, wrapper: false, label: false, input_html: {placeholder: 'jumlah'}
-                  = f.label :bank
-                  = f.input :bank, collection: TopUp.bank_list, wrapper: false, label: false, include_blank: 'Pilih Bank Anda'
+                  = f.input :name, input_html: {placeholder: 'nama'}
+                  = f.input :amount, input_html: {placeholder: 'jumlah'}
+                  = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda'
                   br/
                   br/
                   button.btn.btn-green type="submit"  Bayar
