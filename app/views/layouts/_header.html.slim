@@ -88,7 +88,7 @@ header.header-main
     center.login-register__close-btn x
     center
       h2.darkorange Login
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'login-form', class: 'login-form' }) do |f|
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'popup-login-form', class: 'login-form' }) do |f|
         = f.input :email, required: true, input_html: {class: '', placeholder: 'email'}, autofocus: true
         = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
         a href="" Lupa password?
