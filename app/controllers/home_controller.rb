@@ -9,21 +9,6 @@ class HomeController < ApplicationController
     render controller: :products, action: :index
   end
 
-  def topup_credit
-    @top_up = TopUp.new(top_up_params)
-    @top_up.user = current_user
-    if @top_up.save
-      flash[:success] = 'Berhasil isi saldo! Saldo Anda akan bertambah setelah kami verifikasi.'
-      redirect_to saldo_path
-    else
-      render action: :topup
-    end
-  end
-
-  def topup
-    @top_up = TopUp.new
-  end
-
   def remove_from_cart
     @order = current_user.last_order
     @line_item = LineItem.find(params[:id])
@@ -119,10 +104,6 @@ class HomeController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
-  end
-
-  def top_up_params
-    params.require(:top_up).permit(:name, :amount, :bank)
   end
 
   def address_params
