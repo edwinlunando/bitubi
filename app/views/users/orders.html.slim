@@ -73,9 +73,9 @@
                             td #{ order.state }
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center" 
-                              button.btn-clear.order-expandable data-target="orderb" 
+                              button.btn-clear.order-expandable data-target="#{ order.id }" 
                                 i.fa-btn.btn-green.fa.fa-folder-open title="view" 
-                          tr#orderb.none
+                          tr.none[id='#{ order.id }']
                             td colspan="5" 
                               table.table
                                 thead
@@ -86,6 +86,14 @@
                                     th Tipe
                                     th Harga
                                 tbody
+                                  - order.products.each_with_index do |item, index|
+                                    tr
+                                      td align="center"
+                                        = image_tag item.product.get_first_image.data.url(:small), class: 'img-responsive lazy'
+                                      td #{item.name}
+                                      td #{item.quantity}
+                                      td #{item.purchase_type}
+                                      td align="right" #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
                                   tr
                                     td align="center" 
                                       img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /

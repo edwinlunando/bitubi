@@ -148,7 +148,8 @@ $input_bg               : #fff;
     background-color: $black20;
     padding: 30px;
     input[type="text"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="email"] {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
