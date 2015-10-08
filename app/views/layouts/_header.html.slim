@@ -87,15 +87,15 @@ header.header-main
     center.login-register__close-btn x
     center
       h2.darkorange Login
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {  class: 'login-form' }) do |f|
-        = f.input :email, required: true, input_html: {placeholder: 'email'}, autofocus: true, label: false, wrapper: false
-        = f.input :password, required: true, input_html: {placeholder: 'password'}, label: false, wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-        | Belum punya akun ?
-        a href="/daftar"  Daftar
-        br/
-        a href="" Lupa password?
-        br/
-        br/
-        center
-          input.btn.btn-orange type="submit" /
+    / = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {  class: 'login-form' }) do |f|
+    /     = f.input :name, required: true, input_html: {placeholder: 'email'}, autofocus: true, label: false, wrapper: false
+    /     = f.input :password, required: true, input_html: {placeholder: 'password'}, label: false, wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+    /     | Belum punya akun ?
+    /     a href="/daftar"  Daftar
+    /     br/
+    /     a href="" Lupa password?
+    /     br/
+    /     br/
+    /     center
+    /       input.btn.btn-orange type="submit" /
 .overlay

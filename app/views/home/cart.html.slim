@@ -52,15 +52,14 @@
                       - @order.line_items.each do |line_item|
                         tr
                           td align="center"
-                            img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                          td
-                            a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                          td 12
-                          td Wholesale
-                          td align="right"  3000000
+                            = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                          td #{line_item.product.name}
+                          td #{line_item.quantity}
+                          td #{line_item.purchase_type}
+                          td align="right" #{ line_item.quantity*line_item.price_per_quantity }
                           td align="center"
                             form.form-manage action=""
-                              button.btn-clear type="submit"
+                              button.btn-clear
                                 i.fa-btn.btn-red.fa.fa-trash title="delete"
                     tfoot
                       tr
@@ -70,112 +69,11 @@
                         td
                           b Total
                         td align="right"
-                          b 3500000
+                          b 
+                            = @order.total
                         td align="center"
                           form action=""
                             input type="hidden" /
                             button.btn.btn-green
                               i.fa.fa-money
                               | Checkout
-          #tab2.hide
-            .flex-grid
-              .flex-grid__col.flex-grid__col--12
-                h2.darkorange Pesananmu
-                .table-container
-                  table.table
-                    thead
-                      tr align="center"
-                        th Order Id
-                        th Jumlah Item
-                        th Total
-                        th Status
-                        th Action
-                    tbody
-                      tr align="center"
-                        td ASD123
-                        td 12
-                        td align="right"  3000000
-                        td On Delivery
-                        td align="center"
-                          button.btn-clear.order-expandable data-target="orderb"
-                            i.fa-btn.btn-green.fa.fa-folder-open title="view"
-                      tr#orderb.none
-                        td colspan="5"
-                          table.table
-                            thead
-                              tr
-                                th align="center"  Thumbnail
-                                th Item
-                                th Jumlah
-                                th Tipe
-                                th Harga
-                            tbody
-                              tr
-                                td align="center"
-                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                                td
-                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                                td 12
-                                td Wholesale
-                                td align="right"  3000000
-                              tr
-                                td align="center"
-                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                                td
-                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                                td 1
-                                td Dropship
-                                td align="right"  500000
-                            tfoot
-                              tr
-                                td
-                                td
-                                td
-                                td
-                                  b Total
-                                td align="right"
-                                  b 3500000
-                      tr align="center"
-                        td ASD123
-                        td 12
-                        td align="right"  3000000
-                        td On Delivery
-                        td align="center"
-                          button.btn-clear.order-expandable data-target="ordera"
-                            i.fa-btn.btn-green.fa.fa-folder-open title="view"
-                      tr#ordera.none
-                        td colspan="5"
-                          table.table
-                            thead
-                              tr
-                                th align="center"  Thumbnail
-                                th Item
-                                th Jumlah
-                                th Tipe
-                                th Harga
-                            tbody
-                              tr
-                                td align="center"
-                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                                td
-                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                                td 12
-                                td Wholesale
-                                td align="right"  3000000
-                              tr
-                                td align="center"
-                                  img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                                td
-                                  a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                                td 1
-                                td Dropship
-                                td align="right"  500000
-                            tfoot
-                              tr
-                                td
-                                td
-                                td
-                                td
-                                  b Total
-                                td align="right"
-                                  b 3500000

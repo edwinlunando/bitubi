@@ -86,36 +86,11 @@
                                     th Tipe
                                     th Harga
                                 tbody
-                                  - order.products.each_with_index do |item, index|
+                                  - order.line_items.each_with_index do |item, index|
                                     tr
                                       td align="center"
                                         = image_tag item.product.get_first_image.data.url(:small), class: 'img-responsive lazy'
-                                      td #{item.name}
+                                      td #{item.product.name}
                                       td #{item.quantity}
                                       td #{item.purchase_type}
-                                      td align="right" #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
-                                  tr
-                                    td align="center" 
-                                      img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                                    td
-                                      a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                                    td 12
-                                    td Wholesale
-                                    td align="right"  3000000
-                                  tr
-                                    td align="center" 
-                                      img.lazy alt="" data-original="assets/img/caption-img.jpg" width="50" /
-                                    td
-                                      a href=""  Pomeranian Puppy Bear Face For Sale Show Quality
-                                    td 1
-                                    td Dropship
-                                    td align="right"  500000
-                                tfoot
-                                  tr
-                                    td
-                                    td
-                                    td
-                                    td
-                                      b Total
-                                    td align="right" 
-                                      b 3500000
+                                      td align="right" #{ item.price }
