@@ -9,9 +9,12 @@
 #  updated_at :datetime         not null
 #
 
+# alamat
 class Address < ActiveRecord::Base
+
   attr_accessor :province, :city, :shipment_type
   belongs_to :state
 
   validates :name, presence: true
+
 end

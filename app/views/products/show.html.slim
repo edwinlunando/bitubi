@@ -61,10 +61,11 @@
           a href="/"  Home
         li
           a href="/produk"  Produk
+        - if @product.category.present?
+          li
+            a href="/produk?category_id=#{ @product.category.id }"  = @product.category.name
         li
-          a href="/produk?category_id=#{@product.category.id}"  = @product.category.name
-        li
-          a href="/produk/#{@product.slug}"  = @product.name
+          a href="/produk/#{ @product.slug }"  = @product.name
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer

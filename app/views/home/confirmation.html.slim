@@ -29,10 +29,11 @@
         .static-title.np-top
           center
             h2.static-title__title Form Konfirmasi
-            span.category-title__detailed-description
-              | Provinsi, Kabupaten, Kecamatan,
-              br/
-              | Alamat lengkap pengiriman barang
+            - if @order.address.present?
+              span.category-title__detailed-description
+                | #{ @order.address.state.city.province.name }, #{ @order.address.state.city.name }, #{ @order.address.state.name },
+                br/
+                | #{ @order.address.name }
           br/
           .table-container
             table.table
@@ -47,7 +48,7 @@
                 - @order.line_items.each do |line_item|
                   tr
                     td align="center"
-                      = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                      = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
                     td #{ line_item.product.name }
                     td #{ line_item.purchase_type }
                     td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }

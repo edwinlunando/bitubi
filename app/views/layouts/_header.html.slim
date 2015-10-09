@@ -14,19 +14,17 @@ header.header-main
             = link_to 'Keranjang', keranjang_path
           li
             a href="/logout"  Log Out
-      dt.panel-group
-        a href="/saldo"  Dompet
-      dd.panel-body
-        ul
-          li
-            a
-              i.fa.fa-money.fa-lg
-              - if user_signed_in?
-                span  - #{ number_format(current_user.credit) }
-              else
-                span  Belum Login
-          li
-            = link_to 'Saldo', saldo_path
+      - if user_signed_in?
+        dt.panel-group
+          a href="/saldo"  Dompet
+        dd.panel-body
+          ul
+            li
+              a
+                i.fa.fa-money.fa-lg
+                  span #{ number_format(current_user.credit) }
+            li
+              = link_to 'Tambah Saldo', saldo_path
       dt
         = link_to 'Produk', products_path
       dt.panel-group
@@ -94,7 +92,7 @@ header.header-main
           = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
           a href="" Lupa password?
           br/
-          | Belum punya akun ? 
+          | Belum punya akun ?
           a href="daftar" Daftar
           br/
           br/
