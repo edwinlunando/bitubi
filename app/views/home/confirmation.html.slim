@@ -17,7 +17,7 @@
           ol
             li
               span> 1
-              | Cart & Orders
+              | Keranjang
             li
               span> 2
               | Data Pemesanan
@@ -60,12 +60,12 @@
                     td #{ number_format(@order.shipment_price) }
               tfoot
                 tr
-                  td colspan="3" 
+                  td colspan="3"
                   td
                     b Total
-                  td align="right" 
+                  td align="right"
                     b #{ number_format(@order.total) }
-            form action="" 
+            form action=""
               = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
 
 / .container
