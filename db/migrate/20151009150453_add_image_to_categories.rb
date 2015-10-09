@@ -1,5 +1,5 @@
 class AddImageToCategories < ActiveRecord::Migration
   def change
-    add_column :categories, :image, :attachment
+    add_attachment :categories, :image
   end
 end
