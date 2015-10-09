@@ -437,6 +437,22 @@ footer {
 	}
 }
 
+.product-form {
+	.grid-flex {
+		display: inline-block;
+		margin: 5px;
+		.form-input--error-message {
+			padding: 0;
+		}
+	}
+	input, select {
+		width: 100%;
+	}
+	.btn {
+		margin: 5px;
+	}
+}
+
 .order-form, .wallet-form {
 	margin: 0 auto;
 	text-align: right;

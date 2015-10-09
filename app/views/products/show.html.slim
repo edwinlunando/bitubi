@@ -94,15 +94,20 @@
               | Harga:
               span
                 = ' ' + @product.price_dropship_money
-          hr/
+          hr.mg-10
           - if user_signed_in?
             = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|
-              span
-                b Beli:
-              = f.input :purchase_type, placeholder: 'Jenis pembelian', wrapper: false, label: false, collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
-              = f.input :quantity, placeholder: 'Jumlah', wrapper: false, label: false
-              button.btn.btn-green type="submit"
-                i.fa.fa-cart-plus
+              div
+                span
+                  b Beli:
+              .grid-flex--no-pad
+                .grid-flex.grid-flex__col--5
+                  = f.input :purchase_type, placeholder: 'Jenis pembelian', wrapper: false, label: false, collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
+                .grid-flex.grid-flex__col--5
+                  = f.input :quantity, placeholder: 'Jumlah', wrapper: false, label: false
+                .grid-flex.grid-flex__col--2
+                  button.btn.btn-green type="submit"
+                    i.fa.fa-cart-plus
           - else
             center
               = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-green'
