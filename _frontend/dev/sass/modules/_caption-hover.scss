@@ -9,6 +9,16 @@
 	}
 	figure {
 		padding: 0px; margin: 0 0 30px 0;
+		.cards-image {
+			width: 100%;
+			min-height: 240px;
+			overflow: hidden;
+			&:hover img{
+				opacity: .75;
+				@include animate-transition(.2s);
+				@include scale-transform(1.1);
+			}
+		}
 	}
 	.cards-information-block {
 		div {

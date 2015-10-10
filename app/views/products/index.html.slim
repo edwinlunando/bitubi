@@ -47,6 +47,9 @@
           a href=""  Home
         li
           a href=""  Produk
+        - if @category.present?
+          li
+            a href="/produk/category_id=#{@category.id}" #{@category.name}
   .grid-flex--no-pad.filter-container
     .grid-flex--no-gutter.grid-flex__col--12.filter-type-container
       .grid-flex--no-pad

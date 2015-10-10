@@ -10,6 +10,7 @@ class ProductsController < InheritedResources::Base
       products = products.where('lower(name) LIKE ?', '%' + params[:q].downcase + '%')
     end
     if params[:category_id].present?
+      @category = Category.find(params[:category_id])
       products = products.where('category_id = ?', params[:category_id])
     end
     @products = products.page(params[:page])

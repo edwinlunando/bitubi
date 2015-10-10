@@ -2,7 +2,7 @@ header.header-main
   nav.main-navigation role="navigation"
     dl
       dt.panel-group
-        a href="#"  Account
+        a href="#"  Akun
       dd.panel-body
         ul
           li.panel-profile
@@ -13,42 +13,23 @@ header.header-main
             / a href="/keranjang"  Keranjang
             = link_to 'Keranjang', keranjang_path
           li
-            a href="/logout"  Log Out
+            a href="/users/sign_out"  Log Out
       dt.panel-group
         a href="/saldo"  Dompet
       dd.panel-body
         ul
           li
             a
-              i.fa.fa-money.fa-lg
               - if user_signed_in?
-                span  - #{ number_format(current_user.credit) }
-              else
+                i.fa.fa-money.fa-lg
+                  span  - #{ number_format(current_user.credit) }
+              - else
                 span  Belum Login
-          li
-            = link_to 'Saldo', saldo_path
+          - if user_signed_in?
+            li
+              = link_to 'Top Up', saldo_path
       dt
         = link_to 'Produk', products_path
-      dt.panel-group
-        a href="#"  Kategori Produk
-      dd.panel-body
-        ul
-          li
-            a href="##"  Automotif
-          li
-            a href="##"  Elektronik
-          li
-            a href="##"  Furniture
-          li
-            a href="##"  Kesehatan
-          li
-            a href="##"  Mesin
-          li
-            a href="##"  Mainan
-          li
-            a href="##"  Pakaian
-          li
-            a href="##"  Lainnya
       dt
         = link_to 'Kontak', kontak_path
   /! /push menu right
@@ -62,19 +43,20 @@ header.header-main
         a href="/" itemprop="url"
           span.icon.icon-logo itemprop="name"  Larisni
     .nav-lang.nav-toggle
-      .nav-lang__submenu
-        - if user_signed_in?
+      - if user_signed_in?
+        .nav-lang__submenu
           = link_to destroy_user_session_path, :method => :get
             i.fa.fa-sign-out
             span Logout
-        - else
-          a#login-register-btn href=""
+      - else
+        .nav-lang__submenu#login-register-btn
+          a href=""
             i.fa.fa-sign-in
             span Login / Register
-      .nav-lang__submenu
-        a#search-menu href=""
+      .nav-lang__submenu#search-menu
+        a href=""
           i.fa.fa-search
-          span Search
+          span Cari
       #cart-menu.nav-lang__submenu.nav-lang__submenu--square
         a href="/keranjang"
           i.fa.fa-shopping-cart
@@ -95,7 +77,7 @@ header.header-main
           a href="" Lupa password?
           br/
           | Belum punya akun ? 
-          a href="daftar" Daftar
+          a href="/daftar" Daftar
           br/
           br/
           center

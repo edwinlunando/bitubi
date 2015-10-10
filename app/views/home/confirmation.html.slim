@@ -54,9 +54,9 @@
                     td #{ number_format(line_item.price) }
                 - if @order.address.present?
                   tr.highlight-info
-                    td align="center" colspan="3"  Pengiriman
+                    td align="center" colspan="2"  Pengiriman
                     td #{ @order.state_shipment_price.shipment_type.display_name }
-                    td #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
+                    td #{ number_format(@order.display_weight*@order.state_shipment_price.price) }
                     td #{ number_format(@order.shipment_price) }
               tfoot
                 tr
