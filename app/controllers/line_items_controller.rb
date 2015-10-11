@@ -7,6 +7,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @line_item.cancel
     @line_item.save
+    LineItemMailer.approve(@line_item).deliver_now
     redirect_to sell_path, notice: 'Barang dikonfirmasi'
   end
 
@@ -14,6 +15,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @line_item.cancel
     @line_item.save
+    LineItemMailer.cancel(@line_item).deliver_now
     redirect_to sell_path, notice: 'Barang dibatalkan'
   end
 
@@ -21,6 +23,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @line_item.cancel
     @line_item.save
+    LineItemMailer.ship(@line_item).deliver_now
     redirect_to sell_path, notice: 'Barang dikirim'
   end
 
