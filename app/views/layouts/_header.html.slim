@@ -5,15 +5,33 @@ header.header-main
         a href="#"  Akun
       dd.panel-body
         ul
-          li.panel-profile
-            a href="##"
-              figure
-                figcaption User's Name
-          li
-            / a href="/keranjang"  Keranjang
-            = link_to 'Keranjang', keranjang_path
-          li
-            a href="/users/sign_out"  Log Out
+          - if user_signed_in?
+            li.panel-profile
+              a href="/profil"
+                figure
+                  figcaption Selamat Datang, User's Name
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Dagangan', dagangan_path
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Penjualan', penjualan_path
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Keranjang', keranjang_path
+            li
+              a href="/users/sign_out"  Log Out
+          - else
+            li.panel-profile
+              a href="" onclick="return false;"
+                figure
+                  figcaption Selamat Datang!
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Login', login_path
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Daftar', daftar_path
       dt.panel-group
         a href="/saldo"  Dompet
       dd.panel-body

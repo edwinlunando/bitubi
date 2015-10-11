@@ -117,6 +117,16 @@
   }
 }
 
+#cart-menu {
+  padding: 0;
+  a {    
+    width: 100%;
+    height: 100%;
+    padding: 13px;
+    display: block;
+  }
+}
+
 .nav-icon {
   float:left;
   width: 50px;

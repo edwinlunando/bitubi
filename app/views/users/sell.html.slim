@@ -3,28 +3,30 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href=""  Home
+          = link_to 'Home', root_path
         li
-          a href=""  Profil
+          a href="/account" Akun
+        li
+          = link_to 'Penjualan', penjualan_path
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           ul.nav
             li.nav-one
-              a href="#tab1" 
+              a href="/profile" 
                 i.fa.fa-user
                 span Profil
             li.nav-two
-              a href="#tab2" 
+              = link_to dagangan_path do
                 i.fa.fa-dropbox
-                span Produk Dijual
+                span Dagangan
             li.nav-three
-              a.current href="#tab3" 
+              = link_to penjualan_path, class: "current" do
                 i.fa.fa-archive
-                span Pesananmu
+                span Penjualan
             li.nav-four
-              a href="#tab4" 
+              = link_to keranjang_path do
                 i.fa.fa-shopping-cart
                 span Cart & Order
           .flex-grid

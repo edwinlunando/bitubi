@@ -16,35 +16,37 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href=""  Home
+          = link_to 'Home', root_path
         li
-          a href=""  Profil
+          a href="/account" Akun
+        li
+          = link_to 'Dagangan', dagangan_path
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           ul.nav
             li.nav-one
-              a href="#tab1" 
+              a href="/acccount" 
                 i.fa.fa-user
-                span Profil
+                span Akun
             li.nav-two
-              a.current href="#tab2" 
+              = link_to dagangan_path, class: "current" do
                 i.fa.fa-dropbox
-                span Produk Dijual
+                span Dagangan
             li.nav-three
-              a href="#tab3" 
+              = link_to penjualan_path do
                 i.fa.fa-archive
-                span Pesananmu
+                span Penjualan
             li.nav-four
-              a href="#tab4" 
+              = link_to keranjang_path do
                 i.fa.fa-shopping-cart
                 span Cart & Order
           .list-wrap
             h2.darkorange Your Products
             .table-container
               p
-                a.btn.btn-orange href=""  Tambah Produk
+                = link_to 'Tambah Produk', new_product_path, class: "btn btn-orange"
               table.table
                 thead
                   tr

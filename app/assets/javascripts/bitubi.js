@@ -164,7 +164,7 @@
                     img.attr('src', src);
                     img.attr('data-zoom-image', src);
                     img.appendTo('.profnprod-viewer__frame');
-                    img.elevateZoom({scrollZoom : true});
+                    img.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
                 })
             },
 
@@ -209,7 +209,7 @@
 
             function ezoom() {
                 $zoom = $('#elevate-zoom');
-                $zoom.elevateZoom({scrollZoom : true});
+                $zoom.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
             }
         },
 
