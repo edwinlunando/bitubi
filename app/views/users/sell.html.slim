@@ -35,7 +35,7 @@
               .table-container
                 table.table
                   thead
-                    tr align="center" 
+                    tr align="center"
                       th Order Id
                       th Pembeli
                       th Jumlah Item
@@ -45,39 +45,22 @@
                       th Ongkir
                       th Action
                   tbody
-                    tr align="center" 
-                      td ASD123
-                      td Wico Chan
-                      td 12
-                      td align="right"  3000000
-                      td Siantar Ujung Antah Berantah, Asal Sampe
-                      td On Delivery
-                      td IDR 36000
-                      td align="center" 
-                        button.btn-clear.order-expandable data-target="orderb" 
-                          i.fa-btn.btn-black.fa.fa-check title="view" 
-                        a href="" 
-                          i.fa-btn.btn-yellow.fa.fa-truck title="kirim" 
-                        a href="" 
-                          i.fa-btn.btn-green.fa.fa-money title="sampai" 
-                        form.form-manage action="" 
-                          button.btn-clear type="submit" 
-                            i.fa-btn.btn-red.fa.fa-ban title="batalkan" 
-                    tr align="center" 
-                      td ASD123
-                      td Wico Chan
-                      td 12
-                      td align="right"  3000000
-                      td Siantar Ujung Antah Berantah, Asal Sampe
-                      td On Delivery
-                      td IDR 36000
-                      td align="center" 
-                        button.btn-clear.order-expandable data-target="orderb" 
-                          i.fa-btn.btn-black.fa.fa-check title="view" 
-                        a href="" 
-                          i.fa-btn.btn-yellow.fa.fa-truck title="kirim" 
-                        a href="" 
-                          i.fa-btn.btn-green.fa.fa-money title="sampai" 
-                        form.form-manage action="" 
-                          button.btn-clear type="submit" 
-                            i.fa-btn.btn-red.fa.fa-ban title="batalkan" 
+                   - @line_items.each do |line_item|
+                    tr align="center"
+                      td #{ line_item.order.id }
+                      td #{ line_item.order.user.email }
+                      td #{ line_item.quantity  }
+                      td align="right"  #{ number_format(line_item.price) }
+                      td #{ line_item.order.address.one_line }
+                      td #{ line_item.state }
+                      td #{ number_format(line_item.shipping_cost) }
+                      td align="center"
+                        = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
+                          i.fa-btn.btn-black.fa.fa-check title="view"
+
+                        = link_to line_items_ship_path(line_item), method: :post
+                          i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
+                        i.fa-btn.btn-green.fa.fa-money title="sampai"
+                        = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
+                          i.fa-btn.btn-red.fa.fa-ban title="batalkan"
+

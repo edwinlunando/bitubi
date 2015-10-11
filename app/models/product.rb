@@ -41,6 +41,8 @@ class Product < ActiveRecord::Base
   validates :category, presence: true
   validates :wholesale_prices, length: { minimum: 1 }
 
+  alias_attribute :supplier, :user
+
   def get_first_image
     product_images.try(:first)
   end

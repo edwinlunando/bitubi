@@ -84,6 +84,10 @@ class HomeController < ApplicationController
     @order.save
     current_user.credit -= @order.total
     current_user.save
+    UserMailer.order_confirmation(@order)
+    @order.suppliers.each do |supplier|
+      OrderMailer.confimation(@order, supplier)
+    end
     flash[:success] = 'Transaksi berhasil'
     redirect_to root_path
   end
