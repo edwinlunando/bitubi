@@ -34,8 +34,9 @@ class LineItem < ActiveRecord::Base
     state :delivery
     state :receive
     state :done
+    state :failed
 
-    event :confirmation do
+    event :confirm do
       transitions from: :confirm, to: :delivery
     end
 
@@ -43,8 +44,12 @@ class LineItem < ActiveRecord::Base
       transitions from: :delivery, to: :receive
     end
 
-    event :receivement do
+    event :receive do
       transitions from: :receive, to: :done
+    end
+
+    event :cancel do
+      transitions to: :failed
     end
 
   end
@@ -78,7 +83,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def shipping_cost
-    weight_total = quantity * product.weight
+    weight_normalized * order.state_shipment_price.price
   end
 
   def check_wholesale_price

@@ -116,6 +116,12 @@
 
 Rails.application.routes.draw do
 
+  get 'line_item/approve'
+
+  get 'line_item/cancel'
+
+  get 'line_item/ship'
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, controllers: { registrations: 'registrations' }
   ActiveAdmin.routes(self)
@@ -144,7 +150,7 @@ Rails.application.routes.draw do
   get 'alamat' => 'home#address'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
-  get 'penjualan' => 'users#sell'
+  get 'penjualan' => 'users#sell', as: 'sell'
   get 'dagangan' => 'users#products'
   get 'dagangan/baru' => 'users#new_product'
   get 'daleman' => 'home#order'
@@ -156,6 +162,11 @@ Rails.application.routes.draw do
   get 'aturan' => 'high_voltage/pages#show', id: 'terms_and_condition'
   get 'kontak' => 'home#contact'
   post 'kontak/kirim' => 'home#send_contact', as: 'send_contact'
+
+  # line item
+  post 'penjualan/:id/setujui' => 'line_items#approve', as: 'line_items_approve'
+  post 'penjualan/:id/batal' => 'line_items#cancel', as: 'line_items_cancel'
+  post 'penjualan/:id/kirim' => 'line_items#ship', as: 'line_items_ship'
 
   # AJAX
   get 'provinsi' => 'addresses#province'
