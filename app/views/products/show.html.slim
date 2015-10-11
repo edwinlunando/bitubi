@@ -61,17 +61,18 @@
           a href="/"  Home
         li
           a href="/produk"  Produk
+        - if @product.category.present?
+          li
+            a href="/produk?category_id=#{ @product.category.id }"  = @product.category.name
         li
-          a href="/produk?category_id=#{@product.category.id}"  = @product.category.name
-        li
-          a href="/produk/#{@product.slug}"  = @product.name
+          a href="/produk/#{ @product.slug }"  = @product.name
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
         .grid-flex
           .grid-flex__col.grid-flex__col--10.profnprod-viewer__frame
             - if @product.get_first_image.present?
-              img.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }"
+              img#elevate_zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
               - @product.product_images.each do |image|

@@ -14,6 +14,7 @@ ActiveAdmin.register Category do
   form do |f|
     f.inputs "Admin Details" do
       f.input :name
+      f.input :image
       f.input :active
     end
     f.actions

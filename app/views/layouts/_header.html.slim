@@ -27,7 +27,7 @@ header.header-main
                 span  Belum Login
           - if user_signed_in?
             li
-              = link_to 'Top Up', saldo_path
+              = link_to 'Tambah Saldo', saldo_path
       dt
         = link_to 'Produk', products_path
       dt
@@ -71,6 +71,7 @@ header.header-main
     - if !user_signed_in?
       center
         h2.darkorange Login
+<<<<<<< HEAD
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'popup-login-form', class: 'login-form' }) do |f|
           = f.input :email, required: true, input_html: {class: '', placeholder: 'email'}, autofocus: true
           = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
@@ -82,4 +83,17 @@ header.header-main
           br/
           center
             button.btn.btn-green type="submit"  Login
+=======
+      = simple_form_for(User.new, as: resource_name, url: session_path(resource_name), html: { id: 'popup-login-form', class: 'login-form' }) do |f|
+        = f.input :email, required: true, input_html: {class: '', placeholder: 'email'}, autofocus: true
+        = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+        a href="" Lupa password?
+        br/
+        | Belum punya akun ?
+        a href="daftar" Daftar
+        br/
+        br/
+        center
+          button.btn.btn-green type="submit"  Login
+>>>>>>> 57476f2f76c25e30186f39fed61c5c3fd015a5b0
 .overlay
