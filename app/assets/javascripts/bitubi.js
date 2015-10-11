@@ -21,6 +21,7 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
+        _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
         _slider         : path.js + 'slick.js',
@@ -156,7 +157,14 @@
             this.imageViewerInit = function () {
                 $('.profnprod-viewer__thumb img').on('click', function() {
                     var src = $(this).attr('src');
-                    $('.profnprod-viewer__frame img').attr('src', src);
+                    var image_load = $('.profnprod-viewer__frame img');
+                    // image_load.attr('src', src);
+                    image_load.remove();
+                    var img = $('<img id="elevate-zoom">');
+                    img.attr('src', src);
+                    img.attr('data-zoom-image', src);
+                    img.appendTo('.profnprod-viewer__frame');
+                    img.elevateZoom({scrollZoom : true});
                 })
             },
 
@@ -181,6 +189,27 @@
                 $('.page-notification--close-btn').click(function() {
                     $('.page-notification--container').fadeToggle('fast');
                 });
+            }
+        },
+
+        elevateZoom: function () {
+            // reinitiation
+            var _this = this;
+            var $zoom = $('#elevate-zoom');
+
+            if (!$zoom.length) return;
+
+            Modernizr.load({
+                load: assets._elevateZoom,
+                complete: function() {
+                    //initiate the plugin and pass the id of the div containing gallery images 
+                    ezoom();
+                }
+            });
+
+            function ezoom() {
+                $zoom = $('#elevate-zoom');
+                $zoom.elevateZoom({scrollZoom : true});
             }
         },
 
@@ -245,6 +274,11 @@
 
                 function lazyLoad(cb) {
                     Site.lazyLoad();
+                    cb();
+                },
+
+                function elevateZoom(cb) {
+                    Site.elevateZoom();
                     cb();
                 },
 

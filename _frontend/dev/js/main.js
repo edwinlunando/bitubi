@@ -21,7 +21,7 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
-        _elevateZoom    : path.js + 'jquery.elevatezoom.js,'
+        _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
         _slider         : path.js + 'slick.js',
@@ -91,14 +91,6 @@
             function afterLoad(elem, elem_left, settings) {
                 $lazy.eq(elem).addClass('loaded');
             }
-        },
-
-        elevateZoom: function () {
-            //initiate the plugin and pass the id of the div containing gallery images 
-            $("#elevate-zoom").elevateZoom({gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
-            //pass the images to Fancybox 
-            $("#elevate-zoom").bind("click", function(e) { var ez = $('#elevate-zoom').data('elevateZoom');    $.fancybox(ez.getGalleryList()); return false; }); 
-            // - See more at: http://www.elevateweb.co.uk/image-zoom/examples#sthash.gmdBe9YS.dpuf
         },
 
         ui: function() {
@@ -191,6 +183,26 @@
                     $('.page-notification--container').fadeToggle('fast');
                 });
             }
+        },
+
+        elevateZoom: function () {
+            // reinitiation
+            var _this = this;
+            var $zoom = $('#elevate-zoom');
+
+            if (!$zoom.length) return;
+
+            Modernizr.load({
+                load: assets._elevateZoom,
+                complete: function() {
+                    //initiate the plugin and pass the id of the div containing gallery images 
+                    ezoom();
+                }
+                function ezoom() {
+                    $zoom = $('#elevate-zoom');
+                    $zoom.elevateZoom();
+                }
+            })
         },
 
         slider: function() {

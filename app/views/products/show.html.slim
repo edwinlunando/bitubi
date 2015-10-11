@@ -72,12 +72,12 @@
         .grid-flex
           .grid-flex__col.grid-flex__col--10.profnprod-viewer__frame
             - if @product.get_first_image.present?
-              img#elevate_zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
+              img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
               - @product.product_images.each do |image|
                 li.profnprod-viewer__thumb
-                  img.lazy alt="" data-original="#{ image.data.url(:large) }"
+                  img.lazy alt="" data-original="#{ image.data.url(:large) }" data-zoom-image="#{ image.data.url(:large) }"
       .grid-flex__col.grid-flex__col--6
         .category-title.pad-bot-only
           h2.category-title__title.product-title
