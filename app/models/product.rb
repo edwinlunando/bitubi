@@ -35,7 +35,6 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :weight, presence: true
   validates :stock, presence: true
-  validates :name, presence: true
   validates :unit, presence: true
   validates :price_dropship, presence: true
   validates :category, presence: true
