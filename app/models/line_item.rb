@@ -87,7 +87,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def check_wholesale_price
-    false if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
+    return false if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
     true
   end
 
