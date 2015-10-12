@@ -338,6 +338,16 @@ textarea {
 	}
 }
 
+#surfari-tabs {
+	.nav {
+		li a i {
+			@media #{$medium} {
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
 
 /* 5 Footer
 --------------------------------------------------------------------------- */
@@ -429,12 +439,10 @@ footer {
 		margin: 5px;
 		color: $black70;
 		height: 40px !important;
+		width: 100%;
 	}
 	select {
 		background-color: $transwhite;
-	}
-	input {
-		width: 100px;
 	}
 }
 

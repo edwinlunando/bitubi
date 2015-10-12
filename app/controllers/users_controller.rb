@@ -32,6 +32,8 @@ class UsersController < ApplicationController
 
   def new_product
     @product = Product.new
+    @product.wholesale_prices.build
+    @product.product_images.build
   end
 
   def sell

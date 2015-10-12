@@ -27,8 +27,18 @@
 	  button.btn onclick=("return false;")  Tambah Gambar
 	.grid-flex__col.grid-flex__col--4
 	  label.form-label/
-	  h3 Harga
+	  h3 Harga Dropship
 	  div
+	  	= f.input :price_dropship, placeholder: 'dalam IDR'
+	  br/
+	  hr/
+  	  h3 Harga Wholesale
+	  div 
+        = f.simple_fields_for :wholesale_prices do |a|
+          = a.input :id, as: :hidden
+          = a.input :price, placeholder: 'harga satuan dalam IDR'
+          = a.input :minimum_quantity
+          = a.input :maximum_quantity
 	    label.form-label for="wholesale_price"  Harga
 	    input.form-input name="wholesale_price" placeholder="harga" type="number" /
 	    label.form-label for="min_quantity"  Jumlah Minimum

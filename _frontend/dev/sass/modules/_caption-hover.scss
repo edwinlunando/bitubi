@@ -40,6 +40,10 @@
 		margin: 0; padding: 0;
 		color: $black80;
 		font-size: 10pt;
+		@media #{$medium} {
+			max-height: 75px;
+			overflow: hidden;
+		}
 	}
 }
 
