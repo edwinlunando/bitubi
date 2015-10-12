@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    # todo remove if
+    # TODO: remove if
     if @order.cart?
       @order.checkout
       @order.save
