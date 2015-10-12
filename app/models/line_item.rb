@@ -9,6 +9,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  purchase_type :integer
+#  state         :string(255)
 #
 
 # model to represent an item in an order/cart
