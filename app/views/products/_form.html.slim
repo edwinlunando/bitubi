@@ -34,21 +34,19 @@
 	  hr/
   	  h3 Harga Wholesale
 	  div 
-        = f.simple_fields_for :wholesale_prices do |a|
-          = a.input :id, as: :hidden
-          = a.input :price, placeholder: 'harga satuan dalam IDR'
-          = a.input :minimum_quantity
-          = a.input :maximum_quantity
-	    label.form-label for="wholesale_price"  Harga
-	    input.form-input name="wholesale_price" placeholder="harga" type="number" /
-	    label.form-label for="min_quantity"  Jumlah Minimum
-	    input.form-input name="min_quantity" placeholder=("jumlah minimum") type="number" /
-	    label.form-label for="max_quantity"  Jumlah Maksimum
-	    input.form-input name="max_quantity" placeholder=("jumlah maximum") type="number" /
-	    br/
-	    br/
-	    hr/
-	  button.btn onclick=("return false;")  Tambah Wholesale
+        = f.simple_fields_for :wholesale_prices do |wholesale_price|
+          = render 'wholesale_prices_field', f: wholesale_price
+        = link_to_add_association 'Tambah wholesale', f, :wholesale_prices
+	  /   label.form-label for="wholesale_price"  Harga
+	  /   input.form-input name="wholesale_price" placeholder="harga" type="number" /
+	  /   label.form-label for="min_quantity"  Jumlah Minimum
+	  /   input.form-input name="min_quantity" placeholder=("jumlah minimum") type="number" /
+	  /   label.form-label for="max_quantity"  Jumlah Maksimum
+	  /   input.form-input name="max_quantity" placeholder=("jumlah maximum") type="number" /
+	  /   br/
+	  /   br/
+	  /   hr/
+	  / button.btn onclick=("return false;")  Tambah Wholesale
 	.grid-flex
 	.grid-flex__col.grid-flex__col--12
 	  button.btn.btn-green type="submit"  Save
