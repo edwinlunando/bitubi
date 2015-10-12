@@ -5,7 +5,7 @@ class LineItemsController < ApplicationController
 
   def approve
     @line_item = LineItem.find(params[:id])
-    @line_item.cancel
+    @line_item.confirmation
     @line_item.save
     LineItemMailer.approve(@line_item).deliver_now
     redirect_to sell_path, notice: 'Barang dikonfirmasi'
@@ -21,7 +21,7 @@ class LineItemsController < ApplicationController
 
   def ship
     @line_item = LineItem.find(params[:id])
-    @line_item.cancel
+    @line_item.deliver
     @line_item.save
     LineItemMailer.ship(@line_item).deliver_now
     redirect_to sell_path, notice: 'Barang dikirim'
