@@ -145,6 +145,7 @@ Rails.application.routes.draw do
   get 'penjualan' => 'users#sell', as: 'sell'
   get 'dagangan' => 'users#products'
   get 'dagangan/baru' => 'users#new_product'
+  get 'dagangan/:id/hapus' => 'users#new_product', as: 'delete_product'
   get 'daleman' => 'home#order'
   get 'login' => 'home#login'
   get 'daftar' => 'home#register'
