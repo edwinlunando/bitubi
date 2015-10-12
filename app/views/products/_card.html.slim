@@ -35,7 +35,8 @@
                   = product.category.name
             br/
             = product.name
-          .cards-information-block__price
-            | Mulai dari
-            br/
-            | @ #{ number_format(product.price_wholesale_minimum.price) }
+          - if product.price_wholesale_minimum.present?
+            .cards-information-block__price
+              | Mulai dari
+              br/
+              | @ #{ number_format(product.price_wholesale_minimum.price) }

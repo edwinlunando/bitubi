@@ -1,3 +1,4 @@
+
 / = simple_form_for(@product) do |f|
 /   = f.error_notification
 
@@ -20,21 +21,21 @@
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
-        form.form__row action="" 
+        form.form__row action=""
           h2.orange Tambah Produk
           .grid-flex
             .grid-flex__col.grid-flex__col--4
               label.form-label/
               h3 Data
               label.form-label for="category"  Kategori
-              select.form-select.form-input--block id="" name="category" 
+              select.form-select.form-input--block id="" name="category"
                 option value=""  -- Location --
                 option value="1"  DKI Jakarta
                 option value="2"  Jawa Barat
               label.form-label for="name"  Nama
               input.form-input.form-input--block name="name" placeholder=("your name") type="text" /
               label.form-label for="address"  Deskripsi
-              textarea.form-input.form-input--block id="" name="description" placeholder="deskripsi" rows="3" 
+              textarea.form-input.form-input--block id="" name="description" placeholder="deskripsi" rows="3"
               label.form-label for="stock"  Stok
               input.form-input.form-input--block name="stock" placeholder="stock" type="number" /
               label.form-label for="unit"  Unit

@@ -116,12 +116,6 @@
 
 Rails.application.routes.draw do
 
-  get 'line_item/approve'
-
-  get 'line_item/cancel'
-
-  get 'line_item/ship'
-
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, controllers: { registrations: 'registrations' }
   ActiveAdmin.routes(self)
@@ -135,9 +129,7 @@ Rails.application.routes.draw do
   resources :products, path: 'produk' do
 
     member do
-
       post 'add_to_cart'
-
     end
 
   end
@@ -145,9 +137,9 @@ Rails.application.routes.draw do
   get 'saldo' => 'users#topup'
   post 'saldo' => 'users#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'home#remove_from_cart', as: 'delete_from_cart'
-  get 'keranjang' => 'home#cart'
-  post 'alamat' => 'home#addressing', as: 'addressing'
-  get 'alamat' => 'home#address'
+  get 'keranjang' => 'orders#cart'
+  post 'alamat' => 'orders#addressing', as: 'addressing'
+  get 'alamat' => 'orders#address'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
   get 'penjualan' => 'users#sell', as: 'sell'
@@ -156,8 +148,8 @@ Rails.application.routes.draw do
   get 'daleman' => 'home#order'
   get 'login' => 'home#login'
   get 'daftar' => 'home#register'
-  get 'konfirmasi' => 'home#confirmation'
-  post 'konfirmasi' => 'home#finish', as: 'finish'
+  get 'konfirmasi' => 'orders#confirmation'
+  post 'konfirmasi' => 'orders#finish', as: 'finish'
   get 'tentang' => 'high_voltage/pages#show', id: 'about'
   get 'aturan' => 'high_voltage/pages#show', id: 'terms_and_condition'
   get 'kontak' => 'home#contact'

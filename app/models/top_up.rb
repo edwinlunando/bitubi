@@ -12,7 +12,9 @@
 #  updated_at :datetime         not null
 #
 
+# every user top up to bank
 class TopUp < ActiveRecord::Base
+
   belongs_to :user
 
   validates_presence_of :name, :amount, :bank

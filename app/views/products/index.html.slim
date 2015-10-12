@@ -1,26 +1,3 @@
-/ .container
-/   .row
-/     .col-md-3
-/       .row
-/         .col-xs-12
-/           = simple_form_for('', url: products_path, method: :get) do |f|
-/             = f.input :q, input_html: { value: params[:q] }, label: false, placeholder: 'Cari barang'
-/             = f.submit 'Cari', class: 'btn btn-primary btn-block'
-/       br
-/       .row
-/         .col-xs-12
-/           .list-group
-/             - @categories.each do |category|
-/               a.list-group-item href='#{ products_path(category_id: category.id) }'
-/                 = category.name
-/     .col-md-9
-/       .row
-/         - @products.each do |product|
-/           = render 'card', product: product
-/       .row
-/         .col-md-12.text-center
-/           = paginate @products
-
 .wrapper
   .top-banner
     img.lazy alt="" data-original="/assets/img/bg-top-banner.jpg" /
@@ -49,24 +26,24 @@
           a href=""  Produk
         - if @category.present?
           li
-            a href="/produk/category_id=#{@category.id}" #{@category.name}
-  .grid-flex--no-pad.filter-container
-    .grid-flex--no-gutter.grid-flex__col--12.filter-type-container
-      .grid-flex--no-pad
-        .grid-flex--no-gutter.grid-flex__col--3.filter-type-name
-          | Urutkan:
-        .grid-flex--no-gutter.grid-flex__col--9
-          ul.breadcrumb
-            li.active
-              a href=""  Terbaru
-            li
-              a href=""  Termurah
-            li
-              a href=""  Termahal
-            li
-              a href=""  Abjad A-Z
-            li
-              a href=""  Abjad Z-A
+            a href="/produk/category_id=#{ @category.id }" #{ @category.name }
+  / .grid-flex--no-pad.filter-container
+  /   .grid-flex--no-gutter.grid-flex__col--12.filter-type-container
+  /     .grid-flex--no-pad
+  /       .grid-flex--no-gutter.grid-flex__col--3.filter-type-name
+  /         | Urutkan:
+  /       .grid-flex--no-gutter.grid-flex__col--9
+  /         ul.breadcrumb
+  /           li.active
+  /             a href=""  Terbaru
+  /           li
+  /             a href=""  Termurah
+  /           li
+  /             a href=""  Termahal
+  /           li
+  /             a href=""  Abjad A-Z
+  /           li
+  /             a href=""  Abjad Z-A
   .container
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top
