@@ -1,0 +1,66 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          = link_to 'Home', root_path
+        li
+          a href="/account" Akun
+        li
+          = link_to 'Penjualan', sell_path
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs
+          ul.nav
+            li.nav-one
+              a href="/akun" 
+                i.fa.fa-user
+                span Akun
+            li.nav-two
+              = link_to dagangan_path do
+                i.fa.fa-dropbox
+                span Dagangan
+            li.nav-three
+              = link_to sell_path, class: "current" do
+                i.fa.fa-archive
+                span Penjualan
+            li.nav-four
+              = link_to keranjang_path do
+                i.fa.fa-shopping-cart
+                span Cart & Order
+          .flex-grid
+            .flex-grid__col.flex-grid__col--12
+              h2.darkorange Penjualan
+              .table-container
+                table.table
+                  thead
+                    tr align="center"
+                      th Order Id
+                      th Pembeli
+                      th Jumlah Item
+                      th Total
+                      th Alamat
+                      th Status
+                      th Ongkir
+                      th Action
+                  tbody
+                   - @line_items.each do |line_item|
+                    tr align="center"
+                      td #{ line_item.order.id }
+                      td #{ line_item.order.user.email }
+                      td #{ line_item.quantity  }
+                      td align="right"  #{ number_format(line_item.price) }
+                      td #{ line_item.order.address.one_line }
+                      td #{ line_item.state }
+                      td #{ number_format(line_item.shipping_cost) }
+                      td align="center"
+                        = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
+                          i.fa-btn.btn-black.fa.fa-check title="view"
+
+                        = link_to line_items_ship_path(line_item), method: :post
+                          i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
+                        i.fa-btn.btn-green.fa.fa-money title="sampai"
+                        = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
+                          i.fa-btn.btn-red.fa.fa-ban title="batalkan"
+

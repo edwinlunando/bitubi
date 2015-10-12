@@ -1,0 +1,91 @@
+/ .container
+/   .row
+/     .col-md-4
+/       .row
+/         .col-md-12
+/           p Saldo kamu: #{ number_format(current_user.credit) }
+/       .row
+/         .col-md-12
+/           p BCA: 1283 812 7389
+/     .col-md-4
+/       h1 Top Up
+/       = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
+/         = f.input :name
+/         = f.input :amount
+/         = f.input :bank, collection: TopUp.bank_list, input_html: { class: 'selectize' }
+/         = f.submit 'Isi Saldo', class: 'btn btn-primary'
+
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          a href="/"  Home
+        li
+          a href="/saldo"  Dompet
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        .static-title.np-top
+          center
+            h2.static-title__title Pengisian Dompet
+            span.category-title__detailed-description
+              | Silahkan isi form berikut untuk konfirmasi pengisian dompet Anda
+          br/
+          .grid-flex
+            .grid-flex__col.grid-flex__col--6
+              div
+                h3.darkorange Top Up Form
+                = simple_form_for(@top_up, url: tambah_saldo_path, html: {class: 'wallet-form'}) do |f|
+                  = f.input :name, input_html: {placeholder: 'nama'}
+                  = f.input :amount, input_html: {placeholder: 'jumlah'}
+                  = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda'
+                  br/
+                  br/
+                  button.btn.btn-green type="submit"  Bayar
+
+              hr/
+
+              div
+                h3.darkorange Instruksi
+                span Silahkan transfer ke rekening yang tersedia di bawah dan konfirmasi dengan mengisi form di samping
+                ol.instruction-set
+                  li
+                    b Rekening BCA
+                    .clear-pm
+                      img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80" /
+                      div
+                        b
+                          | 080 989 4444
+                          br/
+                          | a.n. PT Laris Banget Nich
+                  li
+                    b Rekening Mandiri
+                    .clear-pm
+                      img alt="" src="http://www.creatifprint.com/wp-content/uploads/2013/11/logo-bank-mandiri.jpg" width="80" /
+                      div
+                        b
+                          | 080 989 4444
+                          br/
+                          | a.n. PT Laris Banget Nich
+            .grid-flex__col.grid-flex__col--6
+              h3.darkorange Top Up History
+              span
+                b.darkorange Saldo kamu:
+                span.darkgreen #{ number_format(current_user.credit) }
+              br/
+              .table-container
+                  table.table
+                    thead
+                      tr
+                        th Tanggal
+                        th Jumlah
+                        th Bank
+                        th Konfirmasi
+                    tbody
+                      - current_user.top_ups.each do |top_up|
+                        tr
+                          td #{ top_up.created_at }
+                          td #{ number_format(top_up.amount) }
+                          td #{ top_up.bank }
+                          td #{ top_up.approved ? 'Ya' : 'Tidak' }

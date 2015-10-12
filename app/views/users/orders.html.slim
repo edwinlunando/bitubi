@@ -1,18 +1,97 @@
-.container
-  .row.col-md-8.col-md-offset-2.custyle
-    table.table.table-striped.custab
-      thead
-        tr
-          th ID
-          th Tanggal Pesan
-          th State
-          th Total
-          th.text-center
-      - @orders.each_with_index do |order, index|
-        tr
-          td #{ order.id }
-          td #{ order.created_at }
-          td #{ order.state }
-          td #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-          td.text-center
-            = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'
+/ .container
+/   .row.col-md-8.col-md-offset-2.custyle
+/     table.table.table-striped.custab
+/       thead
+/         tr
+/           th ID
+/           th Tanggal Pesan
+/           th State
+/           th Total
+/           th.text-center
+/       - @orders.each_with_index do |order, index|
+/         tr
+/           td #{ order.id }
+/           td #{ order.created_at }
+/           td #{ order.state }
+/           td #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+/           td.text-center
+/             = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'
+
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          a href="/"  Home
+        li
+          a href="/pesanan"  Pesanan
+  .container
+    .grid-flex
+      .grid-flex
+        .grid-flex__col.grid-flex__col-12.transaction-tabs
+          ol
+            li.current
+              span> 1
+              | Cart & Orders
+            li
+              span> 2
+              | Data Peme sanan
+            li
+              span> 3
+              | Pembayaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs
+          ul.nav
+            li.nav-one
+              a href="/keranjang" 
+                i.fa.fa-shopping-cart
+                span Keranjang
+            li.nav-two
+              a.current href="/pesanan" 
+                i.fa.fa-phone
+                span Pesanan
+          .list-wrap
+            .flex-grid
+              .flex-grid__col.flex-grid__col--12
+                h2.darkorange PESANANMU
+                .table-container
+                  table.table
+                    thead
+                      tr align="center" 
+                        th Order Id
+                        th Tanggal Pesan
+                        th Status
+                        th Total
+                        th Action
+                    tbody
+                      - if @orders.present?
+                        - @orders.each_with_index do |order, index|
+                          tr align="center"
+                            td #{ order.id }
+                            td #{ order.created_at }
+                            td #{ order.state }
+                            td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                            td align="center" 
+                              button.btn-clear.order-expandable data-target="#{ order.id }" 
+                                i.fa-btn.btn-green.fa.fa-folder-open title="view" 
+                          tr.none[id='#{ order.id }']
+                            td colspan="4" 
+                              table.table
+                                thead
+                                  tr
+                                    th align="center"  Thumbnail
+                                    th Item
+                                    th Jumlah
+                                    th Tipe
+                                    th Harga
+                                tbody
+                                  - order.line_items.each_with_index do |item, index|
+                                    tr
+                                      td align="center"
+                                        = image_tag item.product.get_first_image.data.url(:small), class: 'img-responsive lazy'
+                                      td #{item.product.name}
+                                      td #{item.quantity}
+                                      td #{item.purchase_type}
+                                      td align="left" #{ item.price }
+                            td

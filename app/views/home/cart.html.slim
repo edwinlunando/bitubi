@@ -1,41 +1,79 @@
-.container
-  .row
-    .col-xs-12.col-md-offset-2.col-md-8
-      .panel.panel-info
-        .panel-heading
-          .panel-title
-            .row
-              .col-xs-6
-                h5
-                  span.glyphicon.glyphicon-shopping-cart
-                  | Keranjang Belanja
-              .col-xs-6
-                = link_to products_path, class: 'btn btn-primary btn-block btn-small'
-                  span.glyphicon.glyphicon-share-alt
-                  | Lanjut belanja
-        .panel-body
-          - @order.line_items.each do |line_item|
-            .row
-              .col-xs-2
-                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-              .col-xs-4
-                h4.product-name
-                  strong #{ line_item.product.name }
-                h4
-                  small #{ line_item.purchase_type }
-              .col-xs-6
-                .col-xs-6.text-right
-                  h6
-                    | #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
-                .col-xs-4
-                  h6
-                    strong #{ number_format(line_item.price) }
-            hr
-        .panel-footer
-          .row.text-center
-            .col-xs-8
-              h4.text-right
-                | Total
-                strong  #{ number_format(@order.total_without_shipment) }
-            .col-xs-4
-              = link_to 'Checkout', alamat_path, class: 'btn btn-success btn-block'
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          = link_to 'Home', root_path
+        li
+          a href="/account" Akun
+        li
+          = link_to 'Keranjang', keranjang_path
+  .container
+    .grid-flex
+      .grid-flex
+        .grid-flex__col.grid-flex__col-12.transaction-tabs
+          ol
+            li.current
+              span> 1
+              | Keranjang
+            li
+              span> 2
+              | Data Pemesanan
+            li
+              span> 3
+              | Pembayaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs
+          ul.nav
+            li.nav-one
+              a.current href="/keranjang"
+                i.fa.fa-shopping-cart
+                span
+                  = ' Keranjang'
+            li.nav-two
+              a href="/pesanan"
+                i.fa.fa-phone
+                span
+                  = ' Pesanan'
+          .list-wrap
+            .flex-grid
+              .flex-grid__col.flex-grid__col--12
+                h2.darkorange KERANJANGMU
+                .table-container
+                  table.table
+                    thead
+                      tr
+                        th align="center"  Thumbnail
+                        th Item
+                        th Jumlah
+                        th Tipe
+                        th Harga
+                        th align="center"  Action
+                    tbody
+                      - @order.line_items.each do |line_item|
+                        tr
+                          td align="center"
+                            = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                          td #{line_item.product.name}
+                          td #{line_item.quantity}
+                          td #{line_item.purchase_type}
+                          td align="right" #{ line_item.quantity*line_item.price_per_quantity }
+                          td align="center"
+                            = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete
+                              i.fa-btn.btn-red.fa.fa-trash title="delete"
+                    tfoot
+                      tr
+                        td
+                        td
+                        td
+                        td
+                          b Total
+                        td align="right"
+                          b
+                            = @order.total
+                        td align="center"
+                          = link_to alamat_path, class: 'btn btn-green'
+                            i.fa.fa-money
+                              |  Checkout
+

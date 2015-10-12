@@ -29,7 +29,9 @@
 #  credit                 :decimal(10, )    default(0)
 #
 
+# standard user class with devise
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -37,23 +39,16 @@ class User < ActiveRecord::Base
 
   has_many :products
   has_many :orders
-  phony_normalize :phone_number, :default_country_code => 'ID'
+  has_many :top_ups
+  phony_normalize :phone_number, default_country_code: 'ID'
   validates :phone_number, phony_plausible: true
+  enum role: { admin: 'admin', user: 'user', suuplier: 'suuplier' }
 
-  def self.roles
-    [
-      ['Admin', 'admin'],
-      ['User', 'user'],
-      ['Supplier', 'supplier']
-    ]
-  end
+  # callback
+  before_save :default_values
 
-  def admin?
-    role == 'admin'
-  end
-
-  def user?
-    role == 'user'
+  def default_values
+    self.role ||= User.roles[:user]
   end
 
   def country_code
@@ -67,7 +62,7 @@ class User < ActiveRecord::Base
       order.save
       return order
     else
-      if orders.last.confirm? || orders.last.delivery? || orders.last.done?
+      if orders.last.done?
         order = Order.new
         order.user = self
         order.save
@@ -77,4 +72,5 @@ class User < ActiveRecord::Base
       end
     end
   end
+
 end

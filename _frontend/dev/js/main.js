@@ -8,23 +8,23 @@
 ;(function ( window, document, undefined ) {
 
     var path = {
-        css: myPrefix + 'assets/css/',
-        js : myPrefix + 'assets/js/vendor/'
+        css: myPrefix + '/assets/css/',
+        js : myPrefix + '/assets/js/vendor/'
     };
 
     var assets = {
         _async          : 'https://cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js',
         _jquery_cdn     : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-        _jquery_local   : path.js + 'jquery.min.js',
-        _fastclick      : path.js + 'fastclick.min.js',
-        _lazyLoad       : path.js + 'jquery.lazyload.min.js',
-        _throttle       : path.js + 'jquery.throttledresize.min.js',
-        _debounce       : path.js + 'jquery.debouncedresize.min.js',
-        _waitForImages  : path.js + 'jquery.waitforimages.min.js',
+        _jquery_local   : path.js + 'jquery.js',
+        _fastclick      : path.js + 'fastclick.js',
+        _lazyLoad       : path.js + 'jquery.lazyload.js',
+        _throttle       : path.js + 'jquery.throttledresize.js',
+        _debounce       : path.js + 'jquery.debouncedresize.js',
+        _waitForImages  : path.js + 'jquery.waitforimages.js',
+        _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
-        _circslider     : path.js + 'jquery.tinycircleslider.min.js',
-        _slider         : path.js + 'slick.min.js',
+        _slider         : path.js + 'slick.js',
     };
 
     var Site = {
@@ -94,7 +94,7 @@
         },
 
         ui: function() {
-            // ========================== LAYOUT INIT ========================== 
+            // ========================== LAYOUT INIT ==========================
             // for every layouting that need reinit, could be placed here
 
             this.menuInit = function () {
@@ -121,6 +121,7 @@
                     e.preventDefault();
                     $('.menu-search__container').toggleClass('open-down');
                     $('.menu-search__form-row').slideToggle();
+                    $('.menu-search__form-row input').focus();
                 });
                 $('.main-cart h2 span').on('click', function(e) {
                     if(!$(this).hasClass('selected')) {
@@ -149,7 +150,7 @@
                     displayer.on('click', function() {
                         displayer.toggleClass('mid-menu-open');
                         displayer.siblings().slideToggle();
-                    });        
+                    });
                 }
             },
 
@@ -160,18 +161,6 @@
                 })
             },
 
-            this.circleSliderInit = function () {
-                Modernizr.load({
-                    load    : assets._circslider,
-                    complete: function () {
-                        $("#circleslider2").tinycircleslider({
-                            interval : true
-                        ,   dotsSnap : true
-                        });
-                    }
-                });
-            },
-
             this.storeManageImageViewerInit = function () {
                 $("#banner").change(function(){
                     Site.readURL(this, $("#banner-target"));
@@ -179,15 +168,41 @@
                 $("#profpic").change(function(){
                     Site.readURL(this, $("#profpic-target"));
                 });
-            }
+            },
 
-            this.orderTableInit = function () {
-                $('.order-expandable').click(function() {
-                    var target = '#'+$(this).data('target');
-                    $('.list-wrap').height('auto');
-                    $(target).toggle();
+            // this.orderTableInit = function () {
+            //     $('.order-expandable').click(function() {
+            //         var target = '#'+$(this).data('target');
+            //         $('.list-wrap').height('auto');
+            //         $(target).toggle();
+            //     });
+            // },
+
+            this.notifCloseInit = function() {
+                $('.page-notification--close-btn').click(function() {
+                    $('.page-notification--container').fadeToggle('fast');
                 });
             }
+        },
+
+        elevateZoom: function () {
+            // reinitiation
+            var _this = this;
+            var $zoom = $('#elevate-zoom');
+
+            if (!$zoom.length) return;
+
+            Modernizr.load({
+                load: assets._elevateZoom,
+                complete: function() {
+                    //initiate the plugin and pass the id of the div containing gallery images 
+                    ezoom();
+                }
+                function ezoom() {
+                    $zoom = $('#elevate-zoom');
+                    $zoom.elevateZoom();
+                }
+            })
         },
 
         slider: function() {
@@ -220,9 +235,9 @@
                     ui.menuInit();
                     ui.midMenuInit();
                     ui.imageViewerInit();
-                    ui.circleSliderInit();
                     ui.storeManageImageViewerInit();
-                    ui.orderTableInit();
+                    // ui.orderTableInit();
+                    ui.notifCloseInit();
                     // Site.organicTabs("#surfari-tabs");
                 }
             })
@@ -254,6 +269,11 @@
                     cb();
                 },
 
+                function elevateZoom(cb) {
+                    Site.elevateZoom();
+                    cb();
+                }
+
                 function resize(cb) {
                     Site.resize();
                     cb();
@@ -277,7 +297,7 @@
         readURL: function (input, target) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                
+
                 reader.onload = function (e) {
                     target.attr('src', e.target.result);
                 }
@@ -300,7 +320,7 @@
         //             "top": 0,
         //             "left": 0,
         //             "display": "none"
-        //         }); 
+        //         });
         //         base.$nav.delegate("li > a", "click", function() {
         //             // Figure out current list via CSS class
         //             var curList = base.$el.find("a.current").attr("href").substring(1),
@@ -312,7 +332,7 @@
         //             $allListWrap = base.$el.find(".list-wrap"),
         //             curListHeight = $allListWrap.height();
         //             $allListWrap.height(curListHeight);
-                                            
+
         //             if ((listID != curList) && ( base.$el.find(":animated").length == 0)) {
         //                 // Fade out current list
         //                 base.$el.find("#"+curList).fadeOut(base.options.speed, function() {
@@ -327,9 +347,9 @@
         //                     // Remove highlighting - Add to just-clicked tab
         //                     base.$el.find(".nav li a").removeClass("current");
         //                     $newList.addClass("current");
-                                
+
         //                 });
-        //             }   
+        //             }
         //             // Don't behave like a regular link
         //             // Stop propegation and bubbling
         //             return false;

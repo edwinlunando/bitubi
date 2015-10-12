@@ -1,52 +1,124 @@
-.container
-  .row
-    .col-xs-12.col-md-offset-2.col-md-8
-      .panel.panel-info
-        .panel-heading
-          .panel-title
-            .row
-              .col-xs-6
-                h5
-                  span.glyphicon.glyphicon-shopping-cart
-                  | Keranjang Belanja
-        .panel-body
-          - @order.line_items.each do |line_item|
-            .row
-              .col-xs-2
-                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-              .col-xs-4
-                h4.product-name
-                  strong #{ line_item.product.name }
-                h4
-                  small #{ line_item.purchase_type }
-              .col-xs-6
-                .col-xs-6.text-right
-                  h6
-                    | #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
-                .col-xs-4
-                  h6
-                    strong #{ number_format(line_item.price) }
-            hr
-          .row
-            .col-xs-2
-              | Ongkos kirim
-            .col-xs-4
-              h4.product-name
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          a href="/"  Home
+        li
+          a href="/keranjang"  Keranjang
+        li
+          a href="/alamat"  Alamat Kirim
+        li
+          a href="/konfirmasi"  Pembayaran
+  .container
+    .grid-flex
+      .grid-flex
+        .grid-flex__col.grid-flex__col-12.transaction-tabs
+          ol
+            li
+              span> 1
+              | Keranjang
+            li
+              span> 2
+              | Data Pemesanan
+            li.current
+              span> 3
+              | Pembayaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        .static-title.np-top
+          center
+            h2.static-title__title Form Konfirmasi
+            - if @order.address.present?
+              span.category-title__detailed-description
+                | #{ @order.address.state.city.province.name }, #{ @order.address.state.city.name }, #{ @order.address.state.name },
+                br/
                 | #{ @order.address.name }
-              h4
-                small #{ @order.state_shipment_price.shipment_type.display_name }
-            .col-xs-6
-              .col-xs-6.text-right
-                h6
-                  | #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
-              .col-xs-6
-                h6
-                  strong #{ number_format(@order.shipment_price) }
-        .panel-footer
-          .row.text-center
-            .col-xs-8
-              h4.text-right
-                | Total
-                strong  #{ number_format(@order.total) }
-            .col-xs-4
-              = link_to 'Bayar', finish_path, class: 'btn btn-success btn-block', method: :post
+          br/
+          .table-container
+            table.table
+              thead
+                tr
+                  th align="center"  Thumbnail
+                  th Item
+                  th Tipe
+                  th Jumlah
+                  th Harga
+              tbody
+                - @order.line_items.each do |line_item|
+                  tr
+                    td align="center"
+                      = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
+                    td #{ line_item.product.name }
+                    td #{ line_item.purchase_type }
+                    td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
+                    td #{ number_format(line_item.price) }
+                - if @order.address.present?
+                  tr.highlight-info
+                    td align="center" colspan="2"  Pengiriman
+                    td #{ @order.state_shipment_price.shipment_type.display_name }
+                    td #{ number_format(@order.display_weight*@order.state_shipment_price.price) }
+                    td #{ number_format(@order.shipment_price) }
+              tfoot
+                tr
+                  td colspan="3"
+                  td
+                    b Total
+                  td align="right"
+                    b #{ number_format(@order.total) }
+            form action=""
+              = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
+
+/ .container
+/   .row
+/     .col-xs-12.col-md-offset-2.col-md-8
+/       .panel.panel-info
+/         .panel-heading
+/           .panel-title
+/             .row
+/               .col-xs-6
+/                 h5
+/                   span.glyphicon.glyphicon-shopping-cart
+/                   | Keranjang Belanja
+/         .panel-body
+/           - @order.line_items.each do |line_item|
+/             .row
+/               .col-xs-2
+/                 = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+/               .col-xs-4
+/                 h4.product-name
+/                   strong #{ line_item.product.name }
+/                 h4
+/                   small #{ line_item.purchase_type }
+/               .col-xs-6
+/                 .col-xs-6.text-right
+/                   h6
+/                     | #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
+/                 .col-xs-4
+/                   h6
+/                     strong #{ number_format(line_item.price) }
+/             hr
+/           - if @order.address.present?
+/             .row
+/               .col-xs-2
+/                 | Ongkos kirim
+/               .col-xs-4
+/                 h4.product-name
+/                   | #{ @order.address.name }
+/                 h4
+/                   small #{ @order.state_shipment_price.shipment_type.display_name }
+/               .col-xs-6
+/                 .col-xs-6.text-right
+/                   h6
+/                     | #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
+/                 .col-xs-6
+/                   h6
+/                     strong #{ number_format(@order.shipment_price) }
+/         .panel-footer
+/           .row.text-center
+/             .col-xs-8
+/               h4.text-right
+/                 | Total
+/                 strong  #{ number_format(@order.total) }
+/             .col-xs-4
+/               = link_to 'Bayar', finish_path, class: 'btn btn-success btn-block', method: :post

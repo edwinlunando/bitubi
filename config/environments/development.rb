@@ -1,4 +1,5 @@
 Rails.application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -42,4 +43,9 @@ Rails.application.configure do
   # Debugger
   config.web_console.whitelisted_ips = ENV['TRUSTED_IP']
   BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+
+  # mailer
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.default_url_options = { host: 'localhost' }
+
 end

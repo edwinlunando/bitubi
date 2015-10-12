@@ -1,24 +1,62 @@
-.container.home-container
-  .row
-    .col-md-3
-      .row
-        .col-xs-12
-          = simple_form_for('', url: products_path, method: :get) do |f|
-            = f.input :q, input_html: { value: params[:q] }, label: false, placeholder: 'Cari barang'
-            = f.submit 'Cari', class: 'btn btn-primary btn-block'
-      br
-      .row
-        .col-xs-12
-          .list-group
+/ .container.home-container
+/   .row
+/     .col-md-3
+/       .row
+/         .col-xs-12
+/           = simple_form_for('', url: products_path, method: :get) do |f|
+/             = f.input :q, input_html: { value: params[:q] }, label: false, placeholder: 'Cari barang'
+/             = f.submit 'Cari', class: 'btn btn-primary btn-block'
+/       br
+/       .row
+/         .col-xs-12
+/           .list-group
+/             - @categories.each do |category|
+/               a.list-group-item href='#{ products_path(category_id: category.id) }'
+/                 = category.name
+/     .col-md-9
+/       .row
+        / - @products.each do |product|
+        /   = render 'products/card', product: product
+/       .row
+/         .col-md-12.text-center
+/           = paginate @products
+
+.wrapper
+  .section-surfari-home.slider data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
+    .banner-item
+      a href=""
+        img.lazy alt="" data-original="/assets/img/bg-main.jpg" /
+    .banner-item
+      a href=""
+        img.lazy alt="" data-original="/assets/img/bg-sm-transport.jpg" /
+    .banner-item
+      a href=""
+        img.lazy alt="" data-original="/assets/img/bg-sm-foodntools.jpg" /
+  .grid-flex--no-pad.surfari-home-category
+    .container
+      .grid-flex.mid-menu-breadcrumb--container
+        .grid-flex__col.grid-flex__col--12
+          center Produk berdasarkan kategori
+          ul.breadcrumb
+            li.mid-menu-breadcrumb--displayer
+              span Kategori
             - @categories.each do |category|
-              a.list-group-item href='#{ products_path(category_id: category.id) }'
-                = category.name
-    .col-md-9
-      .row
-        - @products.each do |product|
-          = render 'products/card', product: product
-      .row
-        .col-md-12.text-center
-          = paginate @products
-
-
+              li
+                a.list-group-item href='#{ products_path(category_id: category.id) }'
+                  i.menu-icon
+                    img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+                  = category.name
+  .container
+    .grid-flex.np-top
+      .grid-flex__col.grid-flex__col--12.np-top
+        .category-title.np-side
+          h2.category-title__title New Arrivals
+          p.category-title__description
+            | Barang-barang yang baru saja tercatat dalam platform kami
+        .product-cards-container
+          - @products.each do |product|
+            = render 'products/card', product: product
+    .grid-flex.np-top
+      .grid-flex__col.grid-flex__col--12.np-top
+        center
+          a.btn.btn-orange href="/produk"  Lihat Semua

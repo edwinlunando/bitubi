@@ -1,5 +1,5 @@
 /* =============================================================================
-	
+
 	Surfari CSS Style
 
 	1. Font-face
@@ -54,10 +54,10 @@ a {
 	}
 }
 
-label, 
-input, 
-button, 
-select, 
+label,
+input,
+button,
+select,
 textarea {
     font-family: $base_font_family;
 }
@@ -79,8 +79,8 @@ textarea {
     margin-bottom: $space;
 }
 
-/* 
---------------------------------------------------------------------------- 
+/*
+---------------------------------------------------------------------------
   HOME SORT & FILTER CATEGORY
 --------------------------------------------------------------------------- */
 
@@ -133,7 +133,7 @@ textarea {
 		}
 		margin: 20px;
 	}
-	
+
 	.category-title__detailed-description {
 		text-align: justify;
 		margin: 20px auto;
@@ -198,8 +198,8 @@ textarea {
 	}
 }
 
-/* 
---------------------------------------------------------------------------- 
+/*
+---------------------------------------------------------------------------
   PRODUCT DETAIL + STORE DETAIL
 --------------------------------------------------------------------------- */
 
@@ -256,8 +256,8 @@ textarea {
 	}
 }
 
-/* 
---------------------------------------------------------------------------- 
+/*
+---------------------------------------------------------------------------
   STORE DETAIL - CONTINUED
 --------------------------------------------------------------------------- */
 
@@ -278,7 +278,7 @@ textarea {
 	}
 }
 
-.commend-container, 
+.commend-container,
 .critic-container {
 	li {
 		display: inline-block;
@@ -314,7 +314,7 @@ textarea {
 		}
 	}
 	hr {
-		margin: 20px auto; 
+		margin: 20px auto;
 		width: 80%;
 	}
 	.available {
@@ -354,7 +354,7 @@ footer {
 			order: 0;
 		}
 	}
-	
+
 	.foot-info-col {
 		flex-basis: 100%;
 		@media #{$medium} {
@@ -372,7 +372,7 @@ footer {
 	hr {
 		width:100%;
 		@media #{$medium} {
-			width: 25%;	
+			width: 25%;
 		}
 	}
 	a {
@@ -389,11 +389,11 @@ footer {
 	}
 	ul li {
 		font-size: 0.75em;
-		list-style: none; 
+		list-style: none;
 	}
 }
 
-.social-media {	
+.social-media {
 	text-align: center;
 	@media #{$medium} {
 		text-align: justify;
@@ -419,7 +419,7 @@ footer {
 	color: $black70;
 	label {
 		display: inline-block;
-	} 
+	}
 	span {
 		margin-right: 10px;
 		font-size: 14pt;
@@ -428,12 +428,26 @@ footer {
 		padding: 8px 8px 10px 8px;
 		margin: 5px;
 		color: $black70;
+		height: 40px !important;
 	}
 	select {
 		background-color: $transwhite;
 	}
 	input {
 		width: 100px;
+	}
+}
+
+.product-form {
+	.grid-flex {
+		display: inline-block;
+		margin: 5px;
+		.form-input--error-message {
+			padding: 0;
+		}
+	}
+	.btn {
+		margin: 5px;
 	}
 }
 
@@ -456,10 +470,20 @@ footer {
 			margin-right: 30px;
 			width: 70%;
 		}
-	} 
+	}
 	textarea {
 		padding: 8px 8px 8px 10px;
 		vertical-align: top;
+	}
+}
+
+.wallet-form {
+	text-align: left;
+	label {
+		width: 100%;
+	}
+	input, select {
+		margin: 0;
 	}
 }
 

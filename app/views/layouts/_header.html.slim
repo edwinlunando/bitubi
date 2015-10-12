@@ -1,0 +1,103 @@
+header.header-main
+  nav.main-navigation role="navigation"
+    dl
+      dt.panel-group
+        a href="#"  Akun
+      dd.panel-body
+        ul
+          - if user_signed_in?
+            li.panel-profile
+              a href="/profil"
+                figure
+                  figcaption Selamat Datang, User's Name
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Dagangan', dagangan_path
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Penjualan', sell_path
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Keranjang', keranjang_path
+            li
+              a href="/users/sign_out"  Log Out
+          - else
+            li.panel-profile
+              a href="" onclick="return false;"
+                figure
+                  figcaption Selamat Datang!
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Login', login_path
+            li
+              / a href="/keranjang"  Keranjang
+              = link_to 'Daftar', daftar_path
+      dt.panel-group
+        a href="/saldo"  Dompet
+      dd.panel-body
+        ul
+          li
+            a
+              - if user_signed_in?
+                i.fa.fa-money.fa-lg
+                  span  - #{ number_format(current_user.credit) }
+              - else
+                span  Belum Login
+          - if user_signed_in?
+            li
+              = link_to 'Tambah Saldo', saldo_path
+      dt
+        = link_to 'Produk', products_path
+      dt
+        = link_to 'Kontak', kontak_path
+  /! /push menu right
+  .header-main__top-bar
+    .nav-icon.nav-toggle
+      span
+      span
+      span
+    .header-logo
+      h1 itemscope="" itemtype="http://schema.org/Organization"
+        a href="/" itemprop="url"
+          span.icon.icon-logo itemprop="name"  Larisni
+    .nav-lang.nav-toggle
+      - if user_signed_in?
+        .nav-lang__submenu
+          = link_to destroy_user_session_path, :method => :get
+            i.fa.fa-sign-out
+            span Logout
+      - else
+        .nav-lang__submenu#login-register-btn
+          a href=""
+            i.fa.fa-sign-in
+            span Login / Daftar
+      .nav-lang__submenu#search-menu
+        a href=""
+          i.fa.fa-search
+          span Cari
+      #cart-menu.nav-lang__submenu.nav-lang__submenu--square
+        a href="/keranjang"
+          i.fa.fa-shopping-cart
+.menu-search__container
+  .menu-search__form-row
+    form action="#{ products_path }"
+      i.fa.fa-search
+      input placeholder=("Cari barang . . .") type="text" name="q" /
+.login-register__container
+  .login-register__form-container
+    center.login-register__close-btn x
+    - if !user_signed_in?
+      center
+        h2.darkorange Login
+      = simple_form_for(User.new, as: resource_name, url: session_path(resource_name), html: { id: 'popup-login-form', class: 'login-form' }) do |f|
+        = f.input :email, required: true, input_html: {class: '', placeholder: 'email'}, autofocus: true
+        = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+        a href="" Lupa password?
+        br/
+        | Belum punya akun ?
+        a href="daftar" Daftar
+        br/
+        br/
+        center
+          button.btn.btn-green type="submit"  Login
+.overlay

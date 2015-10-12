@@ -38,8 +38,8 @@ $input_bg               : #fff;
 }
 
 .form-input--error {
-    border-color: #d32c31;
-
+    border: 1px solid #d32c31;
+    outline: none;
     &:focus {
         border-color: #d32c31;
     }
@@ -47,6 +47,7 @@ $input_bg               : #fff;
 
 .form-input--error-message {
     color: $red;
+    padding-right: 30px !important; 
 }
 
 .form-input--success {
@@ -147,7 +148,8 @@ $input_bg               : #fff;
     background-color: $black20;
     padding: 30px;
     input[type="text"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="email"] {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -161,4 +163,17 @@ $input_bg               : #fff;
       }
     }
   }
+}
+
+#register-form, #login-form, #contact-form, #popup-login-form  {
+  width: 100%;
+  @media #{$medium} {
+    width: 500px;
+    min-height: 300px;
+  }
+  margin: 0 auto;
+}
+
+#popup-login-form{
+  width: auto;
 }

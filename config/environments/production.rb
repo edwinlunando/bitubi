@@ -82,8 +82,9 @@ Rails.application.configure do
 
   # Paperclip
   config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_host_name => 's3-ap-southeast-1.amazonaws.com',
-    :bucket => ENV['FOG_DIRECTORY']
+    storage: :s3,
+    s3_host_name: 's3-ap-southeast-1.amazonaws.com',
+    bucket: ENV['FOG_DIRECTORY']
   }
+
 end

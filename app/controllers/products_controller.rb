@@ -1,5 +1,6 @@
 # Product controller for list and show
 class ProductsController < InheritedResources::Base
+
   before_action :authenticate_user!, only: [:add_to_cart]
 
   def index
@@ -9,6 +10,7 @@ class ProductsController < InheritedResources::Base
       products = products.where('lower(name) LIKE ?', '%' + params[:q].downcase + '%')
     end
     if params[:category_id].present?
+      @category = Category.find(params[:category_id])
       products = products.where('category_id = ?', params[:category_id])
     end
     @products = products.page(params[:page])
@@ -22,6 +24,7 @@ class ProductsController < InheritedResources::Base
   def add_to_cart
     @product = Product.friendly.find(params[:id])
     @line_item = LineItem.new(line_item_params)
+    # todo quantity bug
     if @line_item.quantity > @product.stock
       flash[:error] = 'Stok tidak mencukupi'
       return render action: :show

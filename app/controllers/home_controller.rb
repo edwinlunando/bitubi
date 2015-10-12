@@ -1,35 +1,12 @@
 # Main controller for pretty much everything
 class HomeController < ApplicationController
+
   before_action :authenticate_user!, only: [:topup, :topup_credit, :cart, :remove_from_cart]
 
   def index
     @categories = Category.all
     @products = Product.page(params[:page])
     render controller: :products, action: :index
-  end
-
-  def product
-    @categories = Category.all
-    @products = products.page(params[:page])
-  end
-
-  def detail
-    @product = Product.friendly.find(params[:id])
-  end
-
-  def topup_credit
-    @top_up = TopUp.new(top_up_params)
-    @top_up.user = current_user
-    if @top_up.save
-      flash[:success] = 'Berhasil isi saldo! Saldo Anda akan bertambah setelah kami verifikasi.'
-      redirect_to saldo_path
-    else
-      render action: :topup
-    end
-  end
-
-  def topup
-    @top_up = TopUp.new
   end
 
   def remove_from_cart
@@ -77,9 +54,7 @@ class HomeController < ApplicationController
   end
 
   def login
-    if user_signed_in?
-      redirect_to root_path and return
-    end
+    return redirect_to root_path if user_signed_in?
     render('devise/sessions/new')
   end
 
@@ -104,13 +79,30 @@ class HomeController < ApplicationController
 
   def finish
     @order = current_user.last_order
+    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') unless @order.done?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
-    @order.pay
+    @order.finish
     @order.save
     current_user.credit -= @order.total
     current_user.save
+    UserMailer.order_confirmation(@order)
+    @order.suppliers.each do |supplier|
+      OrderMailer.confirmation(@order, supplier)
+    end
     flash[:success] = 'Transaksi berhasil'
     redirect_to root_path
+  end
+
+  def send_contact
+    @contact_form = ContactForm.new(contact_params)
+
+    @contact_form.deliver if @contact_form.valid?
+
+    render :contact
+  end
+
+  def contact
+    @contact_form = ContactForm.new
   end
 
   private
@@ -119,11 +111,12 @@ class HomeController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def top_up_params
-    params.require(:top_up).permit(:name, :amount, :bank)
-  end
-
   def address_params
     params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type)
   end
+
+  def contact_params
+    params.require(:contact_form).permit(:name, :email, :message)
+  end
+
 end

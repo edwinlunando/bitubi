@@ -18,11 +18,13 @@
 
 # model to represent a product in a store
 class Product < ActiveRecord::Base
+
   extend FriendlyId
 
   # Relation
   belongs_to :user
   belongs_to :category
+  has_many :line_items, dependent: :destroy
   has_many :product_images, dependent: :destroy
   has_many :wholesale_prices, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
@@ -30,10 +32,16 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  validates :name, presence: true
   validates :weight, presence: true
   validates :stock, presence: true
   validates :name, presence: true
   validates :unit, presence: true
+  validates :price_dropship, presence: true
+  validates :category, presence: true
+  validates :wholesale_prices, length: { minimum: 1 }
+
+  alias_attribute :supplier, :user
 
   def get_first_image
     product_images.try(:first)
@@ -47,4 +55,5 @@ class Product < ActiveRecord::Base
     return nil if wholesale_prices.count == 0
     wholesale_prices.cheapest.first
   end
+
 end

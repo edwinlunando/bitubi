@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require selectize
+//= require js/vendor/modernizr
+//= require bitubi
 //= require main
