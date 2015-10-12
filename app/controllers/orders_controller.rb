@@ -1,10 +1,10 @@
 # controller to address order related page
-class OrderController < ApplicationController
+class OrdersController < ApplicationController
 
-  before_action :authenticate_user!, only: [:topup, :topup_credit, :cart, :remove_from_cart]
+  before_action :authenticate_user!
+  before_action :set_last_order
 
   def remove_from_cart
-    @order = current_user.last_order
     @line_item = LineItem.find(params[:id])
     @line_item.destroy
     flash[:success] = 'Barang berhasil dibuang!'
@@ -12,7 +12,7 @@ class OrderController < ApplicationController
   end
 
   def cart
-    @order = current_user.last_order
+    # todo remove if
     if @order.cart?
       @order.checkout
       @order.save
@@ -26,7 +26,6 @@ class OrderController < ApplicationController
       return render action: :address
     end
     @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
-    @order = current_user.last_order
     @order.address = @address
     @order.state_shipment_price = @shipment_price
     # todo transaction
@@ -38,7 +37,6 @@ class OrderController < ApplicationController
   end
 
   def address
-    @order = current_user.last_order
     if @order.address?
       @order.addressing
       @order.save
@@ -48,11 +46,9 @@ class OrderController < ApplicationController
   end
 
   def confirmation
-    @order = current_user.last_order
   end
 
   def finish
-    @order = current_user.last_order
     return redirect_to(root_path, notice: 'Transaksi sudah selesai!') unless @order.done?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
     @order.finish
@@ -71,6 +67,10 @@ class OrderController < ApplicationController
 
   def address_params
     params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type)
+  end
+
+  def set_last_order
+    @order = current_user.last_order
   end
 
 end
