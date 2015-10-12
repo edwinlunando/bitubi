@@ -7,22 +7,22 @@
         li
           a href="/account" Akun
         li
-          = link_to 'Penjualan', penjualan_path
+          = link_to 'Penjualan', sell_path
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           ul.nav
             li.nav-one
-              a href="/profile" 
+              a href="/akun" 
                 i.fa.fa-user
-                span Profil
+                span Akun
             li.nav-two
               = link_to dagangan_path do
                 i.fa.fa-dropbox
                 span Dagangan
             li.nav-three
-              = link_to penjualan_path, class: "current" do
+              = link_to sell_path, class: "current" do
                 i.fa.fa-archive
                 span Penjualan
             li.nav-four

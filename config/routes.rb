@@ -116,12 +116,6 @@
 
 Rails.application.routes.draw do
 
-  get 'line_item/approve'
-
-  get 'line_item/cancel'
-
-  get 'line_item/ship'
-
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, controllers: { registrations: 'registrations' }
   ActiveAdmin.routes(self)
@@ -135,9 +129,7 @@ Rails.application.routes.draw do
   resources :products, path: 'produk' do
 
     member do
-
       post 'add_to_cart'
-
     end
 
   end

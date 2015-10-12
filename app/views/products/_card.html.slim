@@ -36,6 +36,6 @@
             br/
             = product.name
           .cards-information-block__price
-            | dropship
+            | Mulai dari
             br/
-            = product.price_dropship_money
+            | @ #{ number_format(product.price_wholesale_minimum.price) }
