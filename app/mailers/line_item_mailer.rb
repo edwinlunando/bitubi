@@ -13,7 +13,7 @@ class LineItemMailer < ApplicationMailer
 
   def ship(line_item)
     @line_item = line_item
-    mail(to: @line_item.order.user.email, subject: 'Pengirman Barang')
+    mail(to: @line_item.order.user.email, subject: 'Pengiriman Barang')
   end
 
 end

@@ -37,7 +37,7 @@ class LineItem < ActiveRecord::Base
     state :done
     state :failed
 
-    event :confirm do
+    event :confirmation do
       transitions from: :confirm, to: :delivery
     end
 

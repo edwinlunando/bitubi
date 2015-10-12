@@ -53,12 +53,13 @@
                       td #{ line_item.state }
                       td #{ number_format(line_item.shipping_cost) }
                       td align="center"
-                        = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
-                          i.fa-btn.btn-black.fa.fa-check title="view"
-
-                        = link_to line_items_ship_path(line_item), method: :post
-                          i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
-                        i.fa-btn.btn-green.fa.fa-money title="sampai"
-                        = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
-                          i.fa-btn.btn-red.fa.fa-ban title="batalkan"
+                        - if line_item.confirm?
+                          = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
+                            i.fa-btn.btn-black.fa.fa-check title="view"
+                        - if line_item.delivery?
+                          = link_to line_items_ship_path(line_item), method: :post
+                            i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
+                        - unless line_item.failed?
+                          = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
+                            i.fa-btn.btn-red.fa.fa-ban title="batalkan"
 
