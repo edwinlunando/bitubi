@@ -38,7 +38,7 @@ gem 'paperclip'
 gem 'kaminari'
 # Form object
 gem 'simple_form'
-gem 'cocoon'
+gem 'nested_form'
 # Email validation
 gem 'email_validator'
 # Money

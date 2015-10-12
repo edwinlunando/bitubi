@@ -34,12 +34,6 @@ class UsersController < ApplicationController
     @product = Product.new
   end
 
-  def delete_product
-    @product = Product.find(params[:id])
-    @product.destroy
-    redirect_to dagangan_path
-  end
-
   def sell
     @line_items = LineItem.joins(:product, :order).where('products.user_id = ?', current_user.id).where('orders.state = ?', :done)
   end
@@ -48,9 +42,6 @@ class UsersController < ApplicationController
 
   def top_up_params
     params.require(:top_up).permit(:name, :amount, :bank)
-  end
-
-  def product_params
   end
 
 end

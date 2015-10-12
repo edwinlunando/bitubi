@@ -117,7 +117,6 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
-    cocoon (1.2.6)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -316,6 +315,7 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -485,7 +485,6 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   ckeditor
-  cocoon
   coffee-rails (~> 4.1.0)
   devise
   dotenv-rails
@@ -502,6 +501,7 @@ DEPENDENCIES
   mail_form
   money-rails
   mysql2
+  nested_form
   paperclip
   phony_rails
   preferences
