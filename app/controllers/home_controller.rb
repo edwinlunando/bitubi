@@ -80,7 +80,7 @@ class HomeController < ApplicationController
   def finish
     @order = current_user.last_order
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
-    @order.pay
+    @order.finish
     @order.save
     current_user.credit -= @order.total
     current_user.save
