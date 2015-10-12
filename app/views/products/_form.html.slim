@@ -4,6 +4,7 @@
 	.grid-flex__col.grid-flex__col--4
 	  label.form-label/
 	  h3 Data
+      = f.input :category
 	  label.form-label for="category"  Kategori
 	  select.form-select.form-input--block id="" name="category" 
 	    option value=""  -- Location --
@@ -12,12 +13,8 @@
 	  = f.input :name
       = f.input :slug
       = f.input :description
-	  label.form-label for="unit"  Unit
-	  input.form-input.form-input--block name="unit" placeholder="unit" type="text" /
-	  label.form-label for="weight"  Berat
-	  input.form-input.form-input--block name="weight" placeholder="berat" type="number" /
-	  label.form-label for="dropship-price"  Harga Dropship
-	  input.form-input.form-input--block name="dropship-price" placeholder=("harga dropship") type="number" /
+      = f.input :unit
+      = f.input :weight
 	.grid-flex__col.grid-flex__col--4
 	  label.form-label for="product-img" /
 	  h3 Gambar
@@ -30,7 +27,7 @@
 	  button.btn onclick=("return false;")  Tambah Gambar
 	.grid-flex__col.grid-flex__col--4
 	  label.form-label/
-	  h3 Wholesale Price
+	  h3 Harga
 	  div
 	    label.form-label for="wholesale_price"  Harga
 	    input.form-input name="wholesale_price" placeholder="harga" type="number" /
