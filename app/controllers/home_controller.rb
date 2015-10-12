@@ -79,6 +79,7 @@ class HomeController < ApplicationController
 
   def finish
     @order = current_user.last_order
+    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') unless @order.done?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
     @order.finish
     @order.save
