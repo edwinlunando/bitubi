@@ -19,6 +19,7 @@ class HomeController < ApplicationController
   end
 
   def create_user
+    byebug
     @user = User.new(user_params)
     @user.role = 'user'
     if @user.save
@@ -44,11 +45,11 @@ class HomeController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).require(:email, :password, :password_confirmation, :phone_number)
   end
 
   def contact_params
-    params.require(:contact_form).permit(:name, :email, :message)
+    params.require(:contact_form).require(:name, :email, :message)
   end
 
 end
