@@ -4,12 +4,11 @@
     .grid-flex__col.grid-flex__col--4
       label.form-label/
       h3 Data
-      = f.input :category
-      = f.input :name
-      = f.input :slug
-      = f.input :description
-      = f.input :unit
-      = f.input :weight
+      = f.input :category, label: 'Kategori'
+      = f.input :name, label: 'Nama'
+      = f.input :description, label: 'Deskripsi'
+      = f.input :unit, label: 'Satuan'
+      = f.input :weight, label: 'Berat'
     .grid-flex__col.grid-flex__col--4
       label.form-label for="product-img" /
       h3 Gambar
@@ -28,7 +27,7 @@
         = f.input :price_dropship, placeholder: 'dalam IDR'
       br/
       hr/
-      h3 Harga Wholesale
+      h3 Harga Grosir
       div
         = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
         = f.fields_for :wholesale_prices do |wholesale_price|
@@ -41,5 +40,5 @@
           hr/
     .grid-flex
     .grid-flex__col.grid-flex__col--12
-      button.btn.btn-green type="submit"  Simpan
+      = f.submit 'Simpan', class: 'btn btn-green'
       = link_to 'Batal', products_path, class: 'btn btn-orange'
