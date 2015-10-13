@@ -64,10 +64,12 @@
                   td colspan="3"
                   td
                     b Total
-                  td align="right"
+                  td 
                     b #{ number_format(@order.total) }
-            form action=""
-              = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
+                tr
+                  td colspan="4"
+                  td
+                    = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
 
 / .container
 /   .row

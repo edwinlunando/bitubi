@@ -1,5 +1,5 @@
 .grid-flex
-  = simple_form_for(@product) do |f|
+  = simple_nested_form_for(@product) do |f|
     = f.error_notification
 	.grid-flex__col.grid-flex__col--4
 	  label.form-label/
@@ -19,7 +19,7 @@
 	  label.form-label for="product-img" /
 	  h3 Gambar
 	  div
-	    img.lazy alt="" data-original="/assets/img/no_image.gif" name="product-img[]" width="200" /
+	    img#prod-img-target.lazy alt="" data-original="/assets/img/no_image.gif" name="product-img[]" width="200" /
 	    br/
 	    br/
 	    input#prod-img.form-input.form-input--block name="profpic" type="file" /
@@ -27,18 +27,22 @@
 	  button.btn onclick=("return false;")  Tambah Gambar
 	.grid-flex__col.grid-flex__col--4
 	  label.form-label/
-	  h3 Harga
+	  h3 Harga Dropship
 	  div
-	    label.form-label for="wholesale_price"  Harga
-	    input.form-input name="wholesale_price" placeholder="harga" type="number" /
-	    label.form-label for="min_quantity"  Jumlah Minimum
-	    input.form-input name="min_quantity" placeholder=("jumlah minimum") type="number" /
-	    label.form-label for="max_quantity"  Jumlah Maksimum
-	    input.form-input name="max_quantity" placeholder=("jumlah maximum") type="number" /
-	    br/
-	    br/
-	    hr/
-	  button.btn onclick=("return false;")  Tambah Wholesale
+	  	= f.input :price_dropship, placeholder: 'dalam IDR'
+	  br/
+	  hr/
+  	  h3 Harga Wholesale
+	  div 
+        = f.fields_for :wholesale_prices do |wholesale_price|
+          = wholesale_price.input :id, as: :hidden
+		  = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR'
+		  = wholesale_price.input :minimum_quantity
+		  = wholesale_price.input :maximum_quantity
+		  br/
+		  br/
+		  hr/
+          = link_to_add 'Tambah wholesale', :wholesale_prices
 	.grid-flex
 	.grid-flex__col.grid-flex__col--12
 	  button.btn.btn-green type="submit"  Save

@@ -175,6 +175,9 @@
                 $("#profpic").change(function(){
                     Site.readURL(this, $("#profpic-target"));
                 });
+                $("#prod-img").change(function(){
+                    Site.readURL(this, $("#prod-img-target"));
+                });
             },
 
             this.orderTableInit = function () {

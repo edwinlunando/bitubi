@@ -1,73 +1,18 @@
-
-/ = simple_form_for(@product) do |f|
-/   = f.error_notification
-
-/   .form-inputs
-/     = f.input :name
-
-/   .form-actions
-/     = f.button :submit
-
 .wrapper
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href=""  Home
+          = link_to 'Home', root_path
         li
-          a href=""  Profile
+          a href="/account"  Akun
         li
-          a href=""  Add Products
+          = link_to 'Dagangan', dagangan_path
+        li
+          = link_to 'Tambah Produk', new_product_path
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
-        form.form__row action=""
+        form.form__row action="" 
           h2.orange Tambah Produk
-          .grid-flex
-            .grid-flex__col.grid-flex__col--4
-              label.form-label/
-              h3 Data
-              label.form-label for="category"  Kategori
-              select.form-select.form-input--block id="" name="category"
-                option value=""  -- Location --
-                option value="1"  DKI Jakarta
-                option value="2"  Jawa Barat
-              label.form-label for="name"  Nama
-              input.form-input.form-input--block name="name" placeholder=("your name") type="text" /
-              label.form-label for="address"  Deskripsi
-              textarea.form-input.form-input--block id="" name="description" placeholder="deskripsi" rows="3"
-              label.form-label for="stock"  Stok
-              input.form-input.form-input--block name="stock" placeholder="stock" type="number" /
-              label.form-label for="unit"  Unit
-              input.form-input.form-input--block name="unit" placeholder="unit" type="text" /
-              label.form-label for="weight"  Berat
-              input.form-input.form-input--block name="weight" placeholder="berat" type="number" /
-              label.form-label for="dropship-price"  Harga Dropship
-              input.form-input.form-input--block name="dropship-price" placeholder=("harga dropship") type="number" /
-            .grid-flex__col.grid-flex__col--4
-              label.form-label for="product-img" /
-              h3 Gambar
-              div
-                img.lazy alt="" data-original="/assets/img/no_image.gif" name="product-img[]" width="200" /
-                br/
-                br/
-                input#prod-img.form-input.form-input--block name="profpic" type="file" /
-              br/
-              button.btn onclick=("return false;")  Tambah Gambar
-            .grid-flex__col.grid-flex__col--4
-              label.form-label/
-              h3 Wholesale Price
-              div
-                label.form-label for="wholesale_price"  Harga
-                input.form-input name="wholesale_price" placeholder="harga" type="number" /
-                label.form-label for="min_quantity"  Jumlah Minimum
-                input.form-input name="min_quantity" placeholder=("jumlah minimum") type="number" /
-                label.form-label for="max_quantity"  Jumlah Maksimum
-                input.form-input name="max_quantity" placeholder=("jumlah maximum") type="number" /
-                br/
-                br/
-                hr/
-              button.btn onclick=("return false;")  Tambah Wholesale
-          .grid-flex
-            .grid-flex__col.grid-flex__col--12
-              button.btn.btn-green type="submit"  Save
+          == render 'form'
