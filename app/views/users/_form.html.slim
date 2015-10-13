@@ -1,15 +1,10 @@
 .grid-flex
-  = simple_nested_form_for(@product) do |f|
+  = simple_nested_form_for @product do |f|
     = f.error_notification
     .grid-flex__col.grid-flex__col--4
       label.form-label/
       h3 Data
       = f.input :category
-      label.form-label for="category"  Kategori
-      select.form-select.form-input--block id="" name="category" 
-        option value=""  -- Location --
-        option value="1"  DKI Jakarta
-        option value="2"  Jawa Barat
       = f.input :name
       = f.input :slug
       = f.input :description
@@ -34,7 +29,7 @@
       br/
       hr/
       h3 Harga Wholesale
-      div 
+      div
         = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
         = f.fields_for :wholesale_prices do |wholesale_price|
           = wholesale_price.input :id, as: :hidden
@@ -46,5 +41,5 @@
           hr/
     .grid-flex
     .grid-flex__col.grid-flex__col--12
-      button.btn.btn-green type="submit"  Save
+      button.btn.btn-green type="submit"  Simpan
       = link_to 'Batal', products_path, class: 'btn btn-orange'
