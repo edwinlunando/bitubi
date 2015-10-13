@@ -44,7 +44,7 @@ class HomeController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number)
   end
 
   def contact_params

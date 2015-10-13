@@ -22,6 +22,7 @@ Rails.application.configure do
     password: ENV['AWS_SES_PASSWORD'],
     authentication: :login
   }
+  config.action_mailer.default_url_options = { host: 'staging.larisni.com' }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
