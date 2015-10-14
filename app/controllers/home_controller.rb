@@ -18,26 +18,25 @@ class HomeController < ApplicationController
     render('devise/registrations/new')
   end
 
-  def registervendor
-    render('devise/registrationsvendor/new')
+  def register_supplier
+    @user = User.new
+    @user.build_supplier
   end
 
-  def create_user
-    byebug
-    @user = User.new(user_params)
-    @user.role = 'user'
-    if @user.save
-      flash[:success] = 'User baru dibuat!'
-      redirect_to root_path
-    else
-      render action: :auth
-    end
+  def create_supplier
+    @user = User.new(supplier_params)
+    @user.active = false
+    return redirect_to root_path, notice: 'Akun vendor berhasil dibuat' if @user.save
+    render :register_supplier
   end
 
   def send_contact
     @contact_form = ContactForm.new(contact_params)
 
-    @contact_form.deliver if @contact_form.valid?
+    if @contact_form.valid?
+      @contact_form.deliver
+      redirect_to root_path, notice: 'Pesan telah terkirim. Silahkan tunggu balasan dari kami.'
+    end
 
     render :contact
   end
@@ -49,11 +48,15 @@ class HomeController < ApplicationController
   private
 
   def user_params
-    params.require(:user).require(:email, :password, :password_confirmation, :phone_number)
+    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number)
   end
 
   def contact_params
-    params.require(:contact_form).require(:name, :email, :message)
+    params.require(:contact_form).permit(:name, :email, :message)
+  end
+
+  def supplier_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number, supplier_attributes: [:address, :bank_account_number])
   end
 
 end
