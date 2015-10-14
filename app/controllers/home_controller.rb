@@ -18,6 +18,10 @@ class HomeController < ApplicationController
     render('devise/registrations/new')
   end
 
+  def registervendor
+    render('devise/registrationsvendor/new')
+  end
+
   def create_user
     byebug
     @user = User.new(user_params)
