@@ -31,13 +31,19 @@
 	width: 100%;
 	@media #{$medium} {
 		width: 25%;
+		max-height: 350px;
+		overflow: hidden;
 	}
 	figure {
 		padding: 0px; margin: 0 0 30px 0;
 		.cards-image {
+			min-height: 260px;
+			max-height: 260px;
 			width: 100%;
-			min-height: 240px;
 			overflow: hidden;
+			img {
+				width: 100%;
+			}
 			&:hover img{
 				opacity: .75;
 				@include animate-transition(.2s);
@@ -46,6 +52,8 @@
 		}
 	}
 	.cards-information-block {
+		background-color: white;
+		z-index: 3;
 		div {
 			float: left;
 			width: 40%;
