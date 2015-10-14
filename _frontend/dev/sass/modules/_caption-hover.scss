@@ -1,5 +1,30 @@
 /* Product Container
 --------------------------------------------------------------------------- */
+.product-cards-container {
+	overflow: auto;
+}
+
+.pagination-container {
+	text-align: center;
+	margin: 20px;
+	.pagination {
+		span {
+			margin: 0 2px;
+			a {
+				color: $orange;
+				&:hover {
+					color: $darkorange;
+				}
+			}
+		}
+		.current {
+			color: white;
+			background-color: $orange;
+			padding: 2px 2px 2px 5px;
+		}
+	}
+}
+
 .cards {
 	padding: 15px;
 	float: left;

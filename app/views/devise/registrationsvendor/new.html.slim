@@ -1,0 +1,19 @@
+.wrapper
+  .container
+    .grid-flex
+      grid-flex__col.grid-flex__col--12.top-mg
+        center
+          h2.darkorange.clear-pm Pendaftaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--6
+        = simple_form_for(resource, as: resource_name, url: user_registration_path, html: { id: 'register-form', class: 'form__row' }) do |f|
+          = f.input :email, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'email'}, autofocus: true, label: 'email', wrapper: false
+          = f.input :password, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'password'}, label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+          = f.input :password_confirmation, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'konfirmasi password'}, label: 'Konfirmasi Password'
+          = f.input :phone_number, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'nomor telepon'}, label: 'Nomor Telepon'
+          / label test
+          / input.form-input.form-input--block.form-input--error name="test" placeholder=("your test") type="text" /
+          / span.form-input--error-message Salah bro
+          br/
+          br/
+          button.btn.btn-green type="submit"  Daftar

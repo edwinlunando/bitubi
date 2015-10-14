@@ -15,9 +15,9 @@
       div
         = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
         = f.fields_for :product_images do |img|
-          / img#prod-img-target.lazy alt="" data-original="/assets/img/no_image.gif" name="product-img[]" width="200" /
+          img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200" /
           br/
-          = img.input :data, label: false
+          = img.input :data, label: false, input_html: {id: 'prod-img'}
           br/
           / input#prod-img.form-input.form-input--block name="profpic" type="file" /
     .grid-flex__col.grid-flex__col--4
