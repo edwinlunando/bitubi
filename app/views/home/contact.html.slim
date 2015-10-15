@@ -7,11 +7,8 @@
     .grid-flex
       .grid-flex__col.grid-flex__col--6
         = simple_form_for(@contact_form, url: send_contact_path, html: { id: 'contact-form', class: 'form__row' }) do |f|
-          = f.label :email, class: 'form-label'
-          = f.input :email, input_html: {class: "form-input form-input--block #{ 'form-input--error' if @contact_form.errors[:email].present? }", placeholder: 'email'}, autofocus: true, label: false, wrapper: false
-          = f.label :nama, class: 'form-label'
-          = f.input :name, input_html: {class: 'form-input form-input--block', placeholder: 'nama kamu'}, label: false
-          = f.label :message, class: 'form-label'
-          = f.input :message, as: :text, input_html: {class: 'form-input form-input--block', placeholder: 'pesan'}, label: false
-
+          = f.input :email, input_html: {class: "form-input form-input--block #{ 'form-input--error' if @contact_form.errors[:email].present? }", placeholder: 'email'}, autofocus: true, label: 'Email untuk dihubungi'
+          = f.input :name, input_html: {class: 'form-input form-input--block', placeholder: 'nama kamu'}, label: 'Nama'
+          = f.input :message, as: :text, input_html: {class: 'form-input form-input--block', placeholder: 'pesan'}, label: 'Pesan kamu'
+          br
           button.btn.btn-orange type="submit"  Kirim

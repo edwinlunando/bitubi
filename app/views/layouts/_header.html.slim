@@ -7,9 +7,9 @@ header.header-main
         ul
           - if user_signed_in?
             li.panel-profile
-              a href="/profil"
+              a href="/#"
                 figure
-                  figcaption Selamat Datang, User's Name
+                  figcaption Selamat Datang, #{ current_user.email }
             li
               / a href="/keranjang"  Keranjang
               = link_to 'Dagangan', dagangan_path
