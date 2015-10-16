@@ -1,35 +1,13 @@
-<h2>Forgot your password?</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
 .wrapper
   .container
     .grid-flex
       grid-flex__col.grid-flex__col--12.top-mg
         center
-          h2.darkorange.clear-pm Pendaftaran
+          h2.darkorange.clear-pm Reset Password
     .grid-flex
       .grid-flex__col.grid-flex__col--6
-        = simple_form_for(resource, as: resource_name, url: user_registration_path, html: { id: 'register-form', class: 'form__row' }) do |f|
-          = f.input :email, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'email'}, autofocus: true, label: 'email', wrapper: false
-          = f.input :password, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'password'}, label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-          = f.input :password_confirmation, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'konfirmasi password'}, label: 'Konfirmasi Password'
-          = f.input :phone_number, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'nomor telepon'}, label: 'Nomor Telepon'
-          / label test
-          / input.form-input.form-input--block.form-input--error name="test" placeholder=("your test") type="text" /
-          / span.form-input--error-message Salah bro
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: 'register-form', class: 'form__row' }) do |f|
+          = f.error_notification
+          = f.input :email, required: true, autofocus: true
           br/
-          br/
-          button.btn.btn-green type="submit"  Daftar
+          = f.button :submit, "Reset password"

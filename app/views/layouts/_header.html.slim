@@ -92,11 +92,12 @@ header.header-main
       = simple_form_for(User.new, as: resource_name, url: session_path(resource_name), html: { id: 'popup-login-form', class: 'login-form' }) do |f|
         = f.input :email, required: true, input_html: {class: '', placeholder: 'email'}, autofocus: true
         = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-        a href="" Lupa password?
         br/
         | Belum punya akun?
         a href="daftar"  Daftar
         br/
+        | Lupa password?
+        = link_to ' Reset password', new_user_password_path
         br/
         center
           button.btn.btn-green type="submit"  Login

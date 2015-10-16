@@ -8,35 +8,12 @@ ActiveAdmin.register Order do
     column :total
     column :special_instruction
     column :state
-    actions do |order|
-      if order.confirm?
-        item 'Konfirmasi', confirmed_admin_order_path(order), method: :put, 'data-confirm': 'Yakin?'
-      end
-      if order.delivery?
-        item 'Kirim', delivered_admin_order_path(order), method: :put, 'data-confirm': 'Yakin?'
-      end
-    end
+    actions
   end
 
   filter :id
 
-  member_action :confirmed, method: :put do
-    if resource.confirm?
-      resource.confirming
-      resource.save
-      redirect_to collection_path, notice: "Order Dikonfirmasi!"
-    end
-  end
-
-  member_action :delivered, method: :put do
-    if resource.delivery?
-      resource.finish
-      resource.save
-      redirect_to collection_path, notice: "Order Dikirim!"
-    end
-  end
-
-  show :title => :id do |post|
+  show title: :id do |post|
 
     attributes_table do
       rows :special_instruction, :state, :user
@@ -60,7 +37,7 @@ ActiveAdmin.register Order do
   filter :active
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs 'Admin Details' do
       f.input :total
       f.input :special_instruction
       f.input :state, collection: Order.states
@@ -72,6 +49,5 @@ ActiveAdmin.register Order do
     end
     f.actions
   end
-
 
 end

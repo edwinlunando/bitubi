@@ -1,0 +1,16 @@
+.wrapper
+  .container
+    .grid-flex
+      grid-flex__col.grid-flex__col--12.top-mg
+        center
+          h2.darkorange.clear-pm Ganti Password
+    .grid-flex
+      .grid-flex__col.grid-flex__col--6
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: 'register-form', class: 'form__row', method: :put }) do |f|
+          = f.error_notification
+          = f.input :reset_password_token, as: :hidden
+          = f.full_error :reset_password_token
+          = f.input :password, label: "Password baru", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+          = f.input :password_confirmation, label: "Konfirmasi password", required: true
+          br/
+          = f.button :submit, "Ganti password"
