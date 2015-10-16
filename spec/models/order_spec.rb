@@ -11,6 +11,7 @@
 #  updated_at              :datetime         not null
 #  address_id              :integer
 #  state_shipment_price_id :integer
+#  payment_time            :datetime
 #
 
 require 'rails_helper'

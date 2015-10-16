@@ -37,13 +37,11 @@
               div
                 h3.darkorange Top Up Form
                 = simple_form_for(@top_up, url: tambah_saldo_path, html: {class: 'wallet-form'}) do |f|
-                  = f.input :name, input_html: {placeholder: 'nama'}
-                  = f.input :amount, input_html: {placeholder: 'jumlah'}
-                  = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda'
-                  br/
+                  = f.input :name, input_html: {placeholder: 'nama'}, label: 'Nama'
+                  = f.input :amount, input_html: {placeholder: 'jumlah'}, label: 'Jumlah'
+                  = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
                   br/
                   button.btn.btn-green type="submit"  Bayar
-
               hr/
 
               div
@@ -69,7 +67,7 @@
                           br/
                           | a.n. PT Laris Banget Nich
             .grid-flex__col.grid-flex__col--6
-              h3.darkorange Top Up History
+              h3.darkorange Sejarah Top Up
               span
                 b.darkorange Saldo kamu:
                 span.darkgreen #{ number_format(current_user.credit) }

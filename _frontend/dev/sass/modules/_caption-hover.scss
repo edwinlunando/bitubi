@@ -1,18 +1,49 @@
 /* Product Container
 --------------------------------------------------------------------------- */
+.product-cards-container {
+	overflow: auto;
+}
+
+.pagination-container {
+	text-align: center;
+	margin: 20px;
+	.pagination {
+		span {
+			margin: 0 2px;
+			a {
+				color: $orange;
+				&:hover {
+					color: $darkorange;
+				}
+			}
+		}
+		.current {
+			color: white;
+			background-color: $orange;
+			padding: 2px 2px 2px 5px;
+		}
+	}
+}
+
 .cards {
 	padding: 15px;
 	float: left;
 	width: 100%;
 	@media #{$medium} {
 		width: 25%;
+		max-height: 350px;
+		overflow: hidden;
 	}
 	figure {
 		padding: 0px; margin: 0 0 30px 0;
 		.cards-image {
+			min-height: 260px;
+			max-height: 260px;
 			width: 100%;
-			min-height: 240px;
 			overflow: hidden;
+			img {
+				width: 100%;
+			}
 			&:hover img{
 				opacity: .75;
 				@include animate-transition(.2s);
@@ -21,6 +52,8 @@
 		}
 	}
 	.cards-information-block {
+		background-color: white;
+		z-index: 3;
 		div {
 			float: left;
 			width: 40%;

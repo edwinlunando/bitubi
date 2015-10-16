@@ -27,6 +27,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  credit                 :decimal(10, )    default(0)
+#  supplier_id            :integer
 #
 
 # standard user class with devise
@@ -42,7 +43,9 @@ class User < ActiveRecord::Base
   has_many :top_ups
   phony_normalize :phone_number, default_country_code: 'ID'
   validates :phone_number, phony_plausible: true, presence: true
-  enum role: { admin: 'admin', user: 'user', suuplier: 'suuplier' }
+  enum role: { admin: 'admin', user: 'user', supplier: 'supplier' }
+  belongs_to :supplier
+  accepts_nested_attributes_for :supplier
 
   # callback
   before_save :default_values
@@ -71,6 +74,14 @@ class User < ActiveRecord::Base
         return orders.last
       end
     end
+  end
+
+  def active_for_authentication?
+    super && active
+  end
+
+  def inactive_message
+    'Maaf, akun ini belum diaktivasi'
   end
 
 end

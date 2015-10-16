@@ -27,6 +27,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  credit                 :decimal(10, )    default(0)
+#  supplier_id            :integer
 #
 
 require 'rails_helper'

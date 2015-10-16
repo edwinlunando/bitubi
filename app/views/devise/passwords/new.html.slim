@@ -1,0 +1,13 @@
+.wrapper
+  .container
+    .grid-flex
+      grid-flex__col.grid-flex__col--12.top-mg
+        center
+          h2.darkorange.clear-pm Reset Password
+    .grid-flex
+      .grid-flex__col.grid-flex__col--6
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: 'register-form', class: 'form__row' }) do |f|
+          = f.error_notification
+          = f.input :email, required: true, autofocus: true
+          br/
+          = f.button :submit, "Reset password"

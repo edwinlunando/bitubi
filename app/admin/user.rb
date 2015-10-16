@@ -8,8 +8,17 @@ ActiveAdmin.register User do
     column :credit
     column :current_sign_in_at
     column :sign_in_count
+    column :active
     column :created_at
-    actions
+    actions do |user|
+      item 'Aktivasi', activation_admin_user_path(user), method: :put
+    end
+  end
+
+  member_action :activation, method: :put do
+    resource.active = true
+    resource.save
+    redirect_to collection_path, notice: 'Pengguna diaktivasi!'
   end
 
   filter :email

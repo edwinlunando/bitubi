@@ -54,3 +54,6 @@
         .product-cards-container
           - @products.each do |product|
             = render 'products/card', product: product
+
+        div.pagination-container
+          = paginate @products
