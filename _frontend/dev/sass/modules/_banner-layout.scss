@@ -150,3 +150,19 @@
 	font-weight: bold;
 	text-transform: uppercase;
 }
+
+.slide-category {
+	a {
+		width: 100%;
+		display: block;
+		color: $darkorange;
+		font-size: 13px;
+		&:hover{
+			color: $orange;
+		}
+		.slide-category__name {
+			width: 100%;
+			text-align: center;
+		}
+	}
+}

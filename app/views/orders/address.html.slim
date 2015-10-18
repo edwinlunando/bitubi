@@ -21,19 +21,7 @@
         li
           a href="#"  Alamat Kirim
   .container
-    .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li
-              span> 1
-              | Keranjang
-            li.current
-              span> 2
-              | Data Pemesanan
-            li
-              span> 3
-              | Pembayaran
+    == render 'transaction_tabs'
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         .static-title.np-top

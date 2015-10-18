@@ -26,19 +26,7 @@
         li
           a href="/pesanan"  Pesanan
   .container
-    .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li.current
-              span> 1
-              | Cart & Orders
-            li
-              span> 2
-              | Data Peme sanan
-            li
-              span> 3
-              | Pembayaran
+    == render 'transaction_tabs'
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
@@ -73,27 +61,5 @@
                             td #{ order.state }
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center" 
-                              button.btn-clear.order-expandable data-target="#{ order.id }" 
-                                i.fa-btn.btn-green.fa.fa-folder-open title="view" 
-                          tr.none[id='#{ order.id }']
-                            td colspan="4" 
-                              table.table
-                                thead
-                                  tr
-                                    th align="center"  Thumbnail
-                                    th Item
-                                    th Jumlah
-                                    th Tipe
-                                    th Harga
-                                    th Status
-                                tbody
-                                  - order.line_items.each_with_index do |item, index|
-                                    tr
-                                      td align="center"
-                                        = image_tag item.product.get_first_image.data.url(:small), class: 'img-responsive lazy'
-                                      td #{item.product.name}
-                                      td #{item.quantity}
-                                      td #{item.purchase_type}
-                                      td align="left" #{ item.price }
-                                      td #{item.state}
-                            td
+                              a.btn-clear.fa-btn.btn-green href="/pesanan/#{order.id}"
+                                i.fa.fa-folder-open title="view" 

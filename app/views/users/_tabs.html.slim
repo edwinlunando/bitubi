@@ -1,0 +1,18 @@
+ul.nav
+  li.nav-one
+    a href="/akun"
+      i.fa.fa-user
+      span Akun
+  li.nav-two
+    = link_to dagangan_path, class: "#{params[:action] == 'products' ? 'current' : ''}" do
+      i.fa.fa-dropbox
+      span Dagangan 
+  li.nav-three
+    = link_to sell_path, class: "#{params[:action] == 'sell' ? 'current' : ''}" do
+      i.fa.fa-archive
+      span Penjualan
+  li.nav-four
+    = link_to keranjang_path do
+      i.fa.fa-shopping-cart
+      span Cart & Order
+  

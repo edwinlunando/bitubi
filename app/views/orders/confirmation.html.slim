@@ -11,19 +11,7 @@
         li
           a href="/konfirmasi"  Pembayaran
   .container
-    .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li
-              span> 1
-              | Keranjang
-            li
-              span> 2
-              | Data Pemesanan
-            li.current
-              span> 3
-              | Pembayaran
+    == render 'transaction_tabs'
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         .static-title.np-top

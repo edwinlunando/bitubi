@@ -64,6 +64,9 @@ $table_border_prop          : "solid 1px " + $table-border;
         &:first-child {
             // border-left: unquote($table_border_prop);
         }
+        &:last-child{
+            min-width: 120px;
+        }
     }
 }
 

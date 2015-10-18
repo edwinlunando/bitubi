@@ -231,7 +231,22 @@
 
             function slider() {
                 slider = $('.slider');
-                slider.slick(slider.data('slick'));
+                for (var i in slider)  {
+                    var config =  slider.eq(i).data('slick');
+                    console.log(config);
+                    if(slider.eq(i).hasClass('rsp')) {
+                        config.responsive = [
+                            {
+                            breakpoint: 480,
+                                settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                                }
+                            }
+                        ];
+                    } 
+                    slider.eq(i).slick(config);
+                }
             }
         },
 
@@ -379,7 +394,12 @@
                 complete: Site.init
             }
         ]);
-        $(document).on('page:load', Site.init)
+        $(document).on('page:load', Site.init);
+        $(document).on('change', '#prod-img', function() { 
+            var frame = $(this).parent().parent().find('img');
+            Site.readURL(this, frame);
+        });
+        
     };
 
     Modernizr.load({

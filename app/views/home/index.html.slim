@@ -33,19 +33,26 @@
       a href=""
         img.lazy alt="" data-original="/assets/img/bg-sm-foodntools.jpg" /
   .grid-flex--no-pad.surfari-home-category
-    .container
-      .grid-flex.mid-menu-breadcrumb--container
-        .grid-flex__col.grid-flex__col--12
-          center Produk berdasarkan kategori
-          ul.breadcrumb
-            li.mid-menu-breadcrumb--displayer
-              span Kategori
-            - @categories.each do |category|
-              li
-                a.list-group-item href='#{ products_path(category_id: category.id) }'
-                  i.menu-icon
-                    img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
-                  = category.name
+    .grid-flex__col.grid-flex__col--12
+      center Produk berdasarkan kategori
+      .slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 1, "infinite": true}'
+        - @categories.each do |category|
+          .slide-category
+            a href='#{ products_path(category_id: category.id) }'
+              .slide-category__icon
+                i.menu-icon
+                  img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+              .slide-category__name
+                = category.name
+          / ul.breadcrumb
+          /   li.mid-menu-breadcrumb--displayer
+          /     span Kategori
+          /   - @categories.each do |category|
+          /     li
+          /       a.list-group-item href='#{ products_path(category_id: category.id) }'
+          /         i.menu-icon
+          /           img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+          /         = category.name
   .container
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top
