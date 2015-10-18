@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def finish
-    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') unless @order.done?
+    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') if @order.done?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
     @order.finish
     @order.payment_time = Time.zone.now
