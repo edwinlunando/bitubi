@@ -58,7 +58,7 @@
                           td #{line_item.product.name}
                           td #{line_item.quantity}
                           td #{line_item.purchase_type}
-                          td align="right" #{ line_item.quantity*line_item.price_per_quantity }
+                          td align="right" #{ number_format(line_item.price) }
                           td align="center"
                             = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete
                               i.fa-btn.btn-red.fa.fa-trash title="delete"
@@ -71,7 +71,7 @@
                           b Total
                         td align="right"
                           b
-                            = @order.total
+                            = number_format(@order.total)
                         td align="center"
                           = link_to alamat_path, class: 'btn btn-green'
                             i.fa.fa-money
