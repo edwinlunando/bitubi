@@ -51,11 +51,13 @@ class OrdersController < ApplicationController
   def finish
     return redirect_to(root_path, notice: 'Transaksi sudah selesai!') if @order.done?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
-    @order.finish
-    @order.payment_time = Time.zone.now
-    @order.save
-    current_user.credit -= @order.total
-    current_user.save
+    ActiveRecord::Base.transaction do
+      @order.finish
+      @order.payment_time = Time.zone.now
+      @order.save
+      current_user.credit -= @order.total
+      current_user.save
+    end
     UserMailer.order_confirmation(@order)
     @order.suppliers.each do |supplier|
       OrderMailer.confirmation(@order, supplier)
