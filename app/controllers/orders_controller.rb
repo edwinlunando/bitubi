@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    # TODO: remove if
     if @order.cart?
       @order.checkout
       @order.save

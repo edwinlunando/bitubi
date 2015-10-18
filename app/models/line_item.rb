@@ -96,4 +96,8 @@ class LineItem < ActiveRecord::Base
     quantity * price_per_quantity
   end
 
+  def total
+    price + shipping_cost
+  end
+
 end

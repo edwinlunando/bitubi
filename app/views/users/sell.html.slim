@@ -21,10 +21,11 @@
                       th Order Id
                       th Pembeli
                       th Jumlah Item
-                      th Total
                       th Alamat
                       th Status
+                      th Harga
                       th Ongkir
+                      th Total
                       th Action
                   tbody
                   - @line_items.each do |line_item|
@@ -32,10 +33,11 @@
                       td #{ line_item.order.id }
                       td #{ line_item.order.user.email }
                       td #{ line_item.quantity  }
-                      td align="right"  #{ number_format(line_item.price) }
                       td #{ line_item.order.address.one_line }
                       td #{ line_item.state }
+                      td align="right"  #{ number_format(line_item.price) }
                       td #{ number_format(line_item.shipping_cost) }
+                      td #{ number_format(line_item.total) }
                       td align="center"
                         - if line_item.confirm?
                           = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
