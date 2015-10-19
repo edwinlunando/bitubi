@@ -25,7 +25,6 @@
                         th align="center"  Thumbnail
                         th Item
                         th Jumlah
-                        th Tipe
                         th Harga
                         th align="center"  Action
                     tbody
@@ -35,7 +34,6 @@
                             = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                           td #{line_item.product.name}
                           td #{line_item.quantity}
-                          td #{line_item.purchase_type}
                           td align="right" #{ number_format(line_item.price) }
                           td align="center"
                             = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete

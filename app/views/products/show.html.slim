@@ -1,59 +1,6 @@
-/ .container
-/   .row
-/     .col-md-8.col-md-offset-2.col-xs-12
-/       .thumbnail
-/         - if @product.product_images.present?
-/           = image_tag @product.get_first_image.data.url(:large), class: 'img-responsive'
-/         .product-container
-/           .row
-/             .col-md-12
-/               h1
-/                 = @product.name
-/               h4 @ #{ @product.price_dropship_money }
-              / - if @product.wholesale_prices.present?
-              /   table.table
-              /     caption Harga grosir
-              /     thead
-              /       tr
-              /         th #
-              /         th Jumlah minimal
-              /         th Harga satuan
-              /     tbody
-              /       - @product.wholesale_prices.each_with_index do |price, index|
-              /         tr
-              /           th scope="row"  #{ index + 1 }
-              /           td #{ price.minimum_quantity }
-              /           td #{ price.price_money }
-/               dl
-/                 dt Berat
-/                 dd #{ @product.weight } gram
-/                 dt Stok
-/                 dd #{ @product.stock } #{ @product.unit }
-/               p
-/                 = @product.description.html_safe
-/           .row
-/             .col-xs-12
-              / - if user_signed_in?
-              /   = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline' }, wrapper: :inline_form) do |f|
-              /     = f.input :purchase_type, placeholder: 'Jenis pembelian', collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
-              /     = f.input :quantity, placeholder: 'Jumlah'
-              /     = f.submit 'Beli', class: 'btn btn-default'
-              / - else
-              /   = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-primary'
 
 .wrapper
   .container
-    / .grid-flex.mid-menu-breadcrumb--container
-    /   .grid-flex__col.grid-flex__col--12.top-mg
-    /     ul.breadcrumb
-    /       li.mid-menu-breadcrumb--displayer
-    /         span Categories
-    /       - @categories.each do |category|
-    /           li
-    /             a.list-group-item href='#{ products_path(category_id: category.id) }'
-    /               i.menu-icon
-    /                 img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
-    /               = category.name
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
@@ -86,11 +33,11 @@
             center
               | Stok:
               span
-                = ' ' + @product.stock.to_s
+                = ' ' + @product.stock.to_s + ' ' + @product.unit
               b \
               | Berat:
               span
-                = ' ' + @product.weight.to_s + ' ' + @product.unit
+                = ' ' + @product.weight.to_s + 'gram'
               b \
               | Harga:
               span
@@ -102,8 +49,6 @@
                 span
                   b Beli:
               .grid-flex--no-pad
-                .grid-flex.grid-flex__col--5
-                  = f.input :purchase_type, placeholder: 'Jenis pembelian', wrapper: false, label: false, collection: LineItem.purchase_types.keys.to_a, include_blank: 'Tipe Pemesanan'
                 .grid-flex.grid-flex__col--5
                   = f.input :quantity, placeholder: 'Jumlah', wrapper: false, label: false
                 .grid-flex.grid-flex__col--2

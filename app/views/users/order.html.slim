@@ -27,11 +27,11 @@
         #surfari-tabs
           ul.nav
             li.nav-one
-              a href="/keranjang" 
+              a href="/keranjang"
                 i.fa.fa-shopping-cart
                 span Keranjang
             li.nav-two
-              a.current href="/pesanan" 
+              a.current href="/pesanan"
                 i.fa.fa-phone
                 span Pesanan
           .list-wrap
@@ -41,7 +41,7 @@
                 .table-container
                   table.table
                     thead
-                      tr align="center" 
+                      tr align="center"
                         th Order Id
                         th Tanggal Pesan
                         th Status
@@ -53,7 +53,6 @@
                             td
                               = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                             td #{ line_item.product.name }
-                            td #{ line_item.purchase_type }
                             td align="right" #{ line_item.quantity } x #{ number_to_currency(line_item.price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                         tr
                           td colspan="2"

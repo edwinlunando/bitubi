@@ -4,15 +4,15 @@ ul.nav
       i.fa.fa-user
       span Akun
   li.nav-two
-    = link_to dagangan_path, class: "#{params[:action] == 'products' ? 'current' : ''}" do
+    = link_to dagangan_path, class: "#{params[:action] == 'products' ? 'current' : ''}"
       i.fa.fa-dropbox
-      span Dagangan 
+      span Dagangan
   li.nav-three
-    = link_to sell_path, class: "#{params[:action] == 'sell' ? 'current' : ''}" do
+    = link_to sell_path, class: "#{params[:action] == 'sell' ? 'current' : ''}"
       i.fa.fa-archive
       span Penjualan
   li.nav-four
     = link_to keranjang_path do
       i.fa.fa-shopping-cart
       span Cart & Order
-  
+

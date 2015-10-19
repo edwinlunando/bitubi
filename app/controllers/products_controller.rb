@@ -22,21 +22,25 @@ class ProductsController < InheritedResources::Base
   end
 
   def add_to_cart
-    @product = Product.friendly.find(params[:id])
-    @line_item = LineItem.new(line_item_params)
-    # todo quantity bug
-    if @line_item.quantity > @product.stock
+    product = Product.friendly.find(params[:id])
+    order = current_user.last_order
+    # find item in line item
+    if order.line_items.where('line_items.product_id = ?', product.id).exists?
+      line_item = order.line_items.where('line_items.product_id = ?', product.id).first
+      line_item.quantity += line_item_params[:quantity].to_i
+    else
+      line_item = LineItem.new(line_item_params)
+    end
+
+    # check line item quantity to product stock
+    if line_item.quantity > product.stock
       flash[:error] = 'Stok tidak mencukupi'
       return render action: :show
     end
-    order = current_user.last_order
-    @line_item.order = order
-    @line_item.product = @product
-    if @line_item.wholesale? && !@line_item.check_wholesale_price
-      flash[:error] = 'Harga tidak tersedia'
-      return render action: :show
-    end
-    if @line_item.save
+
+    line_item.order = order
+    line_item.product = product
+    if line_item.save
       flash[:success] = 'Berhasil masuk keranjang!'
       redirect_to keranjang_path
     else
@@ -51,6 +55,7 @@ class ProductsController < InheritedResources::Base
   end
 
   def line_item_params
-    params.require(:line_item).permit(:purchase_type, :quantity)
+    params.require(:line_item).permit(:quantity)
   end
+
 end

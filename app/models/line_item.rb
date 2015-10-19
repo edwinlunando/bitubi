@@ -19,14 +19,11 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
 
-  enum purchase_type: [:dropship, :wholesale]
-
   validates :quantity, presence: true, numericality: { greater_than: 0 }
 
   validates_presence_of :product_id
   validates_presence_of :quantity
   validates_presence_of :order_id
-  validates_presence_of :purchase_type
 
   # State
   include AASM
@@ -57,18 +54,10 @@ class LineItem < ActiveRecord::Base
   end
 
   def price_per_quantity
-    # remove shipping type
-    # if dropship?
-    #   product.price_dropship
-    # else
-    #   fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
-    #   product.wholesale_prices.ordered.by_quantity(quantity).first.price
-    # end
-
     if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
-      product.wholesale_prices.ordered.by_quantity(quantity).first.price
-    else
       product.price_dropship
+    else
+      product.wholesale_prices.ordered.by_quantity(quantity).first.price
     end
   end
 
