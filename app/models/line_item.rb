@@ -15,6 +15,7 @@
 # model to represent an item in an order/cart
 class LineItem < ActiveRecord::Base
 
+  # Relation
   belongs_to :product
   belongs_to :order
 
@@ -56,11 +57,18 @@ class LineItem < ActiveRecord::Base
   end
 
   def price_per_quantity
-    if dropship?
-      product.price_dropship
-    else
-      fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
+    # remove shipping type
+    # if dropship?
+    #   product.price_dropship
+    # else
+    #   fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
+    #   product.wholesale_prices.ordered.by_quantity(quantity).first.price
+    # end
+
+    if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
       product.wholesale_prices.ordered.by_quantity(quantity).first.price
+    else
+      product.price_dropship
     end
   end
 
