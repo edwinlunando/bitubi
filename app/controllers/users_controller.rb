@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def orders
-    @orders = current_user.orders
+    @orders = current_user.orders.includes(:line_items, :state_shipment_price)
   end
 
   def order

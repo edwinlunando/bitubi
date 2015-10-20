@@ -36,7 +36,7 @@
               b \
               | Berat:
               span
-                = ' ' + @product.weight.to_s + 'gram'
+                = ' ' + @product.weight.to_s + ' gram'
               b \
               | Harga:
               span
@@ -56,7 +56,7 @@
           - else
             center
               = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-green'
-          br/
+          br
           - if @product.wholesale_prices.present?
             table.table
               thead
@@ -72,4 +72,4 @@
                     td #{ price.price_money }
           p.category-title__detailed-description
             = @product.description.html_safe
-          hr/
+          hr
