@@ -43,7 +43,10 @@ class UsersController < ApplicationController
   end
 
   def sell
-    @line_items = LineItem.joins(:product, :order).where('products.user_id = ?', current_user.id).where('orders.state = ?', :done)
+    @line_items = LineItem.includes({ order: [{ address: [{ state: [{ city: :province }] }] }, :state_shipment_price, :user] }, :product)
+                  .joins(:product, :order)
+                  .where('products.user_id = ?', current_user.id)
+                  .where('orders.state = ?', :done)
   end
 
   private
