@@ -3,13 +3,13 @@ footer.wrapper
     .grid-flex
       .grid-flex__col.grid-flex__col--4
         .social-media
-          a href="https://www.facebook.com/profile.php?id=100010369391496"
+          = link_to "https://www.facebook.com/profile.php?id=100010369391496" do
             i.fa.fa-facebook.fa-lg
-          a href="https://twitter.com/_LarisniCom"
+          = link_to "https://twitter.com/_LarisniCom" do
             i.fa.fa-twitter.fa-lg
-          a href="https://instagram.com/larisni/"
+          = link_to "https://instagram.com/larisni/" do
             i.fa.fa-instagram.fa-lg
-          a href="https://plus.google.com/u/0/104610056676034641183/posts"
+          = link_to "https://plus.google.com/u/0/104610056676034641183/posts" do
             i.fa.fa-google-plus.fa-lg
           p.copyright @ 2015 Larisni.
       .grid-flex__col.grid-flex__col--8
@@ -21,7 +21,7 @@ footer.wrapper
               li
                  = link_to 'Tentang Kami', tentang_path
               li
-                a href="/faq"  FAQ
+                = link_to "FAQ", "/faq"
               li
                  = link_to 'Pendaftaran Vendor', register_supplier_path
           .grid-flex__col.foot-info-col
@@ -37,5 +37,5 @@ footer.wrapper
               li
                 = link_to 'Kontak Kami', kontak_path
               li
-                a href="mailto:admin@larisni.com"
+                = link_to "mailto:admin@larisni.com" do
                   i.fa.fa-envelope  admin@larisni.com

@@ -2,38 +2,33 @@ header.header-main
   nav.main-navigation role="navigation"
     dl
       dt.panel-group
-        a href="#"  Akun
+        a  Akun
       dd.panel-body
         ul
           - if user_signed_in?
             li.panel-profile
-              a href="/#"
+              a
                 figure
                   figcaption Selamat Datang, #{ current_user.email }
             li
-              / a href="/keranjang"  Keranjang
               = link_to 'Dagangan', dagangan_path
             li
-              / a href="/keranjang"  Keranjang
               = link_to 'Penjualan', sell_path
             li
-              / a href="/keranjang"  Keranjang
               = link_to 'Keranjang', keranjang_path
             li
-              a href="/users/sign_out"  Log Out
+              = link_to 'Log Out',  destroy_user_session_path
           - else
             li.panel-profile
-              a href="" onclick="return false;"
+              a onclick="return false;"
                 figure
                   figcaption Selamat Datang!
             li
-              / a href="/keranjang"  Keranjang
               = link_to 'Login', login_path
             li
-              / a href="/keranjang"  Keranjang
               = link_to 'Daftar', daftar_path
       dt.panel-group
-        a href="/saldo"  Dompet
+        = link_to "Dompet", saldo_path
       dd.panel-body
         ul
           li
@@ -58,7 +53,7 @@ header.header-main
       span
     .header-logo
       h1 itemscope="" itemtype="http://schema.org/Organization"
-        a href="/" itemprop="url"
+        = link_to root_path, {itemprop: "url"} do
           span.icon.icon-logo itemprop="name"  Larisni
     .nav-lang.nav-toggle
       - if user_signed_in?
@@ -68,15 +63,15 @@ header.header-main
             span Logout
       - else
         .nav-lang__submenu#login-register-btn
-          a href=""
+          a
             i.fa.fa-sign-in
             span Login / Daftar
       .nav-lang__submenu#search-menu
-        a href=""
+        a
           i.fa.fa-search
           span Cari
       #cart-menu.nav-lang__submenu.nav-lang__submenu--square
-        a href="/keranjang"
+        = link_to keranjang_path do
           i.fa.fa-shopping-cart
 .menu-search__container
   .menu-search__form-row
@@ -94,10 +89,11 @@ header.header-main
         = f.input :password, required: true, input_html: {class: '', placeholder: 'password'}, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
         br/
         | Belum punya akun?
-        a href="daftar"  Daftar
+        = link_to "daftar", daftar_path
         br/
         | Lupa password?
         = link_to ' Reset password', new_user_password_path
+        br/
         br/
         center
           button.btn.btn-green type="submit"  Login

@@ -3,9 +3,9 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href="/"  Home
+          = link_to "Home", root_path
         li
-          a href="/saldo"  Dompet
+          = link_to "Dompet", saldo_path
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
