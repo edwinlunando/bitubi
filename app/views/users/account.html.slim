@@ -1,0 +1,25 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          = link_to 'Home', root_path
+        li
+          = link_to 'Akun', account_path
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        form.form__row action=""
+          h2.orange Akun
+          .grid-flex
+            = simple_form_for @user do |f|
+              = f.error_notification
+              .grid-flex__col.grid-flex__col--12
+                label.form-label/
+                h3 Perbarui Data
+                = f.association :category, label: 'Kategori'
+                = f.input :username, label: 'Nama'
+                = f.input :email, label: 'Deskripsi'
+                = f.submit 'Simpan', class: 'btn btn-green'
+                = link_to 'Batal', products_path, class: 'btn btn-orange'
+
