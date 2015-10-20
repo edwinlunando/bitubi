@@ -85,6 +85,8 @@ gem 'high_voltage', '~> 2.4.0'
 gem 'mail_form'
 # breadcrumps
 gem 'breadcrumbs_on_rails'
+# mailgun
+gem 'mailgun_rails'
 
 group :development, :test do
 
