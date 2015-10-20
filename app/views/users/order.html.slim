@@ -3,11 +3,11 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href="/"  Home
+          = link_to "Home", root_path
         li
-          a href="/pesanan"  Pesanan
+          = link_to "Pesanan", pesanan_path
         li
-          a href="/pesanan/#{@order.id}"  Detil
+          = link_to "Detil", "/pesanan/#{@order.id}"
   .container
     .grid-flex
       .grid-flex
@@ -53,10 +53,11 @@
                             td
                               = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                             td #{ line_item.product.name }
-                            td align="right" #{ line_item.quantity } x #{ number_to_currency(line_item.price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-                        tr
+                            td align="center" #{ line_item.state }
+                            td align="right" #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
+                        tr.highlight-info
                           td colspan="2"
                           td align="center"
                             b Total
                           td align="right"
-                            b #{ number_to_currency(@order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                            b #{ number_format(@order.total) }

@@ -3,13 +3,13 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href="/"  Home
+          = link_to 'Home', root_path
         li
-          a href="/keranjang"  Keranjang
+          = link_to 'Keranjang', keranjang_path
         li
-          a href="/alamat"  Alamat Kirim
+          = link_to 'Alamat Kirim', alamat_path
         li
-          a href="/konfirmasi"  Pembayaran
+          = link_to 'Pembayaran', konfirmasi_path
   .container
     == render 'transaction_tabs'
     .grid-flex

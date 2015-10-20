@@ -3,9 +3,9 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href="/"  Home
+          = link_to "Home", root_path
         li
-          a href="/pesanan"  Pesanan
+          = link_to "Pesanan", pesanan_path
   .container
     == render 'transaction_tabs'
     .grid-flex
@@ -13,11 +13,11 @@
         #surfari-tabs
           ul.nav
             li.nav-one
-              a href="/keranjang"
+              = link_to keranjang_path do
                 i.fa.fa-shopping-cart
                 span Keranjang
             li.nav-two
-              a.current href="/pesanan"
+              = link_to pesanan_path do
                 i.fa.fa-phone
                 span Pesanan
           .list-wrap
@@ -38,9 +38,9 @@
                         - @orders.each_with_index do |order, index|
                           tr align="center"
                             td #{ order.id }
-                            td #{ order.created_at }
+                            td #{ order.created_at.strftime("%d %B %Y") }
                             td #{ order.state }
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center"
-                              a.btn-clear.fa-btn.btn-green href="/pesanan/#{order.id}"
+                              = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-green'} do
                                 i.fa.fa-folder-open title="view"

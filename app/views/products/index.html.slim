@@ -1,32 +1,30 @@
-.wrapper
+.wrapper.top-pd
   / .top-banner
   /   img.lazy alt="" data-original="/assets/img/bg-top-banner.jpg" /
   /   .top-banner--content
   /     h1.top-banner--title Get A Pet
   /     p
   /       | Get new companion for you
-  .container.bg-dg
-    .grid-flex.mid-menu-breadcrumb--container
-      .grid-flex__col.grid-flex__col--12.top-mg
-        ul.breadcrumb
-          li.mid-menu-breadcrumb--displayer
-            span Kategori
-          - @categories.each do |category|
-              li
-                a.list-group-item href='#{ products_path(category_id: category.id) }'
-                  i.menu-icon
-                    img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
-                  = category.name
+  .clear-pm.bg-dg.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 1, "infinite": true}'
+    - @categories.each do |category|
+      .slide-category
+        = link_to products_path(category_id: category.id) do
+          .slide-category__icon
+            i.menu-icon
+              img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+          .slide-category__name
+            = category.name
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12
       ul.breadcrumb
         li
-          a href=""  Home
+          = link_to "Home", root_path
         li
-          a href=""  Produk
+          = link_to "Produk", products_path
         - if @category.present?
           li
-            a href="/produk/category_id=#{ @category.id }" #{ @category.name }
+            = link_to "#{@category.name}", products_path(category_id: @category.id)
+
   / .grid-flex--no-pad.filter-container
   /   .grid-flex--no-gutter.grid-flex__col--12.filter-type-container
   /     .grid-flex--no-pad

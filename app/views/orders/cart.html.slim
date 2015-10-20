@@ -5,7 +5,7 @@
         li
           = link_to 'Home', root_path
         li
-          a href="/account" Akun
+          = link_to 'Akun', '/akun'
         li
           = link_to 'Keranjang', keranjang_path
   .container
@@ -22,7 +22,7 @@
                   table.table
                     thead
                       tr
-                        th align="center"  Thumbnail
+                        th align="center"  Gambar
                         th Item
                         th Jumlah
                         th Harga
@@ -40,10 +40,7 @@
                               i.fa-btn.btn-red.fa.fa-trash title="delete"
                     tfoot
                       tr
-                        td
-                        td
-                        td
-                        td
+                        td colspan="3"
                           b Total
                         td align="right"
                           b

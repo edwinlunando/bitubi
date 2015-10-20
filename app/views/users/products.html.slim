@@ -38,8 +38,8 @@
                       td align="center"
                         / a href=""
                         /   i.fa-btn.btn-green.fa.fa-money title="set sold"
-                        a href="/dagangan/#{ product.id }/edit"
+                        = link_to "/dagangan/#{ product.id }/edit" do
                           i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                        a href="/dagangan/#{ product.id }/hapus" data-confirm="Hapus produk #{product.name}?"
+                        = link_to "/dagangan/#{ product.id }/hapus", {'data-confirm': "Hapus produk #{product.name}?"} do
                           button.btn-clear type="submit"
                             i.fa-btn.btn-red.fa.fa-trash title="delete"

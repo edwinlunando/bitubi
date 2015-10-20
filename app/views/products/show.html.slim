@@ -1,18 +1,17 @@
-
 .wrapper
   .container
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         li
-          a href="/"  Home
+          = link_to "Home", root_path
         li
-          a href="/produk"  Produk
+          = link_to "Produk", products_path
         - if @product.category.present?
           li
-            a href="/produk?category_id=#{ @product.category.id }"  = @product.category.name
+            = link_to "#{@product.category.name}", "/produk?category_id=#{ @product.category.id }"
         li
-          a href="/produk/#{ @product.slug }"  = @product.name
+          = link_to "#{@product.name}", "/produk/#{ @product.slug }"
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
@@ -37,7 +36,7 @@
               b \
               | Berat:
               span
-                = ' ' + @product.weight.to_s + 'gram'
+                = ' ' + @product.weight.to_s + ' gram'
               b \
               | Harga:
               span
@@ -57,7 +56,7 @@
           - else
             center
               = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-green'
-          br/
+          br
           - if @product.wholesale_prices.present?
             table.table
               thead
@@ -73,4 +72,4 @@
                     td #{ price.price_money }
           p.category-title__detailed-description
             = @product.description.html_safe
-          hr/
+          hr
