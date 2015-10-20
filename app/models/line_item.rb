@@ -15,17 +15,15 @@
 # model to represent an item in an order/cart
 class LineItem < ActiveRecord::Base
 
+  # Relation
   belongs_to :product
   belongs_to :order
-
-  enum purchase_type: [:dropship, :wholesale]
 
   validates :quantity, presence: true, numericality: { greater_than: 0 }
 
   validates_presence_of :product_id
   validates_presence_of :quantity
   validates_presence_of :order_id
-  validates_presence_of :purchase_type
 
   # State
   include AASM
@@ -56,10 +54,9 @@ class LineItem < ActiveRecord::Base
   end
 
   def price_per_quantity
-    if dropship?
+    if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
       product.price_dropship
     else
-      fail Errors::PriceNotFound if product.wholesale_prices.ordered.by_quantity(quantity).count == 0
       product.wholesale_prices.ordered.by_quantity(quantity).first.price
     end
   end
@@ -94,6 +91,10 @@ class LineItem < ActiveRecord::Base
 
   def price
     quantity * price_per_quantity
+  end
+
+  def total
+    price + shipping_cost
   end
 
 end

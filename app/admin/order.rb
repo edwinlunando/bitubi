@@ -28,7 +28,6 @@ ActiveAdmin.register Order do
           line_item.product.name
         end
         row :quantity
-        row :purchase_type
       end
     end
 

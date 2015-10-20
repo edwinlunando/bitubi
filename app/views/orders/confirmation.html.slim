@@ -11,19 +11,7 @@
         li
           a href="/konfirmasi"  Pembayaran
   .container
-    .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li
-              span> 1
-              | Keranjang
-            li
-              span> 2
-              | Data Pemesanan
-            li.current
-              span> 3
-              | Pembayaran
+    == render 'transaction_tabs'
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         .static-title.np-top
@@ -41,7 +29,6 @@
                 tr
                   th align="center"  Thumbnail
                   th Item
-                  th Tipe
                   th Jumlah
                   th Harga
               tbody
@@ -50,7 +37,6 @@
                     td align="center"
                       = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
                     td #{ line_item.product.name }
-                    td #{ line_item.purchase_type }
                     td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
                     td #{ number_format(line_item.price) }
                 - if @order.address.present?
@@ -64,63 +50,9 @@
                   td colspan="3"
                   td
                     b Total
-                  td 
+                  td
                     b #{ number_format(@order.total) }
                 tr
                   td colspan="4"
                   td
                     = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
-
-/ .container
-/   .row
-/     .col-xs-12.col-md-offset-2.col-md-8
-/       .panel.panel-info
-/         .panel-heading
-/           .panel-title
-/             .row
-/               .col-xs-6
-/                 h5
-/                   span.glyphicon.glyphicon-shopping-cart
-/                   | Keranjang Belanja
-/         .panel-body
-/           - @order.line_items.each do |line_item|
-/             .row
-/               .col-xs-2
-/                 = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-/               .col-xs-4
-/                 h4.product-name
-/                   strong #{ line_item.product.name }
-/                 h4
-/                   small #{ line_item.purchase_type }
-/               .col-xs-6
-/                 .col-xs-6.text-right
-/                   h6
-/                     | #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
-/                 .col-xs-4
-/                   h6
-/                     strong #{ number_format(line_item.price) }
-/             hr
-/           - if @order.address.present?
-/             .row
-/               .col-xs-2
-/                 | Ongkos kirim
-/               .col-xs-4
-/                 h4.product-name
-/                   | #{ @order.address.name }
-/                 h4
-/                   small #{ @order.state_shipment_price.shipment_type.display_name }
-/               .col-xs-6
-/                 .col-xs-6.text-right
-/                   h6
-/                     | #{ @order.display_weight } x #{ number_format(@order.state_shipment_price.price) }
-/                 .col-xs-6
-/                   h6
-/                     strong #{ number_format(@order.shipment_price) }
-/         .panel-footer
-/           .row.text-center
-/             .col-xs-8
-/               h4.text-right
-/                 | Total
-/                 strong  #{ number_format(@order.total) }
-/             .col-xs-4
-/               = link_to 'Bayar', finish_path, class: 'btn btn-success btn-block', method: :post

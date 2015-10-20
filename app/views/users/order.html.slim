@@ -1,38 +1,62 @@
-.container
-  .row
-    .col-xs-12.col-md-offset-2.col-md-8
-      .panel.panel-info
-        .panel-heading
-          .panel-title
-            .row
-              .col-xs-6
-                h5
-                  span.glyphicon.glyphicon-shopping-cart
-                  | Order ##{ @order.id }
-              .col-xs-6
-                h5.pull-right
-                  | Status: #{ @order.state }
-        .panel-body
-          - @order.line_items.each do |line_item|
-            .row
-              .col-xs-2
-                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-              .col-xs-4
-                h4.product-name
-                  strong #{ line_item.product.name }
-                h4
-                  small #{ line_item.purchase_type }
-              .col-xs-6
-                .col-xs-6.text-right
-                  h6
-                    | #{ line_item.quantity } x #{ number_to_currency(line_item.price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-                .col-xs-6
-                  h6
-                    strong #{ number_to_currency(line_item.price, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-            hr
-        .panel-footer
-          .row.text-center
-            .col-xs-12
-              h4.text-right
-                | Total
-                strong  #{ number_to_currency(@order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          a href="/"  Home
+        li
+          a href="/pesanan"  Pesanan
+        li
+          a href="/pesanan/#{@order.id}"  Detil
+  .container
+    .grid-flex
+      .grid-flex
+        .grid-flex__col.grid-flex__col-12.transaction-tabs
+          ol
+            li.current
+              span> 1
+              | Cart & Orders
+            li
+              span> 2
+              | Data Peme sanan
+            li
+              span> 3
+              | Pembayaran
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs
+          ul.nav
+            li.nav-one
+              a href="/keranjang"
+                i.fa.fa-shopping-cart
+                span Keranjang
+            li.nav-two
+              a.current href="/pesanan"
+                i.fa.fa-phone
+                span Pesanan
+          .list-wrap
+            .flex-grid
+              .flex-grid__col.flex-grid__col--12
+                h2.darkorange DETIL PESANANMU
+                .table-container
+                  table.table
+                    thead
+                      tr align="center"
+                        th Order Id
+                        th Tanggal Pesan
+                        th Status
+                        th Total
+                    tbody
+                      - if @order.present?
+                        - @order.line_items.each do |line_item|
+                          tr
+                            td
+                              = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                            td #{ line_item.product.name }
+                            td align="right" #{ line_item.quantity } x #{ number_to_currency(line_item.price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                        tr
+                          td colspan="2"
+                          td align="center"
+                            b Total
+                          td align="right"
+                            b #{ number_to_currency(@order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }

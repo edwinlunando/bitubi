@@ -10,25 +10,9 @@
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
-          ul.nav
-            li.nav-one
-              a href="/akun"
-                i.fa.fa-user
-                span Akun
-            li.nav-two
-              = link_to dagangan_path, class: "current" do
-                i.fa.fa-dropbox
-                span Dagangan
-            li.nav-three
-              = link_to sell_path do
-                i.fa.fa-archive
-                span Penjualan
-            li.nav-four
-              = link_to keranjang_path do
-                i.fa.fa-shopping-cart
-                span Cart & Order
+          == render 'tabs'
           .list-wrap
-            h2.darkorange Your Products
+            h2.darkorange Produk Anda
             .table-container
               p
                 = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
@@ -52,10 +36,10 @@
                       td #{ product.weight }
                       td #{ product.unit }
                       td align="center"
-                        a href=""
-                          i.fa-btn.btn-green.fa.fa-money title="set sold"
+                        / a href=""
+                        /   i.fa-btn.btn-green.fa.fa-money title="set sold"
                         a href="/dagangan/#{ product.id }/edit"
                           i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                        form.form-manage action=""
+                        a href="/dagangan/#{ product.id }/hapus" data-confirm="Hapus produk #{product.name}?"
                           button.btn-clear type="submit"
                             i.fa-btn.btn-red.fa.fa-trash title="delete"

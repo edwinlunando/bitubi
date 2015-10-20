@@ -1,0 +1,13 @@
+.grid-flex
+  .grid-flex
+    .grid-flex__col.grid-flex__col-12.transaction-tabs
+      ol
+        li class="#{params[:action] == 'cart' ? 'current' : ''}"
+          span> 1
+          | Keranjang 
+        li class="#{params[:action] == 'address' ? 'current' : ''}"
+          span> 2
+          | Data Pemesanan
+        li class="#{params[:action] == 'confirmation' ? 'current' : ''}"
+          span> 3
+          | Pembayaran

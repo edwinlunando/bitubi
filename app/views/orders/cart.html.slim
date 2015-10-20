@@ -9,33 +9,11 @@
         li
           = link_to 'Keranjang', keranjang_path
   .container
-    .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li.current
-              span> 1
-              | Keranjang
-            li
-              span> 2
-              | Data Pemesanan
-            li
-              span> 3
-              | Pembayaran
+    == render 'transaction_tabs'
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
-          ul.nav
-            li.nav-one
-              a.current href="/keranjang"
-                i.fa.fa-shopping-cart
-                span
-                  = ' Keranjang'
-            li.nav-two
-              a href="/pesanan"
-                i.fa.fa-phone
-                span
-                  = ' Pesanan'
+          == render 'tabs'
           .list-wrap
             .flex-grid
               .flex-grid__col.flex-grid__col--12
@@ -47,7 +25,6 @@
                         th align="center"  Thumbnail
                         th Item
                         th Jumlah
-                        th Tipe
                         th Harga
                         th align="center"  Action
                     tbody
@@ -57,7 +34,6 @@
                             = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                           td #{line_item.product.name}
                           td #{line_item.quantity}
-                          td #{line_item.purchase_type}
                           td align="right" #{ number_format(line_item.price) }
                           td align="center"
                             = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete

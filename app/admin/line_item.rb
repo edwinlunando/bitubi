@@ -8,18 +8,16 @@ ActiveAdmin.register LineItem do
     column :product
     column :quantity
     column :order
-    column :purchase_type
     actions
   end
 
   filter :active
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs 'Admin Details' do
       f.input :product
       f.input :quantity
       f.input :order
-      f.input :purchase_type
     end
     f.actions
   end
