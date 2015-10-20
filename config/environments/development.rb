@@ -47,6 +47,12 @@ Rails.application.configure do
   # mailer
   config.action_mailer.delivery_method = :file
   config.action_mailer.default_url_options = { host: 'localhost' }
+  # config.action_mailer.delivery_method = :mailgun
+  # config.action_mailer.mailgun_settings = {
+  #   api_key: ENV['MAILGUN_API_KEY'],
+  #   domain: ENV['MAILGUN_DOMAIN']
+  # }
+  # config.action_mailer.default_url_options = { host: 'larisni.com' }
 
   config.after_initialize do
     Bullet.enable = true

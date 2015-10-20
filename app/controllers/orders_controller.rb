@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def address
+    return redirect_to saldo_path, notice: 'Saldo Anda kurang!' if @order.valid_with_credit
     if @order.address?
       @order.addressing
       @order.save
