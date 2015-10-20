@@ -53,10 +53,10 @@
                             td
                               = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                             td #{ line_item.product.name }
-                            td align="right" #{ line_item.quantity } x #{ number_to_currency(line_item.price_per_quantity, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                            td align="right" #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
                         tr
                           td colspan="2"
                           td align="center"
                             b Total
                           td align="right"
-                            b #{ number_to_currency(@order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                            b #{ number_format(@order.total) }

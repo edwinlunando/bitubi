@@ -1,26 +1,3 @@
-/ .container.home-container
-/   .row
-/     .col-md-3
-/       .row
-/         .col-xs-12
-/           = simple_form_for('', url: products_path, method: :get) do |f|
-/             = f.input :q, input_html: { value: params[:q] }, label: false, placeholder: 'Cari barang'
-/             = f.submit 'Cari', class: 'btn btn-primary btn-block'
-/       br
-/       .row
-/         .col-xs-12
-/           .list-group
-/             - @categories.each do |category|
-/               a.list-group-item href='#{ products_path(category_id: category.id) }'
-/                 = category.name
-/     .col-md-9
-/       .row
-        / - @products.each do |product|
-        /   = render 'products/card', product: product
-/       .row
-/         .col-md-12.text-center
-/           = paginate @products
-
 .wrapper
   .section-surfari-home.slider data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
     .banner-item
