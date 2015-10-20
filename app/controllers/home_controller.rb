@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def index
     @categories = Category.all
-    @products = Product.page(params[:page])
+    @products = Product.includes(:product_images, :category).page(params[:page])
     render controller: :products, action: :index
   end
 

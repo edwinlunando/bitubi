@@ -87,6 +87,8 @@ gem 'mail_form'
 gem 'breadcrumbs_on_rails'
 # mailgun
 gem 'mailgun_rails'
+# performance monitoring
+gem 'newrelic_rpm'
 
 group :development, :test do
 
