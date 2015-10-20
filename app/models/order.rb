@@ -96,4 +96,8 @@ class Order < ActiveRecord::Base
     weight * state_shipment_price.price
   end
 
+  def valid_with_credit
+    user.credit < total
+  end
+
 end

@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1 Saldo larisni.com Anda sudah bertambah, #{ @user.email }
+    p
+      | Anda berhasil daftar
+      br/
+    p
+      | Untuk login, ikuti tautan berikut: #{ link_to 'Login', new_user_session_url }.
+    p Terima kasih!

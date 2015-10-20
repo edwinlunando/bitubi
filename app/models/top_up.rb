@@ -11,7 +11,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
 # every user top up to bank
 class TopUp < ActiveRecord::Base
 
@@ -20,11 +19,11 @@ class TopUp < ActiveRecord::Base
   validates_presence_of :name, :amount, :bank
 
   def approve
-    if !self.approved
+    if !approved
       self.approved = true
-      self.save
-      self.user.credit += self.amount
-      self.user.save
+      save
+      user.credit += amount
+      user.save
       return true
     else
       return false
