@@ -106,6 +106,9 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rvm'
 
+  # performance
+  gem 'bullet'
+
 end
 
 group :test do

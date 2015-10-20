@@ -4,7 +4,7 @@
     .grid-flex__col.grid-flex__col--4
       label.form-label/
       h3 Data
-      = f.input :category, label: 'Kategori'
+      = f.association :category, label: 'Kategori'
       = f.input :name, label: 'Nama'
       = f.input :description, label: 'Deskripsi'
       = f.input :unit, label: 'Satuan'
