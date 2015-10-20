@@ -1,20 +1,3 @@
-/ .container
-/   .row
-/     .col-md-4
-/       .row
-/         .col-md-12
-/           p Saldo kamu: #{ number_format(current_user.credit) }
-/       .row
-/         .col-md-12
-/           p BCA: 1283 812 7389
-/     .col-md-4
-/       h1 Top Up
-/       = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
-/         = f.input :name
-/         = f.input :amount
-/         = f.input :bank, collection: TopUp.bank_list, input_html: { class: 'selectize' }
-/         = f.submit 'Isi Saldo', class: 'btn btn-primary'
-
 .wrapper
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
@@ -83,7 +66,7 @@
                     tbody
                       - current_user.top_ups.each do |top_up|
                         tr
-                          td #{ top_up.created_at }
+                          td #{ top_up.created_at.strftime("%d %B %Y") }
                           td #{ number_format(top_up.amount) }
                           td #{ top_up.bank }
                           td #{ top_up.approved ? 'Ya' : 'Tidak' }

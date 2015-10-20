@@ -48,4 +48,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :file
   config.action_mailer.default_url_options = { host: 'localhost' }
 
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
+
 end

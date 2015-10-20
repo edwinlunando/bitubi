@@ -85,6 +85,8 @@ gem 'high_voltage', '~> 2.4.0'
 gem 'mail_form'
 # breadcrumps
 gem 'breadcrumbs_on_rails'
+# mailgun
+gem 'mailgun_rails'
 
 group :development, :test do
 
@@ -103,6 +105,9 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
   gem 'capistrano-rvm'
+
+  # performance
+  gem 'bullet'
 
 end
 

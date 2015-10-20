@@ -1,22 +1,3 @@
-/ .container
-/   .row.col-md-8.col-md-offset-2.custyle
-/     table.table.table-striped.custab
-/       thead
-/         tr
-/           th ID
-/           th Tanggal Pesan
-/           th State
-/           th Total
-/           th.text-center
-/       - @orders.each_with_index do |order, index|
-/         tr
-/           td #{ order.id }
-/           td #{ order.created_at }
-/           td #{ order.state }
-/           td #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-/           td.text-center
-/             = link_to 'Detil', order_detail_path(order), class: 'btn btn-info btn-xs'
-
 .wrapper
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
@@ -32,11 +13,11 @@
         #surfari-tabs
           ul.nav
             li.nav-one
-              a href="/keranjang" 
+              a href="/keranjang"
                 i.fa.fa-shopping-cart
                 span Keranjang
             li.nav-two
-              a.current href="/pesanan" 
+              a.current href="/pesanan"
                 i.fa.fa-phone
                 span Pesanan
           .list-wrap
@@ -46,7 +27,7 @@
                 .table-container
                   table.table
                     thead
-                      tr align="center" 
+                      tr align="center"
                         th Order Id
                         th Tanggal Pesan
                         th Status
@@ -60,6 +41,6 @@
                             td #{ order.created_at }
                             td #{ order.state }
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
-                            td align="center" 
+                            td align="center"
                               a.btn-clear.fa-btn.btn-green href="/pesanan/#{order.id}"
-                                i.fa.fa-folder-open title="view" 
+                                i.fa.fa-folder-open title="view"
