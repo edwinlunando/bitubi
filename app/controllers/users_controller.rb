@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def account
+    @user = current_user
+  end
+
   def topup
     @top_up = TopUp.new
   end

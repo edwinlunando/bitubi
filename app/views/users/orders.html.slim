@@ -11,15 +11,7 @@
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
-          ul.nav
-            li.nav-one
-              = link_to keranjang_path do
-                i.fa.fa-shopping-cart
-                span Keranjang
-            li.nav-two
-              = link_to pesanan_path do
-                i.fa.fa-phone
-                span Pesanan
+          == render 'tabs2'
           .list-wrap
             .flex-grid
               .flex-grid__col.flex-grid__col--12
