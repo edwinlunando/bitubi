@@ -232,20 +232,30 @@
             function slider() {
                 slider = $('.slider');
                 for (var i in slider)  {
-                    var config =  slider.eq(i).data('slick');
-                    console.log(config);
-                    if(slider.eq(i).hasClass('rsp')) {
+                	var newslider = slider.eq(i);
+                    var config =  newslider.data('slick');
+                	var container = '.'+slider.eq(i).parent().attr('class').replace(' ', '.');
+                	container = $(container);                	
+                    if(newslider.hasClass('rsp')) {
                         config.responsive = [
                             {
                             breakpoint: 480,
                                 settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1
+	                                slidesToShow: 1,
+	                                slidesToScroll: 1
+	                                // variableWidth: false
                                 }
                             }
                         ];
                     } 
-                    slider.eq(i).slick(config);
+                    // newslider.width(container.width());
+                    // slider.eq(i).remove();
+                	newslider.slick(config);
+                  //   if (container.hasClass('scap')){
+                		// container.append(newslider);
+                  //   } else {
+                  //   	container.prepend(newslider);
+                  //   }
                 }
             }
         },

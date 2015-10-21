@@ -1,26 +1,26 @@
-.wrapper
-  .section-surfari-home.slider data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
+.wrapper.scpp
+  .section-surfari-home.slider.mg-bot-sm data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "lazyLoad": "ondemand", "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
     .banner-item
       a href=""
-        img.lazy alt="" data-original="/assets/img/bg-main.jpg" /
+        img alt="" src="/assets/img/bg-main.jpg" /
     .banner-item
       a href=""
-        img.lazy alt="" data-original="/assets/img/bg-sm-transport.jpg" /
+        img alt="" src="/assets/img/bg-sm-transport.jpg" /
     .banner-item
       a href=""
-        img.lazy alt="" data-original="/assets/img/bg-sm-foodntools.jpg" /
-  div
+        img alt="" src="/assets/img/bg-sm-foodntools.jpg" /
+  .scap
     center
-      h3.orange.clear-pm Produk berdasarkan kategori
-  .slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 1, "infinite": true}'
-    - @categories.each do |category|
-      .slide-category
-        a href='#{ products_path(category_id: category.id) }'
-          .slide-category__icon
-            i.menu-icon
-              img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
-          .slide-category__name
-            = category.name
+      h3.orange Produk berdasarkan kategori
+    .category-slider.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 2, "infinite": true}'
+      - @categories.each do |category|
+        .slide-category
+          a href='#{ products_path(category_id: category.id) }'
+            .slide-category__icon
+              i.menu-icon
+                img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+            .slide-category__name
+              = category.name
           / ul.breadcrumb
           /   li.mid-menu-breadcrumb--displayer
           /     span Kategori

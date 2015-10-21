@@ -26,7 +26,7 @@
 	.banner-item {
 		display: block;
 		@media #{$medium} {
-			min-height: 468px;
+			min-height: 420px;
 		}
 		min-height: 200px;
 	}
@@ -165,4 +165,12 @@
 			text-align: center;
 		}
 	}
+}
+
+.slider{
+	visibility: hidden;
+}
+
+.slick-initialized {
+	visibility: visible !important;
 }
