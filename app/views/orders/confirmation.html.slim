@@ -40,19 +40,20 @@
                     td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
                     td #{ number_format(line_item.price) }
                 - if @order.address.present?
-                  tr.highlight-info
-                    td align="center" colspan="2"  Pengiriman
-                    td #{ @order.state_shipment_price.shipment_type.display_name }
+                  tr
+                    td
+                    td align="center" 
+                      b Pengiriman #{ @order.state_shipment_price.shipment_type.display_name }
                     td #{ number_format(@order.display_weight*@order.state_shipment_price.price) }
                     td #{ number_format(@order.shipment_price) }
               tfoot
-                tr
-                  td colspan="3"
+                tr.highlight-info
+                  td colspan="2"
                   td
                     b Total
                   td
                     b #{ number_format(@order.total) }
                 tr
-                  td colspan="4"
+                  td colspan="3"
                   td
                     = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}

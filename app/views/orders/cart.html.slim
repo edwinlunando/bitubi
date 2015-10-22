@@ -9,7 +9,6 @@
         li
           = link_to 'Keranjang', keranjang_path
   .container
-    == render 'transaction_tabs'
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
@@ -39,8 +38,8 @@
                             = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete
                               i.fa-btn.btn-red.fa.fa-trash title="delete"
                     tfoot
-                      tr
-                        td colspan="3"
+                      tr.highlight-info
+                        td colspan="3" align="right"
                           b Total
                         td align="right"
                           b
@@ -48,5 +47,5 @@
                         td align="center"
                           = link_to alamat_path, class: 'btn btn-green'
                             i.fa.fa-money
-                              |  Checkout
+                            |  Checkout
 
