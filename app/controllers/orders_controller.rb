@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
       return render action: :address
     end
     @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
+    @order.addressing
     @order.address = @address
     @order.state_shipment_price = @shipment_price
     # todo transaction
@@ -37,10 +38,6 @@ class OrdersController < ApplicationController
 
   def address
     return redirect_to saldo_path, notice: 'Saldo Anda kurang!' if @order.valid_with_credit
-    if @order.address?
-      @order.addressing
-      @order.save
-    end
 
     @address = Address.new
   end

@@ -18,8 +18,7 @@
                 label.form-label/
                 h3 Perbarui Data
                 = f.association :category, label: 'Kategori'
-                = f.input :username, label: 'Nama'
-                = f.input :email, label: 'Deskripsi'
+                = f.input :email, label: 'Email'
                 = f.submit 'Simpan', class: 'btn btn-green'
                 = link_to 'Batal', products_path, class: 'btn btn-orange'
 

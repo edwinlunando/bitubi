@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :line_items, through: :orders
   has_many :products
   has_many :orders
   has_many :top_ups
