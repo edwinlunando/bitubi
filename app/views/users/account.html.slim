@@ -8,16 +8,21 @@
           = link_to 'Akun', account_path
   .container
     .grid-flex
-      .grid-flex__col.grid-flex__col--12
-        form.form__row action=""
+      .grid-flex__col.grid-flex__col--4
+      .grid-flex__col.grid-flex__col--4
+        center
           h2.orange Akun
-          .grid-flex
-            = simple_form_for @user, url: account_update_path do |f|
+        = simple_form_for @user, url: account_update_path do |f|
+          .form-input--error-message
+            b
               = f.error_notification
-              .grid-flex__col.grid-flex__col--12
-                label.form-label/
-                h3 Perbarui Data
-                = f.input :email, label: 'Email'
-                = f.submit 'Simpan', class: 'btn btn-green'
-                = link_to 'Batal', products_path, class: 'btn btn-orange'
-
+          label.form-label/
+          = f.input :email, label: 'Email'
+          = f.input :password, label: 'Password'
+          = f.input :phone_number, label: 'Phone Number'
+          br/
+          = f.submit 'Simpan', class: 'btn btn-green'
+          = link_to 'Batal', products_path, class: 'btn btn-orange'
+          br/
+          br/
+      .grid-flex__col.grid-flex__col--4
