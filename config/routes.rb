@@ -146,6 +146,7 @@ Rails.application.routes.draw do
   post 'akun/simpan' => 'users#change_profile', as: 'account_update'
   get 'penjualan' => 'users#sell', as: 'sell'
   get 'dagangan' => 'users#products'
+  post 'dagangan' => 'users#create_product', as: 'create_sell'
   get 'dagangan/baru' => 'users#new_product', as: 'new_sell'
   get 'dagangan/:id/hapus' => 'users#new_product', as: 'delete_sell'
   get 'dagangan/:id/edit' => 'users#edit_product', as: 'edit_sell'

@@ -1,4 +1,4 @@
-= simple_nested_form_for @product do |f|
+= simple_nested_form_for @product, url: create_sell_path do |f|
   .grid-flex
     = f.error_notification
     .grid-flex__col.grid-flex__col--4
@@ -9,17 +9,18 @@
       = f.input :description, label: 'Deskripsi'
       = f.input :unit, label: 'Satuan'
       = f.input :weight, label: 'Berat'
+      = f.input :stock, label: 'Stok'
     .grid-flex__col.grid-flex__col--4
-      label.form-label for="product-img" /
+      label.form-label for="product-img"
       h3 Gambar
       div
         = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
         = f.fields_for :product_images do |img|
-          img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200" /
-          br/
+          img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+          br
           = img.input :data, label: false, input_html: {id: 'prod-img'}
-          br/
-          hr/
+          br
+          hr
           / input#prod-img.form-input.form-input--block name="profpic" type="file" /
     .grid-flex__col.grid-flex__col--4
       label.form-label/
