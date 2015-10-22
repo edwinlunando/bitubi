@@ -235,7 +235,7 @@
                 	var newslider = slider.eq(i);
                     var config =  newslider.data('slick');
                 	// var container = '.'+slider.eq(i).parent().attr('class').replace(' ', '.');
-                	container = $(container);                	
+                	// container = $(container);                	
                     if(newslider.hasClass('rsp')) {
                         config.responsive = [
                             {
