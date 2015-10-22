@@ -10,19 +10,6 @@
           = link_to "Detil", "/pesanan/#{@order.id}"
   .container
     .grid-flex
-      .grid-flex
-        .grid-flex__col.grid-flex__col-12.transaction-tabs
-          ol
-            li.current
-              span> 1
-              | Cart & Orders
-            li
-              span> 2
-              | Data Peme sanan
-            li
-              span> 3
-              | Pembayaran
-    .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           ul.nav
@@ -37,26 +24,30 @@
           .list-wrap
             .flex-grid
               .flex-grid__col.flex-grid__col--12
-                h2.darkorange DETIL PESANANMU
+                h2.darkorange DETIL PESANANMU : Order - #{ @order.id }
                 .table-container
                   table.table
                     thead
                       tr align="center"
-                        th Order Id
-                        th Tanggal Pesan
+                        th Gambar
+                        th Nama
                         th Status
-                        th Total
+                        th Ongkos Kirim
+                        th Jumlah
+                        th Harga Total
                     tbody
                       - if @order.present?
                         - @order.line_items.each do |line_item|
                           tr
-                            td
+                            td align="center"
                               = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                             td #{ line_item.product.name }
                             td align="center" #{ line_item.state }
-                            td align="right" #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
+                            td align="center" #{ number_format(line_item.shipping_cost) }
+                            td align="center" #{ line_item.quantity }
+                            td align="right" #{ number_format(line_item.price) }
                         tr.highlight-info
-                          td colspan="2"
+                          td colspan="4"
                           td align="center"
                             b Total
                           td align="right"

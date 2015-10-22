@@ -174,3 +174,7 @@
 .slick-initialized {
 	visibility: visible !important;
 }
+
+.slide.slick-initialized .slick-slide {
+	width: inherit;
+}

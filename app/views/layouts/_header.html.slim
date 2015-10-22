@@ -35,7 +35,8 @@ header.header-main
             li
               a
                 i.fa.fa-money.fa-lg
-                  span  - #{ number_format(current_user.credit) }
+                '
+                span - #{ number_format(current_user.credit) }
             li
               = link_to 'Tambah Saldo', saldo_path
       dt

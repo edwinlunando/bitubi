@@ -56,5 +56,6 @@
                       td
                         input.form-input
                       td align="center"
-                        = link_to line_items_ship_path(line_item), method: :post
-                          i.fa-btn.btn-green.fa.fa-truck title="kirim" kirim
+                        = link_to line_items_ship_path(line_item), method: :post, class: 'fa-btn btn-green'
+                          i.fa.fa-truck title="kirim" 
+                          |  kirim
