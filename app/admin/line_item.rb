@@ -7,17 +7,20 @@ ActiveAdmin.register LineItem do
     id_column
     column :product
     column :quantity
+    column :receipt_number
     column :order
     actions
   end
 
-  filter :active
+  filter :order, member_label: :id
+  filter :reciept_number
 
   form do |f|
     f.inputs 'Admin Details' do
       f.input :product
       f.input :quantity
-      f.input :order
+      f.input :receipt_number
+      f.input :order, member_label: :id
     end
     f.actions
   end

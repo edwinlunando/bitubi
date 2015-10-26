@@ -38,6 +38,13 @@ class UsersController < ApplicationController
     @product = Product.new
   end
 
+  def create_product
+    @product = Product.new(product_params)
+    @product.user = current_user
+    return redirect_to dagangan_path if @product.save
+    render :new_product
+  end
+
   def edit_product
     @product = Product.find(params[:id])
   end
@@ -50,6 +57,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def product_params
+    params.require(:product).permit(:name, :slug, :stock, :description, :category_id, :unit, :weight, :price_dropship,
+                                    wholesale_prices_attributes: [:id, :price, :minimum_quantity, :maximum_quantity, :_destroy],
+                                    product_images_attributes: [:id, :data, :_destroy])
+  end
 
   def top_up_params
     params.require(:top_up).permit(:name, :amount, :bank)
