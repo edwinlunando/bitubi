@@ -3,15 +3,8 @@
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
-        li
-          = link_to "Home", root_path
-        li
-          = link_to "Produk", products_path
-        - if @product.category.present?
-          li
-            = link_to "#{@product.category.name}", "/produk?category_id=#{ @product.category.id }"
-        li
-          = link_to "#{@product.name}", "/produk/#{ @product.slug }"
+        == render_breadcrumbs tag: :li, separator: ''
+        li #{@product.name}
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
