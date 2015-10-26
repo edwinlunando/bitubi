@@ -2,22 +2,21 @@
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
-        li
-          = link_to 'Home', root_path
-        li
-          = link_to 'Akun', account_path
+        == render_breadcrumbs tag: :li, separator: ''
   .container
     .grid-flex
-      .grid-flex__col.grid-flex__col--12
-        form.form__row action=""
+      .grid-flex__col.grid-flex__col--4
+      .grid-flex__col.grid-flex__col--4
+        center
           h2.orange Akun
-          .grid-flex
-            = simple_form_for @user, url: account_update_path do |f|
+        = simple_form_for current_user, url: account_update_path, method: :post do |f|
+          .form-input--error-message
+            b
               = f.error_notification
-              .grid-flex__col.grid-flex__col--12
-                label.form-label/
-                h3 Perbarui Data
-                = f.input :email, label: 'Email'
-                = f.submit 'Simpan', class: 'btn btn-green'
-                = link_to 'Batal', products_path, class: 'btn btn-orange'
-
+          label.form-label/
+          = f.input :email, label: 'Email'
+          = f.input :phone_number, label: 'Nomor telepon'
+          br/
+          = f.submit 'Simpan', class: 'btn btn-green'
+          br/
+      .grid-flex__col.grid-flex__col--4

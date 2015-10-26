@@ -4,6 +4,9 @@ class ProductsController < InheritedResources::Base
   before_action :authenticate_user!, only: [:add_to_cart]
 
   def index
+    add_breadcrumb "Home", :root_path
+    add_breadcrumb "Produk", :products_path
+
     @categories = Category.all
     products = Product.all
     if params[:q].present?
@@ -17,6 +20,9 @@ class ProductsController < InheritedResources::Base
   end
 
   def show
+    add_breadcrumb "Home", :root_path
+    add_breadcrumb "Produk", :products_path
+    
     @product = Product.friendly.find(params[:id])
     @line_item = LineItem.new
   end

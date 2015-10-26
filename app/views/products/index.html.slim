@@ -17,13 +17,10 @@
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12
       ul.breadcrumb
-        li
-          = link_to "Home", root_path
-        li
-          = link_to "Produk", products_path
+        == render_breadcrumbs tag: :li, separator: ''
         - if @category.present?
           li
-            = link_to "#{@category.name}", products_path(category_id: @category.id)
+            ="#{@category.name}"
 
   / .grid-flex--no-pad.filter-container
   /   .grid-flex--no-gutter.grid-flex__col--12.filter-type-container

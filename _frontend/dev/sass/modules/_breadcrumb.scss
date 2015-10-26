@@ -143,6 +143,7 @@ $bread_separator    : '';
         width: auto;
         text-align: center;
         li {
+            text-transform: uppercase;
             a {
                 font-size: .75em;
                 @media #{$large} {
@@ -150,7 +151,6 @@ $bread_separator    : '';
                 }
                 @include animate-transition(.25s);
                 color: $black70;
-                text-transform: uppercase;
                 font-weight: bold;
                 &:hover {
                     color: $darkorange;
@@ -158,6 +158,10 @@ $bread_separator    : '';
             }
             &:first-child:after {
                 content: '';
+            }
+            &:last-child {
+                font-weight: bold;
+                color: $darkorange;
             }
         }
     }

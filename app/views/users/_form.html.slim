@@ -1,6 +1,8 @@
 = simple_nested_form_for @product, url: create_sell_path do |f|
+  .form-input--error-message
+    b
+      = f.error_notification
   .grid-flex
-    = f.error_notification
     .grid-flex__col.grid-flex__col--4
       label.form-label/
       h3 Data
@@ -11,7 +13,7 @@
       = f.input :weight, label: 'Berat'
       = f.input :stock, label: 'Stok'
     .grid-flex__col.grid-flex__col--4
-      label.form-label for="product-img"
+      label.form-label/
       h3 Gambar
       div
         = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'

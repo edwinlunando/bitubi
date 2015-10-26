@@ -12,6 +12,10 @@ class OrdersController < ApplicationController
   end
 
   def cart
+    add_breadcrumb "Home", :root_path
+    add_breadcrumb "Akun", :account_path
+    add_breadcrumb "Keranjang", :keranjang_path
+
     if @order.cart?
       @order.checkout
       @order.save
@@ -37,12 +41,20 @@ class OrdersController < ApplicationController
   end
 
   def address
+    add_breadcrumb "Home", :root_path
+    add_breadcrumb "Keranjang", :keranjang_path
+    add_breadcrumb "Alamat Kirim", :alamat_path
+
     return redirect_to saldo_path, notice: 'Saldo Anda kurang!' if @order.valid_with_credit
 
     @address = Address.new
   end
 
   def confirmation
+    add_breadcrumb "Home", :root_path
+    add_breadcrumb "Keranjang", :keranjang_path
+    add_breadcrumb "Alamat Kirim", :alamat_path
+    add_breadcrumb "Pembayaran", :konfirmasi_path
   end
 
   def finish
