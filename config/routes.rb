@@ -143,7 +143,7 @@ Rails.application.routes.draw do
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
   get 'akun' => 'users#account', as: 'account'
-  post 'akun/simpan' => 'users#change_profile', as: 'account_update'
+  post 'akun/simpan' => 'users#account_edit', as: 'account_update'
   get 'penjualan' => 'users#sell', as: 'sell'
   get 'dagangan' => 'users#products'
   post 'dagangan' => 'users#create_product', as: 'create_sell'
