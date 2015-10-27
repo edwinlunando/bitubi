@@ -19,9 +19,13 @@
         = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
         = f.fields_for :product_images do |img|
           img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
-          br
+          br/
           = img.input :data, label: false, input_html: {id: 'prod-img'}
-          br
+          br/
+          = img.link_to_remove class: 'btn' do
+            i.fa.fa-trash
+          br/
+          br/
           hr
     .grid-flex__col.grid-flex__col--4
       label.form-label/
@@ -31,16 +35,31 @@
       br/
       hr/
       h3 Harga Grosir
+      - if !@product.wholesale_prices.present?
+        div
+          = f.fields_for :wholesale_prices, WholesalePrice.new do |wp|
+            = wp.input :id, as: :hidden
+            = wp.input :price, placeholder: 'harga satuan dalam IDR'
+            = wp.input :minimum_quantity
+            = wp.input :maximum_quantity
+            end
+            br/
+            br/
+            hr/
       div
-        = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
         = f.fields_for :wholesale_prices do |wholesale_price|
           = wholesale_price.input :id, as: :hidden
           = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR'
           = wholesale_price.input :minimum_quantity
           = wholesale_price.input :maximum_quantity
           br/
+          = wholesale_price.link_to_remove class: 'btn' do
+            i.fa.fa-trash
+          end
+          br/
           br/
           hr/
+        = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
     .grid-flex
     .grid-flex__col.grid-flex__col--12
       = f.submit 'Simpan', class: 'btn btn-green'
