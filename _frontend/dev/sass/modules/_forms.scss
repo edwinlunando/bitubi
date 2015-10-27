@@ -22,6 +22,8 @@ $input_bg               : #fff;
 }
 
 .form-input {
+    border-radius: 0;
+    min-height: 36px;
     padding: $input_padding;
     border: solid $input_border_size $input_border_color;
     font-family: inherit;
