@@ -158,6 +158,7 @@ Rails.application.routes.draw do
   get 'konfirmasi' => 'orders#confirmation'
   post 'konfirmasi' => 'orders#finish', as: 'finish'
   get 'tentang' => 'high_voltage/pages#show', id: 'about'
+  get 'faq' => 'high_voltage/pages#show', id: 'faq'
   get 'aturan' => 'high_voltage/pages#show', id: 'terms_and_condition'
   get 'kontak' => 'home#contact'
   post 'kontak/kirim' => 'home#send_contact', as: 'send_contact'
