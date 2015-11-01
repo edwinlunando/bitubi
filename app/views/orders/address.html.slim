@@ -1,15 +1,3 @@
-/ .container
-/   .row
-/     .col-md-4.col-md-offset-4
-/       h1 Alamat Pengiriman
-/       = simple_form_for(@address, url: addressing_path, html: { class: '' }) do |f|
-/         = f.input :province, collection: Province.all, label: 'Provinsi'
-/         = f.input :city, collection: City.all, label: 'Kota'
-/         = f.association :state, collection: nil, label: 'Kecamatan'
-/         = f.input :shipment_type, collection: ShipmentType.all, label_method: lambda { |shipment_type| shipment_type.display_name }, label: 'Jenis pengiriman'
-/         = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text
-/         = f.submit 'Bayar', class: 'btn btn-primary btn-block'
-
 .wrapper
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
@@ -31,6 +19,9 @@
             = f.association :state, collection: State.all, label: 'Kecamatan', include_blank: 'Pilih wilayah'
             = f.input :shipment_type, collection: ShipmentType.all, label_method: lambda { |shipment_type| shipment_type.display_name }, label: 'Jenis pengiriman', include_blank: 'Pilih pengiriman'
             = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text, input_html: {rows: 4}
+            = f.input :receiver_name, label: 'Nama penerima'
+            = f.input :receiver_phone, label: 'Ponsel penerima'
+            = f.input :sender_name, label: 'Nama pengirim'
             br/
             center
               button.btn.btn-green type="submit"  Bayar

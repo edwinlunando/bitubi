@@ -67,6 +67,10 @@ class Order < ActiveRecord::Base
 
   end
 
+  def same_vendor?(line_item)
+    suppliers.ids.include?(line_item.product.user_id)
+  end
+
   def total_without_shipment
     line_items.inject(0) { |result, element| result + element.price }
   end

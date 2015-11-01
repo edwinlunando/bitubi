@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
     id_column
     column :name
     column :slug
+    column :user
     actions
   end
 
