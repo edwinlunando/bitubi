@@ -19,9 +19,12 @@
             .grid-flex__col.grid-flex__col--6
               div
                 h3.darkorange Top Up Form
-                = simple_form_for(@top_up, url: tambah_saldo_path, html: {class: 'wallet-form'}) do |f|
-                  = f.input :name, input_html: {placeholder: 'nama'}, label: 'Nama'
-                  = f.input :amount, input_html: {placeholder: 'jumlah'}, label: 'Jumlah'
+                = simple_form_for(@top_up, url: tambah_saldo_path, html: { class: 'wallet-form' }) do |f|
+                  = f.input :name, input_html: { placeholder: 'nama' }, label: 'Nama'
+                  - if current_user.verified
+                    = f.input :amount, input_html: { placeholder: 'jumlah' }, label: 'Jumlah'
+                  - else
+                    = f.input :amount, input_html: { placeholder: 'jumlah', readonly: true }, label: 'Jumlah'
                   = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
                   br/
                   button.btn.btn-green type="submit"  Bayar

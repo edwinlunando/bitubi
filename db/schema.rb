@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101054804) do
+ActiveRecord::Schema.define(version: 20151101071710) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20151101054804) do
     t.datetime "updated_at",                 null: false
     t.string   "receiver_name",  limit: 255
     t.string   "receiver_phone", limit: 255
-    t.string   "string",         limit: 255
     t.string   "sender_name",    limit: 255
+    t.string   "sender_phone",   limit: 255
   end
 
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20151101054804) do
     t.decimal  "credit",                             precision: 10, default: 0
     t.integer  "supplier_id",            limit: 4
     t.boolean  "active",                                            default: true
+    t.boolean  "verified"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

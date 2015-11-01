@@ -26,6 +26,8 @@ class UsersController < ApplicationController
 
   def topup
     @top_up = TopUp.new
+
+    @top_up.amount = 500_000 unless current_user.verified
   end
 
   def orders
