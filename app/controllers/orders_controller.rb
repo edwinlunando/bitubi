@@ -12,9 +12,9 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    add_breadcrumb "Home", :root_path
-    add_breadcrumb "Akun", :account_path
-    add_breadcrumb "Keranjang", :keranjang_path
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
+    add_breadcrumb 'Keranjang', :keranjang_path
 
     if @order.cart?
       @order.checkout
@@ -29,10 +29,10 @@ class OrdersController < ApplicationController
       return render action: :address
     end
     @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
-    @order.addressing
+    @order.state = 'payment'
     @order.address = @address
     @order.state_shipment_price = @shipment_price
-    # todo transaction
+    # TODO: transaction
     if @order.save
       redirect_to konfirmasi_path
     else
@@ -41,9 +41,9 @@ class OrdersController < ApplicationController
   end
 
   def address
-    add_breadcrumb "Home", :root_path
-    add_breadcrumb "Keranjang", :keranjang_path
-    add_breadcrumb "Alamat Kirim", :alamat_path
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Keranjang', :keranjang_path
+    add_breadcrumb 'Alamat Kirim', :alamat_path
 
     return redirect_to saldo_path, notice: 'Saldo Anda kurang!' if @order.valid_with_credit
 
@@ -51,10 +51,10 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    add_breadcrumb "Home", :root_path
-    add_breadcrumb "Keranjang", :keranjang_path
-    add_breadcrumb "Alamat Kirim", :alamat_path
-    add_breadcrumb "Pembayaran", :konfirmasi_path
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Keranjang', :keranjang_path
+    add_breadcrumb 'Alamat Kirim', :alamat_path
+    add_breadcrumb 'Pembayaran', :konfirmasi_path
   end
 
   def finish
@@ -78,7 +78,8 @@ class OrdersController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type)
+    params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type, :receiver_name,
+                                    :receiver_phone, :sender_name)
   end
 
   def set_last_order

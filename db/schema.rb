@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021141915) do
+ActiveRecord::Schema.define(version: 20151101054804) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "state_id",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",           limit: 255
+    t.integer  "state_id",       limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "receiver_name",  limit: 255
+    t.string   "receiver_phone", limit: 255
+    t.string   "string",         limit: 255
+    t.string   "sender_name",    limit: 255
   end
 
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
