@@ -18,34 +18,30 @@
                       th Order Id
                       th Pembeli
                       th Alamat
-                      th Jumlah Item
-                      th Status
                       th Harga
                       th Ongkir
                       th Total
                       th Action
                   tbody
-                  - @line_items.each do |line_item|
+                  - @orders.each do |order|
                     tr align="center"
-                      td #{ line_item.order.id }
-                      td #{ line_item.order.user.email }
-                      td #{ line_item.order.address.one_line }
-                      td #{ line_item.quantity  }
-                      td #{ line_item.state }
-                      td align="right"  #{ number_format(line_item.price) }
-                      td #{ number_format(line_item.shipping_cost) }
-                      td #{ number_format(line_item.total) }
+                      td #{ order.id }
+                      td #{ order.user.email }
+                      td #{ order.address.one_line }
+                      td align="right"  #{ number_format(order.total_without_shipment) }
+                      td #{ number_format(order.shipment_price) }
+                      td #{ number_format(order.total) }
                       td align="center"
-                        - if line_item.confirm?
-                          = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
-                            i.fa-btn.btn-black.fa.fa-check title="view"
-                        - if line_item.delivery?
-                          - @order_target = "order#{line_item.order.id}"
-                          span.order-expandable data-target="#{@order_target}"
-                            i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
-                        - unless line_item.failed?
-                          = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
-                            i.fa-btn.btn-red.fa.fa-ban title="batalkan"
+                        / - if line_item.confirm?
+                        /   = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
+                        /     i.fa-btn.btn-black.fa.fa-check title="view"
+                        / - if line_item.delivery?
+                        /   - @order_target = "order#{line_item.order.id}"
+                        /   span.order-expandable data-target="#{@order_target}"
+                        /     i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
+                        / - unless line_item.failed?
+                        /   = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
+                        /     i.fa-btn.btn-red.fa.fa-ban title="batalkan"
                     tr.highlight-info id="#{@order_target}" style="display:none"
                       td colspan="6"
                       td
@@ -53,6 +49,6 @@
                       td
                         input.form-input
                       td align="center"
-                        = link_to line_items_ship_path(line_item), method: :post, class: 'fa-btn btn-green'
-                          i.fa.fa-truck title="kirim"
-                          |  kirim
+                        / = link_to line_items_ship_path(line_item), method: :post, class: 'fa-btn btn-green'
+                        /   i.fa.fa-truck title="kirim"
+                        /   |  kirim
