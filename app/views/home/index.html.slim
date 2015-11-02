@@ -1,5 +1,5 @@
 .wrapper.scpp
-  .section-surfari-home.slider.mg-bot-sm data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "lazyLoad": "ondemand", "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
+  .clear-pm.section-surfari-home.slider data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "lazyLoad": "ondemand", "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
     .banner-item
       a href=""
         img alt="" src="/assets/img/bg-main.jpg" /
@@ -9,9 +9,58 @@
     .banner-item
       a href=""
         img alt="" src="/assets/img/bg-sm-foodntools.jpg" /
+  .container.bg-dg
+    .grid-flex__col.grid-flex__col--12
+      .category-title__title.mg-20
+        center.cta-call
+          | Ciptakan bisnismu sendiri dengan
+          = link_to 'BERGABUNG', daftar_path, {class: 'btn btn-green cta-btn'}
+          | bersama kami di LARISNI
+          p.cta-sm
+            | atau 
+            = link_to 'Masuk', daftar_path, {class: 'btn btn-orange cta-btn'}
+            | dan mulai berbisnis
+  
+  .parallax-container.wrapper
+    section
+      .parallax-one style="background-image:url('http://globe-views.com/dcim/dreams/business/business-04.jpg'); opacity: 0.75;" 
+        h2 Mengapa Bergabung di Larisni?
+    section
+      .container
+        .grid-flex
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-shopping-cart.fa-3x.orange
+            center
+              p Kami menyediakan platform yang tepat untuk bisnis Anda. Dengan platform bisnis online Anda bisa membuat bisnis proses Anda jauh lebih efektif.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-tags.fa-3x.orange
+            center
+              p Kami menyediakan aneka produk laris yang bisa Anda. Anda hanya perlu mencari produk yang menarik dari berbagai kategori yang ada.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-money.fa-3x.orange
+            center
+              p Dengan produk yang berkualitas dan platform yang tepat dari Larisni untuk membantu bisnis Anda, tentu akan membantu mengurangi biaya proses bisnis Anda sehingga keuntungan Anda menjadi lebih besar.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-thumbs-up.fa-3x.orange
+            center
+              p Bergabunglah dengan Kami dan dapatkan materi edukasi berbisnis untuk meningkatkan bisnis Anda ke jenjang yang lebih baik.
+        hr/
+  br/
   .scap
     center
-      h3.orange Produk berdasarkan kategori
+      h3.darkorange Kategori Produk di Larisni
     .category-slider.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 2, "infinite": true}'
       - @categories.each do |category|
         .slide-category
@@ -21,20 +70,11 @@
                 img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
             .slide-category__name
               = category.name
-          / ul.breadcrumb
-          /   li.mid-menu-breadcrumb--displayer
-          /     span Kategori
-          /   - @categories.each do |category|
-          /     li
-          /       a.list-group-item href='#{ products_path(category_id: category.id) }'
-          /         i.menu-icon
-          /           img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
-          /         = category.name
   .container
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top
         .category-title.np-side
-          h2.category-title__title New Arrivals
+          h2.category-title__title Contoh Produk Kami
           p.category-title__description
             | Barang-barang yang baru saja tercatat dalam platform kami
         .product-cards-container

@@ -25,7 +25,8 @@
 
 @import url(http://fonts.googleapis.com/css?family=Oswald:400,700);
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+// @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 
 /* 2 Basic styles
@@ -84,6 +85,40 @@ textarea {
   HOME SORT & FILTER CATEGORY
 --------------------------------------------------------------------------- */
 
+.cta-call {
+	font-weight: bold;
+	font-size: 20px;
+	color: $darkorange;
+	.cta-btn {
+		margin: 0 10px;
+	}
+	.cta-sm {
+		font-size: 16px;
+		color: $orange;
+		margin: 10px;
+	}
+}
+
+.value-desc {
+	display: block;
+	width: 100%;
+	color: $black70;
+	.circle-container {
+		margin: 20px auto;
+		height: 87px;
+		width: 87px;
+		border-radius: 87px;
+		border: 3px solid $orange;
+		text-align: center;
+		display: table;
+		span {
+			display: table-cell;
+			vertical-align: middle;
+			
+		}
+	}
+}
+
 .filter-container {
 	border-bottom: 1px solid $black30;
 	padding: 30px 0 20px;
@@ -99,9 +134,10 @@ textarea {
 		@media #{$large} {
 			font-size: 2em;
 		}
-		letter-spacing: 2px;
+		font-family: 'Open Sans', sans-serif;
 		text-transform: uppercase;
-		color: $orange;
+		color: $darkorange;
+		// letter-spacing: 2px;
 		margin-bottom: 10px;
 	}
 	.product-title {
@@ -548,9 +584,15 @@ footer {
 	li {
 		margin-bottom: 10px;
 		color: $darkorange;
+		display: inline-block;
+		margin: 20px 20px 20px 0;
+		text-align: center;
+		font-size: 18px;
 		div {
 			vertical-align: middle;
 			color: $black80;
+			text-align: left;
+			font-size: 14px;
 			div, img {
 				display: inline-block;
 				margin: 5px;
