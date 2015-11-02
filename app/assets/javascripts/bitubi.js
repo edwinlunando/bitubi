@@ -159,9 +159,8 @@
                 console.log('gg');
                 if(changer) {
                     console.log('mild');
-                    changer.on('change', function() {
-                        console.log('test');
-                        $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));
+                    changer.keypress(function() {
+                        $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
                     })
                 }
             },

@@ -18,30 +18,44 @@
                     thead
                       tr
                         th align="center"  Gambar
-                        th Item
-                        th Jumlah
-                        th Harga
-                        th align="center"  Action
+                        th align="center" width="40%" Item
+                        th align="center" width="200" Harga
+                        th align="center" Total
+                        th.action-delete
                     tbody
                       - @order.line_items.each do |line_item|
                         tr
                           td align="center"
                             = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-                          td #{line_item.product.name}
-                          td #{line_item.quantity}
-                          td align="right" #{ number_format(line_item.price) }
-                          td align="center"
+                          td align="left"
+                            .table-products__info
+                              = link_to product_path(line_item.product.slug) do
+                                b.darkorange #{line_item.product.name}
+                              br/
+                              b.orange vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
+                              br/
+                              b #{ number_format(line_item.product.price_dropship) }
+                          td
+                            form.table-products__form
+                              input.form-control type="number" value="#{line_item.quantity}" style="width:100px;"
+                              .btn.btn-green type="submit" edit
+                          td.total-price align="right"
+                            b #{ number_format(line_item.price) }
+                          td.action-delete
                             = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete
-                              i.fa-btn.btn-red.fa.fa-trash title="delete"
+                                i.fa-btn.btn-red.fa.fa-trash title="delete"
                     tfoot
                       tr.highlight-info
                         td colspan="3" align="right"
                           b Total
-                        td align="right"
+                        td.total-price align="right"
                           b
                             = number_format(@order.total)
-                        td align="center"
+                        td
+                      tr.higlight-info
+                        td colspan="3"
+                        td.total-price align="center"
                           = link_to alamat_path, class: 'btn btn-green'
                             i.fa.fa-money
                             |  Checkout
-
+                        td
