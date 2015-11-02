@@ -10,43 +10,63 @@
         .static-title.np-top
           center
             h2.static-title__title Form Konfirmasi
-            - if @order.address.present?
-              span.category-title__detailed-description
-                | #{ @order.address.state.city.province.name }, #{ @order.address.state.city.name }, #{ @order.address.state.name },
-                br/
-                | #{ @order.address.name }
-          br/
-          .table-container
-            table.table
-              thead
-                tr
-                  th align="center"  Thumbnail
-                  th Item
-                  th Jumlah
-                  th Harga
-              tbody
-                - @order.line_items.each do |line_item|
-                  tr
-                    td align="center"
-                      = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
-                    td #{ line_item.product.name }
-                    td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
-                    td #{ number_format(line_item.price) }
+          .grid-flex
+            .grid-flex__col.grid-flex__col--3
+              h3.darkorange Alamat
+              .confirmation-receiver.bg-dg
                 - if @order.address.present?
-                  tr
-                    td
-                    td align="center" 
-                      b Pengiriman #{ @order.state_shipment_price.shipment_type.display_name }
-                    td #{ number_format(@order.display_weight*@order.state_shipment_price.price) }
-                    td #{ number_format(@order.shipment_price) }
-              tfoot
-                tr.highlight-info
-                  td colspan="2"
-                  td
-                    b Total
-                  td
-                    b #{ number_format(@order.total) }
-                tr
-                  td colspan="3"
-                  td
-                    = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
+                b.darkorange Penerima: 
+                p #{ @order.address.receiver_name.titleize }
+                b.darkorange Telepon: 
+                p #{ @order.address.receiver_phone }
+                b.darkorange Provinsi: 
+                p #{ @order.address.state.city.province.name.titleize }
+                b.darkorange Kota: 
+                p #{ @order.address.state.city.name.titleize }
+                b.darkorange Kecamatan:
+                p #{ @order.address.state.name.titleize }
+                b.darkorange Alamat Lengkap: 
+                p #{ @order.address.name }
+            .grid-flex__col.grid-flex__col--9
+              h3.darkorange Pesanan
+              .table-container
+                table.table
+                  thead
+                    tr
+                      th align="center"  Thumbnail
+                      th Item
+                      th Jumlah
+                      th Harga
+                  tbody
+                    - @order.line_items.each do |line_item|
+                      tr
+                        td align="center"
+                          = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
+                        td align="left"
+                          .table-products__info
+                            = link_to product_path(line_item.product.slug) do
+                              b.darkorange #{line_item.product.name}
+                            br/
+                            b.orange vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
+                            br/
+                            b #{ number_format(line_item.product.price_dropship) }
+                        td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
+                        td #{ number_format(line_item.price) }
+                    - if @order.address.present?
+                      tr.highlight-info
+                        td
+                        td align="left" 
+                          b.darkorange Pengiriman #{ @order.state_shipment_price.shipment_type.display_name }
+                        td Ongkos:
+                        td #{ number_format(@order.shipment_price) }
+                  tfoot
+                    tr.highlight-info
+                      td colspan="2"
+                      td
+                        b Total:
+                      td
+                        b #{ number_format(@order.total) }
+                    tr
+                      td colspan="3"
+                      td
+                        = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
