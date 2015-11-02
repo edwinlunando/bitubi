@@ -154,6 +154,18 @@
                 }
             },
 
+            this.saldoInit = function () {
+                var changer = $('#saldo-chg');
+                console.log('gg');
+                if(changer) {
+                    console.log('mild');
+                    changer.on('change', function() {
+                        console.log('test');
+                        $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));
+                    })
+                }
+            },
+
             this.imageViewerInit = function () {
                 $('.profnprod-viewer__thumb img').on('click', function() {
                     var src = $(this).attr('src');
@@ -274,6 +286,7 @@
                     ui.storeManageImageViewerInit();
                     ui.orderTableInit();
                     ui.notifCloseInit();
+                    ui.saldoInit();
                     // Site.organicTabs("#surfari-tabs");
                 }
             })

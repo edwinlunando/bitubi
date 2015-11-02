@@ -41,28 +41,22 @@
       .grid-flex__col.grid-flex__col--6
         h3.darkorange Top Up Form
         = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
-          input type="hidden" namne="uid" value="123"
-          = f.input :name, input_html: {placeholder: 'nama'}, label: 'Nama'
-          = f.input :amount, input_html: {placeholder: 'jumlah'}, label: 'Jumlah'
+          = f.input :uid, :as => :hidden, :input_html => { :value => "123", id: 'saldo-uid' }
+          = f.input :name, input_html: { placeholder: 'nama' }, label: 'Nama'
           = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
-          = f.input :amount, input_html: {placeholder: 'jumlah'}, label: 'Jumlah'
+          - if current_user.verified
+            = f.input :amount, input_html: { placeholder: 'jumlah', id: 'saldo-chg' }, label: 'Jumlah'
+          - else
+            = f.input :amount, input_html: { placeholder: 'jumlah', id: 'saldo-chg' }, label: 'Jumlah'
+          = f.input :amount, input_html: { placeholder: 'jumlah dibayar', id: 'saldo-dest', readonly: true }, label: 'Total Bayar'
           br/
-          button.btn.btn-green type="submit"  Bayar
+          button.btn.btn-green type="submit" 'Bayar'
     hr/
     .grid-flex
       .grid-flex__col.grid-flex__col-12
         h3.darkorange Instruksi        
         span Silahkan transfer ke rekening yang tersedia di bawah
         ol.instruction-set
-          li
-            b Rekening BCA
-            .clear-pm
-              img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80" /
-              div
-                b
-                  | 080 989 4444
-                  br/
-                  | a.n. PT Laris Banget Nich
           li
             b Rekening Mandiri
             .clear-pm

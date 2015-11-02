@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :role
+  permit_params :email, :role
 
   index do
     selectable_column
@@ -9,6 +9,7 @@ ActiveAdmin.register User do
     column :current_sign_in_at
     column :sign_in_count
     column :active
+    column :role
     column :created_at
     actions do |user|
       item 'Aktivasi', activation_admin_user_path(user), method: :put
@@ -22,6 +23,7 @@ ActiveAdmin.register User do
   end
 
   filter :email
+  filter :role
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
@@ -29,8 +31,6 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs 'Admin Details' do
       f.input :email
-      f.input :password
-      f.input :password_confirmation
       f.input :phone_number
       f.input :role, collection: User.roles
     end

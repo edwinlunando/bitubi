@@ -4,8 +4,8 @@ class ProductsController < InheritedResources::Base
   before_action :authenticate_user!, only: [:add_to_cart]
 
   def index
-    add_breadcrumb "Home", :root_path
-    add_breadcrumb "Produk", :products_path
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Produk', :products_path
 
     @categories = Category.all
     products = Product.all
@@ -20,22 +20,22 @@ class ProductsController < InheritedResources::Base
   end
 
   def show
-    add_breadcrumb "Home", :root_path
-    add_breadcrumb "Produk", :products_path
-    
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Produk', :products_path
+
     @product = Product.friendly.find(params[:id])
     @line_item = LineItem.new
   end
 
   def add_to_cart
-    product = Product.friendly.find(params[:id])
+    @product = product = Product.friendly.find(params[:id])
     order = current_user.last_order
     # find item in line item
     if order.line_items.where('line_items.product_id = ?', product.id).exists?
-      line_item = order.line_items.where('line_items.product_id = ?', product.id).first
+      @line_item = line_item = order.line_items.where('line_items.product_id = ?', product.id).first
       line_item.quantity += line_item_params[:quantity].to_i
     else
-      line_item = LineItem.new(line_item_params)
+      @line_item = line_item = LineItem.new(line_item_params)
     end
 
     # check line item quantity to product stock
@@ -46,6 +46,12 @@ class ProductsController < InheritedResources::Base
 
     line_item.order = order
     line_item.product = product
+
+    unless order.same_vendor?(line_item)
+      flash[:error] = 'Anda hanya dapat membeli barang dari satu toko yang sama'
+      return render action: :show
+    end
+
     if line_item.save
       flash[:success] = 'Berhasil masuk keranjang!'
       redirect_to keranjang_path

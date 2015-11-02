@@ -48,6 +48,7 @@ class Order < ActiveRecord::Base
     state :cart, initial: true
     state :address
     state :payment
+    state :delivery
     state :done
 
     event :checkout do
@@ -55,7 +56,11 @@ class Order < ActiveRecord::Base
     end
 
     event :addressing do
-      transitions from: :address, to: :payment
+      transitions to: :payment
+    end
+
+    event :deliver do
+      transitions to: :delivery
     end
 
     event :finish do
@@ -65,6 +70,10 @@ class Order < ActiveRecord::Base
       transitions to: :done
     end
 
+  end
+
+  def same_vendor?(line_item)
+    suppliers.ids.include?(line_item.product.user_id)
   end
 
   def total_without_shipment
