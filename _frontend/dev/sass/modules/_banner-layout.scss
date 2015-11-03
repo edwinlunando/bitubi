@@ -24,12 +24,47 @@
 		}
 	}
 	.banner-item {
+		img {
+			opacity: .7;
+		}
 		display: block;
 		@media #{$medium} {
 			min-height: 480px;
 		}
 		min-height: 200px;
+		.banner-caption__container {
+			width: 100%; 
+			height: 100%;
+			display: block;
+			.banner-caption__inner {
+				top: 340px;
+				position: relative;
+				z-index: 20;
+				text-align: center;
+				animation-name: banner-info-animation;
+				animation-duration: .5s;
+				animation-timing-function: ease-in-out;
+				.banner-caption__title {
+					display: inline-block;
+					margin: 10px auto;
+					width: auto;
+					background-color: rgba(255,255,255, 0.75);
+					padding: 10px;
+					white-space:normal;
+					color: $darkorange;
+				}
+				.banner-caption__description {
+					font-size: 1.5em;
+					color: $black80;
+				}
+			}
+		}
 	}
+}
+
+@keyframes banner-info-animation {
+    0%   {opacity: 0; top: 420px;}
+    100% {opacity: 1; top:340px;}
 }
 
 .top-banner {

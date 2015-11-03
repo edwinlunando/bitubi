@@ -66,7 +66,7 @@
             Modernizr.load({
                 load: assets._waitForImages,
                 complete: function() {
-                    console.log('waitforimagesLoaded');
+                    // console.log('waitforimagesLoaded');
                 }
             });
         },
@@ -156,9 +156,7 @@
 
             this.saldoInit = function () {
                 var changer = $('#saldo-chg');
-                console.log('gg');
                 if(changer) {
-                    console.log('mild');
                     changer.keypress(function() {
                         $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
                     })
