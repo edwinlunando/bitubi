@@ -53,7 +53,9 @@
                             = number_format(@order.total)
                         td
                       tr.higlight-info
-                        td colspan="3"
+                        td align="right"
+                          = link_to 'Belanja Lagi', products_path, class: 'btn btn-orange'
+                        td colspan="2"
                         td.total-price align="center"
                           = link_to alamat_path, class: 'btn btn-green'
                             i.fa.fa-money

@@ -12,7 +12,7 @@
       = f.input :unit, label: 'Satuan'
       = f.input :weight, label: 'Berat'
       = f.input :stock, label: 'Stok'
-    .grid-flex__col.grid-flex__col--4
+    .grid-flex__col.grid-flex__col--4 style="overflow: hidden"
       label.form-label/
       h3 Gambar
       div
@@ -60,7 +60,7 @@
           br/
           hr/
         = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
-    .grid-flex
+  .grid-flex
     .grid-flex__col.grid-flex__col--12
       = f.submit 'Simpan', class: 'btn btn-green'
       = link_to 'Batal', products_path, class: 'btn btn-orange'

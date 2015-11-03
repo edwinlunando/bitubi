@@ -14,23 +14,24 @@
               img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
             .profnprod-viewer__seller-info
               h3.darkorange.clear-pm
-                = link_to 'Vendor : ', '/vendor/'+@product.user.id.to_s
+                = link_to '/vendor/'+@product.user.id.to_s do
+                  | Vendor: #{ @product.user.supplier }
               b.darkorange Pesanan:
-              span.darkgreen Tidak pernah menolak pesanan
+              span.darkgreen  Tidak pernah menolak pesanan
               br/
               br/
               figure
                 img src="/assets/img/SF1.jpg"
                 div
                   figcaption
-                    b.darkorange Penjual:
-                    span #{@product.user.name}
+                    b.darkorange Penjual: 
+                    span  #{@product.user.name}
                     br/
-                    b.darkorange Telepon:
-                    span #{@product.user.phone_number}
+                    b.darkorange Telepon: 
+                    span  #{@product.user.phone_number}
                     br/
-                    b.darkorange Alamat:
-                    span Alamat Vendornya di dari databasenya
+                    b.darkorange Alamat: 
+                    span  Alamat Vendornya di dari databasenya
 
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul

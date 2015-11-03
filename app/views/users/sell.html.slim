@@ -17,7 +17,6 @@
                     tr align="center"
                       th Order Id
                       th Pembeli
-                      th Alamat
                       th Harga
                       th Ongkir
                       th Total
@@ -26,8 +25,18 @@
                   - @orders.each do |order|
                     tr align="center"
                       td #{ order.id }
-                      td #{ order.user.email }
-                      td #{ order.address.one_line }
+                      td align="left"
+                        b.darkorange #{ order.user.name }
+                        br/
+                        span.black #{ order.user.email }
+                        br/
+                        small.black #{ order.address.one_line.titleize }
+                        br/
+                        b.darkorange Produk
+                        ul
+                          - order.line_items.each do |line_item|
+                            li 
+                              b - #{ line_item.product.name } x #{ line_item.quantity }
                       td align="right"  #{ number_format(order.total_without_shipment) }
                       td #{ number_format(order.shipment_price) }
                       td #{ number_format(order.total) }

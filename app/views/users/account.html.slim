@@ -4,24 +4,38 @@
       ul.breadcrumb
         == render_breadcrumbs tag: :li, separator: ''
   .container
-    = simple_form_for current_user, url: account_update_path, method: :post do |f|
+    / = simple_form_for current_user, url: account_update_path, method: :post do |f|
+    = simple_nested_form_for current_user, url: account_update_path, method: :post do |f|
       .grid-flex
         .grid-flex__col.grid-flex__col--4
           center
             h2.orange Vendor
-            .form-input--error-message
-              b
+            = f.fields_for :supplier do |supplier|
+              .form-input--error-message
+                b
                   = f.error_notification
-            label.form-label Banner Vendor
+              label.form-label Banner Vendor
+              / = f.input :vendor_name, label: 'Nama Vendor'
+              br/
+              img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+              br/
+              = supplier.input :image_file_name, as: :file, label: false
+              br/
+              = supplier.input :name, label: 'Nama Vendor'
+              = supplier.input :description, label: 'Deskripsi Singkat', as: :text
+              = supplier.input :bank_account_number, label: 'Nomor Rekening'
+              = supplier.input :address, label: 'Alamat', as: :text
+              br/
+        .grid-flex__col.grid-flex__col--4
+          center
+            h2.orange Profil
+            label.form-label Foto Profil
             / = f.input :vendor_name, label: 'Nama Vendor'
             br/
             img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
             br/
             = f.input :file, as: :file, label: false
             br/
-        .grid-flex__col.grid-flex__col--4
-          center
-            h2.orange Profil
             = f.input :first_name, label: 'Nama Depan'
             = f.input :last_name, label: 'Nama Belakang'
             = f.input :phone_number, label: 'Nomor telepon'

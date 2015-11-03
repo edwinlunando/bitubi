@@ -12,21 +12,29 @@
             h2.static-title__title Form Konfirmasi
           .grid-flex
             .grid-flex__col.grid-flex__col--3
-              h3.darkorange Alamat
+              h3.darkorange Alamat Penerima
               .confirmation-receiver.bg-dg
                 - if @order.address.present?
                 b.darkorange Penerima: 
-                p #{ @order.address.receiver_name.titleize }
-                b.darkorange Telepon: 
-                p #{ @order.address.receiver_phone }
-                b.darkorange Provinsi: 
-                p #{ @order.address.state.city.province.name.titleize }
-                b.darkorange Kota: 
-                p #{ @order.address.state.city.name.titleize }
-                b.darkorange Kecamatan:
-                p #{ @order.address.state.name.titleize }
-                b.darkorange Alamat Lengkap: 
-                p #{ @order.address.name }
+                p 
+                  i.fa.fa-user 
+                  |  #{ @order.address.receiver_name.titleize }
+                  br/
+                  i.fa.fa-phone 
+                  |  #{ @order.address.receiver_phone }7
+                  br/
+                  i.fa.fa-map-marker
+                  |  #{ @order.address.state.city.province.name.titleize }, #{ @order.address.state.city.name.titleize }, #{ @order.address.state.city.name.titleize }, #{ @order.address.state.name.titleize }
+                  br/
+                  i.fa.fa-road
+                  |  #{ @order.address.name }, #{ @order.address.zipcode }
+                b.darkorange Pengirim: 
+                p 
+                  i.fa.fa-user 
+                  |  #{ @order.address.sender_name }
+                  br/
+                  i.fa.fa-phone 
+                  |  #{ @order.address.sender_phone }
             .grid-flex__col.grid-flex__col--9
               h3.darkorange Pesanan
               .table-container
@@ -67,6 +75,8 @@
                       td
                         b #{ number_format(@order.total) }
                     tr
-                      td colspan="3"
+                      td
+                        = link_to 'Belanja Lagi', products_path, class: 'btn btn-orange'
+                      td colspan="2"
                       td
                         = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
