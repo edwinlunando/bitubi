@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103074719) do
+ActiveRecord::Schema.define(version: 20151103141836) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20151103074719) do
     t.string   "receiver_phone", limit: 255
     t.string   "sender_name",    limit: 255
     t.string   "sender_phone",   limit: 255
+    t.string   "zipcode",        limit: 255
   end
 
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree

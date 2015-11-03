@@ -19,9 +19,11 @@
             = f.association :state, collection: State.all, label: 'Kecamatan', include_blank: 'Pilih wilayah'
             = f.input :shipment_type, collection: ShipmentType.all, label_method: lambda { |shipment_type| shipment_type.display_name }, label: 'Jenis pengiriman', include_blank: 'Pilih pengiriman'
             = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text, input_html: {rows: 4}
+            = f.input :zipcode, label: 'Kodepos'
             = f.input :receiver_name, label: 'Nama penerima'
             = f.input :receiver_phone, label: 'Ponsel penerima'
             = f.input :sender_name, label: 'Nama pengirim'
+            = f.input :sender_name, label: 'Ponsel pengirim'
             br/
             center
               button.btn.btn-green type="submit"  Bayar
