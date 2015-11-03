@@ -134,6 +134,7 @@ Rails.application.routes.draw do
 
   end
 
+  get 'vendor/:id' => 'products#vendor'
   get 'saldo' => 'users#topup'
   post 'saldo' => 'users#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'orders#remove_from_cart', as: 'delete_from_cart'

@@ -26,6 +26,14 @@ class ProductsController < InheritedResources::Base
     @product = Product.friendly.find(params[:id])
     @line_item = LineItem.new
   end
+  
+  def vendor
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Produk', :products_path
+    products = Product.where('user_id = ?', params[:id])
+    @user = User.find(params[:id])
+    @products = products.page(params[:page])
+  end
 
   def add_to_cart
     @product = product = Product.friendly.find(params[:id])
@@ -69,5 +77,6 @@ class ProductsController < InheritedResources::Base
   def line_item_params
     params.require(:line_item).permit(:quantity)
   end
+
 
 end

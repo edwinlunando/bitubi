@@ -12,6 +12,22 @@
           .grid-flex__col.grid-flex__col--10.profnprod-viewer__frame
             - if @product.get_first_image.present?
               img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
+            .profnprod-viewer__seller-info
+              h3.darkorange 
+                = link_to 'Vendor: ', '/vendor/1'
+              figure
+                img src="/assets/img/SF1.jpg"
+                figcaption
+                  b.darkorange Penjual: 
+                  span #{@product.user.first_name + ' ' + @product.user.last_name}
+                  br/
+                  b.darkorange Telepon: 
+                  span #{@product.user.phone_number}
+                  br/
+                  b.darkorange Alamat:
+                  br/
+                  span 
+
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
               - @product.product_images.each do |image|
@@ -37,10 +53,10 @@
           hr.mg-10
           - if user_signed_in?
             = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|
-              div
-                span
-                  b Beli:
               .grid-flex--no-pad
+              div
+                .grid-flex.grid-flex__col--5
+                  b Beli:
                 .grid-flex.grid-flex__col--5
                   = f.input :quantity, placeholder: 'Jumlah', wrapper: false, label: false
                 .grid-flex.grid-flex__col--2

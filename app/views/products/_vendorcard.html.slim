@@ -1,0 +1,22 @@
+.cards.vendor-card
+  = link_to product_path(product)
+    figure
+      .cards-image
+        - if product.product_images.present?
+          = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
+        - else
+          img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
+      figcaption
+        .cards-information-block
+          .cards-information-block__title
+            - if product.category.present?
+              span
+                b
+                  = product.category.name
+            br/
+            = product.name
+          - if product.price_wholesale_minimum.present?
+            .cards-information-block__price
+              | Mulai dari
+              br/
+              | @ #{ number_format(product.price_wholesale_minimum.price) }

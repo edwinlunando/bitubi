@@ -25,6 +25,13 @@
 	}
 }
 
+.vendor-card {
+	@media #{$medium} {
+		width: 33% !important;
+		overflow: hidden;
+	}
+}
+
 .cards {
 	padding: 15px;
 	float: left;

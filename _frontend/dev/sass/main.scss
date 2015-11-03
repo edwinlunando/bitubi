@@ -268,6 +268,19 @@ textarea {
 	p {
 		color: $black70;
 	}
+	.profnprod-viewer__seller-info {
+		margin: 20px 0;
+		figure {
+			display: inline-block;
+			img {
+				width: 90px;
+				padding: 5px;
+				margin-right: 20px;
+				border: 1px solid $black30;
+				float: left;
+			}
+		}
+	}
 	.profnprod-viewer__thumbnails {
 		ul {
 			list-style: none;
@@ -292,6 +305,19 @@ textarea {
 				}
 			}
 		}
+	}
+}
+
+.vendor-info {
+	img {
+		border: 1px solid $black30;
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+	i {
+		width: 15px;
+		height: 15px;
+		margin-right: 5px;
 	}
 }
 
