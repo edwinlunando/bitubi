@@ -26,7 +26,7 @@ class ProductsController < InheritedResources::Base
     @product = Product.friendly.find(params[:id])
     @line_item = LineItem.new
   end
-  
+
   def vendor
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Produk', :products_path

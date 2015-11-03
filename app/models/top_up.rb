@@ -23,6 +23,7 @@ class TopUp < ActiveRecord::Base
       self.approved = true
       save
       user.credit += amount
+      user.verified = true
       user.save
       return true
     else

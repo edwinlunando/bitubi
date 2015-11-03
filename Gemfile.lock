@@ -67,6 +67,7 @@ GEM
     autoprefixer-rails (5.2.1.3)
       execjs
       json
+    awesome_print (1.6.1)
     aws-sdk (1.66.0)
       aws-sdk-v1 (= 1.66.0)
     aws-sdk-v1 (1.66.0)
@@ -492,6 +493,7 @@ DEPENDENCIES
   activeadmin_settings_cached
   annotate
   asset_sync
+  awesome_print
   aws-sdk (< 2.0)
   better_errors
   bootstrap-sass (~> 3.3.5)
@@ -545,3 +547,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6

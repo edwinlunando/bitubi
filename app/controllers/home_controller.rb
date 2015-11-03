@@ -56,7 +56,8 @@ class HomeController < ApplicationController
   end
 
   def supplier_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number, supplier_attributes: [:address, :bank_account_number])
+    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number,
+                                 supplier_attributes: [:name, :description, :address, :bank_account_number])
   end
 
 end

@@ -18,22 +18,16 @@
           img src="/assets/img/SF1.jpg" width="100px"
           p.category-title__description.vendor-info
             i.fa.fa-user
-            b.clear-pm Pemilik: 
+            b.clear-pm Pemilik:
             br/
-            span.darkorange #{@user.first_name + ' ' + @user.last_name}
+            span.darkorange #{@user.name}
             br/
             i.fa.fa-phone
-            b.clear-pm Telepon: 
+            b.clear-pm Telepon:
             br/
             span.darkorange #{@user.phone_number}
             br/
-            i.fa.fa-dropbox
-            b.clear-pm Pesanan:
-            br/
-            b.clear-pm.darkgreen Tidak pernah menolak pesanan
-            / b.clear-pm.darkorange Menerima 10/100 Pesanan
-            br/
-            i.fa.fa-map-marker 
+            i.fa.fa-map-marker
             b.clear-pm Alamat:
             br/
             span.darkorange Alamat Vendornya

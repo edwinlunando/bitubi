@@ -14,7 +14,4 @@ class Supplier < ActiveRecord::Base
 
   has_one :user
 
-  validates :address, presence: true
-  validates :bank_account_number, presence: true
-
 end

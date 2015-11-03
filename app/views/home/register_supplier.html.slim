@@ -12,6 +12,8 @@
           = f.input :password_confirmation, required: true, placeholder: 'konfirmasi password', label: 'Konfirmasi Password'
           = f.input :phone_number, required: true, placeholder: 'nomor telepon', label: 'Nomor Telepon'
           = f.fields_for :supplier do |s|
+            = s.input :name, label: 'Nama toko'
+            = s.input :description, label: 'Deskripsi toko'
             = s.input :address, label: 'Alamat kantor', placeholder: 'alamat'
             = s.input :bank_account_number, label: 'Nomor rekening'
 

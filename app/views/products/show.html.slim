@@ -15,7 +15,7 @@
             .profnprod-viewer__seller-info
               h3.darkorange.clear-pm
                 = link_to 'Vendor : ', '/vendor/'+@product.user.id.to_s
-              b.darkorange Pesanan: 
+              b.darkorange Pesanan:
               span.darkgreen Tidak pernah menolak pesanan
               br/
               br/
@@ -23,13 +23,13 @@
                 img src="/assets/img/SF1.jpg"
                 div
                   figcaption
-                    b.darkorange Penjual: 
-                    span #{@product.user.first_name + ' ' + @product.user.last_name}
+                    b.darkorange Penjual:
+                    span #{@product.user.name}
                     br/
-                    b.darkorange Telepon: 
+                    b.darkorange Telepon:
                     span #{@product.user.phone_number}
                     br/
-                    b.darkorange Alamat: 
+                    b.darkorange Alamat:
                     span Alamat Vendornya di dari databasenya
 
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
