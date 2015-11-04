@@ -27,27 +27,24 @@
                       td #{ order.id }
                       td align="left"
                         b.darkorange #{ order.user.name }
-                        br/
+                        br
                         span.black #{ order.user.email }
-                        br/
+                        br
                         small.black #{ order.address.one_line.titleize }
-                        br/
+                        br
                         b.darkorange Produk
                         ul
                           - order.line_items.each do |line_item|
-                            li 
+                            li
                               b - #{ line_item.product.name } x #{ line_item.quantity }
                       td align="right"  #{ number_format(order.total_without_shipment) }
                       td #{ number_format(order.shipment_price) }
                       td #{ number_format(order.total) }
                       td align="center"
-                        / - if line_item.confirm?
-                        /   = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
-                        /     i.fa-btn.btn-black.fa.fa-check title="view"
-                        / - if line_item.delivery?
-                        /   - @order_target = "order#{line_item.order.id}"
-                        /   span.order-expandable data-target="#{@order_target}"
-                        /     i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
+                        - if order.delivery?
+                          - @order_target = "order#{line_item.order.id}"
+                          span.order-expandable data-target="#{@order_target}"
+                            i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
                         / - unless line_item.failed?
                         /   = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
                         /     i.fa-btn.btn-red.fa.fa-ban title="batalkan"

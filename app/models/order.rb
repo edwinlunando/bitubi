@@ -50,6 +50,7 @@ class Order < ActiveRecord::Base
     state :payment
     state :delivery
     state :done
+    state :failed
 
     event :checkout do
       transitions from: :cart, to: :address
@@ -59,20 +60,25 @@ class Order < ActiveRecord::Base
       transitions to: :payment
     end
 
-    event :deliver do
+    event :pay do
       transitions to: :delivery
     end
 
-    event :finish do
+    event :deliver do
       before do
         finish_order
       end
       transitions to: :done
     end
 
+    event :cancel do
+      transitions to: :failed
+    end
+
   end
 
   def same_vendor?(line_item)
+    return true if suppliers.blank?
     suppliers.ids.include?(line_item.product.user_id)
   end
 
@@ -86,15 +92,17 @@ class Order < ActiveRecord::Base
 
   def total_weight
     return nil if state_shipment_price.nil?
-    total_weight = line_items.inject(0) { |result, element| result + (element.quantity * element.product.weight) } / 1000.0
+    line_items.inject(0) { |result, element| result + (element.quantity * element.product.weight) } / 1000.0
   end
 
   def display_weight
     weight = total_weight
+    return 1.0 if weight < 1.0
+
     if weight % 1 < 0.3
-      weight.floor
+      weight = weight.floor
     else
-      weight.ceil
+      weight = weight.ceil
     end
     weight
   end

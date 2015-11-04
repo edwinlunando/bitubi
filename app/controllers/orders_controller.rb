@@ -58,10 +58,10 @@ class OrdersController < ApplicationController
   end
 
   def finish
-    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') if @order.done?
+    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') if @order.done? || @order.deliver?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
     ActiveRecord::Base.transaction do
-      @order.finish
+      @order.pay
       @order.payment_time = Time.zone.now
       @order.save
       current_user.credit -= @order.total
@@ -75,11 +75,32 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
+  def ship
+    order = Order.find(params[:id])
+
+    order.deliver
+
+    if order.update(ship_params)
+      flash[:success] = 'Order berhasil dikirim'
+    else
+      flash[:error] = 'Order gagal dikirim'
+    end
+
+    redirect_to sell_path
+  end
+
+  def cancel
+  end
+
   private
 
   def address_params
     params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type, :receiver_name,
                                     :receiver_phone, :sender_name)
+  end
+
+  def ship_params
+    params.require(:order).permit(:receipt_number)
   end
 
   def set_last_order

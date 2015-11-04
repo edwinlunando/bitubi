@@ -164,8 +164,7 @@ Rails.application.routes.draw do
   get 'kontak' => 'home#contact'
   post 'kontak/kirim' => 'home#send_contact', as: 'send_contact'
 
-  # line item
-  post 'penjualan/:id/setujui' => 'line_items#approve', as: 'line_items_approve'
+  # order
   post 'penjualan/:id/batal' => 'line_items#cancel', as: 'line_items_cancel'
   post 'penjualan/:id/kirim' => 'line_items#ship', as: 'line_items_ship'
 
