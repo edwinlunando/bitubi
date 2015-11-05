@@ -9,7 +9,7 @@ ul.nav
         i.fa.fa-dropbox
         span Dagangan
     li.nav-three
-      = link_to sell_path, class: "#{params[:action] == 'sell' ? 'current' : ''}"
+      = link_to sell_path, class: "#{ (params[:action] == 'sell' || params[:action] == 'sell_view') ? 'current' : ''}"
         i.fa.fa-archive
         span Penjualan
   li.nav-four

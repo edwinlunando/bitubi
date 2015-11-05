@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 
   def orders
     add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Pesanan', :pesanan_path
 
     @orders = current_user.orders.includes(:line_items, :state_shipment_price)
@@ -47,6 +48,7 @@ class UsersController < ApplicationController
 
   def products
     add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Dagangan', :dagangan_path
 
     @products = current_user.products
@@ -70,6 +72,7 @@ class UsersController < ApplicationController
 
   def sell
     add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Penjualan', :sell_path
 
     # @line_items = LineItem.includes({ order: [{ address: [{ state: [{ city: :province }] }] }, :state_shipment_price, :user] }, :product)
@@ -77,6 +80,15 @@ class UsersController < ApplicationController
     #               .where('products.user_id = ?', current_user.id)
     #               .where('orders.state = ?', :done)
     @orders = Order.joins(line_items: [:product]).includes(:line_items).where('products.user_id = ?', current_user.id)
+  end
+
+  def sell_view
+    @order = current_user.orders.find(params[:id])
+
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
+    add_breadcrumb 'Penjualan', :sell_path
+    add_breadcrumb 'Detil', "/penjualan/#{@order.id}"
   end
 
   private

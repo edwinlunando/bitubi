@@ -55,7 +55,9 @@
                             = link_to product_path(line_item.product.slug) do
                               b.darkorange #{line_item.product.name}
                             br/
-                            b.orange vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
+                            b
+                              = link_to vendor_view_path(line_item.product.user.id) do
+                                | vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
                             br/
                             b #{ number_format(line_item.product.price_dropship) }
                         td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }

@@ -7,19 +7,37 @@
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
-          ul.nav
-            li.nav-one
-              a href="/keranjang"
-                i.fa.fa-shopping-cart
-                span Keranjang
-            li.nav-two
-              a.current href="/pesanan"
-                i.fa.fa-phone
-                span Pesanan
+          == render 'tabs'
           .list-wrap
+            h3.darkorange DETIL PESANANMU : Order - #{ @order.id }
             .grid-flex
-              .grid-flex__col.grid-flex__col--12
-                h2.darkorange DETIL PESANANMU : Order - #{ @order.id }
+              .grid-flex__col.grid-flex__col--3
+                .category-title.clear-pm.vendor-info
+                  h3.darkorange Info Pemesan
+                  / - @user.image.present?
+                  img src="/assets/img/SF1.jpg" width="100px"
+                  p.category-title__description.vendor-info
+                    i.fa.fa-user
+                    b.clear-pm Pemesan:
+                    br/
+                    span.darkorange #{@order.address.receiver_name}
+                    br/
+                    i.fa.fa-phone
+                    b.clear-pm Telepon:
+                    br/
+                    span.darkorange #{@order.address.receiver_phone}
+                    br/
+                    i.fa.fa-envelope
+                    b.clear-pm Kode Pos:
+                    br/
+                    span.darkorange #{@order.address.zipcode}
+                    br/
+                    i.fa.fa-map-marker
+                    b.clear-pm Alamat Kirim:
+                    br/
+                    span.darkorange #{ @order.address.name }
+              .grid-flex__col.grid-flex__col--9
+                h3.darkorange Pesanan
                 .table-container
                   table.table
                     thead
@@ -40,10 +58,6 @@
                               .table-products__info
                                 = link_to product_path(line_item.product.slug) do
                                   b.darkorange #{line_item.product.name}
-                                br/
-                                b
-                                  = link_to vendor_view_path(line_item.product.user.id) do
-                                    | vendor: #{line_item.product.user.supplier.name}
                                 br/
                                 b #{ number_format(line_item.product.price_dropship) }
                             td align="center" #{ line_item.state }

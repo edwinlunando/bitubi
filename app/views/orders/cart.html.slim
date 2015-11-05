@@ -10,8 +10,8 @@
         #surfari-tabs
           == render 'tabs'
           .list-wrap
-            .flex-grid
-              .flex-grid__col.flex-grid__col--12
+            .grid-flex
+              .grid-flex__col.grid-flex__col--12
                 h2.darkorange KERANJANGMU
                 .table-container
                   table.table
@@ -19,7 +19,7 @@
                       tr
                         th align="center"  Gambar
                         th align="center" width="40%" Item
-                        th align="center" width="200" Harga
+                        th align="center" width="200" Jumlah
                         th align="center" Total
                         th.action-delete
                     tbody
@@ -32,13 +32,16 @@
                               = link_to product_path(line_item.product.slug) do
                                 b.darkorange #{line_item.product.name}
                               br/
-                              b.orange vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
+                              b
+                                = link_to vendor_view_path(line_item.product.user.id) do
+                                  | vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
                               br/
                               b #{ number_format(line_item.product.price_dropship) }
-                          td
-                            form.table-products__form
-                              input.form-control type="number" value="#{line_item.quantity}" style="width:100px;"
-                              .btn.btn-green type="submit" edit
+                          td align="center"
+                            | #{line_item.quantity}  #{line_item.product.unit}
+                            / form.table-products__form
+                            /   input.form-control type="number" value="#{line_item.quantity}" style="width:100px;"
+                            /   .btn.btn-green type="submit" edit
                           td.total-price align="right"
                             b #{ number_format(line_item.price) }
                           td.action-delete

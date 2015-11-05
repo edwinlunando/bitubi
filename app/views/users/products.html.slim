@@ -28,7 +28,9 @@
                       td align="center"
                         - if product.get_first_image.present?
                           img.lazy alt="" data-original="#{ product.get_first_image.data.url(:thumb) }"
-                      td #{ product.name }
+                      td
+                        = link_to "/dagangan/#{ product.id }/edit" do
+                          | #{ product.name }
                       td #{ product.stock }
                       td #{ product.weight }
                       td #{ product.unit }

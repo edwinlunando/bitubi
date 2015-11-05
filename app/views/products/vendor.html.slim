@@ -1,20 +1,21 @@
 .wrapper
   .top-banner
-    img.lazy alt="" data-original="/assets/img/bg-top-banner.jpg" /
+    img.lazy alt="" data-original="#{ @user.supplier.image_file_name.present? ? @user.supplier.image_file_name : '/assets/img/bg-top-banner.jpg'}" /
     .top-banner--content
-      h1.top-banner--title Your Store Name
+      h1.top-banner--title #{ @user.supplier.name }
       p
-        | Your Store Short Description
+        | #{ @user.supplier.description }
   .grid-flex--no-pad.page-breadcrumb--container
     .grid-flex--no-gutter.grid-flex__col--12
       ul.breadcrumb
         == render_breadcrumbs tag: :li, separator: ''
-        li Nama Vendornya
+        li #{ @user.supplier.name }
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--3
         .category-title.np-side.vendor-info
           h2.category-title__title Info
+          / - @user.image.present?
           img src="/assets/img/SF1.jpg" width="100px"
           p.category-title__description.vendor-info
             i.fa.fa-user
@@ -30,7 +31,7 @@
             i.fa.fa-map-marker
             b.clear-pm Alamat:
             br/
-            span.darkorange Alamat Vendornya
+            span.darkorange #{ @user.supplier.address }
             hr/
       .grid-flex__col.grid-flex__col--9
         .category-title.np-side

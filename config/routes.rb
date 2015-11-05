@@ -134,7 +134,7 @@ Rails.application.routes.draw do
 
   end
 
-  get 'vendor/:id' => 'products#vendor'
+  get 'vendor/:id' => 'products#vendor', as: 'vendor_view'
   get 'saldo' => 'users#topup'
   post 'saldo' => 'users#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'orders#remove_from_cart', as: 'delete_from_cart'
@@ -146,6 +146,7 @@ Rails.application.routes.draw do
   get 'akun' => 'users#account', as: 'account'
   post 'akun/simpan' => 'users#account_edit', as: 'account_update'
   get 'penjualan' => 'users#sell', as: 'sell'
+  get 'penjualan/:id' => 'users#sell_view', as: 'sell_view'
   get 'dagangan' => 'users#products'
   post 'dagangan' => 'users#create_product', as: 'create_sell'
   get 'dagangan/baru' => 'users#new_product', as: 'new_sell'

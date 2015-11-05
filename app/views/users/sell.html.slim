@@ -8,8 +8,8 @@
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           == render 'tabs'
-          .flex-grid
-            .flex-grid__col.flex-grid__col--12
+          .grid-flex
+            .grid-flex__col.grid-flex__col--12
               h2.darkorange Penjualan
               .table-container
                 table.table
@@ -18,29 +18,30 @@
                       th Order Id
                       th Pembeli
                       th Harga
-                      th Ongkir
-                      th Total
                       th Action
                   tbody
                   - @orders.each do |order|
                     tr align="center"
-                      td #{ order.id }
+                      td 
+                        b.darkorange id: #{ order.id }
+                        br/
+                        small.black #{ order.created_at.strftime("%B %d, %Y") }
                       td align="left"
                         b.darkorange #{ order.user.name }
                         br
                         span.black #{ order.user.email }
                         br
                         small.black #{ order.address.one_line.titleize }
-                        br
-                        b.darkorange Produk
-                        ul
-                          - order.line_items.each do |line_item|
-                            li
-                              b - #{ line_item.product.name } x #{ line_item.quantity }
-                      td align="right"  #{ number_format(order.total_without_shipment) }
-                      td #{ number_format(order.shipment_price) }
-                      td #{ number_format(order.total) }
+                      td.black align="left"
+                        small Biaya: #{ number_format(order.total_without_shipment) }
+                        br/ 
+                        small Ongkir: #{ number_format(order.shipment_price) }
+                        br/
+                        small 
+                          b.darkorange Total: #{ number_format(order.total) }
                       td align="center"
+                        = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'} do
+                          i.fa.fa-folder-open title="view"
                         - if order.delivery?
                           - @order_target = "order#{line_item.order.id}"
                           span.order-expandable data-target="#{@order_target}"

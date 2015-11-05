@@ -15,7 +15,7 @@
             .profnprod-viewer__seller-info
               h3.darkorange.clear-pm
                 = link_to '/vendor/'+@product.user.id.to_s do
-                  | Vendor: #{ @product.user.supplier }
+                  | Vendor: #{ @product.user.supplier.name }
               b.darkorange Pesanan:
               span.darkgreen  Tidak pernah menolak pesanan
               br/
@@ -31,7 +31,7 @@
                     span  #{@product.user.phone_number}
                     br/
                     b.darkorange Alamat: 
-                    span  Alamat Vendornya di dari databasenya
+                    span  #{@product.user.supplier.address}
 
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
