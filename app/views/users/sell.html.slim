@@ -43,13 +43,13 @@
                         = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'} do
                           i.fa.fa-folder-open title="view"
                         - if order.delivery?
-                          - @order_target = "order#{line_item.order.id}"
-                          span.order-expandable data-target="#{@order_target}"
+                          - @order_target = "order#{ order.id }"
+                          span.order-expandable data-target="#{ @order_target }"
                             i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
                         / - unless line_item.failed?
                         /   = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
                         /     i.fa-btn.btn-red.fa.fa-ban title="batalkan"
-                    tr.highlight-info id="#{@order_target}" style="display:none"
+                    tr.highlight-info id="#{ @order_target }" style="display:none"
                       td colspan="6"
                       td
                         b Resi

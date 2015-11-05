@@ -15,25 +15,25 @@
               h3.darkorange Alamat Penerima
               .confirmation-receiver.bg-dg
                 - if @order.address.present?
-                b.darkorange Penerima: 
-                p 
-                  i.fa.fa-user 
+                b.darkorange Penerima:
+                p
+                  i.fa.fa-user
                   |  #{ @order.address.receiver_name.titleize }
                   br/
-                  i.fa.fa-phone 
-                  |  #{ @order.address.receiver_phone }7
+                  i.fa.fa-phone
+                  |  #{ @order.address.receiver_phone }
                   br/
                   i.fa.fa-map-marker
                   |  #{ @order.address.state.city.province.name.titleize }, #{ @order.address.state.city.name.titleize }, #{ @order.address.state.city.name.titleize }, #{ @order.address.state.name.titleize }
                   br/
                   i.fa.fa-road
                   |  #{ @order.address.name }, #{ @order.address.zipcode }
-                b.darkorange Pengirim: 
-                p 
-                  i.fa.fa-user 
+                b.darkorange Pengirim:
+                p
+                  i.fa.fa-user
                   |  #{ @order.address.sender_name }
                   br/
-                  i.fa.fa-phone 
+                  i.fa.fa-phone
                   |  #{ @order.address.sender_phone }
             .grid-flex__col.grid-flex__col--9
               h3.darkorange Pesanan
@@ -65,7 +65,7 @@
                     - if @order.address.present?
                       tr.highlight-info
                         td
-                        td align="left" 
+                        td align="left"
                           b.darkorange Pengiriman #{ @order.state_shipment_price.shipment_type.display_name }
                         td Ongkos:
                         td #{ number_format(@order.shipment_price) }
@@ -77,8 +77,6 @@
                       td
                         b #{ number_format(@order.total) }
                     tr
-                      td
-                        = link_to 'Belanja Lagi', products_path, class: 'btn btn-orange'
-                      td colspan="2"
+                      td colspan="3"
                       td
                         = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}

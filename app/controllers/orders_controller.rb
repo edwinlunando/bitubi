@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
   end
 
   def finish
-    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') if @order.done? || @order.deliver?
+    return redirect_to(root_path, notice: 'Transaksi sudah selesai!') if @order.done? || @order.delivery?
     return redirect_to(root_path, notice: 'Transaksi belum selesai!') unless @order.payment?
     ActiveRecord::Base.transaction do
       @order.pay
@@ -96,7 +96,7 @@ class OrdersController < ApplicationController
 
   def address_params
     params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type, :receiver_name,
-                                    :receiver_phone, :sender_name)
+                                    :receiver_phone, :sender_name, :sender_phone, :zipcode)
   end
 
   def ship_params
