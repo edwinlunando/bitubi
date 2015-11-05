@@ -2,14 +2,14 @@
 #
 # Table name: line_items
 #
-#  id            :integer          not null, primary key
-#  product_id    :integer
-#  quantity      :integer
-#  order_id      :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  purchase_type :integer
-#  state         :string(255)
+#  id             :integer          not null, primary key
+#  product_id     :integer
+#  quantity       :integer
+#  order_id       :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  state          :string(255)
+#  receipt_number :string(255)
 #
 
 # model to represent an item in an order/cart

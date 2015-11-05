@@ -12,6 +12,7 @@
 #  address_id              :integer
 #  state_shipment_price_id :integer
 #  payment_time            :datetime
+#  receipt_number          :string(255)
 #
 
 require 'rails_helper'

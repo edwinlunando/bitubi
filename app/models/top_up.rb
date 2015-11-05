@@ -11,7 +11,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-# every user top up to bank
+
 class TopUp < ActiveRecord::Base
 
   belongs_to :user

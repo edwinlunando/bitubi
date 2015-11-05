@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :role
+  permit_params :email, :role, :phone_number
 
   index do
     selectable_column
@@ -33,6 +33,15 @@ ActiveAdmin.register User do
       f.input :email
       f.input :phone_number
       f.input :role, collection: User.roles
+      f.semantic_fields_for :supplier do |s|
+        s.inputs 'Supplier' do
+          s.input :name
+          s.input :description
+          s.input :address
+          s.input :bank_account_number
+          s.input :image
+        end
+      end
     end
     f.actions
   end
