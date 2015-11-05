@@ -71,6 +71,12 @@
                           td align="right"
                             b #{ number_format(@order.total) }
                         tr
-                          td colspan="5"
                           td align="right"
                             = link_to 'Kembali', sell_path, class: 'btn btn-orange'
+                          td colspan="4" align="right"
+                            input.form-input placeholder="Input Resi"
+                          td
+                            a.btn.btn-green
+                              i.fa.fa-truck title="kirim"  
+                              |  
+                              span  Kirim
