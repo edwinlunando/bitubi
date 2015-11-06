@@ -157,6 +157,7 @@
             this.saldoInit = function () {
                 var changer = $('#saldo-chg');
                 if(changer) {
+                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
                     changer.keypress(function() {
                         $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
                     })
