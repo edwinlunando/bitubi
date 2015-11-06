@@ -19,3 +19,5 @@ Style/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
+Style/MultilineOperationIndentation:
+  Enabled: false

@@ -40,15 +40,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # relation
   has_many :line_items, through: :orders
   has_many :products
   has_many :orders
   has_many :top_ups
+  belongs_to :supplier
+  accepts_nested_attributes_for :supplier
+
+  # validation
   phony_normalize :phone_number, default_country_code: 'ID'
   validates :phone_number, phony_plausible: true, presence: true
   enum role: { admin: 'admin', user: 'user', supplier: 'supplier' }
-  belongs_to :supplier
-  accepts_nested_attributes_for :supplier
 
   # callback
   before_save :default_values
@@ -68,7 +71,7 @@ class User < ActiveRecord::Base
       order.save
       return order
     else
-      if orders.last.done?
+      if orders.last.done? || orders.last.delivery?
         order = Order.new
         order.user = self
         order.save

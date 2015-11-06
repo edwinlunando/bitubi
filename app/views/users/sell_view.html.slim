@@ -14,8 +14,6 @@
               .grid-flex__col.grid-flex__col--3
                 .category-title.clear-pm.vendor-info
                   h3.darkorange Info Pemesan
-                  / - @user.image.present?
-                  img src="/assets/img/SF1.jpg" width="100px"
                   p.category-title__description.vendor-info
                     i.fa.fa-user
                     b.clear-pm Pemesan:
@@ -35,7 +33,7 @@
                     i.fa.fa-map-marker
                     b.clear-pm Alamat Kirim:
                     br/
-                    span.darkorange #{ @order.address.name }
+                    span.darkorange #{ @order.address.sender_name }
               .grid-flex__col.grid-flex__col--9
                 h3.darkorange Pesanan
                 .table-container

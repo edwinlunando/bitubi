@@ -22,7 +22,7 @@
                   tbody
                   - @orders.each do |order|
                     tr align="center"
-                      td 
+                      td
                         b.darkorange id: #{ order.id }
                         br/
                         small.black #{ order.created_at.strftime("%B %d, %Y") }
@@ -34,13 +34,13 @@
                         small.black #{ order.address.one_line.titleize }
                       td.black align="left"
                         small Biaya: #{ number_format(order.total_without_shipment) }
-                        br/ 
+                        br/
                         small Ongkir: #{ number_format(order.shipment_price) }
                         br/
-                        small 
+                        small
                           b.darkorange Total: #{ number_format(order.total) }
                       td align="center"
-                        = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'} do
+                        = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
                           i.fa.fa-folder-open title="view"
                         - if order.delivery?
                           - @order_target = "order#{ order.id }"

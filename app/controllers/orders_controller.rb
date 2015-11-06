@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
     add_breadcrumb 'Keranjang', :keranjang_path
     add_breadcrumb 'Alamat Kirim', :alamat_path
 
+    return redirect_to saldo_path, notice: 'Anda harus membayar biaya pendaftaran!' unless current_user.verified
     return redirect_to saldo_path, notice: 'Saldo Anda kurang!' if @order.valid_with_credit
 
     @address = Address.new

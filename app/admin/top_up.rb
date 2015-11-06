@@ -14,6 +14,7 @@ ActiveAdmin.register TopUp do
     id_column
     column :name
     column :amount
+    column :uid
     column :user
     column :bank
     column :approved

@@ -11,7 +11,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
+# top up credit model
 class TopUp < ActiveRecord::Base
 
   belongs_to :user
@@ -22,13 +22,26 @@ class TopUp < ActiveRecord::Base
     if !approved
       self.approved = true
       save
-      user.credit += amount
-      user.verified = true
+      if self == user.top_ups.order(:create_at).first
+        user.credit += 400_000
+        user.verified = true
+      else
+        user.credit += amount
+      end
       user.save
       return true
     else
       return false
     end
+  end
+
+  def set_up_first
+    self.uid = rand(100..1000)
+    self.amount = 500_000
+  end
+
+  def total
+    self.amount + self.uid
   end
 
   def self.bank_list

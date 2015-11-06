@@ -26,8 +26,7 @@ class UsersController < ApplicationController
 
   def topup
     @top_up = TopUp.new
-
-    @top_up.amount = 500_000 unless current_user.verified
+    @top_up.set_up_first unless current_user.verified
   end
 
   def orders
@@ -75,11 +74,10 @@ class UsersController < ApplicationController
     add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Penjualan', :sell_path
 
-    # @line_items = LineItem.includes({ order: [{ address: [{ state: [{ city: :province }] }] }, :state_shipment_price, :user] }, :product)
-    #               .joins(:product, :order)
-    #               .where('products.user_id = ?', current_user.id)
-    #               .where('orders.state = ?', :done)
-    @orders = Order.joins(line_items: [:product]).includes(:line_items).where('products.user_id = ?', current_user.id)
+    @orders = Order.joins(line_items: [:product])
+                   .includes(:line_items)
+                   .where('products.user_id = ?', current_user.id)
+                   .order(created_at: :desc)
   end
 
   def sell_view
@@ -100,7 +98,7 @@ class UsersController < ApplicationController
   end
 
   def top_up_params
-    params.require(:top_up).permit(:name, :amount, :bank)
+    params.require(:top_up).permit(:name, :amount, :bank, :uid)
   end
 
   def user_params
