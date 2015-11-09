@@ -301,6 +301,11 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.10.0)
+    libv8 (3.16.14.13)
+    lograge (0.3.4)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -388,6 +393,7 @@ GEM
       i18n
       polyamorous (~> 1.2)
     rdoc (4.2.0)
+    ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -454,6 +460,9 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     temple (0.7.6)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -521,6 +530,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
+  lograge
   mail_form
   mailgun_rails
   money-rails
@@ -542,6 +552,7 @@ DEPENDENCIES
   slim-rails
   spreadsheet
   spring
+  therubyracer
   turbolinks
   twilio-ruby (~> 4.2.1)
   uglifier (>= 1.3.0)
