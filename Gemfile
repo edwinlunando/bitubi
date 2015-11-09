@@ -89,8 +89,6 @@ gem 'breadcrumbs_on_rails'
 gem 'mailgun_rails'
 # performance monitoring
 gem 'newrelic_rpm'
-# better logging
-gem 'lograge'
 
 group :development, :test do
 
