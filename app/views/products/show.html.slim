@@ -20,18 +20,19 @@
               span.darkgreen  Tidak pernah menolak pesanan
               br/
               br/
-              figure
-                img src="/assets/img/SF1.jpg"
-                div
-                  figcaption
-                    b.darkorange Penjual: 
-                    span  #{@product.user.name}
-                    br/
-                    b.darkorange Telepon: 
-                    span  #{@product.user.phone_number}
-                    br/
-                    b.darkorange Alamat: 
-                    span  #{@product.user.supplier.address}
+              - if @product.user.supplier.present?
+                figure
+                  img src="/assets/img/SF1.jpg"
+                  div
+                    figcaption
+                      b.darkorange Penjual:
+                      span  #{@product.user.supplier.name}
+                      br/
+                      b.darkorange Telepon:
+                      span  #{@product.user.supplier.phone_number}
+                      br/
+                      b.darkorange Alamat:
+                      span  #{@product.user.supplier.address}
 
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
