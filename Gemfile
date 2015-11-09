@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use mysql2 as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,7 +44,7 @@ gem 'email_validator'
 # Money
 gem 'money-rails'
 # Admin interface
-gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'activeadmin', github: 'activeadmin'
 # Slug
 gem 'friendly_id'
 # State machine
