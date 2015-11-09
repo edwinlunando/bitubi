@@ -18,6 +18,7 @@
                       th Order Id
                       th Pembeli
                       th Harga
+                      th Status
                       th Action
                   tbody
                   - @orders.each do |order|
@@ -31,7 +32,7 @@
                         br
                         span.black #{ order.user.email }
                         br
-                        small.black #{ order.address.one_line.titleize }
+                        small.black #{ order.address.one_line.titleize if order.address.present? }
                       td.black align="left"
                         small Biaya: #{ number_format(order.total_without_shipment) }
                         br/
@@ -39,23 +40,24 @@
                         br/
                         small
                           b.darkorange Total: #{ number_format(order.total) }
+                      td #{ order.state }
                       td align="center"
                         = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
                           i.fa.fa-folder-open title="view"
-                        - if order.delivery?
-                          - @order_target = "order#{ order.id }"
-                          span.order-expandable data-target="#{ @order_target }"
-                            i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
-                        / - unless line_item.failed?
-                        /   = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
-                        /     i.fa-btn.btn-red.fa.fa-ban title="batalkan"
-                    tr.highlight-info id="#{ @order_target }" style="display:none"
-                      td colspan="6"
-                      td
-                        b Resi
-                      td
-                        input.form-input
-                      td align="center"
+                    /     - if order.delivery?
+                    /       - @order_target = "order#{ order.id }"
+                    /       span.order-expandable data-target="#{ @order_target }"
+                    /         i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
+                    /     / - unless line_item.failed?
+                    /     /   = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
+                    /     /     i.fa-btn.btn-red.fa.fa-ban title="batalkan"
+                    / tr.highlight-info id="#{ @order_target }" style="display:none"
+                    /   td colspan="6"
+                    /   td
+                    /     b Resi
+                    /   td
+                    /     input.form-input
+                    /   td align="center"
                         / = link_to line_items_ship_path(line_item), method: :post, class: 'fa-btn btn-green'
                         /   i.fa.fa-truck title="kirim"
                         /   |  kirim

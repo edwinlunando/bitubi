@@ -24,13 +24,13 @@
           = link_to 'BERGABUNG', daftar_path, {class: 'btn btn-green cta-btn'}
           | bersama kami di LARISNI
           p.cta-sm
-            | atau 
-            = link_to 'Masuk', daftar_path, {class: 'btn btn-orange cta-btn'}
+            | atau
+            = link_to 'Masuk', new_user_session _path, {class: 'btn btn-orange cta-btn'}
             | dan mulai berbisnis
-  
+
   .parallax-container.wrapper
     section
-      .parallax-one style="background-image:url('http://globe-views.com/dcim/dreams/business/business-04.jpg'); opacity: 0.75;" 
+      .parallax-one style="background-image:url('http://globe-views.com/dcim/dreams/business/business-04.jpg'); opacity: 0.75;"
         h2 Mengapa Bergabung di Larisni?
     section
       .container
@@ -74,7 +74,7 @@
           a href='#{ products_path(category_id: category.id) }'
             .slide-category__icon
               i.menu-icon
-                img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+                = image_tag category.image.url(:thumb)
             .slide-category__name
               = category.name
   .container

@@ -34,6 +34,11 @@
                     b.clear-pm Alamat Kirim:
                     br/
                     span.darkorange #{ @order.address.sender_name }
+                    br/
+                    i.fa.fa-map-marker
+                    b.clear-pm Nomor Resi:
+                    br/
+                    span.darkorange #{ @order.receipt_number }
               .grid-flex__col.grid-flex__col--9
                 h3.darkorange Pesanan
                 .table-container
@@ -69,6 +74,14 @@
                           td align="right"
                             b #{ number_format(@order.total) }
                         tr
-                          td colspan="5"
                           td align="right"
                             = link_to 'Kembali', sell_path, class: 'btn btn-orange'
+                          - if @order.delivery?
+                            = form_for @order, url: sell_receipt_path(@order) do |f|
+                              td colspan="4" align="right"
+                                = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
+                              td
+                                button.btn.btn-green type='submit'
+                                  i.fa.fa-truck title="kirim"
+                                  |
+                                  span  Kirim

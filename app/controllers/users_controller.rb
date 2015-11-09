@@ -89,7 +89,22 @@ class UsersController < ApplicationController
     add_breadcrumb 'Detil', "/penjualan/#{@order.id}"
   end
 
+  def receipt
+    @order = current_user.orders.find(params[:id])
+    @order.deliver
+    if @order.update(receipt_params)
+      OrderMailer.receipt(@order).deliver_now
+      redirect_to sell_view_path, notice: 'Berhasil memasukkan nomor resi'
+    else
+      render :sell, notice: 'Gagal memasukkan nomor resi'
+    end
+  end
+
   private
+
+  def receipt_params
+    params.require(:order).permit(:receipt_number)
+  end
 
   def product_params
     params.require(:product).permit(:name, :slug, :stock, :description, :category_id, :unit, :weight, :price_dropship,

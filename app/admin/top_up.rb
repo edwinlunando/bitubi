@@ -15,7 +15,9 @@ ActiveAdmin.register TopUp do
     column :name
     column :amount
     column :uid
-    column :user
+    column :user do |top_up|
+      link_to top_up.user.try(:email), admin_user_path(top_up.user)
+    end
     column :bank
     column :approved
     actions do |top_up|

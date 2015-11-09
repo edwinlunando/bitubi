@@ -7,4 +7,9 @@ class OrderMailer < ApplicationMailer
     mail(to: @supplier.email, subject: 'Pesanan Baru!')
   end
 
+  def receipt(order)
+    @order = order
+    mail(to: @order.user.email, subject: 'Pesanan Kamu Telah Dikirim!')
+  end
+
 end
