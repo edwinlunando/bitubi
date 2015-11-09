@@ -119,7 +119,7 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, controllers: { registrations: 'registrations' }
   ActiveAdmin.routes(self)
-  mount ActiveadminSettingsCached::Engine => '/admin'
+  mount ActiveadminSettingsCached::Engine => '/administrasi'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
