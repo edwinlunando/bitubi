@@ -48,8 +48,8 @@
                         th Gambar
                         th Nama
                         th Status
-                        th Ongkos Kirim
                         th Jumlah
+                        th Ongkos Kirim
                         th Harga Total
                     tbody
                       - if @order.present?
@@ -64,9 +64,16 @@
                                 br/
                                 b #{ number_format(line_item.product.price_dropship) }
                             td align="center" #{ line_item.state }
-                            td align="center" #{ number_format(line_item.shipping_cost) }
                             td align="center" #{ line_item.quantity }
+                            td align="center" #{ number_format(line_item.shipping_cost) }
                             td align="right" #{ number_format(line_item.price) }
+                        tr
+                          td colspan="4" align="right"
+                            b.darkorange Ongkos Kirim
+                          td align="center" 
+                            b.black #{ @order.state_shipment_price.shipment_type.name }
+                          td align="right"
+                            b.black #{ number_format(@order.shipment_price) }
                         tr.highlight-info
                           td colspan="4"
                           td align="center"
