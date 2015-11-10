@@ -11,7 +11,8 @@
         = link_to products_path(category_id: category.id) do
           .slide-category__icon
             i.menu-icon
-              img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+              = image_tag category.image.url(:thumb)
+              / img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
           .slide-category__name
             = category.name
   .grid-flex--no-pad.page-breadcrumb--container
