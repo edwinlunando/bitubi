@@ -18,6 +18,7 @@ ActiveAdmin.register User do
 
   member_action :activation, method: :put do
     resource.active = true
+    resource.verified = true
     resource.save
     redirect_to collection_path, notice: 'Pengguna diaktivasi!'
   end

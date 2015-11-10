@@ -32,7 +32,6 @@ class OrdersController < ApplicationController
     @order.state = 'payment'
     @order.address = @address
     @order.state_shipment_price = @shipment_price
-    # TODO: transaction
     if @order.save
       redirect_to konfirmasi_path
     else
@@ -69,9 +68,7 @@ class OrdersController < ApplicationController
       current_user.save
     end
     UserMailer.order_confirmation(@order)
-    @order.suppliers.each do |supplier|
-      OrderMailer.confirmation(@order, supplier)
-    end
+    OrderMailer.confirmation(@order, @order.suppliers.first)
     flash[:success] = 'Transaksi berhasil'
     redirect_to root_path
   end
