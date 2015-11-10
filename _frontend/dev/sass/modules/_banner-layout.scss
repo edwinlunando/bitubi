@@ -75,7 +75,7 @@
 	img {
 		opacity: .5;
 		@media #{$medium} {
-			opacity: 1;
+			opacity: .75;
 		}
 	}
 	.top-banner--content {
@@ -119,7 +119,7 @@
 		h1 {
 			text-transform: uppercase;
 			font-weight: 400;
-			opacity: .75;
+			opacity: .95;
 		}
 		p {
 			font-size: 1.25em;

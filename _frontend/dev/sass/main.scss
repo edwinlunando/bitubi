@@ -271,7 +271,9 @@ textarea {
 	.profnprod-viewer__seller-info {
 		margin: 20px 0;
 		figure {
-			display: inline-block;
+			div {
+				display: inline-block;
+			}
 			img {
 				width: 90px;
 				padding: 5px;

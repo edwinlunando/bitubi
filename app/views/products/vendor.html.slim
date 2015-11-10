@@ -1,6 +1,6 @@
 .wrapper
   .top-banner
-    img.lazy alt="" data-original="#{ @user.supplier.image_file_name.present? ? @user.supplier.image_file_name : '/assets/img/bg-top-banner.jpg'}" /
+    img.lazy alt="" data-original="#{ @user.supplier.image_file_name.present? ? @user.supplier.image_file_name : '/assets/img/banner2.jpg'}" /
     .top-banner--content
       h1.top-banner--title #{ @user.supplier.name }
       p
@@ -18,20 +18,22 @@
           / - @user.image.present?
           img src="/assets/img/SF1.jpg" width="100px"
           p.category-title__description.vendor-info
-            i.fa.fa-user
-            b.clear-pm Pemilik:
-            br/
-            span.darkorange #{@user.name}
-            br/
-            i.fa.fa-phone
-            b.clear-pm Telepon:
-            br/
-            span.darkorange #{@user.phone_number}
-            br/
-            i.fa.fa-map-marker
-            b.clear-pm Alamat:
-            br/
-            span.darkorange #{ @user.supplier.address }
+            dl
+              dt.black
+                i.fa.fa-user
+                b.clear-pm Pemilik:
+              dd
+                span.darkorange #{@user.name}
+              dt.black
+                i.fa.fa-phone
+                b.clear-pm Telepon:
+              dd
+                span.darkorange #{@user.phone_number}
+              dt.black
+                i.fa.fa-map-marker
+                b.clear-pm Alamat:
+              dd
+                span.darkorange #{ @user.supplier.address }
             hr/
       .grid-flex__col.grid-flex__col--9
         .category-title.np-side
