@@ -15,15 +15,14 @@
       .grid-flex__col.grid-flex__col--3
         .category-title.np-side.vendor-info
           h2.category-title__title Info
-          / - @user.image.present?
-          img src="/assets/img/SF1.jpg" width="100px"
+          = image_tag @user.supplier.image.url(:thumb) if @user.supplier.image.present?
           p.category-title__description.vendor-info
             dl
               dt.black
                 i.fa.fa-user
                 b.clear-pm Pemilik:
               dd
-                span.darkorange #{@user.name}
+                span.darkorange #{@user.supplier.name}
               dt.black
                 i.fa.fa-phone
                 b.clear-pm Telepon:

@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
 
   def default_values
     self.role ||= User.roles[:user]
+    self.supplier ||= Supplier.new
   end
 
   def country_code

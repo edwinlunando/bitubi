@@ -67,8 +67,8 @@ class OrdersController < ApplicationController
       current_user.credit -= @order.total
       current_user.save
     end
-    UserMailer.order_confirmation(@order)
-    OrderMailer.confirmation(@order, @order.suppliers.first)
+    UserMailer.order_confirmation(@order).deliver_now
+    OrderMailer.confirmation(@order, @order.suppliers.first).deliver_now
     flash[:success] = 'Transaksi berhasil'
     redirect_to root_path
   end
