@@ -12,7 +12,6 @@
             - if product.user.supplier.present?
               span
                 b
-                  | Vendor:
                   =  link_to product.user.supplier.name, vendor_view_path(product.user)
             br/
             = product.name
