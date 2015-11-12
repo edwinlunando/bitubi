@@ -57,7 +57,7 @@ class ProductsController < InheritedResources::Base
 
     unless order.same_vendor?(line_item)
       flash[:error] = 'Anda hanya dapat membeli barang dari satu toko yang sama'
-      return render action: :show
+      return redirect_to vendor_view_path(order.suppliers.first)
     end
 
     if line_item.save

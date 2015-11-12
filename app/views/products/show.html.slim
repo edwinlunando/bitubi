@@ -14,8 +14,8 @@
               img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
             .profnprod-viewer__seller-info
               h3.darkorange.clear-pm
-                  = link_to '/vendor/' + @product.user.id.to_s
-                    | Halaman Vendor
+                = link_to '/vendor/' + @product.user.id.to_s
+                  | Halaman Vendor
               b.darkorange Pesanan:
               span.darkgreen  Tidak pernah menolak pesanan
               br/
@@ -29,7 +29,8 @@
                         dt
                           b.darkorange Penjual:
                         dd
-                          span.black #{@product.user.supplier.name}
+                          = link_to '/vendor/' + @product.user.id.to_s
+                            span.black #{@product.user.supplier.name}
                         dt
                           b.darkorange Telepon:
                         dd
