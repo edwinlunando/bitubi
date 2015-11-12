@@ -14,9 +14,8 @@
               img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
             .profnprod-viewer__seller-info
               h3.darkorange.clear-pm
-                - if @product.user.supplier.present?
-                  = link_to '/vendor/'+@product.user.id.to_s do
-                    | Vendor: #{ @product.user.supplier.name }
+                  = link_to '/vendor/' + @product.user.id.to_s
+                    | Halaman Vendor
               b.darkorange Pesanan:
               span.darkgreen  Tidak pernah menolak pesanan
               br/
