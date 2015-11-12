@@ -12,7 +12,8 @@
             - if product.category.present?
               span
                 b
-                  = product.category.name
+                  | Vendor: 
+                  = product.supplier.name
             br/
             = product.name
           - if product.price_wholesale_minimum.present?
