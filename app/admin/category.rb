@@ -1,5 +1,5 @@
 ActiveAdmin.register Category do
-  permit_params :name, :active
+  permit_params :name, :active, :image
 
   index do
     selectable_column
@@ -12,7 +12,7 @@ ActiveAdmin.register Category do
   filter :active
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs 'Admin Details' do
       f.input :name
       f.input :image
       f.input :active
