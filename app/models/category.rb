@@ -19,5 +19,6 @@ class Category < ActiveRecord::Base
   has_many :products
   validates_presence_of :name
   has_attached_file :image, styles: { thumb: '40x40>' }
+  validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/gif', 'image/png']
 
 end
