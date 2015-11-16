@@ -13,10 +13,10 @@
               span
                 b
                   =  link_to product.user.supplier.name, vendor_view_path(product.user)
-            br/
+            br
             = product.name
           - if product.price_wholesale_minimum.present?
             .cards-information-block__price
               | Mulai dari
-              br/
+              br
               | @ #{ number_format(product.price_wholesale_minimum.price) }
