@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :role, :phone_number, :password,
+  permit_params :email, :role, :phone_number,
                 supplier_attributes: [:name, :description, :address, :bank_account_number]
 
   index do
@@ -35,7 +35,7 @@ ActiveAdmin.register User do
     f.inputs 'Admin Details' do
       f.input :email
       f.input :phone_number
-      f.input :password
+      # f.input :password if object.encrypted_password.present?
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
