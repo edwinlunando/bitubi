@@ -35,7 +35,7 @@ ActiveAdmin.register User do
     f.inputs 'Admin Details' do
       f.input :email
       f.input :phone_number
-      # f.input :password if object.encrypted_password.present?
+      f.input :password
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
@@ -49,4 +49,12 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+  controller do
+    def update
+      params[:user].delete('password') if params[:user][:password].blank?
+      super
+    end
+  end
+
 end
