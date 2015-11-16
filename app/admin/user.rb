@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   permit_params :email, :role, :phone_number,
-                supplier_attributes: [:name, :description, :address, :bank_account_number]
+                supplier_attributes: [:name, :description, :address, :bank_account_number, :image]
 
   index do
     selectable_column
