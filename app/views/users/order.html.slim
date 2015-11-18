@@ -43,7 +43,8 @@
                                 br/
                                 b
                                   = link_to vendor_view_path(line_item.product.user.id) do
-                                    | vendor: #{line_item.product.user.supplier.name}
+                                    | vendor:
+                                    = line_item.product.user.supplier.name if line_item.product.user.supplier.present?
                                 br/
                                 b #{ number_format(line_item.product.price_dropship) }
                             td align="center" #{ line_item.state }

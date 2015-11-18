@@ -36,7 +36,7 @@ class HomeController < ApplicationController
 
     if @contact_form.valid?
       @contact_form.deliver
-      redirect_to root_path, notice: 'Pesan telah terkirim. Silahkan tunggu balasan dari kami.'
+      return redirect_to root_path, notice: 'Pesan telah terkirim. Silahkan tunggu balasan dari kami.'
     end
 
     render :contact
