@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   end
 
   def sell_view
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
 
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Akun', :account_path

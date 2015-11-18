@@ -35,6 +35,23 @@ ActiveAdmin.register Order do
       end
     end
 
+    panel 'Address' do
+      attributes_table_for resource.address do
+        row :name
+        row :state
+        row :city do |address|
+          address.try(:state).try(:city)
+        end
+        row :province do |address|
+          address.try(:state).try(:city).try(:province)
+        end
+        row :receiver_name
+        row :receiver_phone
+        row :sender_name
+        row :sender_phone
+      end
+    end
+
     panel 'Products' do
       attributes_table_for post.line_items do
         row :product do |line_item|
