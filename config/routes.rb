@@ -117,7 +117,10 @@
 Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_config = ActiveAdmin::Devise.config
+  devise_config[:controllers][:registrations] = 'registrations'
+  devise_for :users, devise_config
+
   ActiveAdmin.routes(self)
 
   # You can have the root of your site routed with "root"

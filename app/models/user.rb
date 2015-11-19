@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # relation
@@ -93,6 +93,14 @@ class User < ActiveRecord::Base
 
   def name
     first_name.to_s + ' ' + last_name.to_s
+  end
+
+  def to_s
+    email
+  end
+
+  def to_label
+    email
   end
 
 end

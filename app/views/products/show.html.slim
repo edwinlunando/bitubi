@@ -22,7 +22,7 @@
               br/
               - if @product.user.supplier.present?
                 figure
-                  img src="/assets/img/SF1.jpg"
+                  = image_tag @user.supplier.image.url(:thumb) if @user.supplier.image.present?
                   div style="display:inline-block"
                     figcaption
                       dl
@@ -31,10 +31,6 @@
                         dd
                           = link_to '/vendor/' + @product.user.id.to_s
                             span.black #{@product.user.supplier.name}
-                        dt
-                          b.darkorange Telepon:
-                        dd
-                          span.black #{@product.user.phone_number}
                         dt
                           b.darkorange Alamat:
                         dd

@@ -15,15 +15,22 @@ ActiveAdmin.register Order do
       ActionController::Base.helpers.number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
     end
     column :state
+    column :user do |order|
+      link_to order.user, admin_user_path(order.user)
+    end
     actions
   end
 
   filter :id
+  filter :user, member_method: :email
 
   show title: :id do |post|
 
     attributes_table do
-      rows :special_instruction, :state, :user
+      rows :state
+      row :user do |order|
+        link_to order.user, admin_user_path(order.user)
+      end
       row :total_without_shipment do |order|
         ActionController::Base.helpers.number_to_currency(order.total_without_shipment, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
       end

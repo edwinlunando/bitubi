@@ -8,14 +8,16 @@ ActiveAdmin.register Product do
     id_column
     column :name
     column :slug
-    column :user
+    column :user do |product|
+      link_to product.user, admin_user_path(product.user)
+    end
     actions
   end
 
   filter :name
   filter :id
   filter :category
-  filter :user
+  filter :user, member_method: :email
 
   show title: :name do |post|
     attributes_table do
@@ -64,4 +66,13 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
+
+  # before_filter do
+  #   Product.class_eval do
+  #     def to_param
+  #       id.to_s
+  #     end
+  #   end
+  # end
+
 end
