@@ -7,15 +7,7 @@
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
-          ul.nav
-            li.nav-one
-              a href="/keranjang"
-                i.fa.fa-shopping-cart
-                span Keranjang
-            li.nav-two
-              a.current href="/pesanan"
-                i.fa.fa-phone
-                span Pesanan
+          == render 'tabs'
           .list-wrap
             .grid-flex
               .grid-flex__col.grid-flex__col--12
@@ -60,4 +52,4 @@
                         tr
                           td colspan="5"
                           td align="right"
-                            = link_to 'Kembali', sell_path, class: 'btn btn-orange'
+                            = link_to 'Kembali', pesanan_path, class: 'btn btn-orange'

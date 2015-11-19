@@ -1,6 +1,6 @@
 ul.nav
   li.nav-one
-    = link_to "/akun"
+    = link_to account_path, class: "#{params[:action] == 'account' ? 'current' : ''}"
       i.fa.fa-user
       span Akun
   - if current_user.supplier?
@@ -13,7 +13,10 @@ ul.nav
         i.fa.fa-archive
         span Penjualan
   li.nav-four
-    = link_to keranjang_path
+    = link_to keranjang_path, class: "#{ (params[:action] == 'cart') ? 'current' : ''}"
       i.fa.fa-shopping-cart
-      span Keranjang & Pesanan
-
+      span Keranjang
+  li.nav-four
+    = link_to pesanan_path, class: "#{ (params[:action] == 'orders') || (params[:action] == 'order') ? 'current' : ''}"
+      i.fa.fa-book
+      span Pesanan 
