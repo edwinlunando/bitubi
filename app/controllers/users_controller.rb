@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end
 
   def receipt
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
     @order.deliver
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now

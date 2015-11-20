@@ -2,6 +2,11 @@ ActiveAdmin.register Order do
 
   permit_params :total, :special_instruction, :state
 
+  member_action :transfer, method: :put do
+    resource.transfer
+    redirect_to collection_path, notice: 'Berhasil transfer'
+  end
+
   index do
     selectable_column
     id_column
@@ -18,7 +23,11 @@ ActiveAdmin.register Order do
     column :user do |order|
       link_to order.user, admin_user_path(order.user)
     end
-    actions
+    actions do |order|
+      if !order.transferred && order.done?
+        link_to 'Transfer', transfer_admin_order_path(order), method: :put
+      end
+    end
   end
 
   filter :id

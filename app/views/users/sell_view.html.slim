@@ -65,7 +65,7 @@
                                 = link_to product_path(line_item.product.slug) do
                                   b.darkorange #{line_item.product.name}
                                 br/
-                                b #{ number_format(line_item.product.price_dropship) }
+                                b #{ number_format(line_item.price_per_quantity) }
                             td align="center" #{ line_item.state }
                             td align="center" #{ line_item.quantity }
                             td align="center" #{ number_format(line_item.shipping_cost) }
@@ -73,7 +73,7 @@
                         tr
                           td colspan="4" align="right"
                             b.darkorange Ongkos Kirim
-                          td align="center" 
+                          td align="center"
                             b.black #{ @order.state_shipment_price.shipment_type.name }
                           td align="right"
                             b.black #{ number_format(@order.shipment_price) }

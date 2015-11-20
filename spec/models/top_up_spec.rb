@@ -10,6 +10,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  uid        :decimal(10, )
 #
 
 require 'rails_helper'

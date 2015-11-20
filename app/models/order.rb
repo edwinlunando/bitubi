@@ -78,6 +78,17 @@ class Order < ActiveRecord::Base
 
   end
 
+  def transfer
+    ActiveRecord::Base.transaction do
+      supplier = suppliers.first
+      supplier.credit += total
+      supplier.save
+      self.transferred = true
+      self.transfer_time = Time.zone.now
+      save
+    end
+  end
+
   def same_vendor?(line_item)
     return true if suppliers.blank?
     suppliers.ids.include?(line_item.product.user_id)

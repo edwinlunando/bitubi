@@ -10,8 +10,9 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  uid        :decimal(10, )
 #
-# top up credit model
+
 class TopUp < ActiveRecord::Base
 
   belongs_to :user
@@ -24,10 +25,10 @@ class TopUp < ActiveRecord::Base
       save
       if self == user.top_ups.order(:created_at).first
         user.credit += 400_000
-        user.verified = true
       else
         user.credit += amount
       end
+      user.verified = true
       user.save
       return true
     else
@@ -41,7 +42,7 @@ class TopUp < ActiveRecord::Base
   end
 
   def total
-    self.amount + self.uid
+    amount + uid
   end
 
   def self.bank_list

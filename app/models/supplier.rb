@@ -14,7 +14,7 @@
 #  image_updated_at    :datetime
 #  description         :text(65535)
 #
-# data model for supplier with user
+
 class Supplier < ActiveRecord::Base
 
   has_one :user

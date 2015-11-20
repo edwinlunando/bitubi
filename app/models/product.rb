@@ -19,7 +19,7 @@
 # model to represent a product in a store
 class Product < ActiveRecord::Base
 
-  # extend FriendlyId
+  extend FriendlyId
 
   # Relation
   belongs_to :user
@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :wholesale_prices, allow_destroy: true, reject_if: :all_blank
 
-  # friendly_id :name, use: :slugged
+  friendly_id :name, use: :slugged
 
   validates :name, presence: true
   validates :weight, presence: true
