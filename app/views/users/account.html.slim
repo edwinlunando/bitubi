@@ -19,12 +19,14 @@
                 b
                   = f.error_notification
               label.form-label Banner Vendor
-              / = f.input :vendor_name, label: 'Nama Vendor'
-              br/
-              img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
-              br/
-              = supplier.input :image_file_name, as: :file, label: false
-              br/
+              br
+              - if supplier.object.image.present?
+                img#prod-img-target alt="" src="#{ supplier.object.image.url(:medium) }" width="200"
+              - else
+                img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+              br
+              = supplier.input :image, label: false
+              br
               = supplier.input :name, label: 'Nama Vendor'
               = supplier.input :description, label: 'Deskripsi Singkat', as: :text
               = supplier.input :bank_account_number, label: 'Nomor Rekening'
@@ -34,11 +36,6 @@
           center
             h2.orange Profil
             label.form-label Foto Profil
-            / = f.input :vendor_name, label: 'Nama Vendor'
-            br/
-            img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
-            br/
-            = f.input :file, as: :file, label: false
             br/
             = f.input :first_name, label: 'Nama Depan'
             = f.input :last_name, label: 'Nama Belakang'
@@ -48,8 +45,6 @@
           center
             h2.orange Akun
             = f.input :email, label: 'Email'
-            = f.input :password, label: 'Kata Sandi'
-            = f.input :password, label: 'Konfirmasi Kata Sandi'
       .grid-flex
         .grid-flex__col.grid-flex__col--12
           center

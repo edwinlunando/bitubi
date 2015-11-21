@@ -117,7 +117,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :phone_number)
+    params.require(:user).permit(:email, :phone_number, :first_name, :last_name,
+                                 supplier_attributes: [:name, :image, :bank_account_number, :description, :address])
   end
 
 end
