@@ -8,7 +8,6 @@
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           == render 'tabs'
-    / = simple_form_for current_user, url: account_update_path, method: :post do |f|
     = simple_nested_form_for current_user, url: account_update_path, method: :post do |f|
       .grid-flex
         .grid-flex__col.grid-flex__col--4
@@ -21,9 +20,9 @@
               label.form-label Banner Vendor
               br
               - if supplier.object.image.present?
-                img#prod-img-target alt="" src="#{ supplier.object.image.url(:medium) }" width="200"
+                img#prod-img-target src="#{ supplier.object.image.url(:medium) }" width="200"
               - else
-                img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                img#prod-img-target src="/assets/img/no_image.gif" width="200"
               br
               = supplier.input :image, label: false
               br

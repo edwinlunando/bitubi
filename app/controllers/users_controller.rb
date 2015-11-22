@@ -65,6 +65,13 @@ class UsersController < ApplicationController
     render :new_product
   end
 
+  def update_product
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    flash.now[:notice] = 'Produk berhasil diperbarui'
+    render :edit_product
+  end
+
   def edit_product
     @product = Product.find(params[:id])
   end

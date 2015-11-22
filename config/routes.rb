@@ -153,6 +153,7 @@ Rails.application.routes.draw do
   get 'dagangan/baru' => 'users#new_product', as: 'new_sell'
   get 'dagangan/:id/hapus' => 'users#new_product', as: 'delete_sell'
   get 'dagangan/:id/edit' => 'users#edit_product', as: 'edit_sell'
+  post 'dagangan/:id/ubah' => 'users#update_product', as: 'update_sell'
   get 'daleman' => 'home#order'
   get 'login' => 'home#login'
   post 'daftar/vendor' => 'home#create_supplier', as: 'create_supplier'
