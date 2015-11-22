@@ -22,7 +22,7 @@
               br/
               - if @product.user.supplier.present?
                 figure
-                  = image_tag @user.supplier.image.url(:thumb) if @user.supplier.image.present?
+                  = image_tag @product.user.supplier.image.url(:thumb) if @product.user.supplier.image.present?
                   div style="display:inline-block"
                     figcaption
                       dl
