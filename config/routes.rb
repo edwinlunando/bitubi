@@ -2,21 +2,14 @@
 #
 #                        Prefix Verb   URI Pattern                              Controller#Action
 #                      ckeditor        /ckeditor                                Ckeditor::Engine
-#              new_user_session GET    /users/sign_in(.:format)                 devise/sessions#new
-#                  user_session POST   /users/sign_in(.:format)                 devise/sessions#create
-#          destroy_user_session GET    /users/sign_out(.:format)                devise/sessions#destroy
-#                 user_password POST   /users/password(.:format)                devise/passwords#create
-#             new_user_password GET    /users/password/new(.:format)            devise/passwords#new
-#            edit_user_password GET    /users/password/edit(.:format)           devise/passwords#edit
-#                               PATCH  /users/password(.:format)                devise/passwords#update
-#                               PUT    /users/password(.:format)                devise/passwords#update
-#      cancel_user_registration GET    /users/cancel(.:format)                  registrations#cancel
-#             user_registration POST   /users(.:format)                         registrations#create
-#         new_user_registration GET    /users/sign_up(.:format)                 registrations#new
-#        edit_user_registration GET    /users/edit(.:format)                    registrations#edit
-#                               PATCH  /users(.:format)                         registrations#update
-#                               PUT    /users(.:format)                         registrations#update
-#                               DELETE /users(.:format)                         registrations#destroy
+#              new_user_session GET    /admin/login(.:format)                   active_admin/devise/sessions#new
+#                  user_session POST   /admin/login(.:format)                   active_admin/devise/sessions#create
+#          destroy_user_session GET    /admin/logout(.:format)                  active_admin/devise/sessions#destroy
+#                 user_password POST   /admin/password(.:format)                active_admin/devise/passwords#create
+#             new_user_password GET    /admin/password/new(.:format)            active_admin/devise/passwords#new
+#            edit_user_password GET    /admin/password/edit(.:format)           active_admin/devise/passwords#edit
+#                               PATCH  /admin/password(.:format)                active_admin/devise/passwords#update
+#                               PUT    /admin/password(.:format)                active_admin/devise/passwords#update
 #                    admin_root GET    /admin(.:format)                         admin/dashboard#index
 # batch_action_admin_categories POST   /admin/categories/batch_action(.:format) admin/categories#batch_action
 #              admin_categories GET    /admin/categories(.:format)              admin/categories#index
@@ -28,8 +21,16 @@
 #                               PUT    /admin/categories/:id(.:format)          admin/categories#update
 #                               DELETE /admin/categories/:id(.:format)          admin/categories#destroy
 #               admin_dashboard GET    /admin/dashboard(.:format)               admin/dashboard#index
-#         confirmed_admin_order PUT    /admin/orders/:id/confirmed(.:format)    admin/orders#confirmed
-#         delivered_admin_order PUT    /admin/orders/:id/delivered(.:format)    admin/orders#delivered
+# batch_action_admin_line_items POST   /admin/line_items/batch_action(.:format) admin/line_items#batch_action
+#              admin_line_items GET    /admin/line_items(.:format)              admin/line_items#index
+#                               POST   /admin/line_items(.:format)              admin/line_items#create
+#           new_admin_line_item GET    /admin/line_items/new(.:format)          admin/line_items#new
+#          edit_admin_line_item GET    /admin/line_items/:id/edit(.:format)     admin/line_items#edit
+#               admin_line_item GET    /admin/line_items/:id(.:format)          admin/line_items#show
+#                               PATCH  /admin/line_items/:id(.:format)          admin/line_items#update
+#                               PUT    /admin/line_items/:id(.:format)          admin/line_items#update
+#                               DELETE /admin/line_items/:id(.:format)          admin/line_items#destroy
+#          transfer_admin_order PUT    /admin/orders/:id/transfer(.:format)     admin/orders#transfer
 #     batch_action_admin_orders POST   /admin/orders/batch_action(.:format)     admin/orders#batch_action
 #                  admin_orders GET    /admin/orders(.:format)                  admin/orders#index
 #                               POST   /admin/orders(.:format)                  admin/orders#create
@@ -58,6 +59,7 @@
 #                               PATCH  /admin/top_ups/:id(.:format)             admin/top_ups#update
 #                               PUT    /admin/top_ups/:id(.:format)             admin/top_ups#update
 #                               DELETE /admin/top_ups/:id(.:format)             admin/top_ups#destroy
+#         activation_admin_user PUT    /admin/users/:id/activation(.:format)    admin/users#activation
 #      batch_action_admin_users POST   /admin/users/batch_action(.:format)      admin/users#batch_action
 #                   admin_users GET    /admin/users(.:format)                   admin/users#index
 #                               POST   /admin/users(.:format)                   admin/users#create
@@ -71,7 +73,6 @@
 #                admin_comments GET    /admin/comments(.:format)                admin/comments#index
 #                               POST   /admin/comments(.:format)                admin/comments#create
 #                 admin_comment GET    /admin/comments/:id(.:format)            admin/comments#show
-#   activeadmin_settings_cached        /admin                                   ActiveadminSettingsCached::Engine
 #                          root GET    /                                        home#index
 #           add_to_cart_product POST   /produk/:id/add_to_cart(.:format)        products#add_to_cart
 #                      products GET    /produk(.:format)                        products#index
@@ -82,21 +83,40 @@
 #                               PATCH  /produk/:id(.:format)                    products#update
 #                               PUT    /produk/:id(.:format)                    products#update
 #                               DELETE /produk/:id(.:format)                    products#destroy
-#                         saldo GET    /saldo(.:format)                         home#topup
-#                  tambah_saldo POST   /saldo(.:format)                         home#topup_credit
-#              delete_from_cart DELETE /keranjang/:id/buang(.:format)           home#remove_from_cart
-#                     keranjang GET    /keranjang(.:format)                     home#cart
-#                    addressing POST   /alamat(.:format)                        home#addressing
-#                        alamat GET    /alamat(.:format)                        home#address
+#                   vendor_view GET    /vendor/:id(.:format)                    products#vendor
+#                         saldo GET    /saldo(.:format)                         users#topup
+#                  tambah_saldo POST   /saldo(.:format)                         users#topup_credit
+#              delete_from_cart DELETE /keranjang/:id/buang(.:format)           orders#remove_from_cart
+#                     keranjang GET    /keranjang(.:format)                     orders#cart
+#                    addressing POST   /alamat(.:format)                        orders#addressing
+#                        alamat GET    /alamat(.:format)                        orders#address
 #                  order_detail GET    /pesanan/:id(.:format)                   users#order
 #                       pesanan GET    /pesanan(.:format)                       users#orders
+#                       account GET    /akun(.:format)                          users#account
+#                account_update POST   /akun/simpan(.:format)                   users#account_edit
+#                          sell GET    /penjualan(.:format)                     users#sell
+#                     sell_view GET    /penjualan/:id(.:format)                 users#sell_view
+#                  sell_receipt PATCH  /penjualan/:id/receipt(.:format)         users#receipt
 #                      dagangan GET    /dagangan(.:format)                      users#products
-#                 dagangan_baru GET    /dagangan/baru(.:format)                 users#new_product
+#                   create_sell POST   /dagangan(.:format)                      users#create_product
+#                      new_sell GET    /dagangan/baru(.:format)                 users#new_product
+#                   delete_sell GET    /dagangan/:id/hapus(.:format)            users#new_product
+#                     edit_sell GET    /dagangan/:id/edit(.:format)             users#edit_product
+#                   update_sell POST   /dagangan/:id/ubah(.:format)             users#update_product
 #                       daleman GET    /daleman(.:format)                       home#order
 #                         login GET    /login(.:format)                         home#login
+#               create_supplier POST   /daftar/vendor(.:format)                 home#create_supplier
+#             register_supplier GET    /daftar/vendor(.:format)                 home#register_supplier
 #                        daftar GET    /daftar(.:format)                        home#register
-#                    konfirmasi GET    /konfirmasi(.:format)                    home#confirmation
-#                        finish POST   /konfirmasi(.:format)                    home#finish
+#                    konfirmasi GET    /konfirmasi(.:format)                    orders#confirmation
+#                        finish POST   /konfirmasi(.:format)                    orders#finish
+#                       tentang GET    /tentang(.:format)                       high_voltage/pages#show {:id=>"about"}
+#                           faq GET    /faq(.:format)                           high_voltage/pages#show {:id=>"faq"}
+#                        aturan GET    /aturan(.:format)                        high_voltage/pages#show {:id=>"terms_and_condition"}
+#                        kontak GET    /kontak(.:format)                        home#contact
+#                  send_contact POST   /kontak/kirim(.:format)                  home#send_contact
+#             line_items_cancel POST   /penjualan/:id/batal(.:format)           line_items#cancel
+#               line_items_ship POST   /penjualan/:id/kirim(.:format)           line_items#ship
 #                      provinsi GET    /provinsi(.:format)                      addresses#province
 #                          kota GET    /kota(.:format)                          addresses#city
 #                          page GET    /pages/*id                               high_voltage/pages#show
@@ -109,17 +129,13 @@
 #                  POST   /attachment_files(.:format)     ckeditor/attachment_files#create
 #  attachment_file DELETE /attachment_files/:id(.:format) ckeditor/attachment_files#destroy
 #
-# Routes for ActiveadminSettingsCached::Engine:
-# settings PATCH /settings(.:format) activeadmin_settings_cached/settings#update
-#          PUT   /settings(.:format) activeadmin_settings_cached/settings#update
-#
 
 Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  devise_config = ActiveAdmin::Devise.config
-  devise_config[:controllers][:registrations] = 'registrations'
-  devise_for :users, devise_config
+  # devise_config = ActiveAdmin::Devise.config
+  # devise_config[:controllers][:registrations] = 'registrations'
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   ActiveAdmin.routes(self)
 

@@ -6,7 +6,7 @@
           h2.darkorange.clear-pm Pendaftaran
     .grid-flex
       .grid-flex__col.grid-flex__col--6
-        = simple_form_for(resource, as: resource_name, url: user_registration_path, html: { id: 'register-form', class: 'form__row' }) do |f|
+        = simple_form_for(resource, as: resource_name, method: :post, url: user_registration_path, html: { id: 'register-form', class: 'form__row' }) do |f|
           = f.input :email, required: true, input_html: {class: 'form-input form-input--block'}, autofocus: true, label: 'email', wrapper: false
           = f.input :password, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
           = f.input :password_confirmation, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Konfirmasi Password'

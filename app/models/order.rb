@@ -13,6 +13,8 @@
 #  state_shipment_price_id :integer
 #  payment_time            :datetime
 #  receipt_number          :string(255)
+#  transfer_time           :datetime
+#  transferred             :boolean
 #
 
 # model to represent a User order
