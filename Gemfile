@@ -75,8 +75,6 @@ gem 'sentry-raven'
 gem 'spreadsheet'
 # preferences
 gem 'preferences'
-# rich text editor
-gem 'ckeditor'
 # selectize
 gem 'selectize-rails'
 # static pages
