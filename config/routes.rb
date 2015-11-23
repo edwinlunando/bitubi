@@ -132,8 +132,6 @@
 
 Rails.application.routes.draw do
 
-  # devise_config = ActiveAdmin::Devise.config
-  # devise_config[:controllers][:registrations] = 'registrations'
   devise_for :users, controllers: { registrations: 'registrations' }
 
   ActiveAdmin.routes(self)
