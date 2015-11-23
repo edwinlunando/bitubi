@@ -50,7 +50,6 @@
                       tr align="center"
                         th Gambar
                         th Nama
-                        th Status
                         th Jumlah
                         th Ongkos Kirim
                         th Harga Total
@@ -66,19 +65,18 @@
                                   b.darkorange #{line_item.product.name}
                                 br/
                                 b #{ number_format(line_item.price_per_quantity) }
-                            td align="center" #{ line_item.state }
                             td align="center" #{ line_item.quantity }
                             td align="center" #{ number_format(line_item.shipping_cost) }
                             td align="right" #{ number_format(line_item.price) }
                         tr
-                          td colspan="4" align="right"
+                          td colspan="3" align="right"
                             b.darkorange Ongkos Kirim
                           td align="center"
                             b.black #{ @order.state_shipment_price.shipment_type.name }
                           td align="right"
                             b.black #{ number_format(@order.shipment_price) }
                         tr.highlight-info
-                          td colspan="4"
+                          td colspan="3"
                           td align="center"
                             b Total
                           td align="right"
@@ -88,7 +86,7 @@
                             = link_to 'Kembali', sell_path, class: 'btn btn-orange'
                           - if @order.delivery?
                             = form_for @order, url: sell_receipt_path(@order) do |f|
-                              td colspan="4" align="right"
+                              td colspan="3" align="right"
                                 = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
                               td
                                 button.btn.btn-green type='submit'

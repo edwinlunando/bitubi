@@ -41,7 +41,23 @@ class Order < ActiveRecord::Base
   include AASM
 
   def self.states
-    [:cart, :address, :payment, :done]
+    [:cart, :address, :payment, :delivery, :done, :failed]
+  end
+
+  def state_simple
+    if state == 'cart'
+      'Di dalam keranjang'
+    elsif state == 'address'
+      'Masukkan alamat'
+    elsif state == 'payment'
+      'Pembayaran'
+    elsif state == 'delivery'
+      'Masukkan nomor resi'
+    elsif state == 'done'
+      'Selesai'
+    elsif state == 'failed'
+      'Batal'
+    end
   end
 
   aasm column: :state do # default column: aasm_state
