@@ -11,6 +11,7 @@ ActiveAdmin.register User do
     column :sign_in_count
     column :active
     column :role
+    column :verified
     column :created_at
     actions do |user|
       item 'Aktivasi', activation_admin_user_path(user), method: :put
@@ -36,6 +37,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :phone_number
       f.input :password
+      f.input :verified
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
