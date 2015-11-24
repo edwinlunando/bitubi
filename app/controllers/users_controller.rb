@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Penjualan', :sell_path
 
-    @orders = Order.joins(line_items: [:product])
+    @orders = Order.vendor.joins(line_items: [:product])
                    .includes(:line_items)
                    .where('products.user_id = ?', current_user.id)
                    .order(created_at: :desc)

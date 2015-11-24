@@ -29,6 +29,9 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :state_shipment_price
 
+  # scope
+  scope :vendor, -> { where(state: [:delivery, :done, :failed]) }
+
   # Method
   def finish_order
     line_items.each do |line_item|
