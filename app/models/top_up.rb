@@ -12,7 +12,7 @@
 #  updated_at :datetime         not null
 #  uid        :decimal(10, )
 #
-
+# top up model
 class TopUp < ActiveRecord::Base
 
   belongs_to :user
@@ -24,7 +24,7 @@ class TopUp < ActiveRecord::Base
       self.approved = true
       save
       if self == user.top_ups.order(:created_at).first
-        user.credit += 400_000
+        user.credit += 300_000
       else
         user.credit += amount
       end
@@ -38,7 +38,7 @@ class TopUp < ActiveRecord::Base
 
   def set_up_first
     self.uid = rand(100..1000)
-    self.amount = 500_000
+    self.amount = 300_000
   end
 
   def total
