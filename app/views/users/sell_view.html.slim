@@ -44,52 +44,53 @@
                         span.darkorange #{ @order.receipt_number }
               .grid-flex__col.grid-flex__col--9
                 h3.darkorange Pesanan
-                .table-container
-                  table.table
-                    thead
-                      tr align="center"
-                        th Gambar
-                        th Nama
-                        th Jumlah
-                        th Ongkos Kirim
-                        th Harga Total
-                    tbody
-                      - if @order.present?
-                        - @order.line_items.each do |line_item|
+                = form_for @order, url: sell_receipt_path(@order) do |f|
+                  .table-container
+                    table.table
+                      thead
+                        tr align="center"
+                          th Gambar
+                          th Nama
+                          th Jumlah
+                          th Ongkos Kirim
+                          th Harga Total
+                      tbody
+                        - if @order.present?
+                          - @order.line_items.each do |line_item|
+                            tr
+                              td align="center"
+                                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                              td align="left"
+                                .table-products__info
+                                  = link_to product_path(line_item.product.slug) do
+                                    b.darkorange #{line_item.product.name}
+                                  br
+                                  b #{ number_format(line_item.price_per_quantity) }
+                              td align="center" #{ line_item.quantity }
+                              td align="center" #{ number_format(line_item.shipping_cost) }
+                              td align="right" #{ number_format(line_item.price) }
                           tr
+                            td colspan="3" align="right"
+                              b.darkorange Ongkos Kirim
                             td align="center"
-                              = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-                            td align="left"
-                              .table-products__info
-                                = link_to product_path(line_item.product.slug) do
-                                  b.darkorange #{line_item.product.name}
-                                br/
-                                b #{ number_format(line_item.price_per_quantity) }
-                            td align="center" #{ line_item.quantity }
-                            td align="center" #{ number_format(line_item.shipping_cost) }
-                            td align="right" #{ number_format(line_item.price) }
-                        tr
-                          td colspan="3" align="right"
-                            b.darkorange Ongkos Kirim
-                          td align="center"
-                            b.black #{ @order.state_shipment_price.shipment_type.name }
-                          td align="right"
-                            b.black #{ number_format(@order.shipment_price) }
-                        tr.highlight-info
-                          td colspan="3"
-                          td align="center"
-                            b Total
-                          td align="right"
-                            b #{ number_format(@order.total) }
-                        tr
-                          td align="right"
-                            = link_to 'Kembali', sell_path, class: 'btn btn-orange'
-                          - if @order.delivery?
-                            = form_for @order, url: sell_receipt_path(@order) do |f|
-                              td colspan="3" align="right"
-                                = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
-                              td
-                                button.btn.btn-green type='submit'
-                                  i.fa.fa-truck title="kirim"
-                                  |
-                                  span  Kirim
+                              b.black #{ @order.state_shipment_price.shipment_type.name }
+                            td align="right"
+                              b.black #{ number_format(@order.shipment_price) }
+                          tr.highlight-info
+                            td colspan="3"
+                            td align="center"
+                              b Total
+                            td align="right"
+                              b #{ number_format(@order.total) }
+
+                          tr
+                            td align="right"
+                              = link_to 'Kembali', sell_path, class: 'btn btn-orange'
+                              - if @order.delivery?
+                                td colspan="3" align="right"
+                                  = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
+                                td
+                                  button.btn.btn-green type='submit'
+                                    i.fa.fa-truck title="kirim"
+                                    |
+                                    span  Kirim

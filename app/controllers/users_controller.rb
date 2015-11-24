@@ -57,6 +57,12 @@ class UsersController < ApplicationController
     @product = Product.new
   end
 
+  def delete_product
+    product = Product.friendly.find(params[:id])
+    product.destroy
+    redirect_to dagangan_path, notice: 'Produk berhasil dihapus'
+  end
+
   def create_product
     @product = Product.new(product_params)
     @product.user = current_user

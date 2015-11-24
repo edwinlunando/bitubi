@@ -39,6 +39,5 @@
                         /   i.fa-btn.btn-green.fa.fa-money title="set sold"
                         = link_to "/dagangan/#{ product.id }/edit" do
                           i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                        = link_to "/dagangan/#{ product.id }/hapus", {'data-confirm': "Hapus produk #{product.name}?"} do
-                          button.btn-clear type="submit"
+                        = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
                             i.fa-btn.btn-red.fa.fa-trash title="delete"
