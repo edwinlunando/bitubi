@@ -159,6 +159,7 @@
                 if(changer) {
                     $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
                     changer.keypress(function() {
+                        console.log('test');
                         $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
                     })
                 }

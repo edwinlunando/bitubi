@@ -10,7 +10,38 @@
           == render 'tabs'
           .list-wrap
             .grid-flex
-              .grid-flex__col.grid-flex__col--12
+              .grid-flex__col.grid-flex__col--3
+                .category-title.clear-pm.vendor-info
+                  h3.darkorange Info Pemesanan
+                  p
+                    dl.category-title__description.vendor-info
+                      dt
+                        i.fa.fa-user
+                        b.clear-pm Pemesan:
+                      dd
+                        span.darkorange #{@order.address.receiver_name}
+                      dt
+                        i.fa.fa-phone
+                        b.clear-pm Telepon:
+                      dd
+                        span.darkorange #{@order.address.receiver_phone}
+                      dt
+                        i.fa.fa-envelope
+                        b.clear-pm Kode Pos:
+                      dd
+                        span.darkorange #{@order.address.zipcode}
+                      br/
+                      dt
+                        i.fa.fa-map-marker
+                        b.clear-pm Alamat Kirim:
+                      dd
+                        span.darkorange #{ @order.address.sender_name }
+                      dt
+                        i.fa.fa-truck
+                        b.clear-pm Nomor Resi:
+                      dd
+                        span.darkorange #{ @order.receipt_number }
+              .grid-flex__col.grid-flex__col--9
                 h2.darkorange DETIL PESANANMU : Order - #{ @order.id }
                 .table-container
                   table.table
