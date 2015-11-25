@@ -41,7 +41,7 @@
       .grid-flex__col.grid-flex__col--6
         h3.darkorange Top Up Form
         = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
-          = f.input :uid, :as => :hidden, input_html: { id: 'saldo-uid' }
+          = f.input :uid, :as => :hidden, input_html: { id: 'saldo-uid', value: '123' }
           = f.input :name, input_html: { placeholder: 'nama' }, label: 'Nama'
           = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
           - if current_user.verified
@@ -51,7 +51,7 @@
           = f.input :amount, input_html: { placeholder: 'jumlah dibayar', id: 'saldo-dest', readonly: true }, label: 'Total Bayar'
           p.darkorange Biaya pendaftaran pertama sebesar: Rp 300.000,-
           br/
-          button.btn.btn-green type="submit" 'Bayar'
+          button.btn.btn-green type="submit" Bayar
     hr/
     .grid-flex
       .grid-flex__col.grid-flex__col-12
