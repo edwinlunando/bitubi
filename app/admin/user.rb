@@ -38,6 +38,7 @@ ActiveAdmin.register User do
       f.input :phone_number
       f.input :password
       f.input :verified
+      f.input :active
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
