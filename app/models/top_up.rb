@@ -41,6 +41,10 @@ class TopUp < ActiveRecord::Base
     self.amount = 300_000
   end
 
+  def generate
+    self.uid = rand(100..1000)
+  end
+
   def total
     amount + uid
   end

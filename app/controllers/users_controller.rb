@@ -26,7 +26,11 @@ class UsersController < ApplicationController
 
   def topup
     @top_up = TopUp.new
-    @top_up.set_up_first unless current_user.verified
+    if current_user.verified
+      @top_up.generate
+    else
+      @top_up.set_up_first
+    end
   end
 
   def orders
