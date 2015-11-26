@@ -2,12 +2,13 @@
   = link_to vendor_view_path(vendor)
     figure
       .cards-image
-        - if vendor.supplier.image.present?
+        - if vendor.supplier.present? && vendor.supplier.image.present?
           = image_tag vendor.supplier.image.url(:thumb)
         - else
           img.lazy alt="" data-original="/assets/img/store-thumb.png" /
       figcaption
         .cards-information-block
           center
-            b
-              = link_to vendor.supplier.name, vendor_view_path(vendor)
+            - if vendor.supplier.present?
+              b
+                = link_to vendor.supplier.name, vendor_view_path(vendor)

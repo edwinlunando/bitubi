@@ -53,6 +53,9 @@ class User < ActiveRecord::Base
   validates :phone_number, phony_plausible: true, presence: true
   enum role: { admin: 'admin', user: 'user', supplier: 'supplier' }
 
+  # scope
+  scope :supplier, -> { where(role: [:supplier]) }
+
   # callback
   before_save :default_values
 
