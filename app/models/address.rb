@@ -13,8 +13,7 @@
 #  sender_phone   :string(255)
 #  zipcode        :string(255)
 #
-
-# alamat
+# alamat model
 class Address < ActiveRecord::Base
 
   attr_accessor :province, :city, :shipment_type

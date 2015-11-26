@@ -31,7 +31,6 @@
 #  active                 :boolean          default(TRUE)
 #  verified               :boolean
 #
-
 # standard user class with devise
 class User < ActiveRecord::Base
 

@@ -16,7 +16,6 @@
 #  transfer_time           :datetime
 #  transferred             :boolean
 #
-
 # model to represent a User order
 class Order < ActiveRecord::Base
 

@@ -7,6 +7,6 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class Province < ActiveRecord::Base
+
 end

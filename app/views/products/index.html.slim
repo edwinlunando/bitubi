@@ -1,18 +1,11 @@
 .wrapper.top-pd
-  / .top-banner
-  /   img.lazy alt="" data-original="/assets/img/bg-top-banner.jpg" /
-  /   .top-banner--content
-  /     h1.top-banner--title Get A Pet
-  /     p
-  /       | Get new companion for you
   .clear-pm.bg-dg.category-slider.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 2, "infinite": true}'
     - @categories.each do |category|
       .slide-category
-        = link_to products_path(category_id: category.id) do
+        = link_to products_path(category_id: category.id)
           .slide-category__icon
             i.menu-icon
               = image_tag category.image.url(:thumb)
-              / img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
           .slide-category__name
             = category.name
   .grid-flex--no-pad.page-breadcrumb--container
@@ -22,24 +15,6 @@
         - if @category.present?
           li
             ="#{@category.name}"
-
-  / .grid-flex--no-pad.filter-container
-  /   .grid-flex--no-gutter.grid-flex__col--12.filter-type-container
-  /     .grid-flex--no-pad
-  /       .grid-flex--no-gutter.grid-flex__col--3.filter-type-name
-  /         | Urutkan:
-  /       .grid-flex--no-gutter.grid-flex__col--9
-  /         ul.breadcrumb
-  /           li.active
-  /             a href=""  Terbaru
-  /           li
-  /             a href=""  Termurah
-  /           li
-  /             a href=""  Termahal
-  /           li
-  /             a href=""  Abjad A-Z
-  /           li
-  /             a href=""  Abjad Z-A
   .container
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top

@@ -9,7 +9,6 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-
 # relation between state with shipment type
 class StateShipmentPrice < ActiveRecord::Base
 

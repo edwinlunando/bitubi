@@ -1,6 +1,6 @@
 server '128.199.68.200', user: 'ubuntu', roles: %w{web app db}
 
-set :deploy_to, "/home/ubuntu/bitubi"
+set :deploy_to, '/home/ubuntu/bitubi'
 
 set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.2.2@bitubi'      # Defaults to: 'default'
@@ -14,8 +14,6 @@ set :passenger_restart_with_touch, true
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-
-
 # role-based syntax
 # ==================
 
@@ -28,8 +26,6 @@ set :passenger_restart_with_touch, true
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -37,8 +33,6 @@ set :passenger_restart_with_touch, true
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================
@@ -48,10 +42,10 @@ set :passenger_restart_with_touch, true
 #
 # Global options
 # --------------
- set :ssh_options, {
-   keys: %w(~/.ssh/id_rsa),
-   forward_agent: true
- }
+set :ssh_options, {
+  keys: %w(~/.ssh/id_rsa),
+  forward_agent: true
+}
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------

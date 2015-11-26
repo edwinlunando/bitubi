@@ -8,10 +8,11 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 # model wilayah
 class State < ActiveRecord::Base
+
   belongs_to :city
   has_many :state_shipment_prices
   has_many :shipment_types, through: :state_shipment_prices
+
 end

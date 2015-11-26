@@ -21,7 +21,7 @@
           span
             b.darkorange Saldo kamu:
             span.darkgreen  #{ number_format(current_user.credit) }
-          br/
+          br
           .table-container
               table.table
                 thead
@@ -50,7 +50,7 @@
             = f.input :amount, input_html: { placeholder: 'jumlah', id: 'saldo-chg', readonly: true }, label: 'Jumlah'
           = f.input :amount, input_html: { placeholder: 'jumlah dibayar', id: 'saldo-dest', readonly: true }, label: 'Total Bayar'
           - if user_signed_in? && !current_user.verified
-            p.darkorange Biaya pendaftaran pertama sebesar: Rp 300.000,-. Saldo Anda akan bertambah Rp 300.000,-
+            p.darkorange Silahkan mulai bisnis Anda dengan melakukan top up perdana Anda sebesar Rp 300.000.-(Anda mendapatkan saldo sebesar Rp 300.000.-)
           br/
           button.btn.btn-green type="submit" Bayar
     hr/
@@ -62,7 +62,7 @@
           li
             b Rekening BCA
             .clear-pm
-              img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80" /
+              img alt="" src="http://4.bp.blogspot.com/-RuTSlvffghg/UNrQJUqjjaI/AAAAAAAAAFg/4krs0UxBObo/s1600/logo_bca.png" width="80"
               div
                 b
                   | 5855039939
@@ -71,7 +71,7 @@
           li
             b Rekening Mandiri
             .clear-pm
-              img alt="" src="http://www.creatifprint.com/wp-content/uploads/2013/11/logo-bank-mandiri.jpg" width="80" /
+              img alt="" src="http://www.creatifprint.com/wp-content/uploads/2013/11/logo-bank-mandiri.jpg" width="80"
               div
                 b
                   | 127-00-4455-6668
@@ -80,7 +80,7 @@
           li
             b Rekening BRI
             .clear-pm
-              img alt="" src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_BRI.png" width="80" /
+              img alt="" src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_BRI.png" width="80"
               div
                 b
                   | 113-001-000187-307
