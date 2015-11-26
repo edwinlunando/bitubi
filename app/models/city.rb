@@ -8,7 +8,9 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #
-
+# city model
 class City < ActiveRecord::Base
+
   belongs_to :province
+
 end
