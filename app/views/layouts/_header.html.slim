@@ -12,10 +12,11 @@ header.header-main
                   figcaption Selamat Datang, #{ current_user.email }
             li
               = link_to 'Akun', account_path
-            li
-              = link_to 'Dagangan', dagangan_path
-            li
-              = link_to 'Penjualan', sell_path
+            - if current_user.supplier?
+              li
+                = link_to 'Dagangan', dagangan_path
+              li
+                = link_to 'Penjualan', sell_path
             li
               = link_to 'Pesanan', pesanan_path
             li
