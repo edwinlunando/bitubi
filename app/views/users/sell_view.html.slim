@@ -9,9 +9,24 @@
         #surfari-tabs
           == render 'tabs'
           .list-wrap
-            h3.darkorange DETIL PESANANMU : Order - #{ @order.id }
+            h3.darkorange DETIL PENJUALAN : Order - #{ @order.id }
             .grid-flex
               .grid-flex__col.grid-flex__col--3
+                .category-title.clear-pm.vendor-info
+                  h3.darkorange Info Pengirim
+                  p
+                    dl.category-title__description.vendor-info
+                      dt
+                        i.fa.fa-user
+                        b.clear-pm Pengirim:
+                      dd
+                        span.darkorange #{@order.address.sender_name}
+                      dt
+                        i.fa.fa-phone
+                        b.clear-pm Telepon:
+                      dd
+                        span.darkorange #{@order.address.sender_phone}
+                hr
                 .category-title.clear-pm.vendor-info
                   h3.darkorange Info Pemesan
                   p

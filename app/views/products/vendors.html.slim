@@ -1,0 +1,18 @@
+.wrapper.top-pd
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12
+      ul.breadcrumb
+        == render_breadcrumbs tag: :li, separator: ''
+  .container
+    .grid-flex.np-top
+      .grid-flex__col.grid-flex__col--12.np-top
+        .category-title.np-side
+          h2.category-title__title Daftar Vendor
+          p.category-title__description
+            | Vendor-vendor yang bergabung bersama kami
+        .product-cards-container
+          - @vendors.each do |vendor|
+            = render 'products/vendorlistcard', vendor: vendor
+
+        div.pagination-container
+          = paginate @vendors

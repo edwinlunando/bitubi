@@ -19,6 +19,7 @@
                       tr align="center"
                         th Order Id
                         th Tanggal Pesan
+                        th Nomor Resi
                         th Status
                         th Total
                         th Action
@@ -28,6 +29,7 @@
                           tr align="center"
                             td #{ order.id }
                             td #{ order.created_at.strftime("%d %B %Y") }
+                            td #{ order.receipt_number }
                             td #{ order.state }
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center"

@@ -21,7 +21,7 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
-        _elevateZoom    : path.js + 'jquery.elevatezoom.js',
+        // _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
         _slider         : path.js + 'slick.js',
@@ -174,7 +174,7 @@
                     img.attr('src', src);
                     img.attr('data-zoom-image', src);
                     img.prependTo('.profnprod-viewer__frame');
-                    img.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
+                    // img.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
                 })
             },
 
@@ -205,26 +205,26 @@
             }
         },
 
-        elevateZoom: function () {
-            // reinitiation
-            var _this = this;
-            var $zoom = $('#elevate-zoom');
+        // elevateZoom: function () {
+        //     // reinitiation
+        //     var _this = this;
+        //     var $zoom = $('#elevate-zoom');
 
-            if (!$zoom.length) return;
+        //     if (!$zoom.length) return;
 
-            Modernizr.load({
-                load: assets._elevateZoom,
-                complete: function() {
-                    //initiate the plugin and pass the id of the div containing gallery images 
-                    ezoom();
-                }
-            });
+        //     Modernizr.load({
+        //         load: assets._elevateZoom,
+        //         complete: function() {
+        //             //initiate the plugin and pass the id of the div containing gallery images 
+        //             ezoom();
+        //         }
+        //     });
 
-            function ezoom() {
-                $zoom = $('#elevate-zoom');
-                $zoom.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
-            }
-        },
+        //     function ezoom() {
+        //         $zoom = $('#elevate-zoom');
+        //         $zoom.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
+        //     }
+        // },
 
         slider: function() {
             var _this = this;
@@ -316,10 +316,10 @@
                     cb();
                 },
 
-                function elevateZoom(cb) {
-                    Site.elevateZoom();
-                    cb();
-                },
+                // function elevateZoom(cb) {
+                //     Site.elevateZoom();
+                //     cb();
+                // },
 
                 function resize(cb) {
                     Site.resize();

@@ -27,9 +27,15 @@ class ProductsController < InheritedResources::Base
     @line_item = LineItem.new
   end
 
+  def vendors
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Daftar Vendor', :vendors_path
+    @vendors = User.page(params[:page])
+  end
+
   def vendor
     add_breadcrumb 'Home', :root_path
-    add_breadcrumb 'Produk', :products_path
+    add_breadcrumb 'Daftar Vendor', :vendors_path
     products = Product.where('user_id = ?', params[:id])
     @user = User.find(params[:id])
     @products = products.page(params[:page])
