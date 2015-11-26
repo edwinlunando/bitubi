@@ -16,27 +16,28 @@
                   h3.darkorange Info Pemesan
                   p
                     dl.category-title__description.vendor-info
-                      dt
-                        i.fa.fa-user
-                        b.clear-pm Pemesan:
-                      dd
-                        span.darkorange #{@order.address.receiver_name}
-                      dt
-                        i.fa.fa-phone
-                        b.clear-pm Telepon:
-                      dd
-                        span.darkorange #{@order.address.receiver_phone}
-                      dt
-                        i.fa.fa-envelope
-                        b.clear-pm Kode Pos:
-                      dd
-                        span.darkorange #{@order.address.zipcode}
-                      br/
-                      dt
-                        i.fa.fa-map-marker
-                        b.clear-pm Alamat Kirim:
-                      dd
-                        span.darkorange #{ @order.address.sender_name }
+                      - if @order.address.present?
+                        dt
+                          i.fa.fa-user
+                          b.clear-pm Pemesan:
+                        dd
+                          span.darkorange #{@order.address.receiver_name}
+                        dt
+                          i.fa.fa-phone
+                          b.clear-pm Telepon:
+                        dd
+                          span.darkorange #{@order.address.receiver_phone}
+                        dt
+                          i.fa.fa-envelope
+                          b.clear-pm Kode Pos:
+                        dd
+                          span.darkorange #{@order.address.zipcode}
+                        br
+                        dt
+                          i.fa.fa-map-marker
+                          b.clear-pm Alamat Kirim:
+                        dd
+                          span.darkorange #{ @order.address.sender_name }
                       dt
                         i.fa.fa-truck
                         b.clear-pm Nomor Resi:
