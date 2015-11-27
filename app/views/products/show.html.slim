@@ -13,12 +13,8 @@
             - if @product.get_first_image.present?
               img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
             .profnprod-viewer__seller-info
-              h3.darkorange.clear-pm
-                = link_to '/vendor/' + @product.user.id.to_s
-                  | Halaman Vendor
-              b.darkorange Pesanan:
-              span.darkgreen  Tidak pernah menolak pesanan
-              br/
+              h3.clear-pm
+                = link_to 'Penjual: '+@product.user.supplier.name , vendor_view_path(@product.user.supplier.id)
               br/
               - if @product.user.supplier.present?
                 figure
@@ -27,10 +23,9 @@
                     figcaption
                       dl
                         dt
-                          b.darkorange Penjual:
+                          b.darkorange Pesanan:
                         dd
-                          = link_to '/vendor/' + @product.user.id.to_s
-                            span.black #{@product.user.supplier.name}
+                          span.darkgreen  Tidak pernah menolak pesanan
                         dt
                           b.darkorange Alamat:
                         dd

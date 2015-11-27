@@ -12,7 +12,7 @@
             - if product.user.present? && product.user.supplier.present?
               span
                 b
-                  =  link_to product.user.supplier.name, vendor_view_path(product.user)
+                  =  link_to product.user.supplier.name, vendor_view_path(product.user), class: 'darkorange'
             br
             = product.name
           - if product.price_wholesale_minimum.present?

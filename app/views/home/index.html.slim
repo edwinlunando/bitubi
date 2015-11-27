@@ -71,7 +71,7 @@
           a href='#{ products_path(category_id: category.id) }'
             .slide-category__icon
               i.menu-icon
-                = image_tag category.image.url(:thumb)
+                = image_tag category.image.url
             .slide-category__name
               = category.name
   .container
