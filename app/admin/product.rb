@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id,
+  permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id, :published,
                 wholesale_prices_attributes: [:id, :price, :minimum_quantity, :maximum_quantity, :_destroy],
                 product_images_attributes: [:id, :data, :_destroy]
 
@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
     id_column
     column :name
     column :slug
+    column :published
     column :user do |product|
       link_to product.user, admin_user_path(product.user)
     end
@@ -18,6 +19,7 @@ ActiveAdmin.register Product do
   filter :id
   filter :category
   filter :user, member_method: :email
+  filter :published
 
   show title: :name do |post|
     attributes_table do
@@ -51,6 +53,7 @@ ActiveAdmin.register Product do
       f.input :user, member_label: :email, label: 'Supplier'
       f.input :price_dropship, placeholder: 'dalam IDR'
       f.input :category
+      f.input :published
       f.has_many :wholesale_prices, heading: 'Wholesale Prices' do |a|
         a.input :id, as: :hidden
         a.input :price, placeholder: 'harga satuan dalam IDR'
@@ -66,13 +69,5 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
-
-  # before_filter do
-  #   Product.class_eval do
-  #     def to_param
-  #       id.to_s
-  #     end
-  #   end
-  # end
 
 end

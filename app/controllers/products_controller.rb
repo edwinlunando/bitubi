@@ -8,7 +8,7 @@ class ProductsController < InheritedResources::Base
     add_breadcrumb 'Produk', :products_path
 
     @categories = Category.all
-    products = Product.all
+    products = Product.published
     if params[:q].present?
       products = products.where('lower(name) LIKE ?', '%' + params[:q].downcase + '%')
     end
@@ -23,7 +23,7 @@ class ProductsController < InheritedResources::Base
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Produk', :products_path
 
-    @product = Product.friendly.find(params[:id])
+    @product = Product.friendly.published.find(params[:id])
     @line_item = LineItem.new
   end
 
@@ -36,7 +36,7 @@ class ProductsController < InheritedResources::Base
   def vendor
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Daftar Vendor', :vendors_path
-    products = Product.where('user_id = ?', params[:id])
+    products = Product.published.where('user_id = ?', params[:id])
     @user = User.find(params[:id])
     @products = products.page(params[:page])
   end

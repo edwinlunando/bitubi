@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120043438) do
+ActiveRecord::Schema.define(version: 20151126133547) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20151120043438) do
     t.integer  "category_id",    limit: 4
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.boolean  "published"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree

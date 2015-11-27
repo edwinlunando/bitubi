@@ -70,6 +70,7 @@ class UsersController < ApplicationController
   def create_product
     @product = Product.new(product_params)
     @product.user = current_user
+    @product.published = true
 
     return redirect_to dagangan_path if @product.save
     render :new_product
