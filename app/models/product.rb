@@ -41,6 +41,9 @@ class Product < ActiveRecord::Base
 
   alias_attribute :supplier, :user
 
+  # scope
+  scope :published, -> { where(published: true) }
+
   def get_first_image
     product_images.try(:first)
   end
