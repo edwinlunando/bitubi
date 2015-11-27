@@ -9,15 +9,15 @@
       = f.association :category, label: 'Kategori'
       = f.input :name, label: 'Nama'
       = f.input :description, label: 'Deskripsi'
-      = f.input :unit, label: 'Satuan'
-      = f.input :weight, label: 'Berat'
-      = f.input :stock, label: 'Stok'
+      = f.input :unit, label: 'Satuan (buah, keping, lembar)'
+      = f.input :weight, label: 'Berat (dalam gram)'
+      = f.input :stock, label: 'Stok (jumlah)'
     .grid-flex__col.grid-flex__col--4 style="overflow: hidden"
       label.form-label/
       h3 Gambar
       div
         = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
-        = f.fields_for :product_images do |img|
+        = f.simple_fields_for :product_images do |img|
           img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
           br/
           = img.input :data, label: false, input_html: {id: 'prod-img'}
@@ -40,18 +40,18 @@
           = f.fields_for :wholesale_prices, WholesalePrice.new do |wp|
             = wp.input :id, as: :hidden
             = wp.input :price, placeholder: 'harga satuan dalam IDR'
-            = wp.input :minimum_quantity
-            = wp.input :maximum_quantity
+            = wp.input :minimum_quantity, label: 'Minimal pembelian'
+            = wp.input :maximum_quantity, label: 'Maksimal pembelian'
             end
             br/
             br/
             hr/
       div
-        = f.fields_for :wholesale_prices do |wholesale_price|
+        = f.simple_fields_for :wholesale_prices do |wholesale_price|
           = wholesale_price.input :id, as: :hidden
           = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR'
-          = wholesale_price.input :minimum_quantity
-          = wholesale_price.input :maximum_quantity
+          = wholesale_price.input :minimum_quantity, label: 'Minimal pembelian'
+          = wholesale_price.input :maximum_quantity, label: 'Maksimal pembelian'
           br/
           = wholesale_price.link_to_remove class: 'btn' do
             i.fa.fa-trash
@@ -59,7 +59,7 @@
           br/
           br/
           hr/
-        = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
+        = f.link_to_add 'Tambah harga grosir', :wholesale_prices, class: 'btn'
   .grid-flex
     .grid-flex__col.grid-flex__col--12
       = f.submit 'Simpan', class: 'btn btn-green'
