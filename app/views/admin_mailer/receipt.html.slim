@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1 Ada pesanan yang terkirim!
+    p
+      Dengan nomor resi #{ @order.receipt_number } dan id #{ @order.id }| Silahkan cek di halaman #{ link_to 'order', admin_order_url(@order) }.
