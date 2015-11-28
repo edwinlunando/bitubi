@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @top_up = TopUp.new(top_up_params)
     @top_up.user = current_user
     if @top_up.save
+      AdminMailer.top_up(@top_up).deliver_now
       flash[:success] = 'Berhasil isi saldo! Saldo Anda akan bertambah setelah kami verifikasi.'
       redirect_to saldo_path
     else
@@ -112,6 +113,7 @@ class UsersController < ApplicationController
     @order.deliver
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
+      AdminMailer.receipt(@order).deliver_now
       redirect_to sell_view_path, notice: 'Berhasil memasukkan nomor resi'
     else
       render :sell, notice: 'Gagal memasukkan nomor resi'

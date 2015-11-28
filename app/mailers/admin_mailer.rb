@@ -3,7 +3,7 @@ class AdminMailer < ApplicationMailer
 
   def receipt(order)
     @order = order
-    mail(to: admin, subject: 'Ada Pesanan Yang Telah Dikirim! #' + @order.id)
+    mail(to: admin, subject: 'Ada Pesanan Yang Telah Dikirim! #' + @order.id.to_s)
   end
 
   def top_up(top_up)
