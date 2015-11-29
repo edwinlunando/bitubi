@@ -4,7 +4,7 @@
     .grid-flex--no-gutter.grid-flex__col--12.top-mg
       ul.breadcrumb
         == render_breadcrumbs tag: :li, separator: ''
-        li #{@product.name}
+        li #{ @product.name }
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--6.profnprod-viewer
@@ -24,13 +24,9 @@
                     figcaption
                       dl
                         dt
-                          b.darkorange Pesanan:
-                        dd
-                          span.darkgreen  Tidak pernah menolak pesanan
-                        dt
                           b.darkorange Alamat:
                         dd
-                          span.black #{@product.user.supplier.address}
+                          span.black #{ @product.user.supplier.address }
 
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
@@ -84,5 +80,5 @@
                     td #{ price.minimum_quantity }
                     td #{ price.price_money }
           p.category-title__detailed-description
-            = @product.description.html_safe
+            = simple_format @product.description
           hr
