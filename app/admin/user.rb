@@ -47,6 +47,7 @@ ActiveAdmin.register User do
           s.input :address
           s.input :bank_account_number
           s.input :image
+          s.input :banner_image
         end
       end
     end
