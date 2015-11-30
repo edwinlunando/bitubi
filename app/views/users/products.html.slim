@@ -9,35 +9,36 @@
         #surfari-tabs
           == render 'tabs'
           .list-wrap
-            h2.darkorange Produk Anda
-            .table-container
-              p
-                = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
-              table.table
-                thead
-                  tr
-                    th align="center"  Thumbnail
-                    th Item
-                    th Stok
-                    th Weight
-                    th Unit
-                    th align="center"  Action
-                tbody
-                  - @products.each do |product|
+            .grid-flex__col.grid-flex__col--12
+              h2.darkorange Produk Anda
+              .table-container
+                p
+                  = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
+                table.table
+                  thead
                     tr
-                      td align="center"
-                        - if product.get_first_image.present?
-                          img.lazy alt="" data-original="#{ product.get_first_image.data.url(:thumb) }"
-                      td
-                        = link_to "/dagangan/#{ product.id }/edit" do
-                          | #{ product.name }
-                      td #{ product.stock }
-                      td #{ product.weight }
-                      td #{ product.unit }
-                      td align="center"
-                        / a href=""
-                        /   i.fa-btn.btn-green.fa.fa-money title="set sold"
-                        = link_to "/dagangan/#{ product.id }/edit" do
-                          i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                        = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
-                            i.fa-btn.btn-red.fa.fa-trash title="delete"
+                      th align="center"  Thumbnail
+                      th Item
+                      th Stok
+                      th Weight
+                      th Unit
+                      th align="center"  Action
+                  tbody
+                    - @products.each do |product|
+                      tr
+                        td align="center"
+                          - if product.get_first_image.present?
+                            img.lazy alt="" data-original="#{ product.get_first_image.data.url(:thumb) }"
+                        td
+                          = link_to "/dagangan/#{ product.id }/edit" do
+                            | #{ product.name }
+                        td #{ product.stock }
+                        td #{ product.weight }
+                        td #{ product.unit }
+                        td align="center"
+                          / a href=""
+                          /   i.fa-btn.btn-green.fa.fa-money title="set sold"
+                          = link_to "/dagangan/#{ product.id }/edit" do
+                            i.fa-btn.btn-yellow.fa.fa-edit title="edit"
+                          = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
+                              i.fa-btn.btn-red.fa.fa-trash title="delete"

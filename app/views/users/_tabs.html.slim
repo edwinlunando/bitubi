@@ -1,6 +1,6 @@
 ul.nav
   li.nav-one
-    = link_to account_path, class: "#{params[:action] == 'account' ? 'current' : ''}"
+    = link_to account_profile_path, class: "#{params[:action] == 'account_profile' ? 'current' : ''}"
       i.fa.fa-user
       span Akun
   - if current_user.supplier?

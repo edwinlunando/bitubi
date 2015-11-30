@@ -13,13 +13,14 @@
               .grid-flex
                 == render 'account_tabs'
                 .grid-flex__col.grid-flex__col--10
-                    h2.orange Akun
+                    h2.orange Profil
                     .grid-flex
                       .grid-flex__col.grid-flex__col--4
                         .form-input--error-message
                           b
                             = f.error_notification
-                        = f.input :email, label: 'Email'
-                        = f.input :password, label: 'Password'
+                        = f.input :first_name, label: 'Nama Depan'
+                        = f.input :last_name, label: 'Nama Belakang'
+                        = f.input :phone_number, label: 'Nomor Telpon'
                         br/
                         = f.submit 'Simpan', class: 'btn btn-green'
