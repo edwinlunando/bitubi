@@ -6,31 +6,32 @@
   .container
     .grid-flex
       .grid-flex__col.grid-flex__col--12
-        #surfari-tabs
+        #surfari-tabs.clear-margin
           == render 'tabs'
     = simple_nested_form_for current_user, url: account_update_path, method: :post do |f|
       .grid-flex
-        .grid-flex__col.grid-flex__col--4
-          center
-            h2.orange Vendor
-            = f.fields_for :supplier do |supplier|
-              .form-input--error-message
-                b
-                  = f.error_notification
-              label.form-label Banner Vendor
-              br
-              - if supplier.object.image.present?
-                img#prod-img-target src="#{ supplier.object.image.url(:medium) }" width="200"
-              - else
-                img#prod-img-target src="/assets/img/no_image.gif" width="200"
-              br
-              = supplier.input :image, label: false
-              br
-              = supplier.input :name, label: 'Nama Vendor'
-              = supplier.input :description, label: 'Deskripsi Singkat', as: :text
-              = supplier.input :bank_account_number, label: 'Nomor Rekening'
-              = supplier.input :address, label: 'Alamat', as: :text
-              br/
+        - if current_user.supplier?
+          .grid-flex__col.grid-flex__col--4
+            center
+              h2.orange Vendor
+              = f.fields_for :supplier do |supplier|
+                .form-input--error-message
+                  b
+                    = f.error_notification
+                label.form-label Banner Vendor
+                br
+                - if supplier.object.image.present?
+                  img#prod-img-target src="#{ supplier.object.image.url(:medium) }" width="200"
+                - else
+                  img#prod-img-target src="/assets/img/no_image.gif" width="200"
+                br
+                = supplier.input :image, label: false
+                br
+                = supplier.input :name, label: 'Nama Vendor'
+                = supplier.input :description, label: 'Deskripsi Singkat', as: :text
+                = supplier.input :bank_account_number, label: 'Nomor Rekening'
+                = supplier.input :address, label: 'Alamat', as: :text
+                br/
         .grid-flex__col.grid-flex__col--4
           center
             h2.orange Profil
@@ -44,6 +45,8 @@
           center
             h2.orange Akun
             = f.input :email, label: 'Email'
+        - if !current_user.supplier?
+          .grid-flex__col.grid-flex__col--4
       .grid-flex
         .grid-flex__col.grid-flex__col--12
           center

@@ -11,7 +11,7 @@ header.header-main
                 figure
                   figcaption Selamat Datang, #{ current_user.email }
             li
-              = link_to 'Akun', account_path
+              = link_to 'Profil', account_path
             - if current_user.supplier?
               li
                 = link_to 'Dagangan', dagangan_path
