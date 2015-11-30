@@ -11,7 +11,7 @@
         .grid-flex
           .grid-flex__col.grid-flex__col--10.profnprod-viewer__frame
             - if @product.get_first_image.present?
-              img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url(:large) }" data-zoom-image="#{ @product.get_first_image.data.url(:large) }"
+              img#elevate-zoom.lazy alt="" data-original="#{ @product.get_first_image.data.url }" data-zoom-image="#{ @product.get_first_image.data.url }"
             .profnprod-viewer__seller-info
               - if @product.user.supplier.present?
                 h3.clear-pm
