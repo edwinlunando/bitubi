@@ -49,6 +49,9 @@ ActiveAdmin.register Order do
       row :total do |order|
         ActionController::Base.helpers.number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
       end
+      row :receipt_number
+      row :transferred
+      row :transfer_time
     end
 
     panel 'Address' do
