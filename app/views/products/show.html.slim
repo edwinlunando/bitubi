@@ -32,7 +32,7 @@
             ul
               - @product.product_images.each do |image|
                 li.profnprod-viewer__thumb
-                  img.lazy alt="" data-original="#{ image.data.url(:large) }" data-zoom-image="#{ image.data.url(:large) }"
+                  img.lazy alt="" data-original="#{ image.data.url }" data-zoom-image="#{ image.data.url }"
       .grid-flex__col.grid-flex__col--6
         .category-title.pad-bot-only
           h2.category-title__title.product-title
