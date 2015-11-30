@@ -31,4 +31,11 @@ class Supplier < ActiveRecord::Base
   }
   validates_attachment_content_type :banner_image, content_type: ['image/jpeg', 'image/gif', 'image/png']
 
+  def self.bank_list
+    [
+      'Bank Central Asia',
+      'Bank Mandiri'
+    ]
+  end
+
 end

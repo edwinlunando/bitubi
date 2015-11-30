@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :role, :phone_number,
-                supplier_attributes: [:name, :description, :address, :bank_account_number, :image]
+                supplier_attributes: [:name, :description, :address, :bank_account_name,
+                                      :bank_account_number, :bank_name, :image]
 
   index do
     selectable_column
@@ -45,7 +46,9 @@ ActiveAdmin.register User do
           s.input :name
           s.input :description
           s.input :address
+          s.input :bank_account_name
           s.input :bank_account_number
+          s.input :bank_name, collection: Supplier.bank_list
           s.input :image
           s.input :banner_image
         end
