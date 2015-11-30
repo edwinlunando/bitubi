@@ -23,15 +23,32 @@
                               = f.error_notification
                           label.form-label Banner Vendor
                           br
-                          - if supplier.object.image.present?
-                            img#prod-img-target src="#{ supplier.object.image.url(:medium) }" width="200"
+                          - if supplier.object.banner_image.present?
+                            img#banner-target src="#{ supplier.object.banner_image.url(:medium) }" width="200"
                           - else
-                            img#prod-img-target src="/assets/img/no_image.gif" width="200"
+                            img#banner-target src="/assets/img/no_image.gif" width="200"
+                          br/
+                          small rekomendasi: 1280 x 720
+                          br/
+                          = link_to "Upload", '', onclick: "$('#banner').click(); return false;", class: "btn btn-orange"
+                          = supplier.input :banner_image, label: false, id: 'banner', input_html: {id: 'banner', style: 'display:none'}
+                          br/
+                          hr/
+                          label.form-label Logo Vendor
                           br
-                          = supplier.input :image, label: false
+                          - if supplier.object.image.present?
+                            img#profpic-target src="#{ supplier.object.image.url(:medium) }" width="200"
+                          - else
+                            img#profpic-target src="/assets/img/no_image.gif" width="200"
+                          br/
+                          small rekomendasi: 500x500
+                          br/
+                          = link_to "Upload", '', onclick: "$('#profpic').click(); return false;", class: "btn btn-orange"
+                          = supplier.input :image, label: false, id: 'profpic', input_html: {id: 'profpic', style: 'display:none'}
+                          br
                         .grid-flex__col.grid-flex__col--8
                           = supplier.input :name, label: 'Nama Vendor'
-                          = supplier.input :description, label: 'Deskripsi Singkat', as: :text
+                          = supplier.input :description, label: 'Deskripsi Singkat', as: :text, placeholder: "rekomendasi: 140 karakter"
                           = supplier.input :bank_account_number, label: 'Nomor Rekening'
                           = supplier.input :address, label: 'Alamat', as: :text
                           br/
