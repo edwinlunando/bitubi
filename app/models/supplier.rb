@@ -25,4 +25,10 @@ class Supplier < ActiveRecord::Base
   }
   validates_attachment_content_type :image, content_type: ['image/jpeg', 'image/gif', 'image/png']
 
+  has_attached_file :banner_image, styles: {
+    medium: '300x300>',
+    thumb: '100x100>'
+  }
+  validates_attachment_content_type :banner_image, content_type: ['image/jpeg', 'image/gif', 'image/png']
+
 end
