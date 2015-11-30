@@ -1,0 +1,18 @@
+.grid-flex__col.grid-flex__col--2
+  ul.account-menu
+    li
+      = link_to account_profile_path do
+        b
+          i.fa.fa-user.darkorange
+          span.darkorange  Profil
+    - if current_user.supplier?
+      li
+        = link_to account_vendor_path do
+          b
+            i.fa.fa-inbox.darkorange
+            span.darkorange  Vendor
+    li
+      = link_to account_path do
+        b
+          i.fa.fa-envelope.darkorange
+          span.darkorange  Account

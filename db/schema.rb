@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126133547) do
+ActiveRecord::Schema.define(version: 20151130063606) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -178,16 +178,20 @@ ActiveRecord::Schema.define(version: 20151126133547) do
   end
 
   create_table "suppliers", force: :cascade do |t|
-    t.string   "address",             limit: 255
-    t.string   "bank_account_number", limit: 255
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "name",                limit: 255
-    t.string   "image_file_name",     limit: 255
-    t.string   "image_content_type",  limit: 255
-    t.integer  "image_file_size",     limit: 4
+    t.string   "address",                   limit: 255
+    t.string   "bank_account_number",       limit: 255
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "name",                      limit: 255
+    t.string   "image_file_name",           limit: 255
+    t.string   "image_content_type",        limit: 255
+    t.integer  "image_file_size",           limit: 4
     t.datetime "image_updated_at"
-    t.text     "description",         limit: 65535
+    t.text     "description",               limit: 65535
+    t.string   "banner_image_file_name",    limit: 255
+    t.string   "banner_image_content_type", limit: 255
+    t.integer  "banner_image_file_size",    limit: 4
+    t.datetime "banner_image_updated_at"
   end
 
   create_table "top_ups", force: :cascade do |t|

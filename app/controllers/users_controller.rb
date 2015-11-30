@@ -23,6 +23,24 @@ class UsersController < ApplicationController
   def account
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Akun', :account_path
+    add_breadcrumb 'Edit Akun', :account_profile_path
+  end
+
+  def account_profile
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
+    add_breadcrumb 'Edit Profil', :account_profile_path
+  end
+
+  def account_vendor
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_profile_path
+    add_breadcrumb 'Edit Vendor', :account_vendor_path
+  end
+
+  def user_vendor
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Akun', :account_path
   end
 
   def topup

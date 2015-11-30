@@ -236,6 +236,33 @@ textarea {
 
 /*
 ---------------------------------------------------------------------------
+  ACCOUNT PAGE
+--------------------------------------------------------------------------- */
+
+.account-menu {
+	li {
+		border-bottom: 1px solid $black30;
+		&:hover {
+			background-color: $orange;
+			span, i {
+				color: white;
+			}
+		}
+	}
+	i {
+		width: 20px;
+		text-align: center;
+	}
+	.active {
+		background: $darkorange;
+		span, i {
+			color: white !important;
+		}
+	}
+}
+
+/*
+---------------------------------------------------------------------------
   PRODUCT DETAIL + STORE DETAIL
 --------------------------------------------------------------------------- */
 

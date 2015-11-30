@@ -1,0 +1,38 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        == render_breadcrumbs tag: :li, separator: ''
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        #surfari-tabs.clear-margin
+          == render 'tabs'
+          .list-wrap
+            = simple_nested_form_for current_user, url: account_update_path, method: :post do |f|
+              .grid-flex
+                == render 'account_tabs'
+                .grid-flex__col.grid-flex__col--10
+                  - if current_user.supplier?
+                    = f.fields_for :supplier do |supplier|
+                      h2.orange Vendor
+                      .grid-flex
+                        .grid-flex__col.grid-flex__col--4
+                          .form-input--error-message
+                            b
+                              = f.error_notification
+                          label.form-label Banner Vendor
+                          br
+                          - if supplier.object.image.present?
+                            img#prod-img-target src="#{ supplier.object.image.url(:medium) }" width="200"
+                          - else
+                            img#prod-img-target src="/assets/img/no_image.gif" width="200"
+                          br
+                          = supplier.input :image, label: false
+                        .grid-flex__col.grid-flex__col--8
+                          = supplier.input :name, label: 'Nama Vendor'
+                          = supplier.input :description, label: 'Deskripsi Singkat', as: :text
+                          = supplier.input :bank_account_number, label: 'Nomor Rekening'
+                          = supplier.input :address, label: 'Alamat', as: :text
+                          br/
+                          = f.submit 'Simpan', class: 'btn btn-green'
