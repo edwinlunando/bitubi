@@ -10,7 +10,7 @@ ActiveAdmin.register Product do
     column :slug
     column :published
     column :user do |product|
-      link_to product.user, admin_user_path(product.user)
+      link_to product.user, admin_user_path(product.user) if produt.user.present?
     end
     actions
   end
@@ -23,7 +23,10 @@ ActiveAdmin.register Product do
 
   show title: :name do |post|
     attributes_table do
-      rows :name, :description, :price_dropship, :stock, :weight, :unit, :category, :user
+      rows :name, :description, :price_dropship, :stock, :weight, :unit, :category
+      row :user do |product|
+        link_to product.user, admin_user_path(product.user) if product.user.present?
+      end
     end
 
     panel 'Images' do
