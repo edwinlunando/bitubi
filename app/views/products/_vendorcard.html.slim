@@ -3,7 +3,7 @@
     figure
       .cards-image
         - if product.product_images.present?
-          = image_tag product.get_first_image.data.url(:display), class: 'img-responsive'
+          = image_tag product.get_first_image.data.url, class: 'img-responsive'
         - else
           img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
       figcaption
