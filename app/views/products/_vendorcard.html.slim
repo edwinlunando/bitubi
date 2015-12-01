@@ -5,7 +5,7 @@
         - if product.product_images.present?
           = image_tag product.get_first_image.data.url, class: 'img-responsive'
         - else
-          img.lazy alt="" data-original="/assets/img/caption-img.jpg" /
+          img.lazy alt="" data-original="/assets/img/caption-img.jpg"
       figcaption
         .cards-information-block
           .cards-information-block__title
@@ -13,7 +13,7 @@
               span
                 b
                   = product.category.name
-            br/
+            br
             = product.name
           - if product.price_wholesale_minimum.present?
             .cards-information-block__price
