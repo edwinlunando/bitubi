@@ -10,7 +10,7 @@ ActiveAdmin.register Product do
     column :slug
     column :published
     column :user do |product|
-      link_to product.user, admin_user_path(product.user) if produt.user.present?
+      link_to product.user, admin_user_path(product.user) if product.user.present?
     end
     actions
   end
