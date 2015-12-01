@@ -22,8 +22,8 @@ class UsersController < ApplicationController
 
   def account
     add_breadcrumb 'Home', :root_path
-    add_breadcrumb 'Akun', :account_path
-    add_breadcrumb 'Edit Akun', :account_profile_path
+    add_breadcrumb 'Akun', :account_profile_path
+    add_breadcrumb 'Ubah Password', :account_profile_path
   end
 
   def account_profile
