@@ -19,7 +19,7 @@
               br
               - if @product.user.supplier.present?
                 figure
-                  = image_tag @product.user.supplier.image.url(:thumb) if @product.user.supplier.image.present?
+                  = image_tag @product.user.supplier.image.url if @product.user.supplier.image.present?
                   div style="display:inline-block"
                     figcaption
                       dl
@@ -38,18 +38,16 @@
           h2.category-title__title.product-title
             = @product.name
           .category-title__description
-            center
-              | Stok:
-              span
+            dl
+              dt Stok:
+              dd
                 = ' ' + @product.stock.to_s + ' ' + @product.unit
-              b
-              | Berat:
-              span
-                = ' ' + @product.weight.to_s + ' gram'
-              b
-              | Harga:
-              span
+              dt Harga:
+              dd
                 = ' ' + @product.price_dropship_money
+              dt Berat:
+              dd
+                = ' ' + @product.weight.to_s + ' gram'
           hr.mg-10
           - if user_signed_in?
             = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|

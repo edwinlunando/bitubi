@@ -3,9 +3,9 @@
     figure
       .cards-image
         - if vendor.supplier.present? && vendor.supplier.image.present?
-          = image_tag vendor.supplier.image.url(:thumb)
+          = image_tag vendor.supplier.image.url
         - else
-          img.lazy alt="" data-original="/assets/img/store-thumb.png" /
+          img.lazy alt="image store logo" data-original="/assets/img/store-thumb.png" /
       figcaption
         .cards-information-block
           center

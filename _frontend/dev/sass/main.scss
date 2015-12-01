@@ -157,6 +157,31 @@ textarea {
 		span {
 			color: $darkorange;
 		}
+		dl {
+			font-weight: bold;
+			text-align: center;
+			font-size: 1.15em;
+			dt, dd {
+				display: inline-block;
+				margin: 0 5px;
+			}
+			dt {
+				color: $black70;
+			}
+			dd {
+				color: $darkorange;
+				&:after {
+					content: '|';
+					color:$black70;
+					margin-left: 5px;
+				}
+			}
+			dd:last-child {
+				&:after {
+					content: '';
+				}
+			}
+		}
 	}
 
 	.static-title__description,
@@ -342,6 +367,7 @@ textarea {
 		border: 1px solid $black30;
 		padding: 10px;
 		margin-bottom: 10px;
+		max-width: 200px;
 	}
 	i {
 		width: 15px;

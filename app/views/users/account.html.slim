@@ -9,7 +9,7 @@
         #surfari-tabs.clear-margin
           == render 'tabs'
           .list-wrap
-            = simple_nested_form_for current_user, url: account_update_path, method: :post do |f|
+            = simple_form_for current_user, url: account_update_path, method: :post do |f|
               .grid-flex
                 == render 'account_tabs'
                 .grid-flex__col.grid-flex__col--10
@@ -19,7 +19,9 @@
                         .form-input--error-message
                           b
                             = f.error_notification
-                        = f.input :email, label: 'Email'
-                        = f.input :password, label: 'Password'
+                        = f.input :current_password, label: 'Password Lama'
+                        = f.input :password, label: 'Password Baru'
+                        = f.input :password_confirmation, label: 'Konfirmasi Password'
                         br/
                         = f.submit 'Simpan', class: 'btn btn-green'
+                      .grid-flex__col.grid-flex__col--8

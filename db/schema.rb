@@ -194,7 +194,6 @@ ActiveRecord::Schema.define(version: 20151130085655) do
     t.datetime "banner_image_updated_at"
     t.string   "bank_account_name",         limit: 255
     t.string   "bank_name",                 limit: 255
-
   end
 
   create_table "top_ups", force: :cascade do |t|

@@ -15,7 +15,7 @@
       .grid-flex__col.grid-flex__col--3
         .category-title.np-side.vendor-info
           h2.category-title__title Info
-          = image_tag @user.supplier.image.url(:thumb) if @user.supplier.image.present?
+          = image_tag @user.supplier.image.url if @user.supplier.image.present?
           p.category-title__description.vendor-info
             dl
               dt.black
