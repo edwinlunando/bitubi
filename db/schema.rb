@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130085655) do
+ActiveRecord::Schema.define(version: 20151201153357) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "name",           limit: 255
-    t.integer  "state_id",       limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "receiver_name",  limit: 255
-    t.string   "receiver_phone", limit: 255
-    t.string   "sender_name",    limit: 255
-    t.string   "sender_phone",   limit: 255
-    t.string   "zipcode",        limit: 255
+    t.string   "name",                 limit: 255
+    t.integer  "state_id",             limit: 4
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "receiver_name",        limit: 255
+    t.string   "receiver_phone",       limit: 255
+    t.string   "sender_name",          limit: 255
+    t.string   "sender_phone",         limit: 255
+    t.string   "zipcode",              limit: 255
+    t.text     "special_instructions", limit: 65535
   end
 
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree

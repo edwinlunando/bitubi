@@ -25,7 +25,7 @@ class HomeController < ApplicationController
 
   def create_supplier
     @user = User.new(supplier_params)
-    @user.active = false
+    @user.active = true
     @user.verified = true
     return redirect_to root_path, notice: 'Akun vendor berhasil dibuat' if @user.save
     render :register_supplier

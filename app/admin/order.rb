@@ -70,6 +70,7 @@ ActiveAdmin.register Order do
         row :receiver_phone
         row :sender_name
         row :sender_phone
+        row :special_instructions
       end
     end
 
