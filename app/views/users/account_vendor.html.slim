@@ -50,6 +50,8 @@
                           = supplier.input :name, label: 'Nama Vendor'
                           = supplier.input :description, label: 'Deskripsi Singkat', as: :text, placeholder: "rekomendasi: 140 karakter"
                           = supplier.input :bank_account_number, label: 'Nomor Rekening'
+                          = supplier.input :bank_name, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
+                          = supplier.input :bank_account_name, label: 'Nama Pemilik Rekening'
                           = supplier.input :address, label: 'Alamat', as: :text
                           br/
                           = f.submit 'Simpan', class: 'btn btn-green'
