@@ -21,7 +21,9 @@ ActiveAdmin.register Order do
     end
     column :state
     column :user do |order|
-      link_to order.user, admin_user_path(order.user)
+      if order.user.present?
+        link_to order.user, admin_user_path(order.user)
+      end
     end
     actions do |order|
       if !order.transferred && order.done?
