@@ -53,5 +53,6 @@
                           = supplier.input :bank_name, collection: Supplier.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
                           = supplier.input :bank_account_name, label: 'Nama Pemilik Rekening'
                           = supplier.input :address, label: 'Alamat', as: :text
+                          = supplier.input :id, as: :hidden
                           br/
                           = f.submit 'Simpan', class: 'btn btn-green'

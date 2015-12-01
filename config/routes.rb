@@ -158,6 +158,7 @@ Rails.application.routes.draw do
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
   get 'akun' => 'users#account', as: 'account'
+  post 'akun/ganti_password' => 'users#change_password', as: 'account_change_password'
   get 'akun/profil' => 'users#account_profile', as: 'account_profile'
   get 'akun/vendor' => 'users#account_vendor', as: 'account_vendor'
   post 'akun/simpan' => 'users#account_edit', as: 'account_update'

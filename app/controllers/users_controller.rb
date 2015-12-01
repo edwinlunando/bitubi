@@ -15,9 +15,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def account_edit
-    return redirect_to account_path, notice: 'Akun berhasil di-update' if current_user.update(user_params)
+  def change_password
+    if current_user.update_with_password(change_password_params)
+      sign_in(current_user, bypass: true)
+      return redirect_to account_profile_path, notice: 'Password berhasil diganti'
+    end
     render :account
+  end
+
+  def account_edit
+    return redirect_to account_profile_path, notice: 'Akun berhasil di-update' if current_user.update(user_params)
+    render :account_edit
   end
 
   def account
@@ -156,8 +164,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :phone_number, :first_name, :last_name,
-                                 supplier_attributes: [:name, :image, :banner_image, :bank_account_name, :bank_name,
+                                 supplier_attributes: [:id, :name, :image, :banner_image, :bank_account_name, :bank_name,
                                                        :bank_account_number, :description, :address])
+  end
+
+  def change_password_params
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
   end
 
 end

@@ -9,7 +9,7 @@
         #surfari-tabs.clear-margin
           == render 'tabs'
           .list-wrap
-            = simple_form_for current_user, url: account_update_path, method: :post do |f|
+            = simple_form_for current_user, url: account_change_password_path, method: :post do |f|
               .grid-flex
                 == render 'account_tabs'
                 .grid-flex__col.grid-flex__col--10
