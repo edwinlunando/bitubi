@@ -12,29 +12,51 @@
             h2.static-title__title Form Konfirmasi
           .grid-flex
             .grid-flex__col.grid-flex__col--3
-              h3.darkorange Alamat Penerima
-              .confirmation-receiver.bg-dg
-                - if @order.address.present?
-                b.darkorange Penerima:
+              .category-title.clear-pm.vendor-info
+                h3.darkorange Info Pengirim
                 p
-                  i.fa.fa-user
-                  |  #{ @order.address.receiver_name.titleize }
-                  br/
-                  i.fa.fa-phone
-                  |  #{ @order.address.receiver_phone }
-                  br/
-                  i.fa.fa-map-marker
-                  |  #{ @order.address.state.city.province.name.titleize }, #{ @order.address.state.city.name.titleize }, #{ @order.address.state.city.name.titleize }, #{ @order.address.state.name.titleize }
-                  br/
-                  i.fa.fa-road
-                  |  #{ @order.address.name }, #{ @order.address.zipcode }
-                b.darkorange Pengirim:
+                  dl.category-title__description.vendor-info
+                    dt
+                      i.fa.fa-user
+                      b.clear-pm Pengirim:
+                    dd
+                      span.darkorange #{@order.address.sender_name}
+                    dt
+                      i.fa.fa-phone
+                      b.clear-pm Telepon:
+                    dd
+                      span.darkorange #{@order.address.sender_phone}
+              hr
+              .category-title.clear-pm.vendor-info
+                h3.darkorange Info Pemesan
                 p
-                  i.fa.fa-user
-                  |  #{ @order.address.sender_name }
-                  br/
-                  i.fa.fa-phone
-                  |  #{ @order.address.sender_phone }
+                  dl.category-title__description.vendor-info
+                    - if @order.address.present?
+                      dt
+                        i.fa.fa-user
+                        b.clear-pm Pemesan:
+                      dd
+                        span.darkorange #{@order.address.receiver_name}
+                      dt
+                        i.fa.fa-phone
+                        b.clear-pm Telepon:
+                      dd
+                        span.darkorange #{@order.address.receiver_phone}
+                      dt
+                        i.fa.fa-envelope
+                        b.clear-pm Kode Pos:
+                      dd
+                        span.darkorange #{@order.address.zipcode}
+                      dt
+                        i.fa.fa-map-marker
+                        b.clear-pm Alamat Kirim:
+                      dd
+                        span.darkorange #{ @order.address.one_line }
+                      dt
+                        i.fa.fa-info
+                        b.clear-pm Catatan:
+                      dd
+                        span.darkorange #{ @order.address.special_instructions}
             .grid-flex__col.grid-flex__col--9
               h3.darkorange Pesanan
               .table-container
