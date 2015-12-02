@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :role, :phone_number,
+  permit_params :email, :role, :phone_number, :active, :verified,
                 supplier_attributes: [:name, :description, :address, :bank_account_name,
                                       :bank_account_number, :bank_name, :image]
 
