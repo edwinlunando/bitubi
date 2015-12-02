@@ -562,12 +562,14 @@ footer {
 		margin-right: 10px;
 		font-size: 14pt;
 	}
-	input, select {
+	input, select, textarea {
 		padding: 8px 8px 10px 8px;
 		margin: 5px;
 		color: $black70;
-		height: 40px !important;
 		width: 100%;
+	}
+	input, select {
+		height: 40px !important;
 	}
 	select {
 		background-color: $transwhite;

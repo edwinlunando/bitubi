@@ -33,5 +33,8 @@
                             td #{ order.state }
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center"
-                              = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-green'} do
+                              = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-orange'} do
                                 i.fa.fa-folder-open title="view"
+                              / Button Terima Barang
+                              / = link_to "/pesanan/#{order.id}/terima", {class: 'btn-clear fa-btn btn-green'} do
+                              /   i.fa.fa-check title="terima"

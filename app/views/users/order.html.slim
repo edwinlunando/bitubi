@@ -53,11 +53,16 @@
                             b.clear-pm Alamat Kirim:
                           dd
                             span.darkorange #{ @order.address.sender_name }
-                      dt
-                        i.fa.fa-truck
-                        b.clear-pm Nomor Resi:
-                      dd
-                        span.darkorange #{ @order.receipt_number }
+                          dt
+                            i.fa.fa-truck
+                            b.clear-pm Nomor Resi:
+                          dd
+                            span.darkorange #{ @order.receipt_number }
+                          dt
+                            i.fa.fa-info
+                            b.clear-pm Catatan:
+                          dd
+                            span.darkorange #{ @order.address.special_instructions}
               .grid-flex__col.grid-flex__col--9
                 h2.darkorange DETIL PESANANMU : Order - #{ @order.id }
                 .table-container

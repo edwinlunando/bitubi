@@ -28,7 +28,7 @@
                       tr
                         td align="center"
                           - if product.get_first_image.present?
-                            img.lazy alt="" data-original="#{ product.get_first_image.data.url }"
+                            img.lazy alt="" data-original="#{ product.get_first_image.data.url(:small) }"
                         td
                           = link_to "/dagangan/#{ product.id }/edit" do
                             | #{ product.name }
