@@ -122,7 +122,7 @@ class UsersController < ApplicationController
     @orders = Order.vendor.joins(line_items: [:product])
                    .includes(:line_items)
                    .where('products.user_id = ?', current_user.id)
-                   .order(created_at: :desc)
+                   .order(created_at: :desc).uniq
   end
 
   def sell_view
