@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   # validation
   phony_normalize :phone_number, default_country_code: 'ID'
-  validates :phone_number, phony_plausible: true, presence: true
+  validates :phone_number, phony_plausible: true
   enum role: { admin: 'admin', user: 'user', supplier: 'supplier' }
 
   # scope

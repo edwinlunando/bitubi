@@ -10,6 +10,5 @@
           = f.input :email, required: true, input_html: {class: 'form-input form-input--block'}, autofocus: true, label: 'email', wrapper: false
           = f.input :password, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
           = f.input :password_confirmation, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Konfirmasi Password'
-          = f.input :phone_number, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Nomor Telepon'
           br
           = f.submit 'daftar', class: 'btn btn-green'
