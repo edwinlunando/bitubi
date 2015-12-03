@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
-    return redirect_to addressing_path if @order.address.blank?
+    return redirect_to addressing_path, notice: 'Belum ada alamat' if @order.address.blank?
 
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Keranjang', :keranjang_path
