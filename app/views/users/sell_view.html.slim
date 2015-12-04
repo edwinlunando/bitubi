@@ -106,11 +106,10 @@
                           tr
                             td align="right"
                               = link_to 'Kembali', sell_path, class: 'btn btn-orange'
-                              - if @order.delivery?
-                                td colspan="3" align="right"
-                                  = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
-                                td
-                                  button.btn.btn-green type='submit'
-                                    i.fa.fa-truck title="kirim"
-                                    |
-                                    span  Kirim
+                              td colspan="3" align="right"
+                                = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
+                              td
+                                button.btn.btn-green type='submit'
+                                  i.fa.fa-truck title="kirim"
+                                  |
+                                  span  Kirim

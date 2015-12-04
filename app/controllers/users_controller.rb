@@ -136,7 +136,8 @@ class UsersController < ApplicationController
 
   def receipt
     @order = Order.find(params[:id])
-    @order.deliver
+    @order.deliver unless @order.done? || @order.failed?
+
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
       AdminMailer.receipt(@order).deliver_now
