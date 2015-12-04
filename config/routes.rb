@@ -150,7 +150,7 @@ Rails.application.routes.draw do
   get 'daftar-vendor' => 'products#vendors', as: 'vendors'
   get 'vendor/:id' => 'products#vendor', as: 'vendor_view'
   get 'saldo' => 'users#topup'
-  get 'saldo/konfirmasi' => 'users#topup_confirm'
+  # get 'saldo/konfirmasi' => 'users#topup_confirm'
   post 'saldo' => 'users#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'orders#remove_from_cart', as: 'delete_from_cart'
   get 'keranjang' => 'orders#cart'
