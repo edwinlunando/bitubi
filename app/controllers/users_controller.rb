@@ -122,6 +122,7 @@ class UsersController < ApplicationController
     @orders = Order.vendor.joins(line_items: [:product])
                    .includes(:line_items)
                    .where('products.user_id = ?', current_user.id)
+                   .where(state: [:delivery, :done, :failed])
                    .order(created_at: :desc).uniq
   end
 
@@ -136,7 +137,8 @@ class UsersController < ApplicationController
 
   def receipt
     @order = Order.find(params[:id])
-    @order.deliver
+    @order.deliver unless @order.done? || @order.failed?
+
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
       AdminMailer.receipt(@order).deliver_now
