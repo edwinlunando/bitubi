@@ -15,31 +15,11 @@
             span.category-title__detailed-description
               | Silahkan isi form berikut untuk konfirmasi pengisian dompet Anda
     .grid-flex
-      .grid-flex__col.grid-flex__col--6
-        div
-          h3.darkorange Sejarah Top Up
-          span
+      .grid-flex__col.grid-flex__col--4
+        h3.darkorange Top Up Form
+        span
             b.darkorange Saldo kamu:
             span.darkgreen  #{ number_format(current_user.credit) }
-          br
-          .table-container
-              table.table
-                thead
-                  tr
-                    th Tanggal
-                    th Jumlah
-                    th Bank
-                    th Konfirmasi
-                tbody
-                  - current_user.top_ups.each do |top_up|
-                    tr
-                      td #{ top_up.created_at.strftime("%d %B %Y") }
-                      td #{ number_format(top_up.amount) }
-                      td #{ top_up.bank }
-                      td #{ top_up.approved ? 'Ya' : 'Tidak' }
-          br/
-      .grid-flex__col.grid-flex__col--6
-        h3.darkorange Top Up Form
         = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
           = f.input :uid, :as => :hidden, input_html: { id: 'saldo-uid' }
           = f.input :name, input_html: { placeholder: 'nama' }, label: 'Nama'
@@ -53,9 +33,7 @@
             p.darkorange Silahkan mulai bisnis Anda dengan melakukan top up perdana Anda sebesar Rp 300.000.-(Anda mendapatkan saldo sebesar Rp 300.000.-)
           br/
           button.btn.btn-green type="submit" Bayar
-    hr/
-    .grid-flex
-      .grid-flex__col.grid-flex__col-12
+      .grid-flex__col.grid-flex__col--4
         h3.darkorange Instruksi
         span Silahkan transfer ke rekening yang tersedia di bawah
         ol.instruction-set
@@ -86,3 +64,25 @@
                   | 113-001-000187-307
                   br/
                   | a.n. PT Larisni Maju Bersama
+    hr/
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        div
+          h3.darkorange Sejarah Top Up
+          br
+          .table-container
+              table.table
+                thead
+                  tr
+                    th Tanggal
+                    th Jumlah
+                    th Bank
+                    th Konfirmasi
+                tbody
+                  - current_user.top_ups.each do |top_up|
+                    tr
+                      td #{ top_up.created_at.strftime("%d %B %Y") }
+                      td #{ number_format(top_up.amount) }
+                      td #{ top_up.bank }
+                      td #{ top_up.approved ? 'Ya' : 'Tidak' }
+          br/

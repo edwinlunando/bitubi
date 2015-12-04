@@ -1,22 +1,23 @@
 .cards.vendor-card
   = link_to product_path(product)
     figure
-      .cards-image
-        - if product.product_images.present?
-          = image_tag product.get_first_image.data.url, class: 'img-responsive'
-        - else
-          img.lazy alt="" data-original="/assets/img/caption-img.jpg"
+      - if product.product_images.present?
+        .cards-image style="background-image:url('#{product.get_first_image.data.url(:display)}')"
+      - else
+        .cards-image style="background-image:url('/assets/img/default_product.gif')"
       figcaption
         .cards-information-block
           .cards-information-block__title
-            - if product.category.present?
-              span
-                b
-                  = product.category.name
+            - if product.user.present? && product.user.supplier.present?
+              = link_to vendor_view_path(product.user), class: 'darkorange' do
+                span
+                  b #{product.user.supplier.name}
             br
-            = product.name
-          - if product.price_wholesale_minimum.present?
-            .cards-information-block__price
-              | Mulai dari
-              br/
-              | @ #{ number_format(product.price_wholesale_minimum.price) }
+            b
+              = product.name
+          .cards-information-block__price
+            b.darkgreen
+              - if product.price_wholesale_minimum.present?
+                | #{ number_format(product.price_wholesale_minimum.price) }
+              - else
+                | #{ product.price_dropship_money }
