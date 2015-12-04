@@ -60,6 +60,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def topup_confirm
+    @top_up = TopUp.new
+  end
+
   def orders
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Akun', :account_path

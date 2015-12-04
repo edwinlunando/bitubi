@@ -68,6 +68,7 @@ textarea {
 .orange {color: $orange}
 .darkorange {color: $darkorange}
 .black {color: $black70;}
+.red {color: $warningred;}
 
 /* 3 Header
 --------------------------------------------------------------------------- */
@@ -268,6 +269,7 @@ textarea {
 
 .account-menu {
 	li {
+		list-style: none;
 		border-bottom: 1px solid $black30;
 		&:hover {
 			background-color: $orange;

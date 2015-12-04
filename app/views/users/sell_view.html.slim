@@ -107,6 +107,8 @@
                             td align="right"
                               = link_to 'Kembali', sell_path, class: 'btn btn-orange'
                               td colspan="3" align="right"
+                                b
+                                  span.darkorange Nomor resi: 
                                 = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
                               td
                                 button.btn.btn-green type='submit'
