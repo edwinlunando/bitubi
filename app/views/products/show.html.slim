@@ -37,18 +37,11 @@
         .category-title.pad-bot-only
           h2.category-title__title.product-title
             = @product.name
-          .category-title__description
-            dl
-              dt Stok:
-              dd
-                = ' ' + @product.stock.to_s + ' ' + @product.unit
-              dt Harga:
-              dd
-                = ' ' + @product.price_dropship_money
-              dt Berat:
-              dd
-                = ' ' + @product.weight.to_s + ' gram'
           hr.mg-10
+          center
+            h3.darkgreen.clear-pm
+              | Harga:
+              = ' ' + @product.price_dropship_money
           - if user_signed_in?
             = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|
               .grid-flex--no-pad
@@ -63,9 +56,8 @@
           - else
             center
               = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-green'
-          br
           - if @product.wholesale_prices.present?
-            table.table
+            table.table.clear-pm
               thead
                 tr
                   th #
@@ -77,6 +69,20 @@
                     th scope="row"  #{ index + 1 }
                     td #{ price.minimum_quantity }
                     td #{ price.price_money }
-          p.category-title__detailed-description
+          .category-title__description.mg-10
+            dl
+              dt Stok Produk:
+              dd
+                = ' ' + @product.stock.to_s + ' ' + @product.unit
+              dt Berat Satuan:
+              dd
+                = ' ' + @product.weight.to_s + ' gram'
+          .category-title__detailed-description.clear-pm
+            span 
+              b.clear-pm Rekomendasi Harga Jual:
+            b.darkgreen #{@product.recommended_price}
+          .category-title__detailed-description.clear-pm
+            span
+              b.clear-pm Deskripsi:
             = simple_format @product.description
           hr

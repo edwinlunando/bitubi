@@ -26,7 +26,7 @@
     input {
       background: none;
       color: $black80;
-      width:80%;
+      width:70%;
       @media #{medium} {
         width:90%;
       }
@@ -35,6 +35,15 @@
       outline: 0;
       border: 0;
       margin: 5px;
+    }
+    select {
+      width: 15%;
+      outline: none;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      background: $black20;
+      color: $black80;
     }
   }
   top: 50px;

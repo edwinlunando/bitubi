@@ -160,7 +160,6 @@ textarea {
 		dl {
 			font-weight: bold;
 			text-align: center;
-			font-size: 1.15em;
 			dt, dd {
 				display: inline-block;
 				margin: 0 5px;
@@ -181,6 +180,9 @@ textarea {
 					content: '';
 				}
 			}
+		}
+		p {
+			margin-bottom:10px;
 		}
 	}
 

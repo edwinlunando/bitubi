@@ -44,6 +44,9 @@
 	figure {
 		padding: 0px; margin: 0 0 30px 0;
 		.cards-image {
+			background-size: cover;
+		    background-repeat: no-repeat;
+		    background-position: 50% 50%;
 			min-height: 260px;
 			max-height: 260px;
 			width: 100%;
@@ -62,17 +65,8 @@
 		background-color: white;
 		z-index: 3;
 		div {
-			float: left;
-			width: 40%;
-			&:first-child {
-				width: 60%;
-				padding-right: 5px;
-			}
-			&:last-child  {
-				font-weight: bold;
-				text-align: right;
-				color: $black90;
-			}
+			width: 100%;
+			text-align: center;
 			span {
 				color: $darkorange;
 			}
