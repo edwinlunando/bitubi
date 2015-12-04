@@ -122,6 +122,7 @@ class UsersController < ApplicationController
     @orders = Order.vendor.joins(line_items: [:product])
                    .includes(:line_items)
                    .where('products.user_id = ?', current_user.id)
+                   .where(state: [:delivery, :done, :failed])
                    .order(created_at: :desc).uniq
   end
 
