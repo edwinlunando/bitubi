@@ -25,6 +25,13 @@ ActiveAdmin.register Order do
         link_to order.user, admin_user_path(order.user)
       end
     end
+    column :supplier do |order|
+      if order.suppliers.present?
+        supplier = order.suppliers.first
+        link_to supplier, admin_user_path(supplier)
+      end
+    end
+    column :created_at
     actions do |order|
       if !order.transferred && order.done?
         link_to 'Transfer', transfer_admin_order_path(order), method: :put
@@ -54,6 +61,13 @@ ActiveAdmin.register Order do
       row :receipt_number
       row :transferred
       row :transfer_time
+      row :supplier do |order|
+        if order.suppliers.present?
+          supplier = order.suppliers.first
+          link_to supplier, admin_user_path(supplier)
+        end
+      end
+      row :created_at
     end
 
     panel 'Address' do

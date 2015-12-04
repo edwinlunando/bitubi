@@ -25,6 +25,8 @@ ActiveAdmin.register TopUp do
     end
   end
 
+  filter :user, member_method: :email
+  filter :created_at
   filter :active
 
   form do |f|
