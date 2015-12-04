@@ -23,7 +23,7 @@ ActiveAdmin.register Product do
 
   show title: :name do |post|
     attributes_table do
-      rows :name, :description, :price_dropship, :stock, :weight, :unit, :category
+      rows :name, :description, :price_dropship, :recommended_price, :stock, :weight, :unit, :category
       row :user do |product|
         link_to product.user, admin_user_path(product.user) if product.user.present?
       end
@@ -55,6 +55,7 @@ ActiveAdmin.register Product do
       f.input :weight, placeholder: 'dalam gram'
       f.input :user, member_label: :email, label: 'Supplier'
       f.input :price_dropship, placeholder: 'dalam IDR'
+      f.input :recommended_price, placeholder: 'dalam IDR'
       f.input :category
       f.input :published
       f.has_many :wholesale_prices, heading: 'Wholesale Prices' do |a|
