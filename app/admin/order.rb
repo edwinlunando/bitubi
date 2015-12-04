@@ -1,5 +1,11 @@
 ActiveAdmin.register Order do
 
+  controller do
+    def scoped_collection
+      super.admin
+    end
+  end
+
   permit_params :total, :special_instruction, :state
 
   member_action :transfer, method: :put do

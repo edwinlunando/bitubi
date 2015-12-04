@@ -32,6 +32,11 @@ class Order < ActiveRecord::Base
   scope :vendor, -> { where(state: [:delivery, :done, :failed]) }
 
   # Method
+
+  def self.admin
+    where(state: [:payment, :delivery, :done, :failed])
+  end
+
   def finish_order
     line_items.each do |line_item|
 
