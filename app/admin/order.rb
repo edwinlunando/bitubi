@@ -1,5 +1,7 @@
 ActiveAdmin.register Order do
 
+  actions :all, except: [:destroy]
+
   controller do
     def scoped_collection
       super.admin
@@ -11,6 +13,11 @@ ActiveAdmin.register Order do
   member_action :transfer, method: :put do
     resource.transfer
     redirect_to collection_path, notice: 'Berhasil transfer'
+  end
+
+  member_action :cancel, method: :put do
+    resource.cancel_order
+    redirect_to collection_path, notice: 'Pesanan dibatalkan'
   end
 
   index do
@@ -41,6 +48,9 @@ ActiveAdmin.register Order do
     actions do |order|
       if !order.transferred && order.done?
         link_to 'Transfer', transfer_admin_order_path(order), method: :put
+      end
+      if order.delivery?
+        link_to 'Cancel', cancel_admin_order_path(order), method: :put
       end
     end
   end

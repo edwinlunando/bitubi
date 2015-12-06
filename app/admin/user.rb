@@ -1,4 +1,7 @@
 ActiveAdmin.register User do
+
+  actions :all, except: [:destroy]
+
   permit_params :email, :role, :phone_number, :active, :verified,
                 supplier_attributes: [:name, :description, :address, :bank_account_name,
                                       :bank_account_number, :bank_name, :image]

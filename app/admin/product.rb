@@ -1,4 +1,7 @@
 ActiveAdmin.register Product do
+
+  actions :all, except: [:destroy]
+
   permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id, :published,
                 wholesale_prices_attributes: [:id, :price, :minimum_quantity, :maximum_quantity, :_destroy],
                 product_images_attributes: [:id, :data, :_destroy]

@@ -1,4 +1,7 @@
 ActiveAdmin.register Category do
+
+  actions :all, except: [:destroy]
+
   permit_params :name, :active, :image
 
   index do

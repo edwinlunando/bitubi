@@ -28,13 +28,13 @@
                         span.darkorange #{@order.address.sender_phone}
                 hr
                 .category-title.clear-pm.vendor-info
-                  h3.darkorange Info Pemesan
+                  h3.darkorange Info Penerima
                   p
                     dl.category-title__description.vendor-info
                       - if @order.address.present?
                         dt
                           i.fa.fa-user
-                          b.clear-pm Pemesan:
+                          b.clear-pm Penerima:
                         dd
                           span.darkorange #{@order.address.receiver_name}
                         dt
@@ -108,7 +108,7 @@
                               = link_to 'Kembali', sell_path, class: 'btn btn-orange'
                               td colspan="3" align="right"
                                 b
-                                  span.darkorange Nomor resi: 
+                                  span.darkorange Nomor resi:
                                 = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
                               td
                                 button.btn.btn-green type='submit'

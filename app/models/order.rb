@@ -46,6 +46,17 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def cancel_order
+    if state != :delivery
+      cancel
+      self.cancel_time = Time.zone.now
+      user.credit += total
+      save && user.save
+    else
+      false
+    end
+  end
+
   # State
   include AASM
 
