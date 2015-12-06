@@ -15,4 +15,6 @@ class State < ActiveRecord::Base
   has_many :state_shipment_prices
   has_many :shipment_types, through: :state_shipment_prices
 
+  default_scope { order(:name) }
+
 end
