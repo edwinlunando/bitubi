@@ -143,6 +143,16 @@ class UsersController < ApplicationController
     add_breadcrumb 'Detil', "/penjualan/#{@order.id}"
   end
 
+  def sell_cancel
+    @order = Order.find(params[:id])
+    if @order.cancel_order
+      flash[:notice] = 'Pesanan berhasil dibatalkan'
+    else
+      flash[:notice] = 'Pesanan gagal dibatalkan'
+    end
+    redirect_to sell_view_path(@order)
+  end
+
   def receipt
     @order = Order.find(params[:id])
     @order.deliver unless @order.done? || @order.failed?
