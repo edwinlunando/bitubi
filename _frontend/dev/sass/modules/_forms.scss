@@ -104,6 +104,10 @@ $input_bg               : #fff;
     }
 }
 
+.form-submit-search__vendor {
+  padding: 6px 10px;
+}
+
 .form-manage {
     display: inline-block;
 }
@@ -178,4 +182,8 @@ $input_bg               : #fff;
 
 #popup-login-form{
   width: auto;
+}
+
+.form__pull-right {
+  float: right;
 }

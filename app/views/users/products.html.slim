@@ -11,9 +11,15 @@
           .list-wrap
             .grid-flex__col.grid-flex__col--12
               h2.darkorange Produk Anda
-              .table-container
-                p
+              .grid-flex
+                .grid-flex__col.grid-flex__col-4
                   = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
+                .grid-flex__col.grid-flex__col-8
+                  form class="form__row form__pull-right"
+                    input class="form-input" type="text" placeholder="pencarian"
+                    button type="submit" class="form-submit-search form-submit-search__vendor"
+                      i.fa.fa-search  
+              .table-container
                 table.table
                   thead
                     tr
