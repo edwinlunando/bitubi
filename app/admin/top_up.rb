@@ -21,7 +21,7 @@ ActiveAdmin.register TopUp do
     column :bank
     column :approved
     actions do |top_up|
-      link_to 'Approve', approve_admin_top_up_path(top_up), method: :put
+      link_to 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
     end
   end
 

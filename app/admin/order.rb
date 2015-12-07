@@ -47,10 +47,10 @@ ActiveAdmin.register Order do
     column :created_at
     actions do |order|
       if !order.transferred && order.done?
-        link_to 'Transfer', transfer_admin_order_path(order), method: :put
+        link_to 'Transfer', transfer_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
       if order.delivery?
-        link_to 'Cancel', cancel_admin_order_path(order), method: :put
+        link_to 'Cancel', cancel_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end
   end
