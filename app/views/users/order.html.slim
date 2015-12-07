@@ -28,13 +28,13 @@
                           span.darkorange #{@order.address.sender_phone}
                 hr
                 .category-title.clear-pm.vendor-info
-                  h3.darkorange Info Pemesanan
+                  h3.darkorange Info Penerima
                   - if @order.address.present?
                     p
                       dl.category-title__description.vendor-info
                           dt
                             i.fa.fa-user
-                            b.clear-pm Pemesan:
+                            b.clear-pm Penerima:
                           dd
                             span.darkorange #{@order.address.receiver_name}
                           dt
@@ -51,7 +51,7 @@
                             i.fa.fa-map-marker
                             b.clear-pm Alamat Kirim:
                           dd
-                            span.darkorange #{ @order.address.sender_name }
+                            span.darkorange #{ @order.address.one_line }
                           dt
                             i.fa.fa-truck
                             b.clear-pm Nomor Resi:
