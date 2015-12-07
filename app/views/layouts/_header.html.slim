@@ -60,6 +60,15 @@ header.header-main
       h1 itemscope="" itemtype="http://schema.org/Organization"
         = link_to root_path, {itemprop: "url"}
           span.icon.icon-logo itemprop="name"  Larisni
+    / .nav-search-bar.inline
+    /   form class="form__row header-form"
+    /     .select-style.inline
+    /       select
+    /         option value="produk" Produk
+    /         option value="vendor" Vendor
+    /     input.form-input.inline type="text" placeholder="Pencarian"
+    /     button.inline type="submit" class="form-submit-search form-submit-search__vendor"
+    /       i.fa.fa-search  
     .nav-lang.nav-toggle
       - if user_signed_in?
         .nav-lang__submenu

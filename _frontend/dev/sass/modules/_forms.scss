@@ -21,6 +21,50 @@ $input_bg               : #fff;
     margin-top: $space/3;
 }
 
+.header-form {
+  margin: 7px 20px;
+  text-align: center;
+  display: none;
+  @media #{$large} {
+    width: 800px;
+    input {
+      width:60%;
+    }
+    display: inline-block;
+  }
+}
+
+.select-style {
+  border: 1px solid #ccc;
+  width: 120px;
+  overflow: hidden;
+  background-color: #fff;
+  background: $orange url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%;
+}
+
+.select-style select {
+  font-family: "Lato",Calibri,Arial,sans-serif;
+  padding: 7px 8px;
+  min-height: 35px;
+  width: 130%;
+  color: white;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+    option {
+      background: white;
+      color: $black70;
+    }
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
 .form-input {
     border-radius: 0;
     min-height: 36px;
@@ -94,7 +138,6 @@ $input_bg               : #fff;
 
 .form-submit-search {
     padding: 3px 10px 2px;
-    border-radius: 2px;
     color: white;
     border: none;
     @include animate-transition(.25s);
@@ -105,7 +148,7 @@ $input_bg               : #fff;
 }
 
 .form-submit-search__vendor {
-  padding: 6px 10px;
+  padding: 6px 10px 5px;
 }
 
 .form-manage {
