@@ -102,16 +102,20 @@
                               b Total
                             td align="right"
                               b #{ number_format(@order.total) }
-
                           tr
                             td align="right"
-                              = link_to 'Kembali', sell_path, class: 'btn btn-orange'
+                              button.btn.btn-red type='submit' style="width:120px"
+                                i.fa.fa-times-circle title="kirim"
+                                |
+                                span  Batal
                               td colspan="3" align="right"
                                 b
-                                  span.darkorange Nomor resi:
+                                  span.darkorange Nomor resi: 
                                 = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
                               td
-                                button.btn.btn-green type='submit'
+                                button.btn.btn-green type='submit' style="width:120px"
                                   i.fa.fa-truck title="kirim"
                                   |
                                   span  Kirim
+                  center.mg-20
+                    = link_to 'Kembali', sell_path, class: 'btn btn-orange'

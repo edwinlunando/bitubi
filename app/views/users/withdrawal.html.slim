@@ -1,0 +1,36 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          = link_to "Home", root_path
+        li
+          = link_to "Dompet", saldo_path
+  .container
+    .grid-flex
+      / = render 'topup_tabs'
+      .grid-flex__col.grid-flex__col--10
+        .static-title.np-top
+          center
+            h2.static-title__title Penarikan Dompet
+            span.category-title__detailed-description
+              | Silahkan isi form berikut sebagai permohonan penarikan saldo dompet
+        .grid-flex
+          .grid-flex__col.grid-flex__col--5
+            h3.darkorange Form Penarikan
+            span
+                b.darkorange Saldo kamu:
+                span.darkgreen  #{ number_format(current_user.credit) }
+            = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
+              = f.input :uid, :as => :hidden, input_html: { id: 'saldo-uid' }
+              = f.input :name, input_html: { placeholder: 'nama' }, label: 'Nama'
+              = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
+              = f.input :amount, input_html: { placeholder: 'jumlah penarikan'}, label: 'Jumlah'
+              br/
+              button.btn.btn-green type="submit" Bayar
+          .grid-flex__col.grid-flex__col--5
+            h3.darkorange Instruksi
+            ol.instruction-set.instruction-set__withdrawal
+              li Isi form di samping terlebih dahulu untuk permohonan panrikan
+              li Permohonan penarikan akan diproses dalam waktu 1 x 24 jam
+              li Apabila permohonan telah diproses, saldo Anda akan terpotong dari dompet dan di-transfer sesuai jumlah permohonan ke rekening pada form

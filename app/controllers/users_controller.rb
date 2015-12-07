@@ -64,6 +64,10 @@ class UsersController < ApplicationController
     @top_up = TopUp.new
   end
 
+  def withdrawal
+    @top_up = TopUp.new
+  end
+
   def orders
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Akun', :account_path

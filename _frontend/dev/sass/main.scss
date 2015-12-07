@@ -695,3 +695,14 @@ footer {
 		}
 	}
 }
+
+.instruction-set__withdrawal {
+	padding: 0 10px;
+	li {
+		display: list-item;
+		list-style-type: number_format;
+		color: $black70 !important;
+		margin: 10px;
+		text-align: left;
+	}
+}
