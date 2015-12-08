@@ -166,11 +166,18 @@ $table_border_prop          : "solid 1px " + $table-border;
     }
 }
 
-.highlight-info {
-    background-color: $black30;
+.highlight-info, .higlight-info-2 {
     color: $black90;
     font-weight: bold;
     padding: .4em;
+}
+
+.highlight-info {
+    background-color: $black30;
+}
+
+.highlight-info-2 {
+    background-color: lighten($green, 25%);
 }
 
 .table-products__info {

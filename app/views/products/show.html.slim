@@ -38,10 +38,6 @@
           h2.category-title__title.product-title
             = @product.name
           hr.mg-10
-          center
-            h3.darkgreen.clear-pm
-              | Harga:
-              = ' ' + @product.price_dropship_money
           - if user_signed_in?
             = simple_form_for(@line_item, url: add_to_cart_product_path(@product), html: { class: 'form-inline product-form' }, wrapper: :inline_form) do |f|
               .grid-flex--no-pad
@@ -60,13 +56,19 @@
             table.table.clear-pm
               thead
                 tr
-                  th #
-                  th Jumlah Minimal
+                  th Tipe Beli
+                  th Jumlah Beli
                   th Harga Satuan
               tbody
+                tr.highlight-info
+                  td 
+                    b Dropship
+                  td 1
+                  td #{@product.price_dropship_money}
                 - @product.wholesale_prices.ordered.each_with_index do |price, index|
-                  tr
-                    th scope="row"  #{ index + 1 }
+                  tr.highlight-info-2
+                    td.darkgreen
+                      b Grosir
                     td #{ price.minimum_quantity }
                     td #{ price.price_money }
           .category-title__description.mg-10
