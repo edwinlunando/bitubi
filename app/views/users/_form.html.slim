@@ -4,7 +4,7 @@
       = f.error_notification
   .grid-flex
     .grid-flex__col.grid-flex__col--4
-      label.form-label
+      label.form-label/
       h3 Data
       = f.association :category, label: 'Kategori'
       = f.input :name, label: 'Nama'
@@ -12,8 +12,9 @@
       = f.input :unit, label: 'Satuan (buah, keping, lembar)'
       = f.input :weight, label: 'Berat (dalam gram)'
       = f.input :stock, label: 'Stok (jumlah)'
+      = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
     .grid-flex__col.grid-flex__col--4 style="overflow: hidden"
-      label.form-label
+      label.form-label/
       h3 Gambar
       div
         = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
@@ -28,7 +29,7 @@
           br
           hr
     .grid-flex__col.grid-flex__col--4
-      label.form-label
+      label.form-label/
       h3 Harga Satuan
       div
         = f.input :price_dropship, placeholder: 'dalam IDR', label: 'Harga Satuan'
