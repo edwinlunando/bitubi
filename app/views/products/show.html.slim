@@ -61,8 +61,8 @@
                   th Harga Satuan
               tbody
                 tr.highlight-info
-                  td 
-                    b Dropship
+                  td
+                    b Satuan
                   td 1
                   td #{@product.price_dropship_money}
                 - @product.wholesale_prices.ordered.each_with_index do |price, index|
@@ -79,10 +79,11 @@
               dt Berat Satuan:
               dd
                 = ' ' + @product.weight.to_s + ' gram'
-          .category-title__detailed-description.clear-pm
-            span 
-              b.clear-pm Rekomendasi Harga Jual:
-            b.darkgreen #{@product.recommended_price}
+          - if @product.recommended_price.present?
+            .category-title__detailed-description.clear-pm
+              span
+                b.clear-pm Rekomendasi Harga Jual:
+              b.darkgreen #{ @product.recommended_price }
           .category-title__detailed-description.clear-pm
             span
               b.clear-pm Deskripsi:

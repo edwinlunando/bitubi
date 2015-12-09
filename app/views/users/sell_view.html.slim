@@ -82,7 +82,7 @@
                                 = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                               td align="left"
                                 .table-products__info
-                                  = link_to product_path(line_item.product.slug) do
+                                  = link_to product_path(line_item.product.slug)
                                     b.darkorange #{line_item.product.name}
                                   br
                                   b #{ number_format(line_item.price_per_quantity) }
@@ -110,7 +110,7 @@
                                 span  Batal
                               td colspan="3" align="right"
                                 b
-                                  span.darkorange Nomor resi: 
+                                  span.darkorange Nomor resi:
                                 = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
                               td
                                 button.btn.btn-green type='submit' style="width:120px"
