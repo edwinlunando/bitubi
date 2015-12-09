@@ -70,7 +70,6 @@
                       tr align="center"
                         th Gambar
                         th Nama
-                        th Status
                         th Ongkos Kirim
                         th Jumlah
                         th Harga Total
@@ -91,17 +90,16 @@
                                     = line_item.product.user.supplier.name if line_item.product.user.supplier.present?
                                 br/
                                 b #{ number_format(line_item.product.price_dropship) }
-                            td align="center" #{ line_item.state }
                             td align="center" #{ number_format(line_item.shipping_cost) }
                             td align="center" #{ line_item.quantity }
                             td align="right" #{ number_format(line_item.price) }
                         tr.highlight-info
-                          td colspan="4"
+                          td colspan="3"
                           td align="center"
                             b Total
                           td align="right"
                             b #{ number_format(@order.total) }
                         tr
-                          td colspan="5"
+                          td colspan="4"
                           td align="right"
                             = link_to 'Kembali', pesanan_path, class: 'btn btn-orange'

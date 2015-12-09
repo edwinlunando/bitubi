@@ -12,4 +12,9 @@ class OrderMailer < ApplicationMailer
     mail(to: @order.user.email, subject: 'Pesanan Kamu Telah Dikirim!')
   end
 
+  def cancel(order)
+    @order = order
+    mail(to: @order.user.email, subject: 'Pesanan Kamu Dibatalkan!')
+  end
+
 end
