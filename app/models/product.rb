@@ -2,20 +2,22 @@
 #
 # Table name: products
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)
-#  slug           :string(255)
-#  description    :text(65535)
-#  price_dropship :decimal(10, )
-#  stock          :integer
-#  unit           :string(255)
-#  weight         :decimal(10, )
-#  user_id        :integer
-#  category_id    :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  slug              :string(255)
+#  description       :text(65535)
+#  price_dropship    :decimal(10, )
+#  stock             :integer
+#  unit              :string(255)
+#  weight            :decimal(10, )
+#  user_id           :integer
+#  category_id       :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  published         :boolean
+#  recommended_price :decimal(10, )
 #
-# model to represent a product in a store
+# product model
 class Product < ActiveRecord::Base
 
   extend FriendlyId
@@ -42,7 +44,7 @@ class Product < ActiveRecord::Base
   alias_attribute :supplier, :user
 
   # scope
-  scope :published, -> { where(published: true) }
+  scope :published, -> { joins(:user).where(published: true).where('users.active = ?', true) }
 
   def get_first_image
     product_images.try(:first)

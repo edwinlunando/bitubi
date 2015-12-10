@@ -15,8 +15,9 @@
 #  receipt_number          :string(255)
 #  transfer_time           :datetime
 #  transferred             :boolean
+#  cancel_time             :datetime
 #
-# model to represent a User order
+
 class Order < ActiveRecord::Base
 
   # Relation

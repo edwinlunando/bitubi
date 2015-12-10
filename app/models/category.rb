@@ -12,7 +12,7 @@
 #  image_file_size    :integer
 #  image_updated_at   :datetime
 #
-# category class the has many products
+
 class Category < ActiveRecord::Base
 
   has_many :products

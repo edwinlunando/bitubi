@@ -8,7 +8,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-# model wilayah
+
 class State < ActiveRecord::Base
 
   belongs_to :city

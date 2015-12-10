@@ -12,7 +12,7 @@
 #  updated_at :datetime         not null
 #  uid        :decimal(10, )
 #
-# top up model
+
 class TopUp < ActiveRecord::Base
 
   belongs_to :user

@@ -11,7 +11,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
-# model to represent image on a product
+
 class ProductImage < ActiveRecord::Base
 
   has_attached_file :data, styles: {

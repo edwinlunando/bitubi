@@ -15,6 +15,7 @@
 #  receipt_number          :string(255)
 #  transfer_time           :datetime
 #  transferred             :boolean
+#  cancel_time             :datetime
 #
 
 require 'rails_helper'

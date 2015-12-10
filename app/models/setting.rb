@@ -10,7 +10,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-# RailsSettings Model
+
 class Setting < RailsSettings::CachedSettings
 
   defaults[:confirmation_amount] = 1000000

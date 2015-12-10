@@ -11,7 +11,7 @@
 #  state          :string(255)
 #  receipt_number :string(255)
 #
-# model to represent an item in an order/cart
+
 class LineItem < ActiveRecord::Base
 
   # Relation
