@@ -30,7 +30,14 @@
                             td #{ order.id }
                             td #{ order.created_at.strftime("%d %B %Y") }
                             td #{ order.receipt_number }
-                            td #{ order.state }
+                            td 
+                              b
+                                -if order.state == 'done'
+                                  span.darkgreen #{ order.state_simple }
+                                -elsif order.state =='failed'
+                                  span.red #{order.state_simple}
+                                -else
+                                  span.darkorange #{order.state_simple}
                             td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center"
                               = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-orange'} do

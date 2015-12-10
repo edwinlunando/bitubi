@@ -40,7 +40,14 @@
                         br/
                         small
                           b.darkorange Total: #{ number_format(order.total) }
-                      td #{ order.state_simple }
+                      td
+                        b
+                          -if order.state == 'done'
+                            span.darkgreen #{ order.state_simple }
+                          -elsif order.state =='failed'
+                            span.red #{order.state_simple}
+                          -else
+                            span.darkorange #{order.state_simple}
                       td align="center"
                         = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
                           i.fa.fa-folder-open title="view"
