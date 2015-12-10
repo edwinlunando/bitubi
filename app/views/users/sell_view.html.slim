@@ -62,7 +62,17 @@
                         dd
                           span.darkorange #{ @order.address.special_instructions}
               .grid-flex__col.grid-flex__col--9
-                h3.darkorange Detil Penjualan : Order - #{ @order.id }
+                .grid-flex--no-pad
+                  .grid-flex--no-gutter.grid-flex__col--8
+                    h2.darkorange Detil Pesanan : Order - #{ @order.id }
+                  .grid-flex--no-gutter.grid-flex__col--4 align="right"
+                    b.black.mgs-10 Status: 
+                    - if (@order.state == 'done')
+                      span.btn.btn-green #{@order.state_simple.capitalize}
+                    - elsif (@order.state == 'failed')
+                      span.btn.btn-red #{@order.state_simple.capitalize}
+                    - else
+                      span.btn.btn-orange #{@order.state_simple.capitalize}
                 = form_for @order, url: sell_receipt_path(@order) do |f|
                   .table-container
                     table.table
@@ -101,20 +111,21 @@
                               b Total
                             td align="right"
                               b #{ number_format(@order.total) }
-                          tr
-                            td align="right"
-                              / button.btn.btn-red type='submit' style="width:120px"
-                              /   i.fa.fa-times-circle title="kirim"
-                              /   |
-                              /   span  Batal
-                              td colspan="3" align="right"
-                                b.mgs-10
-                                  span.darkorange Nomor resi:
-                                = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
-                              td
-                                button.btn.btn-green type='submit' style="width:120px"
-                                  i.fa.fa-truck title="kirim"
-                                  |
-                                  span  Kirim
+                          - unless (@order.state == 'done' || @order.state == 'failed')
+                            tr
+                              td align="right"
+                                / button.btn.btn-red type='submit' style="width:120px"
+                                /   i.fa.fa-times-circle title="kirim"
+                                /   |
+                                /   span  Batal
+                                td colspan="3" align="right"
+                                  b.mgs-10
+                                    span.darkorange Nomor resi:
+                                  = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
+                                td
+                                  button.btn.btn-green type='submit' style="width:120px"
+                                    i.fa.fa-truck title="kirim"
+                                    |
+                                    span  Kirim
                   center.mg-20
                     = link_to 'Kembali', sell_path, class: 'btn btn-orange'

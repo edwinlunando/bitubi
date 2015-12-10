@@ -64,13 +64,16 @@
                             span.darkorange #{ @order.address.special_instructions}
               .grid-flex__col.grid-flex__col--9
                 .grid-flex--no-pad
-                  .grid-flex__col.grid-flex__col--6
+                  .grid-flex--no-gutter.grid-flex__col--6
                     h2.darkorange Detil Pesanan : Order - #{ @order.id }
-                  .grid-flex__col.grid-flex__col--6 align="right"
+                  .grid-flex--no-gutter.grid-flex__col--6 align="right"
+                    b.black.mgs-10 Status: 
                     - if (@order.state == 'done')
-                      span.btn.btn-green #{@order.state.capitalize}
+                      span.btn.btn-green #{@order.state_simple.capitalize}
+                    - elsif (@order.state == 'failed')
+                      span.btn.btn-red #{@order.state_simple.capitalize}
                     - else
-                      span.btn.btn-orange #{@order.state.capitalize}
+                      span.btn.btn-orange #{@order.state_simple.capitalize}
                 .table-container
                   table.table
                     thead
