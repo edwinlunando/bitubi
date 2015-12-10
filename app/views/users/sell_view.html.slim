@@ -100,9 +100,9 @@
                               td align="right" #{ number_format(line_item.price) }
                           tr
                             td colspan="3" align="right"
-                              b.darkorange Ongkos Kirim
+                              b.black Pengiriman: 
                             td align="center"
-                              b.black #{ @order.state_shipment_price.shipment_type.name }
+                              b.darkorange #{ @order.state_shipment_price.shipment_type.name }
                             td align="right"
                               b.black #{ number_format(@order.shipment_price) }
                           tr.highlight-info
