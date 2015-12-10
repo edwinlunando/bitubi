@@ -63,7 +63,14 @@
                           dd
                             span.darkorange #{ @order.address.special_instructions}
               .grid-flex__col.grid-flex__col--9
-                h2.darkorange Detil Pesanan : Order - #{ @order.id }
+                .grid-flex--no-pad
+                  .grid-flex__col.grid-flex__col--6
+                    h2.darkorange Detil Pesanan : Order - #{ @order.id }
+                  .grid-flex__col.grid-flex__col--6 align="right"
+                    - if (@order.state == 'done')
+                      span.btn.btn-green #{@order.state.capitalize}
+                    - else
+                      span.btn.btn-orange #{@order.state.capitalize}
                 .table-container
                   table.table
                     thead
