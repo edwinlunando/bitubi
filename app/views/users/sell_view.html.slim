@@ -9,7 +9,6 @@
         #surfari-tabs
           == render 'tabs'
           .list-wrap
-            h3.darkorange Detil Penjualan : Order - #{ @order.id }
             .grid-flex
               .grid-flex__col.grid-flex__col--3
                 .category-title.clear-pm.vendor-info
@@ -63,7 +62,7 @@
                         dd
                           span.darkorange #{ @order.address.special_instructions}
               .grid-flex__col.grid-flex__col--9
-                h3.darkorange Pesanan
+                h3.darkorange Detil Penjualan : Order - #{ @order.id }
                 = form_for @order, url: sell_receipt_path(@order) do |f|
                   .table-container
                     table.table
