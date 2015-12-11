@@ -40,7 +40,8 @@ class Supplier < ActiveRecord::Base
   def self.bank_list
     [
       'Bank Central Asia',
-      'Bank Mandiri'
+      'Bank Mandiri',
+      'Bank Rakyat Indonesia'
     ]
   end
 
