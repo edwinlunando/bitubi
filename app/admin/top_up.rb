@@ -25,7 +25,7 @@ ActiveAdmin.register TopUp do
     column :transfer
     column :approved
     actions do |top_up|
-      if top_up.transfer && !top_up.approved
+      if !top_up.approved
         link_to 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end
