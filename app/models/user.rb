@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
 
   # scope
   scope :supplier, -> { where(role: [:supplier]) }
+  scope :activated, -> { where(active: true) }
 
   # callback
   before_save :default_values

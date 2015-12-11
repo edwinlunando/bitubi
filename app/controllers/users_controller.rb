@@ -60,8 +60,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def topup_transfer
+    top_up = current_user.top_ups.find params[:id]
+    top_up.transfer = true
+    top_up.save
+    redirect_to top_up_confirm_path, notice: 'Berhasil konfirmasi transfer!'
+  end
+
   def topup_confirm
-    @top_up = TopUp.new
   end
 
   def withdrawal

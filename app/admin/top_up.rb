@@ -1,4 +1,7 @@
 ActiveAdmin.register TopUp do
+
+  actions :all, except: [:destroy]
+
   permit_params :name, :amount, :user_id, :approved, :bank
 
   member_action :approve, method: :put do
@@ -19,9 +22,12 @@ ActiveAdmin.register TopUp do
       link_to top_up.user.try(:email), admin_user_path(top_up.user)
     end
     column :bank
+    column :transfer
     column :approved
     actions do |top_up|
-      link_to 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+      if top_up.transfer && !top_up.approved
+        link_to 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+      end
     end
   end
 

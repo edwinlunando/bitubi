@@ -30,14 +30,14 @@ class ProductsController < InheritedResources::Base
   def vendors
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Daftar Vendor', :vendors_path
-    @vendors = User.supplier.page(params[:page])
+    @vendors = User.activated.supplier.page(params[:page])
   end
 
   def vendor
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Daftar Vendor', :vendors_path
     products = Product.published.where('user_id = ?', params[:id])
-    @user = User.find(params[:id])
+    @user = User.activated.find(params[:id])
     @products = products.page(params[:page])
   end
 

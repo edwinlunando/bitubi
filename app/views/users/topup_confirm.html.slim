@@ -25,6 +25,7 @@
                         th Tanggal
                         th Jumlah
                         th Bank
+                        th Transfer
                         th Status
                         th Action
                     tbody
@@ -34,17 +35,22 @@
                           td #{ number_format(top_up.amount) }
                           td #{ top_up.bank }
                           td
+                            - if top_up.transfer
+                              b
+                                span.darkgreen Ya
+                            - else
+                              b
+                                span.red Tidak
+                          td
                             - if top_up.approved
                               b
                                 span.darkgreen Ya
-                            - else 
-                              b
-                                span.red Tidak
-                          td"
-                            - if !top_up.approved
-                              button.btn.btn-orange 
-                                i.fa.fa-check 
-                                |  Konfirm
                             - else
                               b
-                                span.darkgreen -
+                                span.red Tidak
+                          td
+                            - if !top_up.transfer
+                              = link_to top_up_transfer_path(top_up), class: 'btn btn-orange', method: :post
+                                i.fa.fa-check
+                                |  Konfirm
+
