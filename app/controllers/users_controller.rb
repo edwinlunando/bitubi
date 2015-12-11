@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   end
 
   def topup_confirm
+    @top_ups = current_user.top_ups.order(created_at: :desc)
   end
 
   def withdrawal

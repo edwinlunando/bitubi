@@ -29,7 +29,7 @@
                         th Status
                         th Action
                     tbody
-                      - current_user.top_ups.each do |top_up|
+                      - @top_ups.each do |top_up|
                         tr
                           td #{ top_up.created_at.strftime("%d %B %Y") }
                           td #{ number_format(top_up.amount) }
