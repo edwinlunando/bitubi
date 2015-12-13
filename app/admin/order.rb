@@ -45,6 +45,7 @@ ActiveAdmin.register Order do
       end
     end
     column :created_at
+    column :payment_time
     actions do |order|
       if !order.transferred && order.done?
         item 'Transfer', transfer_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
@@ -84,6 +85,7 @@ ActiveAdmin.register Order do
         end
       end
       row :created_at
+      row :payment_time
     end
 
     panel 'Address' do

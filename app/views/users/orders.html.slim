@@ -28,9 +28,9 @@
                         - @orders.each_with_index do |order, index|
                           tr align="center"
                             td #{ order.id }
-                            td #{ order.created_at.strftime("%d %B %Y") }
+                            td #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
                             td #{ order.receipt_number }
-                            td 
+                            td
                               b
                                 -if order.state == 'done'
                                   span.darkgreen #{ order.state_simple }

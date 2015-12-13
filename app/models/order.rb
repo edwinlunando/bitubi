@@ -31,6 +31,7 @@ class Order < ActiveRecord::Base
 
   # scope
   scope :vendor, -> { where(state: [:delivery, :done, :failed]) }
+  scope :created, -> { order(created_at: :desc) }
 
   # Method
 

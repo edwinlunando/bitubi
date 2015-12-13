@@ -67,7 +67,7 @@
                   .grid-flex--no-gutter.grid-flex__col--6
                     h2.darkorange Detil Pesanan : Order - #{ @order.id }
                   .grid-flex--no-gutter.grid-flex__col--6 align="right"
-                    b.black.mgs-10 Status: 
+                    b.black.mgs-10 Status:
                     - if (@order.state == 'done')
                       span.btn.btn-green #{@order.state_simple.capitalize}
                     - elsif (@order.state == 'failed')
@@ -103,11 +103,11 @@
                             td align="right"
                               b.black #{ number_format(line_item.price) }
                         tr.highlight-info-2
-                          td 
-                          td align="right" Pengiriman: 
+                          td
+                          td align="right" Pengiriman:
                           td  align="right"
                             b.darkorange #{ @order.state_shipment_price.shipment_type.name }
-                          td align="right" 
+                          td align="right"
                             b.black #{ number_format(@order.shipment_price) }
                         tr.highlight-info
                           td colspan="2"

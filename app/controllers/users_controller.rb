@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Pesanan', :pesanan_path
 
-    @orders = current_user.orders.includes(:line_items, :state_shipment_price)
+    @orders = current_user.orders.created.includes(:line_items, :state_shipment_price)
   end
 
   def order
