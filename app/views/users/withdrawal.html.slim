@@ -51,9 +51,13 @@
                         th Bank
                         th Konfirmasi
                     tbody
-                      - current_user.top_ups.each do |top_up|
+                      - if current_user.top_ups.present?
+                        - current_user.top_ups.each do |top_up|
+                          tr
+                            td #{ top_up.created_at.strftime("%d %B %Y") }
+                            td #{ number_format(top_up.amount) }
+                            td #{ top_up.bank }
+                            td #{ top_up.approved ? 'Ya' : 'Tidak' }
+                      - else
                         tr
-                          td #{ top_up.created_at.strftime("%d %B %Y") }
-                          td #{ number_format(top_up.amount) }
-                          td #{ top_up.bank }
-                          td #{ top_up.approved ? 'Ya' : 'Tidak' }
+                          td.black colspan="4" Anda belum pernah melakukan top up dompet
