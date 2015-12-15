@@ -2,17 +2,17 @@
   h3.darkorange
     b Menu Dompet
   ul.account-menu
-    li
+    li class="#{params[:action] == 'topup' ? 'active' : ''}"
       = link_to saldo_path do
         b
           i.fa.fa-book.darkorange
           span.darkorange  Top Up Form
-    li
+    li class="#{params[:action] == 'topup_confirm' ? 'active' : ''}"
       = link_to top_up_confirm_path do
         b
           i.fa.fa-check.darkorange
           span.darkorange  Konfirmasi
-    li
+    li class="#{params[:action] == 'withdrawal' ? 'active' : ''}"
       = link_to withdrawal_path do
         b
           i.fa.fa-arrow-circle-o-down.darkorange
