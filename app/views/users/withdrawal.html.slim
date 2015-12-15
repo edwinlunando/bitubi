@@ -8,7 +8,7 @@
           = link_to "Dompet", saldo_path
   .container
     .grid-flex
-      / = render 'topup_tabs'
+      = render 'topup_tabs'
       .grid-flex__col.grid-flex__col--10
         .static-title.np-top
           center
@@ -34,3 +34,26 @@
               li Isi form di samping terlebih dahulu untuk permohonan panrikan
               li Permohonan penarikan akan diproses dalam waktu 1 x 24 jam
               li Apabila permohonan telah diproses, saldo Anda akan terpotong dari dompet dan di-transfer sesuai jumlah permohonan ke rekening pada form
+
+        hr/
+        
+        .grid-flex
+          .grid-flex__col.grid-flex__col--12
+            div
+              h3.darkorange Sejarah Top Up
+              br
+              .table-container
+                  table.table
+                    thead
+                      tr
+                        th Tanggal
+                        th Jumlah
+                        th Bank
+                        th Konfirmasi
+                    tbody
+                      - current_user.top_ups.each do |top_up|
+                        tr
+                          td #{ top_up.created_at.strftime("%d %B %Y") }
+                          td #{ number_format(top_up.amount) }
+                          td #{ top_up.bank }
+                          td #{ top_up.approved ? 'Ya' : 'Tidak' }
