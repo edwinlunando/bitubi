@@ -47,20 +47,28 @@
                           td.action-delete
                             = link_to delete_from_cart_path(line_item), html_options: { class: 'btn-clear' }, method: :delete
                                 i.fa-btn.btn-red.fa.fa-trash title="delete"
-                    tfoot
-                      tr.highlight-info
-                        td colspan="3" align="right"
-                          b Total
-                        td.total-price align="right"
-                          b
-                            = number_format(@order.total)
-                        td
-                      tr.higlight-info
-                        td align="right"
-                          = link_to 'Belanja Lagi', products_path, class: 'btn btn-orange'
-                        td colspan="2"
-                        td.total-price align="center"
-                          = link_to alamat_path, class: 'btn btn-green'
-                            i.fa.fa-money
-                            |  Checkout
-                        td
+                      tfoot
+                        - if @order.line_items.present?
+                          tr.highlight-info
+                            td colspan="3" align="right"
+                              b Total
+                            td.total-price align="right"
+                              b
+                                = number_format(@order.total_without_shipment)
+                            td
+                          tr.higlight-info
+                            td align="right"
+                              = link_to 'Belanja Lagi', products_path, class: 'btn btn-orange'
+                            td colspan="2"
+                            td.total-price align="center"
+                              = link_to alamat_path, class: 'btn btn-green'
+                                i.fa.fa-money
+                                |  Checkout
+                            td
+                        - else
+                          tr
+                            td.black colspan="4"
+                              p 
+                                span Keranjang belanja Anda masih kosong. 
+                                b.darkorange Silahkan isi keranjang belanja Anda dengan barang yang ingin dibeli
+                              = link_to 'Belanja', products_path, class: 'btn btn-orange'

@@ -3,6 +3,7 @@
 --------------------------------------------------------------------------- */
 
 $BTN_PADDING: $space/3 $space;
+$BTN_PADDING_SMALL: $space/20 $space;
 
 
 /* Base Style
@@ -34,6 +35,10 @@ $BTN_PADDING: $space/3 $space;
     &[disabled] {
         cursor: not-allowed;
     }
+}
+
+.btn-small {
+    padding: $BTN_PADDING_SMALL;
 }
 
 .fa-btn,

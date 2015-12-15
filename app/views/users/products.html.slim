@@ -30,21 +30,25 @@
                       th Unit
                       th align="center"  Action
                   tbody
-                    - @products.each do |product|
+                    - if @products.present?
+                      - @products.each do |product|
+                        tr
+                          td align="center"
+                            - if product.get_first_image.present?
+                              img.lazy alt="" data-original="#{ product.get_first_image.data.url(:small) }"
+                          td
+                            = link_to "/dagangan/#{ product.id }/edit" do
+                              | #{ product.name }
+                          td #{ product.stock }
+                          td #{ product.weight }
+                          td #{ product.unit }
+                          td align="center"
+                            / a href=""
+                            /   i.fa-btn.btn-green.fa.fa-money title="set sold"
+                            = link_to "/dagangan/#{ product.id }/edit" do
+                              i.fa-btn.btn-yellow.fa.fa-edit title="edit"
+                            = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
+                                i.fa-btn.btn-red.fa.fa-trash title="delete"
+                    - else
                       tr
-                        td align="center"
-                          - if product.get_first_image.present?
-                            img.lazy alt="" data-original="#{ product.get_first_image.data.url(:small) }"
-                        td
-                          = link_to "/dagangan/#{ product.id }/edit" do
-                            | #{ product.name }
-                        td #{ product.stock }
-                        td #{ product.weight }
-                        td #{ product.unit }
-                        td align="center"
-                          / a href=""
-                          /   i.fa-btn.btn-green.fa.fa-money title="set sold"
-                          = link_to "/dagangan/#{ product.id }/edit" do
-                            i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                          = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
-                              i.fa-btn.btn-red.fa.fa-trash title="delete"
+                        td.black colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.
