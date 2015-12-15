@@ -66,6 +66,8 @@
                 .grid-flex--no-pad
                   .grid-flex--no-gutter.grid-flex__col--6
                     h2.darkorange Detil Pesanan : Order - #{ @order.id }
+                    span.black Tangal Pesanan: 
+                    b.darkgreen #{@order.created_at.strftime("%d %B %Y")}
                   .grid-flex--no-gutter.grid-flex__col--6 align="right"
                     b.black.mgs-10 Status:
                     - if (@order.state == 'done')
