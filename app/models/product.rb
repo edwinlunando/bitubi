@@ -45,6 +45,7 @@ class Product < ActiveRecord::Base
 
   # scope
   scope :published, -> { joins(:user).where(published: true).where('users.active = ?', true) }
+  scope :prioritize, -> { order(:priority) }
 
   def get_first_image
     product_images.try(:first)

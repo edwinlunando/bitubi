@@ -152,7 +152,7 @@ Rails.application.routes.draw do
   get 'saldo' => 'users#topup'
   post 'saldo/:id/transfer' => 'users#topup_transfer', as: 'top_up_transfer'
   get 'saldo/konfirmasi' => 'users#topup_confirm', as: 'top_up_confirm'
-  get 'saldo/penarikan' => 'users#withdrawal', as: 'withdrawal'
+  # get 'saldo/penarikan' => 'users#withdrawal', as: 'withdrawal'
   post 'saldo' => 'users#topup_credit', as: 'tambah_saldo'
   delete 'keranjang/:id/buang' => 'orders#remove_from_cart', as: 'delete_from_cart'
   get 'keranjang' => 'orders#cart'
