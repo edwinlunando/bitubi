@@ -3,7 +3,7 @@ namespace :jne do
   task update_from_xls: :environment do
     StateShipmentPrice.destroy_all
     require 'spreadsheet'
-    book = Spreadsheet.open Rails.root.join('lib', 'assets', 'price_jne_juni_2015.xlsx')
+    book = Spreadsheet.open Rails.root.join('lib', 'assets', 'price_jne_juni_2015.xls')
     worksheet = book.worksheet 0
     # informasi kolom
     # 3 state 5 reguler 7 oke 9 yes
