@@ -12,52 +12,50 @@
             .grid-flex__col.grid-flex__col--12
               h2.darkorange Penjualan
               .table-container
-                table.table
-                  thead
-                    tr align="center"
-                      th Order ID
-                      th Pembeli
-                      th Harga
-                      th Status
-                      th Aksi
-                  tbody
-                    - if @orders.present?
-                      - @orders.each do |order|
-                        tr align="center"
-                          td
-                            b.darkorange id: #{ order.id }
-                            br/
-                            small.black #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
-                          td align="left"
-                            b.darkorange #{ order.user.name }
-                            br
-                            span.black #{ order.user.email }
-                            br
-                            small.black #{ order.address.one_line.titleize if order.address.present? }
-                          td.black align="left"
-                            small Biaya: #{ number_format(order.total_without_shipment) }
-                            br/
-                            small Ongkir: #{ number_format(order.shipment_price) }
-                            br/
-                            small
-                              b.darkorange Total: #{ number_format(order.total) }
-                          td
-                            b
-                              -if order.state == 'done'
-                                span.darkgreen #{ order.state_simple }
-                              -elsif order.state =='failed'
-                                span.red #{order.state_simple}
-                              -else
-                                span.darkorange #{order.state_simple}
-                          td align="center"
-                            = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
-                              i.fa.fa-folder-open title="view"
-                    - else
-                      tr
-                        td colspan="5"
-                          span.black
-                            | Belum ada penjualan yang tercatat. Mungkin Anda ingin memeriksa kembali
-                            = link_to 'dagangan', dagangan_path, class: 'btn btn-small btn-orange mgs-10'
-                            | Anda atau memeriksa kembali
-                            = link_to 'Toko', vendor_view_path(current_user.supplier.id), class: 'btn btn-small btn-green mgs-10'
-                            | Anda
+                - if !@orders.present?
+                  span.black
+                    | Belum ada penjualan yang tercatat. Mungkin Anda ingin memeriksa kembali
+                    = link_to 'dagangan', dagangan_path, class: 'btn btn-small btn-orange mgs-10'
+                    | Anda atau memeriksa kembali
+                    = link_to 'Toko', vendor_view_path(current_user.supplier.id), class: 'btn btn-small btn-green mgs-10'
+                    | Anda
+                - else
+                  table.table
+                    thead
+                      tr align="center"
+                        th Order ID
+                        th Pembeli
+                        th Harga
+                        th Status
+                        th Aksi
+                    tbody
+                        - @orders.each do |order|
+                          tr align="center"
+                            td
+                              b.darkorange id: #{ order.id }
+                              br/
+                              small.black #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
+                            td align="left"
+                              b.darkorange #{ order.user.name }
+                              br
+                              span.black #{ order.user.email }
+                              br
+                              small.black #{ order.address.one_line.titleize if order.address.present? }
+                            td.black align="left"
+                              small Biaya: #{ number_format(order.total_without_shipment) }
+                              br/
+                              small Ongkir: #{ number_format(order.shipment_price) }
+                              br/
+                              small
+                                b.darkorange Total: #{ number_format(order.total) }
+                            td
+                              b
+                                -if order.state == 'done'
+                                  span.darkgreen #{ order.state_simple }
+                                -elsif order.state =='failed'
+                                  span.red #{order.state_simple}
+                                -else
+                                  span.darkorange #{order.state_simple}
+                            td align="center"
+                              = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
+                                i.fa.fa-folder-open title="view"

@@ -13,6 +13,8 @@
               h2.darkorange Produk Anda
               .grid-flex
                 .grid-flex__col.grid-flex__col-4
+                  - if !@products.present?
+                    .black.mg-10 colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.
                   = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
                 / .grid-flex__col.grid-flex__col-8
                 /   form class="form__row form__pull-right"
@@ -20,17 +22,17 @@
                 /     button type="submit" class="form-submit-search form-submit-search__vendor"
                 /       i.fa.fa-search  
               .table-container
-                table.table
-                  thead
-                    tr
-                      th align="center"  Thumbnail
-                      th Item
-                      th Stok
-                      th Weight
-                      th Unit
-                      th align="center"  Action
-                  tbody
-                    - if @products.present?
+                - if @products.present?
+                  table.table
+                    thead
+                      tr
+                        th align="center"  Thumbnail
+                        th Item
+                        th Stok
+                        th Weight
+                        th Unit
+                        th align="center"  Action
+                    tbody
                       - @products.each do |product|
                         tr
                           td align="center"
@@ -49,6 +51,3 @@
                               i.fa-btn.btn-yellow.fa.fa-edit title="edit"
                             = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
                                 i.fa-btn.btn-red.fa.fa-trash title="delete"
-                    - else
-                      tr
-                        td.black colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.

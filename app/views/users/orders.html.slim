@@ -14,17 +14,23 @@
               .grid-flex__col.grid-flex__col--12
                 h2.darkorange Pesanan
                 .table-container
-                  table.table
-                    thead
-                      tr align="center"
-                        th Order Id
-                        th Tanggal Pesan
-                        th Nomor Resi
-                        th Status
-                        th Total
-                        th Action
-                    tbody
-                      - if !@orders.present?
+                  - if !@orders.present?
+                    .black
+                      | Anda belum memiliki pesanan. Silahkan 
+                      = link_to 'belanja', products_path, class: 'btn btn-small btn-orange mgs-10'
+                      | atau selesaikan transaksi Anda di
+                      = link_to 'keranjang', keranjang_path, class: 'btn btn-small btn-green mgs-10'
+                  - else
+                    table.table
+                      thead
+                        tr align="center"
+                          th Order Id
+                          th Tanggal Pesan
+                          th Nomor Resi
+                          th Status
+                          th Total
+                          th Action
+                      tbody
                         - @orders.each_with_index do |order, index|
                           tr align="center"
                             td #{ order.id }
@@ -45,11 +51,3 @@
                               / Button Terima Barang
                               / = link_to "/pesanan/#{order.id}/terima", {class: 'btn-clear fa-btn btn-green'} do
                               /   i.fa.fa-check title="terima"
-                      - else
-                        tr
-                          td colspan="4"
-                            span.black
-                              | Anda belum memiliki pesanan. Silahkan 
-                              = link_to 'belanja', products_path, class: 'btn btn-small btn-orange mgs-10'
-                              | atau selesaikan transaksi Anda di
-                              = link_to 'keranjang', keranjang_path, class: 'btn btn-small btn-green mgs-10'
