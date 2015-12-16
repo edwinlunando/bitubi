@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20151211065310) do
     t.datetime "updated_at",                         null: false
     t.string   "receiver_name",        limit: 255
     t.string   "receiver_phone",       limit: 255
+    t.string   "string",               limit: 255
     t.string   "sender_name",          limit: 255
-    t.string   "sender_phone",         limit: 255
     t.string   "zipcode",              limit: 255
     t.text     "special_instructions", limit: 65535
   end
