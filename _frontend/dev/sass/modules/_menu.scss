@@ -85,6 +85,12 @@
   .nav-lang__submenu--square {
     width: 50px;
   }
+  #search-menu {
+    display: block;
+    @media #{$large} {
+      display: none;
+    }
+  }
   .nav-lang__submenu {
     border-left: 1px solid $black20;
     display: block;
@@ -195,6 +201,11 @@
 
 .nav-search-bar {
   margin-left: 50px;
+  width: 60%;
+  display: none;
+  @media #{$large} {
+    display: block;
+  }
 }
 
 /* Push Menu

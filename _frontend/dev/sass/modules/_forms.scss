@@ -26,11 +26,14 @@ $input_bg               : #fff;
   text-align: center;
   display: none;
   @media #{$large} {
-    width: 800px;
+    width: 100%;
     input {
-      width:60%;
+      width:80%;
     }
     display: inline-block;
+  }
+  .header-form-container {
+    width: 80%;
   }
 }
 
