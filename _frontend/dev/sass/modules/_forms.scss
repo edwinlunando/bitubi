@@ -28,6 +28,7 @@ $input_bg               : #fff;
   @media #{$large} {
     width: 100%;
     input {
+      background: $black20;
       width:80%;
     }
     display: inline-block;
