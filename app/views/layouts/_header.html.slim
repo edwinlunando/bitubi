@@ -67,7 +67,7 @@ header.header-main
           /   select
           /     option value="produk" Produk
           /     option value="vendor" Vendor
-          input.form-input.inline type="text" placeholder="Pencarian"
+          input.form-input.inline type="text" placeholder="Pencarian" name="q" value="#{ params[:q].present? ? params[:q] : '' }"
           button.inline type="submit" class="form-submit-search form-submit-search__vendor"
             i.fa.fa-search  
     .nav-lang.nav-toggle
@@ -92,7 +92,7 @@ header.header-main
   .menu-search__form-row
     form action="#{ products_path }"
       i.fa.fa-search
-      input placeholder=("Cari barang . . .") type="text" name="q" /
+      input placeholder=("Cari barang . . .") type="text" name="q" value="#{ params[:q].present? ? params[:q] : '' }"
 .login-register__container
   .login-register__form-container
     center.login-register__close-btn x
