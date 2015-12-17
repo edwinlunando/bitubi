@@ -91,6 +91,12 @@ class UsersController < ApplicationController
     add_breadcrumb 'Detil', "/pesanan/#{@order.id}"
   end
 
+  def order_transfer
+    @order = current_user.orders.find(params[:id])
+    @order.transfer
+    redirect_to order_detail_path(@order), notice: 'Pesanan telah diterima!'
+  end
+
   def products
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Akun', :account_path

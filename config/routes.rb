@@ -158,6 +158,7 @@ Rails.application.routes.draw do
   get 'keranjang' => 'orders#cart'
   post 'alamat' => 'orders#addressing', as: 'addressing'
   get 'alamat' => 'orders#address'
+  post 'pesanan/:id/transfer' => 'users#order_transfer', as: 'order_transfer'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
   get 'akun' => 'users#account', as: 'account'
