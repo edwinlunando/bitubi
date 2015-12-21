@@ -18,9 +18,14 @@
         .grid-flex
           .grid-flex__col.grid-flex__col--5
             h3.darkorange Form Penarikan
-            span
-                b.darkorange Saldo kamu:
-                span.darkgreen  #{ number_format(current_user.credit) }
+            div
+              i.fa.fa-money.darkorange.mgr-5
+              b.darkorange  Saldo Kamu: 
+              span.darkgreen  #{ number_format(current_user.credit) }
+            div.
+              i.fa.fa-book.darkorange.mgr-5
+              b.darkorange  Nomor Rekening: 
+              span.darkgreen #{ current_user.supplier.bank_account_number }
             = simple_form_for(@withdrawal, url: withdrawal_new_path) do |f|
               = f.input :amount, input_html: { placeholder: 'jumlah penarikan'}, label: 'Jumlah'
               br
