@@ -21,7 +21,10 @@
         .category-title.np-side
           h2.category-title__title Produk Kami
           p.category-title__description
-            | Barang-barang yang baru saja tercatat dalam platform kami
+            - if (@products.present?)
+              | Produk-produk terlaris yang tersedia dalam platform kami
+            - else
+              | #{(params[:q]).present? ? 'Produk dengan nama "'+ params[:q] +'" tidak dapat ditemukan' : 'Belum ada barang yang terdaftar'}
         .product-cards-container
           - @products.each do |product|
             = render 'products/card', product: product
