@@ -72,7 +72,21 @@ class UsersController < ApplicationController
   end
 
   def withdrawal
-    @top_up = TopUp.new
+    @withdrawal = Withdrawal.new
+  end
+
+  def withdrawal_new
+    @withdrawal = Withdrawal.new(withdrawal_params)
+    @withdrawal.user_id = current_user.id
+    if @withdrawal.amount > current_user.credit
+      return redirect_to withdrawal_path, notice: 'Saldo yang ditarik tidak boleh melebihi jumlah saldo sekarang'
+    end
+
+    if @withdrawal.save
+      AdminMailer.withdrawal(@withdrawal).deliver_now
+      return redirect_to withdrawal_path, notice: 'Berhasil menarik saldo'
+    end
+    render :withdrawal
   end
 
   def orders
@@ -199,6 +213,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :phone_number, :first_name, :last_name,
                                  supplier_attributes: [:id, :name, :image, :banner_image, :bank_account_name, :bank_name,
                                                        :bank_account_number, :description, :address])
+  end
+
+  def withdrawal_params
+    params.require(:withdrawal).permit(:amount)
   end
 
   def change_password_params

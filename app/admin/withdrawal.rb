@@ -1,6 +1,6 @@
-ActiveAdmin.register TopUp do
+ActiveAdmin.register Withdrawal do
 
-  actions :all, except: [:destroy]
+  actions :all, except: [:destroy, :edit]
 
   permit_params :name, :amount, :user_id, :approved, :bank
 
@@ -15,25 +15,20 @@ ActiveAdmin.register TopUp do
   index do
     selectable_column
     id_column
-    column :name
     column :amount
-    column :uid
-    column :user do |top_up|
-      link_to top_up.user.try(:email), admin_user_path(top_up.user)
+    column :user do |withdrawal|
+      link_to withdrawal.user.try(:email), admin_user_path(withdrawal.user)
     end
-    column :bank
-    column :transfer
     column :approved
-    actions do |top_up|
-      if !top_up.approved
-        link_to 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+    actions do |withdrawal|
+      if !withdrawal.approved
+        link_to 'Approve', approve_admin_withdrawal_path(withdrawal), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end
   end
 
   filter :user, member_method: :email
   filter :created_at
-  filter :active
 
   form do |f|
     f.inputs 'Admin Details' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216035237) do
+ActiveRecord::Schema.define(version: 20151219094817) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20151216035237) do
     t.datetime "updated_at",                         null: false
     t.string   "receiver_name",        limit: 255
     t.string   "receiver_phone",       limit: 255
-    t.string   "string",               limit: 255
     t.string   "sender_name",          limit: 255
+    t.string   "sender_phone",         limit: 255
     t.string   "zipcode",              limit: 255
     t.text     "special_instructions", limit: 65535
   end
@@ -261,6 +261,14 @@ ActiveRecord::Schema.define(version: 20151216035237) do
   end
 
   add_index "wholesale_prices", ["product_id"], name: "index_wholesale_prices_on_product_id", using: :btree
+
+  create_table "withdrawals", force: :cascade do |t|
+    t.decimal  "amount",               precision: 10
+    t.integer  "user_id",    limit: 4
+    t.boolean  "approved"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
 
   add_foreign_key "addresses", "states"
   add_foreign_key "line_items", "orders"

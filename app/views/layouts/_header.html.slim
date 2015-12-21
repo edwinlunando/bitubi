@@ -44,6 +44,9 @@ header.header-main
                 span - #{ number_format(current_user.credit) }
             li
               = link_to 'Tambah Saldo', saldo_path
+            - if current_user.supplier?
+              li
+                = link_to 'Tarik Dana', withdrawal_path
       dt
         = link_to 'Produk', products_path
       dt
@@ -69,7 +72,7 @@ header.header-main
           /     option value="vendor" Vendor
           input.form-input.inline type="text" placeholder="Pencarian" name="q" value="#{ params[:q].present? ? params[:q] : '' }"
           button.inline type="submit" class="form-submit-search form-submit-search__vendor"
-            i.fa.fa-search  
+            i.fa.fa-search
     .nav-lang.nav-toggle
       - if user_signed_in?
         .nav-lang__submenu

@@ -11,10 +11,19 @@ class AdminMailer < ApplicationMailer
     mail(to: admin, subject: 'Ada Top Up baru!')
   end
 
+  def withdrawal(withdrawal)
+    @withdrawal = withdrawal
+    mail(to: finance, subject: 'Ada Penarikan baru!')
+  end
+
   private
 
   def admin
     'admin@larisni.com'
+  end
+
+  def finance
+    'finance@larisni.com'
   end
 
 end
