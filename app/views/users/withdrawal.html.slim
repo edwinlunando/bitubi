@@ -21,22 +21,20 @@
             span
                 b.darkorange Saldo kamu:
                 span.darkgreen  #{ number_format(current_user.credit) }
-            = simple_form_for(@top_up, url: tambah_saldo_path) do |f|
-              = f.input :uid, :as => :hidden, input_html: { id: 'saldo-uid' }
-              = f.input :name, input_html: { placeholder: 'nama' }, label: 'Nama'
-              = f.input :bank, collection: TopUp.bank_list, include_blank: 'Pilih Bank Anda', label: 'Bank'
+            = simple_form_for(@withdrawal, url: withdrawal_new_path) do |f|
               = f.input :amount, input_html: { placeholder: 'jumlah penarikan'}, label: 'Jumlah'
-              br/
-              button.btn.btn-green type="submit" Bayar
+              br
+              button.btn.btn-green type="submit" Tarik
           .grid-flex__col.grid-flex__col--5
             h3.darkorange Instruksi
             ol.instruction-set.instruction-set__withdrawal
-              li Isi form di samping terlebih dahulu untuk permohonan panrikan
+              li Minimal penarikan IDR 100.000
+              li Isi form di samping terlebih dahulu untuk permohonan penarikan
               li Permohonan penarikan akan diproses dalam waktu 1 x 24 jam
-              li Apabila permohonan telah diproses, saldo Anda akan terpotong dari dompet dan di-transfer sesuai jumlah permohonan ke rekening pada form
+              li Apabila permohonan telah diproses, saldo Anda akan terpotong dari dompet dan di-transfer sesuai jumlah permohonan ke rekening Anda
 
-        hr/
-        
+        hr
+
         .grid-flex
           .grid-flex__col.grid-flex__col--12
             div
@@ -48,16 +46,14 @@
                       tr
                         th Tanggal
                         th Jumlah
-                        th Bank
                         th Konfirmasi
                     tbody
-                      - if current_user.top_ups.present?
-                        - current_user.top_ups.each do |top_up|
+                      - if current_user.withdrawals.present?
+                        - current_user.withdrawals.each do |withdrawal|
                           tr
-                            td #{ top_up.created_at.strftime("%d %B %Y") }
-                            td #{ number_format(top_up.amount) }
-                            td #{ top_up.bank }
-                            td #{ top_up.approved ? 'Ya' : 'Tidak' }
+                            td #{ withdrawal.created_at.strftime("%d %B %Y") }
+                            td #{ number_format(withdrawal.amount) }
+                            td #{ withdrawal.approved ? 'Ya' : 'Tidak' }
                       - else
                         tr
-                          td.black colspan="4" Anda belum pernah melakukan top up dompet
+                          td.black colspan="4" Anda belum pernah melakukan penarikan

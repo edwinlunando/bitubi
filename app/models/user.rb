@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_many :products
   has_many :orders
   has_many :top_ups
+  has_many :withdrawals
   belongs_to :supplier
   accepts_nested_attributes_for :supplier
 

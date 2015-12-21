@@ -12,8 +12,8 @@
         b
           i.fa.fa-check.darkorange
           span.darkorange  Konfirmasi
-    / = link_to withdrawal_path do
-    /   li class="#{params[:action] == 'withdrawal' ? 'active' : ''}"
-    /     b
-    /       i.fa.fa-arrow-circle-o-down.darkorange
-    /       span.darkorange  Penarikan
+    = link_to withdrawal_path do
+      li class="#{params[:action] == 'withdrawal' ? 'active' : ''}"
+        b
+          i.fa.fa-arrow-circle-o-down.darkorange
+          span.darkorange  Penarikan
