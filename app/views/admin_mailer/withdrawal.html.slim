@@ -6,3 +6,9 @@ html
     h1 Ada Penarikan baru!
     p
       | Silahkan cek di halaman #{ link_to 'withdrawal', admin_withdrawal_url(@withdrawal) }.
+    p
+      | Nama Bank: #{ @withdrawal.user.supplier.bank_name }
+    p
+      | Nama Akun: #{ @withdrawal.user.supplier.bank_account_name }
+    p
+      | Nomor Rekening: #{ @withdrawal.user.supplier.bank_account_number }

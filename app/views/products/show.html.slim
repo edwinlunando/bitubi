@@ -65,7 +65,7 @@
                     b Satuan
                   td 1
                   td #{@product.price_dropship_money}
-                - @product.wholesale_prices.ordered.each_with_index do |price, index|
+                - @product.wholesale_prices.pricing.each_with_index do |price, index|
                   tr.highlight-info-2
                     td.darkgreen
                       b Grosir

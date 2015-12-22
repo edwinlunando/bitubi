@@ -20,6 +20,7 @@ class WholesalePrice < ActiveRecord::Base
   scope :ordered, -> { order(minimum_quantity: :desc) }
   scope :cheapest, -> { order(price: :asc) }
   scope :by_quantity, -> (quantity) { where('(minimum_quantity <= ? AND maximum_quantity >= ?) OR (minimum_quantity <= ?)', quantity, quantity, quantity) }
+  scope :pricing, -> { order(minimum_quantity: :asc) }
 
   validates :minimum_quantity, presence: true
   validates :maximum_quantity, presence: true

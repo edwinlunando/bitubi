@@ -2,7 +2,7 @@ class Withdrawal < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :amount, numericality: { greater_than_or_equal_to: 100_000 }
+  validates :amount, numericality: { greater_than_or_equal_to: 50_000 }
   validates :user, presence: true
 
   def approve
