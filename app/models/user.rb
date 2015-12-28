@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
       order.save
       return order
     else
-      if orders.last.done? || orders.last.delivery? || Order.last.failed?
+      if orders.last.done? || orders.last.delivery? || orders.last.failed?
         order = Order.new
         order.user = self
         order.save

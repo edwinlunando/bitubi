@@ -79,9 +79,7 @@
                             br/
                             b
                               = link_to vendor_view_path(line_item.product.user.id) do
-                                | vendor: #{line_item.product.user.first_name} #{line_item.product.user.last_name}
-                            br/
-                            b #{ number_format(line_item.product.price_dropship) }
+                                | vendor: #{line_item.product.user.supplier.name}
                         td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
                         td #{ number_format(line_item.price) }
                     - if @order.address.present?

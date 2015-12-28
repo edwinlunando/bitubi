@@ -65,10 +65,10 @@
                 .grid-flex--no-pad
                   .grid-flex--no-gutter.grid-flex__col--8
                     h2.darkorange Detil Pesanan : Order - #{ @order.id }
-                    span.black Tangal Pesanan: 
+                    span.black Tangal Pesanan:
                     b.darkgreen #{@order.created_at.strftime("%d %B %Y")}
                   .grid-flex--no-gutter.grid-flex__col--4 align="right"
-                    b.black.mgs-10 Status: 
+                    b.black.mgs-10 Status:
                     - if (@order.state == 'done')
                       span.btn.btn-green #{@order.state_simple.capitalize}
                     - elsif (@order.state == 'failed')
@@ -102,7 +102,7 @@
                               td align="right" #{ number_format(line_item.price) }
                           tr.highlight-info-2
                             td colspan="3" align="right"
-                              b.black Pengiriman: 
+                              b.black Pengiriman:
                             td align="center"
                               b.darkorange #{ @order.state_shipment_price.shipment_type.name }
                             td align="right"
@@ -120,7 +120,7 @@
                                 /   i.fa.fa-times-circle title="kirim"
                                 /   |
                                 /   span  Batal
-                                td colspan="3" align="right"
+                                td colspan="2" align="right"
                                   b.mgs-10
                                     span.darkorange Nomor resi:
                                   = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
@@ -129,5 +129,8 @@
                                     i.fa.fa-truck title="kirim"
                                     |
                                     span  Kirim
+                                td
+                                  = link_to sell_cancel_path, class: 'btn btn-red', method: :post, 'data-confirm' => 'Apakah Anda yakin?'
+                                    span  Batal
                   center.mg-20
                     = link_to 'Kembali', sell_path, class: 'btn btn-orange'

@@ -37,7 +37,9 @@ ActiveAdmin.register TopUp do
 
   form do |f|
     f.inputs 'Admin Details' do
+      f.input :name
       f.input :amount
+      f.input :bank
       f.input :user, member_label: :email
     end
     f.actions
