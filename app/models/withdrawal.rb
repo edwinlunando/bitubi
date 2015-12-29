@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: withdrawals
+#
+#  id         :integer          not null, primary key
+#  amount     :decimal(10, )
+#  user_id    :integer
+#  approved   :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Withdrawal < ActiveRecord::Base
 
   belongs_to :user

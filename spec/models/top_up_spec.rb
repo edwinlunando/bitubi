@@ -11,6 +11,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  uid        :decimal(10, )
+#  transfer   :boolean
 #
 
 require 'rails_helper'

@@ -16,6 +16,7 @@
 #  updated_at        :datetime         not null
 #  published         :boolean
 #  recommended_price :decimal(10, )
+#  priority          :integer
 #
 
 require 'rails_helper'

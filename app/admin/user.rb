@@ -61,6 +61,19 @@ ActiveAdmin.register User do
   end
 
   controller do
+
+    def new
+      super do
+        @user.supplier ||= Supplier.new
+      end
+    end
+
+    def edit
+      super do
+        @user.supplier ||= Supplier.new
+      end
+    end
+
     def update
       params[:user].delete('password') if params[:user][:password].blank?
       super

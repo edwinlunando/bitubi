@@ -16,8 +16,9 @@
 #  updated_at        :datetime         not null
 #  published         :boolean
 #  recommended_price :decimal(10, )
+#  priority          :integer
 #
-# product model
+
 class Product < ActiveRecord::Base
 
   extend FriendlyId
