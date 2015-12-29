@@ -88,6 +88,7 @@ $BTN_PADDING_SMALL: $space/20 $space;
     background: $warningred;
     &:hover {
         background: $red;
+        color: white;
     }
 }
 

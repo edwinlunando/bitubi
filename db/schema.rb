@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20151219094817) do
     t.datetime "updated_at",                         null: false
     t.string   "receiver_name",        limit: 255
     t.string   "receiver_phone",       limit: 255
-    t.string   "string",               limit: 255
     t.string   "sender_name",          limit: 255
+    t.string   "sender_phone",         limit: 255
     t.string   "zipcode",              limit: 255
     t.text     "special_instructions", limit: 65535
   end
@@ -45,22 +45,6 @@ ActiveRecord::Schema.define(version: 20151219094817) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",    limit: 255, null: false
-    t.string   "data_content_type", limit: 255
-    t.integer  "data_file_size",    limit: 4
-    t.integer  "assetable_id",      limit: 4
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width",             limit: 4
-    t.integer  "height",            limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false

@@ -115,22 +115,19 @@
                               b #{ number_format(@order.total) }
                           - unless (@order.state == 'done' || @order.state == 'failed')
                             tr
-                              td align="right"
-                                / button.btn.btn-red type='submit' style="width:120px"
-                                /   i.fa.fa-times-circle title="kirim"
-                                /   |
-                                /   span  Batal
-                                td colspan="2" align="right"
-                                  b.mgs-10
-                                    span.darkorange Nomor resi:
-                                  = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
-                                td
-                                  button.btn.btn-green type='submit' style="width:120px"
-                                    i.fa.fa-truck title="kirim"
-                                    |
-                                    span  Kirim
-                                td
-                                  = link_to sell_cancel_path, class: 'btn btn-red', method: :post, 'data-confirm' => 'Apakah Anda yakin?'
-                                    span  Batal
+                              td
+                                = link_to sell_cancel_path, class: 'btn btn-red', style: 'width: 90%', method: :post, 'data-confirm' => 'Apakah Anda yakin?'
+                                  i.fa.fa-ban
+                                  span
+                                    |  Batal
+                              td colspan="3" align="right"
+                                b.mgs-10
+                                  span.darkorange Nomor resi:
+                                = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
+                              td align="center"
+                                button.btn.btn-green type='submit' style="width: 90%;"
+                                  i.fa.fa-truck title="kirim"
+                                  |
+                                  span  Kirim
                   center.mg-20
                     = link_to 'Kembali', sell_path, class: 'btn btn-orange'
