@@ -25,7 +25,7 @@ class TopUp < ActiveRecord::Base
       self.approved = true
       save
       if self == user.top_ups.order(:created_at).first
-        user.credit += 300_000
+        user.credit += 50_000
       else
         user.credit += amount
       end
@@ -39,7 +39,7 @@ class TopUp < ActiveRecord::Base
 
   def set_up_first
     self.uid = rand(100..1000)
-    self.amount = 300_000
+    self.amount = 50_000
   end
 
   def generate
