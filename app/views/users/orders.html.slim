@@ -51,3 +51,6 @@
                               / Button Terima Barang
                               / = link_to "/pesanan/#{order.id}/terima", {class: 'btn-clear fa-btn btn-green'} do
                               /   i.fa.fa-check title="terima"
+                
+                div.pagination-container
+                  = paginate @orders
