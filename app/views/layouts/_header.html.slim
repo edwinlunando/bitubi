@@ -74,10 +74,18 @@ header.header-main
           button.inline type="submit" class="form-submit-search form-submit-search__vendor"
             i.fa.fa-search
     .nav-lang.nav-toggle
+      .nav-lang__submenu
+        = link_to products_path 
+          i.fa.fa-dropbox  
+          span  Produk
+      .nav-lang__submenu
+        = link_to vendors_path 
+          i.fa.fa-home  
+          span  Vendor
       - if user_signed_in?
         .nav-lang__submenu
           = link_to destroy_user_session_path, :method => :get
-            i.fa.fa-sign-out
+            i.fa.fa-sign-out  
             span Logout
       - else
         .nav-lang__submenu#login-register-btn

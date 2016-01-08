@@ -97,6 +97,9 @@
     height: 50px;
     padding: 13px;
     float:left;
+    i {
+      margin-right: 5px;
+    }
     ul  {
       background-color: $orange;
       li {
@@ -200,8 +203,7 @@
 
 
 .nav-search-bar {
-  margin-left: 50px;
-  width: 60%;
+  width: 50%;
   display: none;
   @media #{$large} {
     display: block;
