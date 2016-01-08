@@ -2,6 +2,7 @@
 --------------------------------------------------------------------------- */
 .header-main__top-bar, .menu-search__container{
   background-color: $transwhite;
+  top: 26px;
   height:50px;
   width: 100%;
   position: fixed;
@@ -411,4 +412,34 @@ nav {
 }
 .menu-icon-grooming {
   content: url('../img/flat-icon-grooming.png');
+}
+
+/* Contact head
+--------------------------------------------------------------------------- */
+.head-contact-info {
+  z-index:998;
+  position: fixed;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  background: $lightorange;
+  width: 100%;
+  ul li {
+    display: inline-block;
+    border: none;
+    font-size: 12px;
+    b {
+      margin-right: 5px;
+    }
+    span {
+      margin-right: 10px;
+      padding-right: 10px;
+      border-right: 1px solid #888;
+    }
+    &:last-child {
+      span {
+        border: none;
+      }
+    }
+  }
 }
