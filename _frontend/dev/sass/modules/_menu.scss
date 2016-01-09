@@ -443,3 +443,10 @@ nav {
     }
   }
 }
+
+.menu-mobile-hd {
+  display: none !important;
+  @media #{$medium} {
+    display: block !important;
+  } 
+}
