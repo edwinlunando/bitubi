@@ -102,11 +102,9 @@
                 $(window).scroll(function(event){
                     var scroll = $(this).scrollTop();
                     if (scroll > previousScroll){
-                        console.log('a');
                         $('.head-contact-info').hide();
                         $('.header-main__top-bar').css('top', 0);
                     } else {
-                        console.log('b');
                         $('.head-contact-info').show();
                         $('.header-main__top-bar').css('top', 26);
                     }
