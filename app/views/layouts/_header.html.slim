@@ -1,4 +1,18 @@
 header.header-main
+  .head-contact-info
+    ul.clear-margin
+      li
+        i.fa.fa-phone.darkorange  
+        b.darkorange  Phone: 
+        span.black 0856-1615-863
+      li
+        img src="https://help.blackberry.com/resources/images/products/app-bbm-bb10.png" style="height: 20px"
+        b.darkorange BBM: 
+        span.black 5A3ABB71
+      li
+        img src="http://icons.iconarchive.com/icons/martz90/circle/512/line-icon.png" style="height: 13px; margin-right:5px"
+        b.darkorange Line: 
+        span.black @larisni
   nav.main-navigation role="navigation"
     dl
       dt.panel-group
@@ -74,11 +88,11 @@ header.header-main
           button.inline type="submit" class="form-submit-search form-submit-search__vendor"
             i.fa.fa-search
     .nav-lang.nav-toggle
-      .nav-lang__submenu
+      .nav-lang__submenu.menu-mobile-hd
         = link_to products_path 
           i.fa.fa-dropbox  
           span  Produk
-      .nav-lang__submenu
+      .nav-lang__submenu.menu-mobile-hd
         = link_to vendors_path 
           i.fa.fa-home  
           span  Vendor

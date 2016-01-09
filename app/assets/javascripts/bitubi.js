@@ -6,6 +6,7 @@
 ********************************************************************************/
 
 ;(function ( window, document, undefined ) {
+    var previousScroll = 0;
 
     var path = {
         css: myPrefix + '/assets/css/',
@@ -98,8 +99,23 @@
             // for every layouting that need reinit, could be placed here
 
             this.menuInit = function () {
+                $(window).scroll(function(event){
+                    var scroll = $(this).scrollTop();
+                    if (scroll > previousScroll){
+                        console.log('a');
+                        $('.head-contact-info').hide();
+                        $('.header-main__top-bar').css('top', 0);
+                    } else {
+                        console.log('b');
+                        $('.head-contact-info').show();
+                        $('.header-main__top-bar').css('top', 26);
+                    }
+                    previousScroll = scroll;
+                });
+
                 $('.nav-icon').on('click', function() {
                     $('.wrapper').toggleClass('slide');
+                    $('.head-contact-info').toggleClass('open');
                     $('.header-main__top-bar').toggleClass('open');
                     $('.main-navigation').toggleClass('menu-open');
                     var menu = $('.menu-search__container');

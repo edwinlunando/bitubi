@@ -1,5 +1,5 @@
-.wrapper.top-pd
-  .clear-pm.bg-dg.category-slider.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 2, "infinite": true}'
+.wrapper
+  .clear-pm.top-pd.bg-dg.category-slider.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 2, "infinite": true}'
     - @categories.each do |category|
       .slide-category
         = link_to products_path(category_id: category.id)
