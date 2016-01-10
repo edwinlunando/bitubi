@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219094817) do
+ActiveRecord::Schema.define(version: 20160106132616) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -40,10 +40,11 @@ ActiveRecord::Schema.define(version: 20151219094817) do
   end
 
   create_table "cities", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "province_id", limit: 4
+    t.string   "name",           limit: 255
+    t.integer  "province_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "raja_ongkir_id", limit: 4
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -124,9 +125,10 @@ ActiveRecord::Schema.define(version: 20151219094817) do
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
 
   create_table "provinces", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "raja_ongkir_id", limit: 4
   end
 
   create_table "settings", force: :cascade do |t|
