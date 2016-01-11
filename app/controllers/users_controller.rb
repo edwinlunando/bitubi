@@ -159,6 +159,7 @@ class UsersController < ApplicationController
                    .where('products.user_id = ?', current_user.id)
                    .where(state: [:delivery, :done, :failed])
                    .order(created_at: :desc).uniq
+                   .page(params[:page]).per(20)
   end
 
   def sell_view
