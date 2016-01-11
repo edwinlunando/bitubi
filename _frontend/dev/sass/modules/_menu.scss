@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------- */
 .header-main__top-bar, .menu-search__container{
   background-color: $transwhite;
-  top: 26px;
+  top: 25px;
   height:50px;
   width: 100%;
   position: fixed;
@@ -427,7 +427,10 @@ nav {
   ul li {
     display: inline-block;
     border: none;
-    font-size: 12px;
+    font-size: 10px;
+    @media #{$medium} {
+      font-size: 14px;
+    } 
     b {
       margin-right: 5px;
     }

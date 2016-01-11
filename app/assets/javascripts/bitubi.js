@@ -108,7 +108,7 @@
                     } else {
                         console.log('b');
                         $('.head-contact-info').show();
-                        $('.header-main__top-bar').css('top', 26);
+                        $('.header-main__top-bar').css('top', 25);
                     }
                     previousScroll = scroll;
                 });
