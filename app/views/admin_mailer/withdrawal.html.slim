@@ -45,16 +45,13 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
 
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
                     | Akun :
-                    = succeed "," do
-                      b style="color:#FF6739"  #{ @withdrawal.user.supplier.bank_account_name }
+                    b style="color:#FF6739"  #{ @withdrawal.user.supplier.bank_account_name }
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
                     | Bank :
-                    = succeed "," do
-                      b style="color:#FF6739"  #{ @withdrawal.user.supplier.bank_name }
+                    b style="color:#FF6739"  #{ @withdrawal.user.supplier.bank_name }
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px 30px; padding: 0;" 
                     | No. Rekening :
-                    = succeed "," do
-                      b style="color:#FF6739"  #{ @withdrawal.user.supplier.bank_account_number }
+                    b style="color:#FF6739"  #{ @withdrawal.user.supplier.bank_account_number }
 
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6em; font-weight: normal; margin: 0; padding: 0;" 
                     b style="color:#FF6739"  Contact Larisni
