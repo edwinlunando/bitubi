@@ -48,6 +48,7 @@ $bread_separator    : '';
 
 .page-breadcrumb--container,
 .page-notification--container {
+    @include animate-transition(.5s);
     .breadcrumb,
     .page-notification--message {
         background: $lightorange;
@@ -66,7 +67,7 @@ $bread_separator    : '';
 
 .page-notification--container {
     position:fixed;
-    top: 50px;
+    top: 75px;
     width: 100%;
     z-index:100;
     color: white;
