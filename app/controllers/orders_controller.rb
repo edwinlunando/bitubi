@@ -32,6 +32,12 @@ class OrdersController < ApplicationController
     @order.state = 'payment'
     @order.address = @address
     @order.state_shipment_price = @shipment_price
+
+    if @order.total > current_user.credit
+      flash.now[:error] = 'Saldo tidak mencukupi. Silahkan top up saldo terlebih dahulu.'
+      return render action: :address
+    end
+
     if @order.save
       redirect_to konfirmasi_path
     else

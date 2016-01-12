@@ -45,6 +45,7 @@ class ProductsController < InheritedResources::Base
     @product = product = Product.friendly.find(params[:id])
     order = current_user.last_order
     # find item in line item
+
     if order.line_items.where('line_items.product_id = ?', product.id).exists?
       @line_item = line_item = order.line_items.where('line_items.product_id = ?', product.id).first
       line_item.quantity += line_item_params[:quantity].to_i
@@ -60,6 +61,11 @@ class ProductsController < InheritedResources::Base
 
     line_item.order = order
     line_item.product = product
+
+    if order.total + line_item.price > current_user.credit
+      flash[:error] = 'Saldo Anda tidak mencukupi'
+      return render action: :show
+    end
 
     unless order.same_vendor?(line_item)
       flash[:error] = 'Anda hanya dapat membeli barang dari satu toko yang sama'

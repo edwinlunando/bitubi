@@ -87,6 +87,8 @@ gem 'breadcrumbs_on_rails'
 gem 'mailgun_rails'
 # performance monitoring
 gem 'newrelic_rpm'
+# audited
+gem 'audited-activerecord', '~> 4.0'
 
 group :development, :test do
 
