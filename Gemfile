@@ -89,6 +89,8 @@ gem 'mailgun_rails'
 gem 'newrelic_rpm'
 # audited
 gem 'audited-activerecord', '~> 4.0'
+# mailchimp
+gem 'gibbon'
 
 group :development, :test do
 
