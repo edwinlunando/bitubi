@@ -41,9 +41,19 @@
 				position: relative;
 				z-index: 20;
 				text-align: center;
-				animation-name: banner-info-animation;
-				animation-duration: .5s;
-				animation-timing-function: ease-in-out;
+				h1, p {
+					text-shadow: 1px 0 3px rgba(black, .3);
+					animation-name: banner-info-animation;
+					animation-duration: .5s;
+					animation-timing-function: ease-in-out;
+				}
+				h1 {
+					animation-delay: 0.25s;
+				}
+
+				p {
+					animation-delay: 0.5s;
+				}
 				.banner-caption__title {
 					display: inline-block;
 					margin: 10px auto;
@@ -63,8 +73,15 @@
 }
 
 @keyframes banner-info-animation {
-    0%   {opacity: 0; top: 420px;}
-    100% {opacity: 1; top:340px;}
+    0% {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
 }
 
 .top-banner {
