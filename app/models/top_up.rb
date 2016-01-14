@@ -24,11 +24,11 @@ class TopUp < ActiveRecord::Base
     if !approved
       self.approved = true
       save
-      if self == user.top_ups.order(:created_at).first
-        user.credit += 50_000
-      else
-        user.credit += amount
-      end
+      # if self == user.top_ups.order(:created_at).first
+      user.credit += amount
+      # else
+      #   user.credit += amount
+      # end
       user.verified = true
       user.save
       return true
