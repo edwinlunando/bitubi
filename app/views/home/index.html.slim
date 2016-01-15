@@ -16,21 +16,24 @@
             h1.banner-caption__title Bingung Mau Bisnis Apa?
             p
               b.banner-caption__description Ayo cek barang-barang terlaris di Larisni dan ciptakan bisnismu
-  .container.bg-dg
-    .grid-flex__col.grid-flex__col--12
-      .category-title__title.mg-20
-        center.cta-call
-          | Ciptakan bisnismu sendiri dengan
-          = link_to 'BERGABUNG', daftar_path, { class: 'btn btn-green cta-btn' }
-          | bersama kami di LARISNI
-          p.cta-sm
-            | atau
-            = link_to 'Masuk', new_user_session_path, { class: 'btn btn-orange cta-btn' }
-            | dan mulai berbisnis
-
+  .container.bg-dg.hero
+    .grid-flex
+      .grid-flex__col.grid-flex__col--8.sm-center
+        .category-title__title
+          .cta-call
+            | SIAPAPUN BISA BERBISNIS ONLINE
+            p.cta-bg
+              | AYO 
+              span MULAI BISNISMU!
+      .grid-flex__col.grid-flex__col--4
+        center
+          = link_to daftar_path, { class: 'btn btn-green cta-btn' } do
+            b DAFTAR SEKARANG
+          = link_to daftar_path, { class: 'btn btn-orange cta-btn' } do
+            b >
   .parallax-container.wrapper
     section.top-mg
-        h2 Mengapa Bergabung di Larisni?
+        h2.ft-2 Mengapa Bergabung di Larisni?
         .grid-flex
           .grid-flex__col.grid-flex__col--3
             .value-desc

@@ -125,7 +125,7 @@
 }
 
 .bg-dg {
-    background-color: $black20;
+    background-color: $black30;
     width: 100% !important;
 }
 
@@ -136,4 +136,25 @@
 .inline {
   float:left;
   display:inline-block;
+}
+
+.hero:after {
+    content:'';
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-left: -50px;
+    width: 0;
+    height: 0;
+    border-top: solid 25px $black30;
+    border-left: solid 25px transparent;
+    border-right: solid 25px transparent;
+    display:none;
+    @media #{$medium}{
+        display:block;
+    }
+}
+
+.ft-2 {
+    font-size: 2.5em !important;
 }
