@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     #   to: resource.phone_number,
     #   body: 'Halo, kamu harus transfer 1 juta ke saya!'
     # )
-    UserMailer.welcome(resource).deliver_now
+    # UserMailer.welcome(resource).deliver_now
     gibbon = Gibbon::Request.new
     if resource.supplier?
       list_id = ENV['MAILCHIMP_VENDOR_ID']
