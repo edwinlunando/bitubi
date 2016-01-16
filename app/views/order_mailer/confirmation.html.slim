@@ -12,7 +12,7 @@ doctype html
 html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;" 
   head
     meta content="width=device-width" name="viewport" /
-    meta content=("text/html; charset=UTF-8" http-equiv="Content-Type" /
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type" /
     title Konfirmasi Order
   body bgcolor="#f6f6f6" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; -webkit-font-smoothing: antialiased; height: 100%; -webkit-text-size-adjust: none; width: 100% !important; margin: 0; padding: 0;" 
     /! body
@@ -37,33 +37,33 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                     b style="color:#FF6739"  #{@order.user.name}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;" 
                     | Terima kasih sudah melakukan pemesanan di Larisni. Anda sudah melakukan pembayaran menggunakan saldo di dompet untuk pemesanan dari vendor
-                    b style="color:#FF6739"  #{@order.supplier.name}
-                  table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; "f 
+                    b style="color:#FF6739"  #{@order.suppliers.name}
+                  table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; "
                     tr
-                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;" 
                         | ID Pesanan:
                       td
                         b style="color:#FF6739; padding: 0 10px;"  #{@order.id}
                     tr
-                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;" 
                         | Tanggal Pembayaran:
                       td
                         b style="color:#FF6739; padding: 0 10px;"  #{@order.created_at.strftime("%d %B %Y")}
                     tr
-                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;" 
                         | Total Pembayaran:
                       td
                         b style="color:#FF6739; padding: 0 10px;"  #{@order.total}
                     tr
-                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;" 
                         | Status Pembayaran:
                       td
                         b style="color:#FF6739; padding: 0 10px;"  #{@order.state_simple}
                     tr
-                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;" 
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;" 
                         | Saldo Akhir Anda Saat Ini Sebesar:
                       td
-                        b style="color:#FF6739; padding: 0 10px;"  #{ number_format(@order.user.credit) }}
+                        b style="color:#FF6739; padding: 0 10px;"  #{ number_format(@order.user.credit) }
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;" 
                     | Pesanan Anda akan dikirimkan ke
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; color: #FF6739; padding: 0; margin: 0;" 

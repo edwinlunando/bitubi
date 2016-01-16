@@ -34,14 +34,13 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                   /! ============================== Paragraph Example ==============================
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;" 
                     | Dear
-                    = succeed "," do
-                      b style="color:#FF6739"  #{@order.name}
+                    b style="color:#FF6739"  #{@order.user.name}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;" 
-                    | Ada pemesanan dengan ID pesanan
-                    b style="color:#FF6739"  #{@order.id}
-                    | pada tanggal
-                    b style="color:#FF6739"  #{@order.created_at.strftime("%d %B %Y")}
-                    | dengan rincian sebagai berikut :
+                    | Ada pemesanan dengan ID pesanan 
+                    b style="color:#FF6739"  #{@order.id} 
+                    |  pada tanggal
+                    b style="color:#FF6739"  #{@order.created_at.strftime("%d %B %Y")} 
+                    |  dengan rincian sebagai berikut :
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0; color:#555" 
                     b Rincian Pesanan:
                   table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; " 
@@ -70,42 +69,42 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                   table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; " 
                     tr
                       td
-                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px;" 
+                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px; padding: 5px;" 
                           | Informasi Pengirim:
                       td
-                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px;" 
+                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px; padding: 5px" 
                           | Informasi Penerima:
                     tr
+                      td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;width: 50%" valign="top" 
+                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
+                          | Nama Pengirim: 
+                          span style="font-weight:normal" 
+                            | #{@order.address.sender_name}
+                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
+                          | Telp Pengirim: 
+                          span style="font-weight:normal" 
+                            | #{@order.address.sender_phone}
                       td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" valign="top" 
                         p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Nama Pengirim:
+                          | Nama Penerima: 
                           span style="font-weight:normal" 
-                            | #{@order.adress.sender_name}
+                            | #{@order.address.receiver_name}
                         p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Telp Pengirim:
+                          | Telp Penerima: 
                           span style="font-weight:normal" 
-                            | #{@order.adress.sender_phone}
-                      td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" valign="top" 
+                            | | #{@order.address.receiver_phone}
                         p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Nama Penerima:
+                          | Alamat Penerima: 
                           span style="font-weight:normal" 
-                            | #{@order.adress.receiver_name}
-                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Telp Penerima:
-                          span style="font-weight:normal" 
-                            | | #{@order.adress.receiver_phone}
-                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Alamat Penerima:
-                          span style="font-weight:normal" 
-                            | #{@order.adress.one_line}
+                            | #{@order.address.one_line}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; padding: 0; margin: 0;" 
-                    b Total:
-                    | #{number_format(@order.total_without_shipment}
+                    b Total: 
+                    | #{number_format(@order.total_without_shipment)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; padding: 0; margin: 0; color:#888" 
-                    b Ongkos Kirim:
-                    | #{number_format(@order.shipment_price}
+                    b Ongkos Kirim: 
+                    | #{number_format(@order.shipment_price)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0; color:#555" 
-                    b Total Pembayaran:
+                    b Total Pembayaran: 
                     span style="color: #FF6739;font-weight:bold" 
                       | #{number_format(@order.total)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0; color:#555" 

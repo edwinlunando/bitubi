@@ -146,7 +146,7 @@ Rails.application.routes.draw do
     end
 
   end
-
+  
   get 'daftar-vendor' => 'products#vendors', as: 'vendors'
   get 'vendor/:id' => 'products#vendor', as: 'vendor_view'
   get 'saldo' => 'users#topup'

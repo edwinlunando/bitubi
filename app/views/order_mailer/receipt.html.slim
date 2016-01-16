@@ -39,14 +39,14 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                     b Berikut adalah rincian pesanan Anda:
 
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; color: #FF6739; padding: 0; margin: 0;" 
-                    b Kurir:
-                    | #{ @order.state_shipment_price.shipment_type.name }
+                    b Kurir: 
+                    |  #{ @order.state_shipment_price.shipment_type.name }
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; padding: 0; margin: 0; color:#888" 
-                    b Nomor Resi:
-                    | #{@order.receipt_number}
+                    b Nomor Resi: 
+                    |  #{@order.receipt_number}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0; color:#555" 
-                    b Tanggal Pengiriman:
-                    | #{@order.transfer_time.strftime("%d %B %Y")}
+                    b Tanggal Pengiriman: 
+                    |  #{@order.transfer_time}
                   table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; " 
                     thead
                       tr
@@ -54,18 +54,18 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                         td style="font-weight:bold;background:#FF6739;color:white;padding: 5px;"  Jumlah
                         td style="font-weight:bold;background:#FF6739;color:white;padding: 5px;"  Total
                       - @order.line_items.each do |line_item|
-  	                    tr
-  	                      td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" 
-  	                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px;" 
-  	                          | #{line_item.product.name}
-  	                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-  	                          - line_item.product.user.supplier.name if line_item.product.user.supplier.present?
-  	                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-  	                          | Harga Dropship: #{ number_format(line_item.product.price_dropship) }
-  	                      td align="center" style="padding: 5px" 
-  	                        b style="color:#555; padding: 5 10px;"  #{ line_item.quantity }
-  	                      td align="right" style="padding: 5px" 
-  	                        b style="color:#555; padding: 0 10px;"  #{ number_format(line_item.price) }
+                        tr
+                          td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" 
+                            p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px;" 
+                              | #{line_item.product.name}
+                            p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
+                              - line_item.product.user.supplier.name if line_item.product.user.supplier.present?
+                            p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
+                              | Harga Dropship: #{ number_format(line_item.product.price_dropship) }
+                          td align="center" style="padding: 5px" 
+                            b style="color:#555; padding: 5 10px;"  #{ line_item.quantity }
+                          td align="right" style="padding: 5px" 
+                            b style="color:#555; padding: 0 10px;"  #{ number_format(line_item.price) }
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0; color:#555" 
                     b Catatan:
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0; color:#555" 
@@ -73,42 +73,42 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                   table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; " 
                     tr
                       td
-                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px;" 
+                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px; padding: 5px" 
                           | Informasi Pengirim:
                       td
-                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px;" 
+                        p style="color:#FF6739; font-weight:bold; margin: 0; font-size: 16px; padding: 5px" 
                           | Informasi Penerima:
                     tr
+                      td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; width:50%; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" valign="top" 
+                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
+                          | Nama Pengirim: 
+                          span style="font-weight:normal" 
+                            | #{@order.address.sender_name}
+                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
+                          | Telp Pengirim: 
+                          span style="font-weight:normal" 
+                            | #{@order.address.sender_phone}
                       td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" valign="top" 
                         p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Nama Pengirim:
+                          | Nama Penerima: 
                           span style="font-weight:normal" 
-                            | #{@order.adress.sender_name}
+                            | #{@order.address.receiver_name}
                         p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Telp Pengirim:
+                          | Telp Penerima: 
                           span style="font-weight:normal" 
-                            | #{@order.adress.sender_phone}
-                      td align="left" style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px 15px;" valign="top" 
+                            | #{@order.address.receiver_phone}
                         p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Nama Penerima:
+                          | Alamat Penerima: 
                           span style="font-weight:normal" 
-                            | #{@order.adress.receiver_name}
-                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Telp Penerima:
-                          span style="font-weight:normal" 
-                            | | #{@order.adress.receiver_phone}
-                        p style="color:#555; font-weight:bold; margin: 0;  font-size: 12px;" 
-                          | Alamat Penerima:
-                          span style="font-weight:normal" 
-                            | #{@order.adress.one_line}
+                            | #{@order.address.one_line}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; padding: 0; margin: 0;" 
-                    b Total:
+                    b Total: 
                     | #{number_format(@order.total_without_shipment)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; padding: 0; margin: 0; color:#888" 
-                    b Ongkos Kirim:
+                    b Ongkos Kirim: 
                     | #{number_format(@order.shipment_price)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0; color:#555" 
-                    b Total Pembayaran:
+                    b Total Pembayaran: 
                     span style="color: #FF6739;font-weight:bold" 
                       | #{number_format(@order.total)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;" 
