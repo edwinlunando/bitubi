@@ -64,6 +64,11 @@ GEM
       activemodel
       fog (>= 1.8.0)
       unf
+    audited (4.2.0)
+      rails-observers (~> 0.1.2)
+    audited-activerecord (4.2.0)
+      activerecord (~> 4.0)
+      audited (= 4.2.0)
     autoprefixer-rails (6.1.0.1)
       execjs
       json
@@ -273,6 +278,9 @@ GEM
     formtastic_i18n (0.4.1)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    gibbon (2.2.1)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     has_scope (0.6.0)
@@ -379,6 +387,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-observers (0.1.2)
+      activemodel (~> 4.0)
     rails-settings-cached (0.4.6)
       rails (>= 4.2.0)
     railties (4.2.4)
@@ -504,6 +514,7 @@ DEPENDENCIES
   activeadmin_settings_cached
   annotate
   asset_sync
+  audited-activerecord (~> 4.0)
   awesome_print
   aws-sdk (< 2.0)
   better_errors
@@ -526,6 +537,7 @@ DEPENDENCIES
   faker
   fog
   friendly_id
+  gibbon
   high_voltage (~> 2.4.0)
   jbuilder (~> 2.0)
   jquery-rails
@@ -560,4 +572,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.6
+   1.11.1

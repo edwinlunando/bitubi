@@ -31,8 +31,9 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                     small style="color: #888; font-size: 24px"  .com
                   p style="text-align: center; color: #aaa; margin: 0 0 40px;"
                     | Partner Terbaik dan Terpercaya untuk Berjualan
-        				  h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #FF6739; font-weight: 200; margin: 40px 0 10px; padding: 0;"
-        				    | Pesanan Telah Terkirim
+                  
+                  h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #FF6739; font-weight: 200; margin: 40px 0 10px; padding: 0;"
+                    | Pesanan Telah Terkirim
                   /! ============================== Paragraph Example ==============================
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;"
                     | Detil pesanan
@@ -40,10 +41,16 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 0;"
                     | Nomor Resi :
                     b style="color:#FF6739"  #{ @order.receipt_number }
-                  p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px 30px; padding: 0;"
+
+                  p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line height: 1.6em; font-weight: normal; margin: 0 20px 30px; padding: 0;"
                     | Order Id :
                     b style="color:#FF6739"  #{ @order.id }
+<<<<<<< HEAD
         				  p style=("font-family: 'Helvetica Neue'), 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;"
+=======
+                  
+                  p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;"
+>>>>>>> a5ed4e0ada7df5875254107dde890e2ff6cd8757
                     | Silahkan cek di halaman #{ link_to 'order', admin_order_url(@order) }.
 
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6em; font-weight: normal; margin: 0; padding: 0;"

@@ -4,6 +4,8 @@
 --------------------------------------------------------------------------- */
 
 .section-surfari-home {
+	margin: 0 !important;
+	padding-top: 50px;
 	.section-surfari-home--content {
 		text-align: center;
 		margin: 3em auto 4em;
@@ -24,38 +26,78 @@
 		}
 	}
 	.banner-item {
-		img {
-			opacity: .95;
+		display: inline-block;
+		height: auto;
+		@media #{$large} {
+			min-height: 600px;
 		}
-		display: block;
-		@media #{$medium} {
-			min-height: 480px;
-		}
-		min-height: 200px;
 		.banner-caption__container {
 			width: 100%; 
-			height: 100%;
-			display: block;
+			min-height: 180px;
+			text-align: center;
+			@media #{$medium} {
+				height: 100%;
+				text-align: left;
+			}
+			padding: 2em;
 			.banner-caption__inner {
-				top: 340px;
+				animation-name: banner-info-animation;
+				background: rgba(0,0,0,0.7);
+				display: inline-block;
 				position: relative;
 				z-index: 20;
 				text-align: center;
-				animation-name: banner-info-animation;
-				animation-duration: .5s;
-				animation-timing-function: ease-in-out;
+				top: 10px;
+				padding: 5px;
+				@media #{$medium} {
+					padding: 20px;
+					top: 300px;
+					text-align: left;
+				}
+				h1, p {
+					text-shadow: 1px 0 3px rgba(black, .3);
+					animation-name: banner-info-animation;
+					animation-duration: .5s;
+					animation-timing-function: ease-in-out;
+				}
+				h1 {
+					animation-delay: 0.25s;
+				}
+
+				p {
+					animation-delay: 0.5s;
+				}
 				.banner-caption__title {
 					display: inline-block;
 					margin: 10px auto;
-					width: auto;
-					background-color: rgba(255,255,255, 0.75);
-					padding: 10px;
 					white-space:normal;
 					color: $darkorange;
+					font-size: 1em;
+					margin: 5px;
+					@media #{$medium} {
+						margin: auto;
+						font-size: 3.5em;
+					}
 				}
 				.banner-caption__description {
-					font-size: 1.5em;
-					color: $black80;
+					font-size: .75em;
+					margin: 0;
+					@media #{$medium} {
+						margin: auto;
+						font-size: 2em;
+					}
+					color: $green;
+				}
+				.banner-caption__description-sm {
+					font-size: .5em;
+					display: none;
+					margin: 0;
+					@media #{$medium} {
+						margin: auto;
+						font-size: 1.5em;
+						display: inline-block;
+					}
+					color: white;
 				}
 			}
 		}
@@ -63,8 +105,15 @@
 }
 
 @keyframes banner-info-animation {
-    0%   {opacity: 0; top: 420px;}
-    100% {opacity: 1; top:340px;}
+    0% {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0%);
+		opacity: 1;
+	}
 }
 
 .top-banner {
