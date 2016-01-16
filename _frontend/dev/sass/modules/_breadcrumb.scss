@@ -167,3 +167,67 @@ $bread_separator    : '';
         }
     }
 }
+
+/* 
+--------------------------------------------------------------------------- 
+  MAIN DROPSHIP BREADCRUMB
+--------------------------------------------------------------------------- */
+
+.dropship-steps {
+    list-style-position: inside;
+    li {
+        @include animate-transition(.15s);
+        padding: 20px;
+        display: inline-block;
+        background: $black20;
+        width: 80%;
+        margin-bottom: 10px;
+        @media #{$medium} {
+            width: 23%;
+        }
+        position: relative;
+        h3 {
+            color: $darkorange;
+            font-family: Lato, Arial, Verdana;
+            letter-spacing: 1px;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin: 0 0 15px 0;
+        }
+        p {
+            margin: 0;
+        }
+        &:hover {
+            cursor: pointer;
+            background: $orange;
+            h3 {
+                color: white;
+            }
+            &:after {
+                border-left: 20px solid $darkorange;
+            }
+        }
+        &:after { 
+            content: " "; 
+            width: 0; 
+            height: 0;
+            border-top: 40px solid transparent;           /* Go big on the size, and let overflow hide */
+            border-bottom: 40px solid transparent;
+            border-left: 20px solid $black30;
+            position: absolute;
+            top: 60%;
+            margin-top: -50px; 
+            left: 100%;
+            z-index: 2; 
+            display: none; 
+            @media #{$medium} {
+                display: block; 
+            }
+        }
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+    }
+}

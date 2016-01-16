@@ -103,13 +103,11 @@
                     var scroll = $(this).scrollTop();
                     var notif = $('.page-notification--container');
                     if (scroll > previousScroll){
-                        console.log('a');
                         $('.head-contact-info').hide();
                         $('.header-main__top-bar').css('top', 0);
                         if (notif) 
                             notif.css('top', 50);
                     } else {
-                        console.log('b');
                         $('.head-contact-info').show();
                         $('.header-main__top-bar').css('top', 25);
                         if (notif) 
