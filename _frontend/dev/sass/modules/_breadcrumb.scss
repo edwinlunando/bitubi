@@ -191,7 +191,10 @@ $bread_separator    : '';
             font-family: Lato, Arial, Verdana;
             letter-spacing: 1px;
             font-weight: bold;
-            font-size: 1.5em;
+            font-size: 1em;
+            @media #{$medium} {
+                font-size: 1.5em;
+            }
             margin: 0 0 15px 0;
         }
         p {
@@ -215,7 +218,7 @@ $bread_separator    : '';
             border-bottom: 40px solid transparent;
             border-left: 20px solid $black30;
             position: absolute;
-            top: 60%;
+            top: 62%;
             margin-top: -50px; 
             left: 100%;
             z-index: 2; 
