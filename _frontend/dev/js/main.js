@@ -6,6 +6,7 @@
 ********************************************************************************/
 
 ;(function ( window, document, undefined ) {
+    var previousScroll = 0;
 
     var path = {
         css: myPrefix + '/assets/css/',
@@ -21,7 +22,7 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
-        _elevateZoom    : path.js + 'jquery.elevatezoom.js',
+        // _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
         _slider         : path.js + 'slick.js',
@@ -66,7 +67,7 @@
             Modernizr.load({
                 load: assets._waitForImages,
                 complete: function() {
-                    console.log('waitforimagesLoaded');
+                    // console.log('waitforimagesLoaded');
                 }
             });
         },
@@ -98,8 +99,26 @@
             // for every layouting that need reinit, could be placed here
 
             this.menuInit = function () {
+                $(window).scroll(function(event){
+                    var scroll = $(this).scrollTop();
+                    var notif = $('.page-notification--container');
+                    if (scroll > previousScroll){
+                        $('.head-contact-info').hide();
+                        $('.header-main__top-bar').css('top', 0);
+                        if (notif) 
+                            notif.css('top', 50);
+                    } else {
+                        $('.head-contact-info').show();
+                        $('.header-main__top-bar').css('top', 25);
+                        if (notif) 
+                            notif.css('top', 75);
+                    }
+                    previousScroll = scroll;
+                });
+
                 $('.nav-icon').on('click', function() {
                     $('.wrapper').toggleClass('slide');
+                    $('.head-contact-info').toggleClass('open');
                     $('.header-main__top-bar').toggleClass('open');
                     $('.main-navigation').toggleClass('menu-open');
                     var menu = $('.menu-search__container');
@@ -154,10 +173,28 @@
                 }
             },
 
+            this.saldoInit = function () {
+                var changer = $('#saldo-chg');
+                if(changer) {
+                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
+                    $('#saldo-chg').on('keypress',function(event) { 
+                        request = $(this).val() + String.fromCharCode(event.which);
+                        $('#saldo-dest').val(parseInt(request) + parseInt($('#saldo-uid').val()));  
+                    })
+                }
+            },
+
             this.imageViewerInit = function () {
                 $('.profnprod-viewer__thumb img').on('click', function() {
                     var src = $(this).attr('src');
-                    $('.profnprod-viewer__frame img').attr('src', src);
+                    var image_load = $('.profnprod-viewer__frame img');
+                    // image_load.attr('src', src);
+                    image_load.remove();
+                    var img = $('<img id="elevate-zoom">');
+                    img.attr('src', src);
+                    img.attr('data-zoom-image', src);
+                    img.prependTo('.profnprod-viewer__frame');
+                    // img.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
                 })
             },
 
@@ -168,42 +205,81 @@
                 $("#profpic").change(function(){
                     Site.readURL(this, $("#profpic-target"));
                 });
+                $("#prod-img").change(function(){
+                    Site.readURL(this, $("#prod-img-target"));
+                });
             },
 
-            // this.orderTableInit = function () {
-            //     $('.order-expandable').click(function() {
-            //         var target = '#'+$(this).data('target');
-            //         $('.list-wrap').height('auto');
-            //         $(target).toggle();
-            //     });
-            // },
+            this.orderTableInit = function () {
+                $('.order-expandable').click(function() {
+                    var target = '#'+$(this).data('target');
+                    $('.list-wrap').height('auto');
+                    $(target).toggle();
+                });
+            },
 
             this.notifCloseInit = function() {
                 $('.page-notification--close-btn').click(function() {
                     $('.page-notification--container').fadeToggle('fast');
                 });
+            },
+
+            this.equalHeight = function() {
+                var currentTallest = 0,
+                    currentRowStart = 0,
+                    rowDivs = new Array(),
+                    $el,
+                    topPosition = 0;
+
+                $('.cards').each(function() {
+                    $el = $(this);
+                    topPosition = $el.position().top;
+
+                    if (currentRowStart != topPosition) {
+                        // we just came to a new row.  Set all the heights on the completed row
+                        for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                            rowDivs[currentDiv].height(currentTallest);
+                        }
+                        // set the variables for the new row
+                        rowDivs.length = 0; // empty the array
+                        currentRowStart = topPosition;
+                        currentTallest = $el.height();
+                        rowDivs.push($el);
+
+                    } else {
+                    // another div on the current row.  Add it to the list and check if it's taller
+                    rowDivs.push($el);
+                    currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+                    }
+
+                    // do the last row
+                    for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                        rowDivs[currentDiv].height(currentTallest);
+                    }
+                });
             }
         },
 
-        elevateZoom: function () {
-            // reinitiation
-            var _this = this;
-            var $zoom = $('#elevate-zoom');
+        // elevateZoom: function () {
+        //     // reinitiation
+        //     var _this = this;
+        //     var $zoom = $('#elevate-zoom');
 
-            if (!$zoom.length) return;
+        //     if (!$zoom.length) return;
 
-            Modernizr.load({
-                load: assets._elevateZoom,
-                complete: function() {
-                    //initiate the plugin and pass the id of the div containing gallery images 
-                    ezoom();
-                }
-                function ezoom() {
-                    $zoom = $('#elevate-zoom');
-                    $zoom.elevateZoom();
-                }
-            })
-        },
+        //     Modernizr.load({
+        //         load: assets._elevateZoom,
+        //         complete: function() {
+        //             //initiate the plugin and pass the id of the div containing gallery images 
+        //             ezoom();
+        //         }
+        //     });
+
+        //     function ezoom() {
+        //         $zoom = $('#elevate-zoom');
+        //         $zoom.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
+        //     }
+        // },
 
         slider: function() {
             var _this = this;
@@ -220,7 +296,32 @@
 
             function slider() {
                 slider = $('.slider');
-                slider.slick(slider.data('slick'));
+                for (var i in slider)  {
+                    var newslider = slider.eq(i);
+                    var config =  newslider.data('slick');
+                    // var container = '.'+slider.eq(i).parent().attr('class').replace(' ', '.');
+                    // container = $(container);                    
+                    if(newslider.hasClass('rsp')) {
+                        config.responsive = [
+                            {
+                            breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                    // variableWidth: false
+                                }
+                            }
+                        ];
+                    } 
+                    // newslider.width(container.width());
+                    // slider.eq(i).remove();
+                    newslider.slick(config);
+                  //   if (container.hasClass('scap')){
+                        // container.append(newslider);
+                  //   } else {
+                  //    container.prepend(newslider);
+                  //   }
+                }
             }
         },
 
@@ -236,8 +337,10 @@
                     ui.midMenuInit();
                     ui.imageViewerInit();
                     ui.storeManageImageViewerInit();
-                    // ui.orderTableInit();
+                    ui.orderTableInit();
                     ui.notifCloseInit();
+                    ui.saldoInit();
+                    ui.equalHeight();
                     // Site.organicTabs("#surfari-tabs");
                 }
             })
@@ -269,10 +372,10 @@
                     cb();
                 },
 
-                function elevateZoom(cb) {
-                    Site.elevateZoom();
-                    cb();
-                }
+                // function elevateZoom(cb) {
+                //     Site.elevateZoom();
+                //     cb();
+                // },
 
                 function resize(cb) {
                     Site.resize();
@@ -368,6 +471,12 @@
                 complete: Site.init
             }
         ]);
+        $(document).on('page:load', Site.init);
+        $(document).on('change', '#prod-img', function() { 
+            var frame = $(this).parent().parent().find('img');
+            Site.readURL(this, frame);
+        });
+        
     };
 
     Modernizr.load({
