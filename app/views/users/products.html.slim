@@ -16,11 +16,11 @@
                   - if !@products.present?
                     .black.mg-10 colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.
                   = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
-                / .grid-flex__col.grid-flex__col-8
-                /   form class="form__row form__pull-right"
-                /     input class="form-input" type="text" placeholder="pencarian"
-                /     button type="submit" class="form-submit-search form-submit-search__vendor"
-                /       i.fa.fa-search  
+                .grid-flex__col.grid-flex__col-8
+                  form class="form__row form__pull-right"
+                    input class="form-input" type="text" placeholder="pencarian"
+                    button type="submit" class="form-submit-search form-submit-search__vendor"
+                      i.fa.fa-search  
               .table-container
                 - if @products.present?
                   table.table
