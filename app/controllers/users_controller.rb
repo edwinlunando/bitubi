@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     @top_up.user = current_user
     if @top_up.save
       AdminMailer.top_up(@top_up).deliver_now
-      flash[:success] = 'Berhasil isi saldo! Saldo Anda akan bertambah setelah kami verifikasi.'
+      UserMailer.top_up_confirmation(@top_up).deliver_now
+      flash[:success] = 'Setelah transfer, jangan lupa untuk mengkonfirmasi transfer Anda.'
       redirect_to saldo_path
     else
       render action: :topup
