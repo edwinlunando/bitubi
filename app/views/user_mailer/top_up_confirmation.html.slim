@@ -44,6 +44,22 @@ html style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-s
                     b style="color:#FF6739"  #{@order.user.name}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;" 
                     | Terima kasih sudah melakukan top up saldo. Setelah top up, transfer total yang harus dibayar ke rekening bank Larisni yang Anda tuju. Apabila sudah mentransferkan sejumlah uang harap melakukan konfirmasi.
+                  table style="background: #f0f0f0; padding: 20px; margin: 0 auto 30px;widows: 100%; " 
+                    tr
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;"     +                  p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;" 
+                        | Nama:
+                      td    
+                        b style="color:#FF6739; padding: 0 10px;"  #{@top_up.name}
+                    tr
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;"    
+                        | Bank:   
+                      td    
+                        b style="color:#FF6739; padding: 0 10px;"  #{@top_up.bank}
+                    tr    
+                      td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 20px; padding: 5px;"    
+                        | Jumlah Topup:   
+                      td    
+                        b style="color:#FF6739; padding: 0 10px;"  #{number_format(@top_up.amount)}
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 30px; padding: 0;" 
                     | Konfirmasi dilakukan dengan cara masuk ke akun anda atau Klik konfirmasi pada “menu dompet”, lihat di kolom aksi dan klik “Konfirmasi” jika sudah transfer. Saldo akan masuk secara otomatis ke akun Anda dan dapat digunakan untuk melakukan transaksi.
                   p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.6em; font-weight: normal; margin: 0; padding: 5px;" 
