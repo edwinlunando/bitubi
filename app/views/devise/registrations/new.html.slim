@@ -12,6 +12,6 @@
           = f.input :last_name, required: true, input_html: {class: 'form-input form-input--block'}, autofocus: true, label: 'nama belakang', wrapper: false
           = f.input :password, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
           = f.input :password_confirmation, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Konfirmasi Password'
-          = f.input :address, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Alamat', hint: 'Harap mencantumkan alamat dengan lengkap termasuk kecamatan, kode pos, dan nomor kontak yg bisa dihubungi'
+          = f.input :address, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Alamat', hint: 'Harap mencantumkan alamat dengan lengkap termasuk kecamatan, kode pos, dan nomor kontak yg bisa dihubungi. <br><br> Syarat : share informasi ini di media sosial Anda dan konfirmasi melalui email ke admin@larisni.com dengan subject [Promo Larisni - Vanvin Hijab]. Produk dikirim setelah Anda mengonfirmasi'.html_safe
           br
           = f.submit 'daftar', class: 'btn btn-green'
