@@ -131,6 +131,20 @@ textarea {
 			
 		}
 	}
+	.circle-container-sm {
+		margin: 20px auto;
+		height: 60px;
+		width: 60px;
+		border-radius: 87px;
+		border: 3px solid $orange;
+		text-align: center;
+		display: table;
+		span {
+			display: table-cell;
+			vertical-align: middle;
+			
+		}
+	}
 }
 
 .filter-container {

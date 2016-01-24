@@ -1,11 +1,9 @@
 .wrapper
   .container
     .grid-flex
-      grid-flex__col.grid-flex__col--12.top-mg
+      .grid-flex__col.grid-flex__col--6.top-mg
         center
-          h2.darkorange.clear-pm Pendaftaran
-    .grid-flex
-      .grid-flex__col.grid-flex__col--6
+          h2.darkorange.clear-pm Pendaftaran Vendor
         = simple_nested_form_for(@user, url: create_supplier_path, html: { id: 'register-form', class: 'form__row' }) do |f|
           = f.input :email, required: true, placeholder: 'email', autofocus: true, label: 'email', wrapper: false
           = f.input :password, required: true, placeholder: 'password', label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
@@ -18,3 +16,44 @@
 
           br
           button.btn.btn-green type="submit"  Daftar
+      grid-flex__col.grid-flex__col--6.top-mg
+        center
+          h2.darkorange.clear-pm Keuntungan Vendor
+        .grid-flex
+          grid-flex__col.grid-flex__col--6
+            .value-desc
+              .circle-container-sm
+                span
+                  i.fa.fa-pencil-square.fa-2x.orange
+            center
+              h3.darkorange Pendaftaran Gratis
+              p
+                small.black Vendor yang mendaftar di Larisni tidak dipungut biaya apapun, 100% daftar gratis dan Anda langsung dapat berjualan memasarkan produknya di Larisni.
+          grid-flex__col.grid-flex__col--6
+            .value-desc
+              .circle-container-sm
+                span
+                  i.fa.fa-users.fa-2x.orange
+            center
+              h3.darkorange Banyak Reseller
+              p 
+                small.black Kami memiliki banyak produk laris dari berbagai kategori dengan permintaan konsumen tinggi. Hal ini tentunya menarik dan banyak diburu oleh reseller kami yang tersebar dimana-mana di seluruh Indonesia.
+        .grid-flex
+          grid-flex__col.grid-flex__col--6
+            .value-desc
+              .circle-container-sm
+                span
+                  i.fa.fa-thumbs-up.fa-2x.orange
+            center
+              h3.darkorange Bisnis Laris
+              p 
+                small.black Semakin banyak reseller yang membeli di vendor Anda, makin laris produk Anda dan makin cepat roda bisnis. Tunggu apa lagi!
+          grid-flex__col.grid-flex__col--6
+            .value-desc
+              .circle-container-sm
+                span
+                  i.fa.fa-globe.fa-2x.orange
+            center
+              h3.darkorange Jaringan Luas
+              p 
+                small.black Kami bersedia membantu memperluas jangkauan pemasaran Anda dengan strategi marketing dan jaringan kami yang menjangkau seluruh wilayah Indonesia.
