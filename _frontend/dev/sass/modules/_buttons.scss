@@ -37,6 +37,10 @@ $BTN_PADDING_SMALL: $space/20 $space;
     }
 }
 
+.btn-share {
+    padding: 8px 18px !important;
+}
+
 .btn-small {
     padding: $BTN_PADDING_SMALL;
 }
@@ -59,6 +63,24 @@ $BTN_PADDING_SMALL: $space/20 $space;
     background: $black70;
     &:hover {
         background: $black30;
+        color: white;
+    }
+}
+
+.btn-facebook {
+    background: #133783;
+    color: white;
+    &:hover {
+        background: #3a5795;
+        color: white;
+    }
+}
+
+.btn-twitter {
+    background: #0084B4;
+    color: white;
+    &:hover {
+        background: #55acee;
         color: white;
     }
 }

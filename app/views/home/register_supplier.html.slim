@@ -12,48 +12,68 @@
             = s.input :name, label: 'Nama toko'
             = s.input :description, label: 'Deskripsi toko'
             = s.input :address, label: 'Alamat kantor', placeholder: 'alamat'
-            = s.input :bank_account_number, label: 'Nomor rekening', hint: 'Harap mencantumkan deskripsi produk yang ingin Anda jual dan nomor kontak yang bisa dihubungi <br><br> Segera konfirmasi melalui email ke: admin@larisni.com dengan subject [Daftar Vendor - Mohon Verifikasi]. Anda baru bisa upload produk setelah kami memverifikasi keanggotaan Anda'.html_safe
-
+            = s.input :bank_account_number, label: 'Nomor rekening'
+          small.black Harap mencantumkan alamat dengan lengkap termasuk kecamatan, kode pos, dan nomor kontak yg bisa dihubungi. 
           br
           button.btn.btn-green type="submit"  Daftar
+
       grid-flex__col.grid-flex__col--6.top-mg
         center
-          h2.darkorange.clear-pm Keuntungan Vendor
+          h2.darkorange Keuntungan Reseller
         .grid-flex
-          grid-flex__col.grid-flex__col--6
-            .value-desc
+          grid-flex__col.grid-flex__col--2
+            .value-desc-inline
+              .circle-container-sm
+                span
+                  i.fa.fa-shopping-cart.fa-2x.orange
+          grid-flex__col.grid-flex__col--10
+            .value-desc-inline
+              .value-desc-inline__desc-container
+                h3.darkorange Variasi Produk
+                p 
+                  small.black Vendor yang mendaftar di Larisni tidak dipungut biaya apapun, 100% daftar gratis dan Anda langsung dapat berjualan memasarkan produknya di Larisni.
+        .grid-flex
+          grid-flex__col.grid-flex__col--2
+            .value-desc-inline
               .circle-container-sm
                 span
                   i.fa.fa-pencil-square.fa-2x.orange
-            center
-              h3.darkorange Pendaftaran Gratis
-              p
-                small.black Vendor yang mendaftar di Larisni tidak dipungut biaya apapun, 100% daftar gratis dan Anda langsung dapat berjualan memasarkan produknya di Larisni.
-          grid-flex__col.grid-flex__col--6
-            .value-desc
-              .circle-container-sm
-                span
-                  i.fa.fa-users.fa-2x.orange
-            center
-              h3.darkorange Banyak Reseller
-              p 
-                small.black Kami memiliki banyak produk laris dari berbagai kategori dengan permintaan konsumen tinggi. Hal ini tentunya menarik dan banyak diburu oleh reseller kami yang tersebar dimana-mana di seluruh Indonesia.
-        .grid-flex
-          grid-flex__col.grid-flex__col--6
-            .value-desc
-              .circle-container-sm
-                span
-                  i.fa.fa-thumbs-up.fa-2x.orange
-            center
-              h3.darkorange Bisnis Laris
-              p 
-                small.black Semakin banyak reseller yang membeli di vendor Anda, makin laris produk Anda dan makin cepat roda bisnis. Tunggu apa lagi!
-          grid-flex__col.grid-flex__col--6
-            .value-desc
-              .circle-container-sm
-                span
-                  i.fa.fa-globe.fa-2x.orange
-            center
-              h3.darkorange Jaringan Luas
-              p 
-                small.black Kami bersedia membantu memperluas jangkauan pemasaran Anda dengan strategi marketing dan jaringan kami yang menjangkau seluruh wilayah Indonesia.
+          grid-flex__col.grid-flex__col--10
+            .value-desc-inline
+              .value-desc-inline__desc-container
+                h3.darkorange Pendaftaran Gratis
+                p 
+                  small.black Kami memiliki banyak produk laris dari berbagai kategori dengan permintaan konsumen tinggi. Hal ini tentunya menarik dan banyak diburu oleh reseller kami yang tersebar dimana-mana di seluruh Indonesia.
+          .grid-flex
+            grid-flex__col.grid-flex__col--2
+              .value-desc-inline
+                .circle-container-sm
+                  span
+                    i.fa.fa-users.fa-2x.orange
+            grid-flex__col.grid-flex__col--10
+              .value-desc-inline
+                .value-desc-inline__desc-container
+                  h3.darkorange Banyak Reseller
+                  p 
+                    small.black Semakin banyak reseller yang membeli di vendor Anda, makin laris produk Anda dan makin cepat roda bisnis. Tunggu apa lagi!
+          .grid-flex
+            grid-flex__col.grid-flex__col--2
+              .value-desc-inline
+                .circle-container-sm
+                  span
+                    i.fa.fa-globe.fa-2x.orange
+            grid-flex__col.grid-flex__col--10
+              .value-desc-inline
+                .value-desc-inline__desc-container
+                  h3.darkorange Jaringan Luas
+                  p 
+                    small.black Kami bersedia membantu memperluas jangkauan pemasaran Anda dengan strategi marketing dan jaringan kami yang menjangkau seluruh wilayah Indonesia.
+          .grid-flex
+            grid-flex__col.grid-flex__col--2
+              = link_to 'javascript:void(0)', class: 'btn btn-share btn-facebook', onclick: 'Social.facebookPostToFeed({\'href\':\'http://larisni.com/daftar\'});' do
+                b f
+              = link_to 'https://www.twitter.com/intent/tweet?url=https://larisni.com/daftar&text=Saya baru saja mendapatkan Vanvin Hijab gratis dari Larisni. Mau juga? Ambil hijab gratismu dengan daftar di', class: 'btn btn-share btn-twitter' do
+                b t
+            grid-flex__col.grid-flex__col--10
+              .black Share informasi ini di media sosial Anda dan konfirmasi melalui email ke admin@larisni.com dengan subject [Promo Larisni - Vanvin Hijab]. Produk dikirim setelah Anda mengonfirmasi
+              br

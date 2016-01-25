@@ -10,47 +10,70 @@
           = f.input :last_name, required: true, input_html: {class: 'form-input form-input--block'}, autofocus: true, label: 'Nama Belakang', wrapper: false
           = f.input :password, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Password', wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
           = f.input :password_confirmation, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Konfirmasi Password'
-          = f.input :address, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Alamat', hint: 'Harap mencantumkan alamat dengan lengkap termasuk kecamatan, kode pos, dan nomor kontak yg bisa dihubungi. <br><br> Syarat : share informasi ini di media sosial Anda dan konfirmasi melalui email ke admin@larisni.com dengan subject [Promo Larisni - Vanvin Hijab]. Produk dikirim setelah Anda mengonfirmasi'.html_safe
+          = f.input :address, required: true, input_html: {class: 'form-input form-input--block'}, label: 'Alamat'
+          small.black Harap mencantumkan alamat dengan lengkap termasuk kecamatan, kode pos, dan nomor kontak yg bisa dihubungi. 
           br
           = f.submit 'daftar', class: 'btn btn-green'
+          br
+          br
+
       grid-flex__col.grid-flex__col--6.top-mg
         center
-          h2.darkorange.clear-pm Keuntungan Reseller
+          h2.darkorange Keuntungan Reseller
         .grid-flex
-          grid-flex__col.grid-flex__col--6
-            .value-desc
+          grid-flex__col.grid-flex__col--2
+            .value-desc-inline
               .circle-container-sm
                 span
                   i.fa.fa-shopping-cart.fa-2x.orange
-            center
-              h3.darkorange Variasi Produk
-              p 
-                small.black Lebih dari 5000 produk laris dari berbagai macam kategori yang siap dijual di ratusan vendor. Anda hanya perlu mencari produk yang menarik dari berbagai kategori yang ada. Selalu ada produk baru setiap harinya.
-          grid-flex__col.grid-flex__col--6
-            .value-desc
-              .circle-container-sm
-                span
-                  i.fa.fa-money.fa-2x.orange
-            center
-              h3.darkorange Transaksi Aman
-              p 
-                small.black Pembayaran Anda ditujukan ke rekening Larisni, bukan langsung ke rekening Vendor. Larisni baru rilis pembayaran ke vendor jika produk sudah diterima oleh pembeli.
+          grid-flex__col.grid-flex__col--10
+            .value-desc-inline
+              .value-desc-inline__desc-container
+                h3.darkorange Variasi Produk
+                p 
+                  small.black Lebih dari 5000 produk laris dari berbagai macam kategori yang siap dijual di ratusan vendor. Anda hanya perlu mencari produk yang menarik dari berbagai kategori yang ada. Selalu ada produk baru setiap harinya.
         .grid-flex
-          grid-flex__col.grid-flex__col--6
-            .value-desc
+          grid-flex__col.grid-flex__col--2
+            .value-desc-inline
               .circle-container-sm
                 span
                   i.fa.fa-money.fa-2x.orange
-            center
-              h3.darkorange Transaksi Aman
-              p 
-                small.black Pembayaran Anda ditujukan ke rekening Larisni, bukan langsung ke rekening Vendor. Larisni baru rilis pembayaran ke vendor jika produk sudah diterima oleh pembeli.
-          grid-flex__col.grid-flex__col--6
-            .value-desc
-              .circle-container-sm
-                span
-                  i.fa.fa-magic.fa-2x.orange
-            center
-              h3.darkorange Proses Mudah
-              p
-                small.black Anda bisa mulai berjualan produk di Larisni dalam waktu 5 menit setelah akun Anda aktif. Dengan berbagai fitur yang ada akan membuat bisnis Anda sangat mudah dijalankan.
+          grid-flex__col.grid-flex__col--10
+            .value-desc-inline
+              .value-desc-inline__desc-container
+                h3.darkorange Transaksi Aman
+                p 
+                  small.black Pembayaran Anda ditujukan ke rekening Larisni, bukan langsung ke rekening Vendor. Larisni baru rilis pembayaran ke vendor jika produk sudah diterima oleh pembeli.
+          .grid-flex
+            grid-flex__col.grid-flex__col--2
+              .value-desc-inline
+                .circle-container-sm
+                  span
+                    i.fa.fa-magic.fa-2x.orange
+            grid-flex__col.grid-flex__col--10
+              .value-desc-inline
+                .value-desc-inline__desc-container
+                  h3.darkorange Proses Mudah
+                  p 
+                    small.black Anda bisa mulai berjualan produk di Larisni dalam waktu 5 menit setelah akun Anda aktif. Dengan berbagai fitur yang ada akan membuat bisnis Anda sangat mudah dijalankan.
+          .grid-flex
+            grid-flex__col.grid-flex__col--2
+              .value-desc-inline
+                .circle-container-sm
+                  span
+                    i.fa.fa-truck.fa-2x.orange
+            grid-flex__col.grid-flex__col--10
+              .value-desc-inline
+                .value-desc-inline__desc-container
+                  h3.darkorange Pengiriman Cepat
+                  p 
+                    small.black Barang yang Anda pesan akan diproses cepat oleh kami sesuai permintaan Anda. Pengiriman dipercayakan pada kurir profesional yang terpercaya di bidangnya sehingga barang yang dipesan akan cepat sampai.
+          .grid-flex
+            grid-flex__col.grid-flex__col--2
+              = link_to 'javascript:void(0)', class: 'btn btn-share btn-facebook', onclick: 'Social.facebookPostToFeed({\'href\':\'http://larisni.com/daftar\'});' do
+                b f
+              = link_to 'https://www.twitter.com/intent/tweet?url=https://larisni.com/daftar&text=Saya baru saja mendapatkan Vanvin Hijab gratis dari Larisni. Mau juga? Ambil hijab gratismu dengan daftar di', class: 'btn btn-share btn-twitter' do
+                b t
+            grid-flex__col.grid-flex__col--10
+              .black Share informasi ini di media sosial Anda dan konfirmasi melalui email ke admin@larisni.com dengan subject [Promo Larisni - Vanvin Hijab]. Produk dikirim setelah Anda mengonfirmasi
+              br

@@ -131,8 +131,14 @@ textarea {
 			
 		}
 	}
+}
+
+.value-desc-inline {
+	display: block;
+	width: 100%;
+	color: $black70;
 	.circle-container-sm {
-		margin: 20px auto;
+		margin: 20px;
 		height: 60px;
 		width: 60px;
 		border-radius: 87px;
@@ -143,6 +149,11 @@ textarea {
 			display: table-cell;
 			vertical-align: middle;
 			
+		}
+	}
+	.value-desc-inline__desc-container {
+		h3 {
+			margin: 0;
 		}
 	}
 }
