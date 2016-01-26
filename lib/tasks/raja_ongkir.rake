@@ -45,6 +45,39 @@ namespace :raja_ongkir do
     end
   end
 
+  desc 'Save sub district from Raja Ongkir API'
+  task save_state: :environment do
+    file = File.open Rails.root.join('lib', 'assets', 'raja_ongkir', 'state.json'), 'w'
+    state_result = []
+    (1..501).to_a.each do |city_id|
+      response = RestClient.get 'http://pro.rajaongkir.com/api/subdistrict?city=' + city_id.to_s, key: '7d0aa019d1f91e2aee53f69756b81786'
+      json = JSON.parse(response.body)
+      json['rajaongkir']['results'].each do |state|
+        puts state.to_s
+        state_result << state
+      end
+    end
+    file.write(state_result.to_json)
+  end
+
+  desc 'Import state from Raja Ongkir Subdistrict'
+  task import_state: :environment do
+    file = File.open Rails.root.join('lib', 'assets', 'raja_ongkir', 'state.json')
+    raw_json_string = file.read
+    json = JSON.parse(raw_json_string)
+    # byebug
+    json.each do |subdistrict|
+      name = subdistrict['subdistrict_name']
+      id = subdistrict['subdistrict_id']
+      if State.where('name LIKE ?', '%' + name + '%').count > 0
+        state = State.where('name LIKE ?', '%' + name + '%').first
+        state.raja_ongkir_id = id
+        puts state.inspect
+        state.save
+      end
+    end
+  end
+
   desc 'Update State from Raja Ongkir API'
   task state: :environment do
 

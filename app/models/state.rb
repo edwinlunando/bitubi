@@ -2,11 +2,12 @@
 #
 # Table name: states
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  city_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  city_id        :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#  raja_ongkir_id :integer
 #
 
 class State < ActiveRecord::Base

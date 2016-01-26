@@ -9,6 +9,7 @@ ActiveAdmin.register City do
     id_column
     column :name
     column :province
+    column :raja_ongkir_id
     actions
   end
 
@@ -16,6 +17,7 @@ ActiveAdmin.register City do
     f.inputs 'Admin Details' do
       f.input :name
       f.input :province
+      f.input :raja_ongkir_id
     end
     f.actions
   end

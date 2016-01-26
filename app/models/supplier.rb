@@ -24,6 +24,7 @@
 class Supplier < ActiveRecord::Base
 
   has_one :user
+  belongs_to :city
 
   has_attached_file :image, styles: {
     medium: '300x300>',

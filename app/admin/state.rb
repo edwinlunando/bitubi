@@ -9,6 +9,7 @@ ActiveAdmin.register State do
     id_column
     column :name
     column :city
+    column :raja_ongkir_id
     actions
   end
 
@@ -18,6 +19,7 @@ ActiveAdmin.register State do
     f.inputs 'Admin Details' do
       f.input :name
       f.input :city
+      f.input :raja_ongkir_id
     end
     f.actions
   end

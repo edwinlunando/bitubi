@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115050413) do
+ActiveRecord::Schema.define(version: 20160126040926) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -184,10 +184,11 @@ ActiveRecord::Schema.define(version: 20160115050413) do
   add_index "state_shipment_prices", ["state_id"], name: "index_state_shipment_prices_on_state_id", using: :btree
 
   create_table "states", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "city_id",    limit: 4
+    t.string   "name",           limit: 255
+    t.integer  "city_id",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "raja_ongkir_id", limit: 4
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -207,7 +208,10 @@ ActiveRecord::Schema.define(version: 20160115050413) do
     t.datetime "banner_image_updated_at"
     t.string   "bank_account_name",         limit: 255
     t.string   "bank_name",                 limit: 255
+    t.integer  "city_id",                   limit: 4
   end
+
+  add_index "suppliers", ["city_id"], name: "index_suppliers_on_city_id", using: :btree
 
   create_table "top_ups", force: :cascade do |t|
     t.decimal  "amount",                 precision: 10
@@ -289,6 +293,7 @@ ActiveRecord::Schema.define(version: 20160115050413) do
   add_foreign_key "products", "users"
   add_foreign_key "state_shipment_prices", "shipment_types"
   add_foreign_key "state_shipment_prices", "states"
+  add_foreign_key "suppliers", "cities"
   add_foreign_key "top_ups", "users"
   add_foreign_key "users", "suppliers"
   add_foreign_key "wholesale_prices", "products"

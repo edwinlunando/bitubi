@@ -554,6 +554,7 @@ DEPENDENCIES
   preferences
   rails (= 4.2.4)
   rails-settings-cached (~> 0.4.0)
+  rest-client
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

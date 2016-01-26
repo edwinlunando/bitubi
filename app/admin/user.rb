@@ -4,7 +4,7 @@ ActiveAdmin.register User do
 
   permit_params :email, :role, :phone_number, :active, :verified,
                 supplier_attributes: [:name, :description, :address, :bank_account_name,
-                                      :bank_account_number, :bank_name, :image]
+                                      :bank_account_number, :bank_name, :image, :city_id]
 
   index do
     selectable_column
@@ -54,6 +54,8 @@ ActiveAdmin.register User do
           s.input :bank_name, collection: Supplier.bank_list
           s.input :image
           s.input :banner_image
+          s.input :city, collection: City.order('name')
+          # s.input :city_id, collection: City.order('name')
         end
       end
     end

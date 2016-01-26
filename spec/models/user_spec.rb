@@ -30,6 +30,7 @@
 #  supplier_id            :integer
 #  active                 :boolean          default(TRUE)
 #  verified               :boolean
+#  address                :text(65535)
 #
 
 require 'rails_helper'

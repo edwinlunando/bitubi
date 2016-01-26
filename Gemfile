@@ -91,6 +91,8 @@ gem 'newrelic_rpm'
 gem 'audited-activerecord', '~> 4.0'
 # mailchimp
 gem 'gibbon'
+# rest client
+gem 'rest-client'
 
 group :development, :test do
 
