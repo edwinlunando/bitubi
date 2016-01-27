@@ -3,8 +3,8 @@ ActiveAdmin.register User do
   actions :all, except: [:destroy]
 
   permit_params :email, :role, :phone_number, :active, :verified,
-                supplier_attributes: [:name, :description, :address, :bank_account_name,
-                                      :bank_account_number, :bank_name, :image, :city_id]
+                supplier_attributes: [:id, :name, :description, :address, :bank_account_name,
+                                      :bank_account_number, :bank_name, :image, :banner_image, :city_id]
 
   index do
     selectable_column
@@ -46,14 +46,15 @@ ActiveAdmin.register User do
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
+          s.input :id, as: :hidden
           s.input :name
           s.input :description
           s.input :address
           s.input :bank_account_name
           s.input :bank_account_number
           s.input :bank_name, collection: Supplier.bank_list
-          s.input :image
-          s.input :banner_image
+          s.input :image, hint: image_tag(s.object.image.url(:medium))
+          s.input :banner_image, hint: image_tag(s.object.banner_image.url(:medium))
           s.input :city, collection: City.order('name')
           # s.input :city_id, collection: City.order('name')
         end

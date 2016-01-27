@@ -27,15 +27,16 @@
                             img#banner-target src="#{ supplier.object.banner_image.url(:medium) }" width="200"
                           - else
                             img#banner-target src="/assets/img/no_image.gif" width="200"
-                          br/
+                          br
                           small rekomendasi: 1280 x 720
-                          br/
+                          br
                           = link_to "Upload", '', onclick: "$('#banner').click(); return false;", class: "btn btn-orange"
                           = supplier.input :banner_image, label: false, id: 'banner', input_html: {id: 'banner', style: 'display:none'}
-                          br/
-                          hr/
+                          br
+                          hr
                           label.form-label Logo Vendor
                           br
+                          / - byebug
                           - if supplier.object.image.present?
                             img#profpic-target src="#{ supplier.object.image.url(:medium) }" width="200"
                           - else
