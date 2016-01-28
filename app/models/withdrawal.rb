@@ -19,11 +19,13 @@ class Withdrawal < ActiveRecord::Base
 
   def approve
     unless approved
-      self.approved = true
-      user.credit -= amount
-      user.save
-      save
-      return true
+      if user.credit >= amount
+        self.approved = true
+        user.credit -= amount
+        user.save
+        save
+        return true
+      end
     end
     false
   end

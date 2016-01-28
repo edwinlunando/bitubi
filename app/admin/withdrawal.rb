@@ -20,6 +20,7 @@ ActiveAdmin.register Withdrawal do
       link_to withdrawal.user.try(:email), admin_user_path(withdrawal.user)
     end
     column :approved
+    column :created_at
     actions do |withdrawal|
       if !withdrawal.approved
         link_to 'Approve', approve_admin_withdrawal_path(withdrawal), method: :put, 'data-confirm' => 'Apakah Anda yakin?'

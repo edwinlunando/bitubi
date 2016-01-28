@@ -56,7 +56,6 @@ ActiveAdmin.register User do
           s.input :image, hint: image_tag(s.object.image.url(:medium))
           s.input :banner_image, hint: image_tag(s.object.banner_image.url(:medium))
           s.input :city, collection: City.order('name')
-          # s.input :city_id, collection: City.order('name')
         end
       end
     end
