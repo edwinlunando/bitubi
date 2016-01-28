@@ -21,7 +21,7 @@ class TopUp < ActiveRecord::Base
   validates_presence_of :name, :amount, :bank
 
   def approve
-    if !approved
+    if approved.nil?
       self.approved = true
       save
       # if self == user.top_ups.order(:created_at).first
@@ -35,6 +35,15 @@ class TopUp < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def decline
+    if approved.nil?
+      self.approved = false
+      save
+      return true
+    end
+    false
   end
 
   def set_up_first
