@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
 
+  def test
+    @order = Order.first
+  end
+
   def topup_credit
     @top_up = TopUp.new(top_up_params)
     @top_up.user = current_user
