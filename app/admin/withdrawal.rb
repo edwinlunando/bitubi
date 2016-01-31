@@ -12,6 +12,14 @@ ActiveAdmin.register Withdrawal do
     end
   end
 
+  member_action :decline, method: :put do
+    if resource.decline
+      redirect_to resource_path, notice: 'Declined!'
+    else
+      redirect_to collection_path, alert: 'Failed to decline!'
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -20,8 +28,9 @@ ActiveAdmin.register Withdrawal do
       link_to withdrawal.user.try(:email), admin_user_path(withdrawal.user)
     end
     column :approved
+    column :created_at
     actions do |withdrawal|
-      if !withdrawal.approved
+      if withdrawal.approved.nil?
         link_to 'Approve', approve_admin_withdrawal_path(withdrawal), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end

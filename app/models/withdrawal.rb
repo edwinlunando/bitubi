@@ -18,10 +18,19 @@ class Withdrawal < ActiveRecord::Base
   validates :user, presence: true
 
   def approve
-    unless approved
+    if approved.nil? && user.credit >= amount
       self.approved = true
       user.credit -= amount
       user.save
+      save
+      return true
+    end
+    false
+  end
+
+  def decline
+    if approved.nil?
+      self.approve = false
       save
       return true
     end

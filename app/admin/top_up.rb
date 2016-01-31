@@ -8,7 +8,15 @@ ActiveAdmin.register TopUp do
     if resource.approve
       redirect_to resource_path, notice: 'Approved!'
     else
-      redirect_to collection_path, alert: 'Failed to approved!'
+      redirect_to collection_path, alert: 'Failed to approve!'
+    end
+  end
+
+  member_action :decline, method: :put do
+    if resource.decline
+      redirect_to resource_path, notice: 'Declined!'
+    else
+      redirect_to collection_path, alert: 'Failed to decline!'
     end
   end
 
@@ -25,8 +33,9 @@ ActiveAdmin.register TopUp do
     column :transfer
     column :approved
     actions do |top_up|
-      if !top_up.approved
-        link_to 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+      if top_up.approved.nil?
+        item 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+        item 'Decline', decline_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end
   end

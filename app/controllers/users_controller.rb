@@ -218,7 +218,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :phone_number, :first_name, :last_name,
                                  supplier_attributes: [:id, :name, :image, :banner_image, :bank_account_name, :bank_name,
-                                                       :bank_account_number, :description, :address])
+                                                       :bank_account_number, :description, :address, :city_id])
   end
 
   def withdrawal_params
