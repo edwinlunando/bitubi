@@ -2,7 +2,7 @@ ActiveAdmin.register State do
 
   actions :all, except: [:destroy]
 
-  permit_params :name, :city_id
+  permit_params :name, :city_id, :raja_ongkir_id
 
   index do
     selectable_column

@@ -2,7 +2,7 @@ ActiveAdmin.register Province do
 
   actions :all, except: [:destroy]
 
-  permit_params :name
+  permit_params :name, :raja_ongkir_id
 
   index do
     selectable_column

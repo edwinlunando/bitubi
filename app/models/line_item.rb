@@ -80,7 +80,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def shipping_cost
-    weight_normalized * order.shipment_price_value
+    weight_normalized * order.shipment_price
   end
 
   def check_wholesale_price
