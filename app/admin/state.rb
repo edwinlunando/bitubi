@@ -14,6 +14,8 @@ ActiveAdmin.register State do
   end
 
   filter :name
+  filter :city
+  filter :raja_ongkir_id
 
   form do |f|
     f.inputs 'Admin Details' do

@@ -13,6 +13,9 @@ ActiveAdmin.register City do
     actions
   end
 
+  filter :name
+  filter :raja_ongkir_id
+
   form do |f|
     f.inputs 'Admin Details' do
       f.input :name
