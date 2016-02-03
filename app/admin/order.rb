@@ -75,6 +75,8 @@ ActiveAdmin.register Order do
       row :total do |order|
         ActionController::Base.helpers.number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
       end
+      row :total_weight_gram
+      row :shipment_price_name
       row :receipt_number
       row :transferred
       row :transfer_time
