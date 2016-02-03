@@ -86,7 +86,7 @@
                       tr.highlight-info
                         td
                         td align="left"
-                          b.darkorange Pengiriman #{ @order.state_shipment_price.shipment_type.display_name }
+                          b.darkorange Pengiriman #{ @order.shipment_price_name }
                         td Ongkos:
                         td #{ number_format(@order.shipment_price) }
                   tfoot

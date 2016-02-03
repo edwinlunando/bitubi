@@ -19,6 +19,7 @@
 #  banner_image_updated_at   :datetime
 #  bank_account_name         :string(255)
 #  bank_name                 :string(255)
+#  city_id                   :integer
 #
 
 class Supplier < ActiveRecord::Base

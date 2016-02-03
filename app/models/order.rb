@@ -16,6 +16,11 @@
 #  transfer_time           :datetime
 #  transferred             :boolean
 #  cancel_time             :datetime
+#  shipment_price_value    :decimal(10, )
+#  shipment_price_code     :string(255)
+#  shipment_price_courier  :string(255)
+#  shipment_price_name     :string(255)
+#  shipment_price_etd      :string(255)
 #
 
 class Order < ActiveRecord::Base
@@ -140,8 +145,11 @@ class Order < ActiveRecord::Base
     total_without_shipment + shipment_price
   end
 
+  def total_weight_gram
+    line_items.inject(0) { |result, element| result + (element.quantity * element.product.weight) }
+  end
+
   def total_weight
-    return nil if state_shipment_price.nil?
     line_items.inject(0) { |result, element| result + (element.quantity * element.product.weight) } / 1000.0
   end
 
@@ -158,9 +166,19 @@ class Order < ActiveRecord::Base
   end
 
   def shipment_price
-    return 0 if state_shipment_price.nil?
-    weight = display_weight
-    weight * state_shipment_price.price
+    # return 0 if state_shipment_price.nil?
+    # weight = display_weight
+    # weight * state_shipment_price.price
+    if shipment_price_value.present?
+      return shipment_price_value
+    elsif state_shipment_price.present?
+      weight = display_weight
+      return weight * state_shipment_price.price
+    else
+      return 0
+    end
+
+    # shipment_price_value.present? ? shipment_price_value : 0
   end
 
   def valid_with_credit

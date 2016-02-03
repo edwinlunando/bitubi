@@ -22,16 +22,53 @@ class OrdersController < ApplicationController
     end
   end
 
+  def shipment_cost
+    # 3174010
+    state = State.find params[:id]
+    parameter = {
+      key: ENV['RAJA_ONGKIR_KEY'],
+      originType: 'city',
+      origin: @order.suppliers.first.supplier.city.raja_ongkir_id,
+      destinationType: 'subdistrict',
+      destination: state.raja_ongkir_id,
+      weight: @order.total_weight_gram,
+      courier: 'jne'
+    }
+    response = RestClient.post 'http://pro.rajaongkir.com/api/cost', parameter
+    json = JSON.parse(response)
+    @results = json['rajaongkir']['results'].first['costs']
+    render layout: false
+  end
+
   def addressing
     @address = Address.new(address_params)
-    if StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).count == 0
-      flash.now[:error] = 'Harga pengiriman tidak ditemukan'
-      return render action: :address
-    end
-    @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
+    parameter = {
+      key: ENV['RAJA_ONGKIR_KEY'],
+      originType: 'city',
+      origin: @order.suppliers.first.supplier.city.raja_ongkir_id,
+      destinationType: 'subdistrict',
+      destination: @address.state.raja_ongkir_id,
+      weight: @order.total_weight_gram,
+      courier: 'jne'
+    }
+    shipment_type = @address.shipment_type
+    response = RestClient.post 'http://pro.rajaongkir.com/api/cost', parameter
+    json = JSON.parse(response)
+    @results = json['rajaongkir']['results'].first['costs']
+    shipment = @results.detect { |result| result['service'] == shipment_type }
+    @order.shipment_price_value = shipment['cost'].first['value']
+    @order.shipment_price_code = shipment['service']
+    @order.shipment_price_courier = 'jne'
+    @order.shipment_price_name = shipment['description']
+    @order.shipment_price_etd = shipment['cost'].first['etd']
+    # if StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).count == 0
+    #   flash.now[:error] = 'Harga pengiriman tidak ditemukan'
+    #   return render action: :address
+    # end
+    # @shipment_price = StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).first
     @order.state = 'payment'
     @order.address = @address
-    @order.state_shipment_price = @shipment_price
+    # @order.state_shipment_price = @shipment_price
 
     if @order.total > current_user.credit
       flash.now[:error] = 'Saldo tidak mencukupi. Silahkan top up saldo terlebih dahulu.'

@@ -146,8 +146,8 @@ Rails.application.routes.draw do
     end
 
   end
-  
-  # get 'test' => 'users#test' 
+
+  # get 'test' => 'users#test'
   get 'daftar-vendor' => 'products#vendors', as: 'vendors'
   get 'vendor/:id' => 'products#vendor', as: 'vendor_view'
   get 'saldo' => 'users#topup'
@@ -198,6 +198,7 @@ Rails.application.routes.draw do
   # AJAX
   get 'provinsi' => 'addresses#province'
   get 'kota' => 'addresses#city'
+  get 'biaya_pengiriman' => 'orders#shipment_cost'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
