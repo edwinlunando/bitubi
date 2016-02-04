@@ -41,7 +41,7 @@ class Order < ActiveRecord::Base
   # Method
 
   def self.admin
-    where(state: [:payment, :delivery, :done, :failed])
+    where(state: [:delivery, :payment, :delivery, :done, :failed])
   end
 
   def finish_order
