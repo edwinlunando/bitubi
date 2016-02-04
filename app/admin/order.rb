@@ -58,6 +58,7 @@ ActiveAdmin.register Order do
 
   filter :id
   filter :user, member_method: :email
+  filter :state
 
   show title: :id do |post|
 
