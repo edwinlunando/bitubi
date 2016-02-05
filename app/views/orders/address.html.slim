@@ -16,10 +16,10 @@
           = simple_form_for(@address, url: addressing_path, html: { class: 'order-form' }) do |f|
             = f.input :receiver_name, label: 'Nama penerima', placeholder: 'Nama Penerima'
             = f.input :receiver_phone, label: 'Ponsel penerima', placeholder: 'Ponsel Penerima'
-            = f.input :province, collection: Province.all, label: 'Provinsi', include_blank: 'Pilih provinsi'
-            = f.input :city, collection: City.all, label: 'Kota', include_blank: 'Pilih kota'
-            = f.association :state, collection: State.all, label: 'Kecamatan', include_blank: 'Pilih wilayah'
-            = f.input :shipment_type, as: :select, label: 'Jenis pengiriman', include_blank: 'Pilih pengiriman'
+            = f.input :province, collection: Province.all, label: 'Provinsi', include_blank: 'Pilih provinsi', input_html: { class: 'select-text'}
+            = f.input :city, collection: City.all, label: 'Kota', include_blank: 'Pilih kota', input_html: { class: 'select-text'}
+            = f.association :state, collection: State.all, label: 'Kecamatan', include_blank: 'Pilih wilayah', input_html: { class: 'select-text'}
+            = f.input :shipment_type, as: :select, label: 'Jenis pengiriman', include_blank: 'Pilih pengiriman', input_html: { class: 'select-text'}
             = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text, input_html: {rows: 4}
             = f.input :special_instructions, label: 'Catatan', placeholder: 'Catatan pemesan', as: :text, input_html: {rows: 4}
             = f.input :zipcode, label: 'Kodepos', placeholder: 'Kode Pos'
@@ -28,3 +28,6 @@
             br/
             center
               button.btn.btn-green type="submit"  Bayar
+
+javascript:
+  $('.select-text').selectize({create: true, sortField: 'text' });

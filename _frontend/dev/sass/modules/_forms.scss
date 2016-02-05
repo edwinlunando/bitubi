@@ -87,6 +87,46 @@ $input_bg               : #fff;
     }
 }
 
+/* Overwrite selectize style
+------------------------------ */
+.selectize-control {
+  margin-bottom: 5px !important;
+  display: inline-block;
+  border-radius: 0 !important;
+  width: 100%;
+  padding: 0 !important;
+  margin-left: 5px !important;
+  @media #{$medium} {
+    margin-right: 30px !important;
+    width: 70% !important;
+  }
+  .selectize-input {
+    div {
+      padding-top: 10px !important;
+      color: $black !important;
+    }
+    color: $black !important;
+    font-size: 15px !important;
+    border: none !important;
+    text-align: left !important;
+    height: 40px !important;
+    padding: 3px 8px !important;
+    outline: none !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    input {
+      padding: 0 !important;
+      outline: none !important;
+      border: none !important;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
 .form-input--error {
     border: 1px solid #d32c31;
     outline: none;

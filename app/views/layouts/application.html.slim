@@ -13,5 +13,7 @@ html.no-js lang="en"
       | <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 
     == yield
+
     = render 'layouts/footer'
+    == yield :pagescript
     = render 'layouts/footscript'
