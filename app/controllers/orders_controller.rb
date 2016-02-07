@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
     response = RestClient.post 'http://pro.rajaongkir.com/api/cost', parameter
     json = JSON.parse(response)
     @results = json['rajaongkir']['results'].first['costs']
+    response.headers['Cache-Control'] = 'no-transform'
     render layout: false
   end
 
