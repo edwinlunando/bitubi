@@ -90,6 +90,8 @@ $input_bg               : #fff;
 /* Overwrite selectize style
 ------------------------------ */
 .selectize-control {
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 15px !important;
   margin-bottom: 5px !important;
   display: inline-block;
   border-radius: 0 !important;
@@ -103,10 +105,9 @@ $input_bg               : #fff;
   .selectize-input {
     div {
       padding-top: 10px !important;
-      color: $black !important;
+      color: $black70 !important;
     }
-    color: $black !important;
-    font-size: 15px !important;
+    color: $black70 !important;
     border: none !important;
     text-align: left !important;
     height: 40px !important;
@@ -123,6 +124,14 @@ $input_bg               : #fff;
       -webkit-box-shadow: none !important;
       -moz-box-shadow: none !important;
       box-shadow: none !important;
+    }
+  }
+  .selectize-dropdown-content {
+    background: #fafafa !important; 
+    .option {
+      font-family: 'Lato', Calibri, Arial, sans-serif;
+      color: $black70 !important; 
+      font-size: 15px !important;
     }
   }
 }
