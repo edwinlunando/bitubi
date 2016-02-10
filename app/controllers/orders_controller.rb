@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
   end
 
   def shipment_cost
-    # 3174010
     state = State.find params[:id]
     parameter = {
       key: ENV['RAJA_ONGKIR_KEY'],
