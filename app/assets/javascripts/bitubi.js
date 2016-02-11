@@ -226,10 +226,46 @@
             },
 
             this.selectInit = function () {
-                var select = $('.select-text');
+                var select = $('.select-text'),
+                    province = $('#address_province'),
+                    city = $('#address_city'),
+                    state = $('#address_state_id');
+
+                // init selectize to all select-text
                 if (select) {
                     select.selectize({create: true, sortField: 'text' });
                 }
+
+                // on change event reinit
+                province.change(function(){
+                    var val_id = this.value;
+                    $.get('/provinsi?id='+val_id, function(data) {
+                        var city = $('#address_city');
+                        city.selectize()[0].selectize.destroy();
+                        city.html(data);
+                        city.selectize({create: true, sortField: 'text' });
+                    });
+                });
+
+                city.change(function() { 
+                    var val_id = this.value;
+                    $.get('/kota?id='+val_id, function(data) {
+                        var ad_state = $('#address_state_id');
+                        ad_state.selectize()[0].selectize.destroy();
+                        ad_state.html(data);
+                        ad_state.selectize({create: true, sortField: 'text' });
+                    });
+                });
+
+                state.change(function() {
+                    var val_id = this.value;
+                    $.get('/biaya_pengiriman?id='+val_id, function(data) {
+                        var shipment_cost = $('#address_shipment_type')
+                        shipment_cost.selectize()[0].selectize.destroy();
+                        shipment_cost.html(data);
+                        shipment_cost.selectize({create: true, sortField: 'text' });
+                    });
+                });
             }
 
             this.equalHeight = function() {
