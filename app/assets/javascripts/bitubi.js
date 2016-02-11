@@ -22,7 +22,7 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
-        _waitForImages  : path.js + 'jquery.selectize.js',
+        _selectize      : path.js + 'jquery.selectize.js',
         // _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
