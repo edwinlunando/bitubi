@@ -337,7 +337,7 @@
             // reinitiation
             var _this = this;
             Modernizr.load({
-                load: [assets._throttle, assets._debounce],
+                load: [assets._throttle, assets._debounce, assets._selectize],
                 complete: function() {
                     var ui = new _this.ui();
 
