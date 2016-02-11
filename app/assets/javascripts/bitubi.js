@@ -22,6 +22,7 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
+        _waitForImages  : path.js + 'jquery.selectize.js',
         // _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
@@ -224,6 +225,13 @@
                 });
             },
 
+            this.selectInit = function () {
+                var select = $('.select-text');
+                if (select) {
+                    select.selectize({create: true, sortField: 'text' });
+                }
+            }
+
             this.equalHeight = function() {
                 var currentTallest = 0,
                     currentRowStart = 0,
@@ -339,6 +347,7 @@
                     ui.storeManageImageViewerInit();
                     ui.orderTableInit();
                     ui.notifCloseInit();
+                    ui.selectInit();
                     ui.saldoInit();
                     ui.equalHeight();
                     // Site.organicTabs("#surfari-tabs");
