@@ -78,6 +78,13 @@ namespace :raja_ongkir do
     end
   end
 
+  desc 'Export State JSON to low cost CSV'
+  task export_state: :environment do
+    file = File.open Rails.root.join('lib', 'assets', 'raja_ongkir', 'state.json')
+    raw_json_string = file.read
+    json = JSON.parse(raw_json_string)
+  end
+
   desc 'Update State from Raja Ongkir API'
   task state: :environment do
 

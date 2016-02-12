@@ -27,8 +27,12 @@ class HomeController < ApplicationController
     @user = User.new(supplier_params)
     @user.active = true
     @user.verified = true
-    gibbon = Gibbon::Request.new
-    gibbon.lists(ENV['MAILCHIMP_VENDOR_ID']).members.create(body: { email_address: @user.email, status: 'subscribed' })
+    begin
+      gibbon = Gibbon::Request.new
+      gibbon.lists(ENV['MAILCHIMP_VENDOR_ID']).members.create(body: { email_address: @user.email, status: 'subscribed' })
+    rescue Gibbon::MailChimpError => exception
+      Raven.capture_exception(exception)
+    end
     return redirect_to root_path, notice: 'Akun vendor berhasil dibuat' if @user.save
     render :register_supplier
   end
