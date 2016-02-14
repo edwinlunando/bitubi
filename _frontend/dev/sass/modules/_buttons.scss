@@ -121,3 +121,8 @@ $BTN_PADDING_SMALL: $space/20 $space;
 .btn--block {
     width: 100%;
 }
+
+.btn-bot {
+    position: relative;
+    top: 30px;
+}

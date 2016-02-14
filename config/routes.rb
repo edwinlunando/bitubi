@@ -163,6 +163,7 @@ Rails.application.routes.draw do
   post 'pesanan/:id/transfer' => 'users#order_transfer', as: 'order_transfer'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan' => 'users#orders'
+  post 'pesanan' => 'users#order_filter', as: 'order_filter'
   get 'akun' => 'users#account', as: 'account'
   post 'akun/ganti_password' => 'users#change_password', as: 'account_change_password'
   get 'akun/profil' => 'users#account_profile', as: 'account_profile'

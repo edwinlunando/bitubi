@@ -100,6 +100,7 @@ class UsersController < ApplicationController
     add_breadcrumb 'Pesanan', :pesanan_path
 
     @orders = current_user.orders.created.includes(:line_items).page(params[:page]).per(20)
+    @order = Order.new
   end
 
   def order
@@ -108,6 +109,9 @@ class UsersController < ApplicationController
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Pesanan', :pesanan_path
     add_breadcrumb 'Detil', "/pesanan/#{@order.id}"
+  end
+
+  def order_filter
   end
 
   def order_transfer
