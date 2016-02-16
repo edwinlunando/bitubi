@@ -28,7 +28,7 @@
                 .table-container
                   - if !@orders.present?
                     .black
-                      | Anda belum memiliki pesanan. Silahkan 
+                      | Anda belum memiliki pesanan. Silahkan
                       = link_to 'belanja', products_path, class: 'btn btn-small btn-orange mgs-10'
                       | atau selesaikan transaksi Anda di
                       = link_to 'keranjang', keranjang_path, class: 'btn btn-small btn-green mgs-10'
@@ -63,6 +63,6 @@
                               / Button Terima Barang
                               / = link_to "/pesanan/#{order.id}/terima", {class: 'btn-clear fa-btn btn-green'} do
                               /   i.fa.fa-check title="terima"
-                
+
                 div.pagination-container
                   = paginate @orders

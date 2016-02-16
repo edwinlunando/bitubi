@@ -83,6 +83,11 @@ namespace :raja_ongkir do
     file = File.open Rails.root.join('lib', 'assets', 'raja_ongkir', 'state.json')
     raw_json_string = file.read
     json = JSON.parse(raw_json_string)
+    output = File.open Rails.root.join('lib', 'assets', 'raja_ongkir', 'state.txt'), 'w'
+    json.each do |subdistrict|
+      output.puts [subdistrict['subdistrict_name'], subdistrict['city'], subdistrict['province'], subdistrict['subdistrict_id']].join(', ')
+    end
+    output.close
   end
 
   desc 'Update State from Raja Ongkir API'
