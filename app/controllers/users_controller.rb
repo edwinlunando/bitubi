@@ -144,7 +144,8 @@ class UsersController < ApplicationController
 
   def delete_product
     product = Product.friendly.find(params[:id])
-    product.destroy
+    product.published = false
+    product.save
     redirect_to dagangan_path, notice: 'Produk berhasil dihapus'
   end
 

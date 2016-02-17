@@ -20,18 +20,19 @@
                 /   form class="form__row form__pull-right"
                 /     input class="form-input" type="text" placeholder="pencarian"
                 /     button type="submit" class="form-submit-search form-submit-search__vendor"
-                /       i.fa.fa-search  
+                /       i.fa.fa-search
               .table-container
                 - if @products.present?
                   table.table
                     thead
                       tr
-                        th align="center"  Thumbnail
+                        th align="center"  Gambar
                         th Item
                         th Stok
                         th Weight
                         th Unit
-                        th align="center"  Action
+                        th Aktif
+                        th align="center"  Aksi
                     tbody
                       - @products.each do |product|
                         tr
@@ -44,10 +45,11 @@
                           td #{ product.stock }
                           td #{ product.weight }
                           td #{ product.unit }
+                          td #{ product.published ? 'Aktif' : 'Tidak aktif' }
                           td align="center"
                             / a href=""
                             /   i.fa-btn.btn-green.fa.fa-money title="set sold"
                             = link_to "/dagangan/#{ product.id }/edit" do
                               i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                            = link_to delete_sell_path(product), data: { confirm: "Hapus produk #{product.name}?" }, method: :delete
+                            = link_to delete_sell_path(product), data: { confirm: "Non-aktifkan produk #{product.name}?" }, method: :delete
                                 i.fa-btn.btn-red.fa.fa-trash title="delete"
