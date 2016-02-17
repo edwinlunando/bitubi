@@ -47,8 +47,6 @@
                           td #{ product.unit }
                           td #{ product.published ? 'Aktif' : 'Tidak aktif' }
                           td align="center"
-                            / a href=""
-                            /   i.fa-btn.btn-green.fa.fa-money title="set sold"
                             = link_to "/dagangan/#{ product.id }/edit" do
                               i.fa-btn.btn-yellow.fa.fa-edit title="edit"
                             = link_to delete_sell_path(product), data: { confirm: "Non-aktifkan produk #{product.name}?" }, method: :delete
