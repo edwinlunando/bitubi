@@ -21,6 +21,8 @@
 
 class Product < ActiveRecord::Base
 
+  audited
+
   extend FriendlyId
 
   # Relation

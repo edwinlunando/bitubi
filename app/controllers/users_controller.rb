@@ -3,10 +3,6 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
 
-  # def test
-  #   @top_up = TopUp.first
-  # end
-
   def topup_credit
     @top_up = TopUp.new(top_up_params)
     @top_up.user = current_user
@@ -99,7 +95,21 @@ class UsersController < ApplicationController
     add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Pesanan', :pesanan_path
 
-    @orders = current_user.orders.created.includes(:line_items).page(params[:page]).per(20)
+    @id = params[:id]
+    @receipt_number = params[:receipt_number]
+    @date_from = params[:date_from]
+    @date_to = params[:date_to]
+
+    @orders = current_user.orders.created.includes(:line_items)
+
+    @orders = @orders.where(id: @id) if @id.present?
+    @orders = @orders.where(receipt_number: @receipt_number)
+
+    if @date_from.present? && @date_to.present?
+      @order.where(created_at: @date_from..@date_to)
+    end
+
+    @orders = @orders.page(params[:page]).per(20)
     @order = Order.new
   end
 
@@ -220,7 +230,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :phone_number, :first_name, :last_name,
+    params.require(:user).permit(:email, :phone_number, :first_name, :last_name, :address,
                                  supplier_attributes: [:id, :name, :image, :banner_image, :bank_account_name, :bank_name,
                                                        :bank_account_number, :description, :address, :city_id])
   end
