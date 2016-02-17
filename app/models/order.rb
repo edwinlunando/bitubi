@@ -34,6 +34,8 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :state_shipment_price
 
+  attr_accessor :date_start, :date_end
+
   # scope
   scope :vendor, -> { where(state: [:delivery, :done, :failed]) }
   scope :created, -> { order(created_at: :desc) }
