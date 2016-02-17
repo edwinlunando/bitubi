@@ -89,7 +89,8 @@
                         - @order.line_items.each do |line_item|
                           tr
                             td align="center"
-                              = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                              - if line_item.product.get_first_image.present?
+                                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
                             td align="left"
                               .table-products__info
                                 = link_to product_path(line_item.product.slug) do
