@@ -38,7 +38,7 @@ $BTN_PADDING_SMALL: $space/20 $space;
 }
 
 .btn-share {
-    padding: 8px 18px !important;
+    padding: 8px 10px !important;
 }
 
 .btn-small {
@@ -125,4 +125,9 @@ $BTN_PADDING_SMALL: $space/20 $space;
 .btn-bot {
     position: relative;
     top: 30px;
+}
+
+.btn-icon-share {
+    min-width: 20px;
+    margin-right:4px;
 }
