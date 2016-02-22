@@ -178,8 +178,20 @@ class UsersController < ApplicationController
                    .includes(:line_items)
                    .where('products.user_id = ?', current_user.id)
                    .where(state: [:delivery, :done, :failed])
-                   .order(created_at: :desc).uniq
-                   .page(params[:page]).per(20)
+
+    @id = params[:id]
+    @receipt_number = params[:receipt_number]
+    @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
+    @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
+
+    @orders = @orders.where(id: @id) if @id.present?
+    @orders = @orders.where(receipt_number: @receipt_number) if @receipt_number.present?
+
+    if @date_from.present? && @date_to.present?
+      @orders = @orders.where(payment_time: @date_from..@date_to)
+    end
+
+    @orders = @orders.order(created_at: :desc).uniq.page(params[:page]).per(20)
   end
 
   def sell_view

@@ -12,7 +12,7 @@
             .grid-flex__col.grid-flex__col--12
               h2.darkorange Penjualan
               .grid-flex
-                = simple_form_for('', url: pesanan_path, method: :get, html: { class: 'inline-flex' }) do |f|
+                = simple_form_for('', url: sell_path, method: :get, html: { class: 'inline-flex' }) do |f|
                   .grid-flex__col.grid-flex__col--3
                     = f.input :id, label: 'Order id', placeholder: 'Order Id', input_html: { value: @id }
                   .grid-flex__col.grid-flex__col--3
