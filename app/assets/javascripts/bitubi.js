@@ -162,6 +162,9 @@
                     $('.overlay').toggleClass('dim');
                     $('.login-register__container').fadeToggle();
                 });
+                $('#modal-close').on('click', function(e) {
+                    $('.modals').fadeOut('fast');
+                });
             },
 
             this.midMenuInit = function () {
