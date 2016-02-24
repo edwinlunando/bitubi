@@ -34,7 +34,7 @@ ActiveAdmin.register TopUp do
     column :approved
     actions do |top_up|
       if top_up.approved.nil?
-        item 'Approve', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+        item 'Approve ', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
         item 'Decline', decline_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end

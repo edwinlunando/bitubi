@@ -30,7 +30,7 @@ class Withdrawal < ActiveRecord::Base
 
   def decline
     if approved.nil?
-      self.approve = false
+      self.approved = false
       save
       return true
     end

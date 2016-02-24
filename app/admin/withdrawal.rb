@@ -31,7 +31,8 @@ ActiveAdmin.register Withdrawal do
     column :created_at
     actions do |withdrawal|
       if withdrawal.approved.nil?
-        link_to 'Approve', approve_admin_withdrawal_path(withdrawal), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+        item 'Approve ', approve_admin_withdrawal_path(withdrawal), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+        item 'Decline', decline_admin_withdrawal_path(withdrawal), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
     end
   end
