@@ -89,6 +89,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def price
+    quantity * fixed_price if fixed_price
     quantity * price_per_quantity
   end
 

@@ -96,7 +96,7 @@
                                   = link_to product_path(line_item.product.slug)
                                     b.darkorange #{line_item.product.name}
                                   br
-                                  b #{ number_format(line_item.price_per_quantity) }
+                                  b #{ number_format(line_item.fixed_price || line_item.price_per_quantity) }
                               td align="center" #{ line_item.quantity }
                               td align="center" #{ number_format(line_item.shipping_cost) }
                               td align="right" #{ number_format(line_item.price) }

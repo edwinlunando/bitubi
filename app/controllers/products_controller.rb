@@ -61,6 +61,7 @@ class ProductsController < InheritedResources::Base
 
     line_item.order = order
     line_item.product = product
+    line_item.fixed_price = line_item.price_per_quantity
 
     if order.total + line_item.price > current_user.credit
       flash[:error] = 'Saldo Anda tidak mencukupi'

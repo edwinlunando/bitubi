@@ -57,8 +57,10 @@ ActiveAdmin.register Order do
   end
 
   filter :id
-  filter :user, member_method: :email
-  filter :state
+  filter :user_email, as: :string, label: 'Supplier'
+  filter :products_user_email, as: :string, label: 'Vendor'
+  filter :payment_time
+  filter :state, as: :select, collection: Order.states
 
   show title: :id do |post|
 
