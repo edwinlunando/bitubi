@@ -161,6 +161,7 @@ class UsersController < ApplicationController
   def update_product
     @product = Product.find(params[:id])
     @product.update(product_params)
+    @product.update(published: true) if @product.stock > 0
     flash.now[:notice] = 'Produk berhasil diperbarui'
     render :edit_product
   end
