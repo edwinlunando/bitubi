@@ -39,9 +39,6 @@
                               b #{ number_format(line_item.fixed_price || line_item.price_per_quantity) }
                           td align="center"
                             | #{line_item.quantity}  #{line_item.product.unit}
-                            / form.table-products__form
-                            /   input.form-control type="number" value="#{line_item.quantity}" style="width:100px;"
-                            /   .btn.btn-green type="submit" edit
                           td.total-price align="right"
                             b #{ number_format(line_item.price) }
                           td.action-delete
