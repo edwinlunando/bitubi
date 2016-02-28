@@ -136,6 +136,12 @@ class UsersController < ApplicationController
     add_breadcrumb 'Dagangan', :dagangan_path
 
     @products = current_user.products
+
+    @name = params[:name]
+    @published = params[:published].present? ? params[:published].to_i : nil
+
+    @products = @products.where('name LIKE ?', @name) if @name.present?
+    @products = @products.where(published: @published) if @published.present?
   end
 
   def new_product

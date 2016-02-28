@@ -18,8 +18,6 @@
                   .grid-flex__col.grid-flex__col--2
                     = f.input :receipt_number, label: 'Nomor Resi', placeholder: 'Resi', input_html: { value: @receipt_number }
                   .grid-flex__col.grid-flex__col--2
-                    = f.input :published, priority: [ "Ya" ], collection: [ "Ya", "Tidak"], label: 'Aktif', selected: "yes"
-                  .grid-flex__col.grid-flex__col--2
                     = f.input :date_from, as: :date, html5: true, label: 'Tanggal (Dari)', placeholder: 'Dari', input_html: { value: @date_from }
                   .grid-flex__col.grid-flex__col--2
                     = f.input :date_to, as: :date, html5: true, label: 'Tanggal (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }

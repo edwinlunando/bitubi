@@ -12,15 +12,18 @@
             .grid-flex__col.grid-flex__col--12
               h2.darkorange Produk Anda
               .grid-flex
+                = simple_form_for('', url: sell_path, method: :get, html: { class: 'inline-flex' }) do |f|
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :name, label: 'Nama', placeholder: 'Cari nama', input_html: { value: @name }
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :published, collection: [['Pilih kondisi', nil], ["Ya", 1], ["Tidak", 0]], label: 'Aktif', selected: @published
+                  .grid-flex__col.grid-flex__col--2
+                    button.btn.btn-green.btn-bot type="submit" Cari
                 .grid-flex__col.grid-flex__col-4
                   - if !@products.present?
                     .black.mg-10 colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.
                   = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
-                / .grid-flex__col.grid-flex__col-8
-                /   form class="form__row form__pull-right"
-                /     input class="form-input" type="text" placeholder="pencarian"
-                /     button type="submit" class="form-submit-search form-submit-search__vendor"
-                /       i.fa.fa-search
+
               .table-container
                 - if @products.present?
                   table.table
