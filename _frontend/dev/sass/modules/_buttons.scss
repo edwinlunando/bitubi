@@ -124,7 +124,9 @@ $BTN_PADDING_SMALL: $space/20 $space;
 
 .btn-bot {
     position: relative;
-    top: 30px;
+    @media #{$medium} {
+        top: 30px;
+    }
 }
 
 .btn-icon-share {
