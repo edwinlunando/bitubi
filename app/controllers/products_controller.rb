@@ -91,5 +91,4 @@ class ProductsController < InheritedResources::Base
     params.require(:line_item).permit(:quantity)
   end
 
-
 end

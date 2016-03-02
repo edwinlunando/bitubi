@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
     line_items.each do |line_item|
 
       line_item.product.stock -= line_item.quantity
-      line_item.product.published = false if line_item.product.stock = 0
+      line_item.product.published = false if line_item.product.stock == 0
 
       line_item.product.save
 
