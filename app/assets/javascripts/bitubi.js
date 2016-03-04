@@ -246,6 +246,7 @@
                         var city = $('#address_city');
                         city.selectize()[0].selectize.destroy();
                         city.html(data);
+                        city.removeAttr('disabled');
                         city.selectize({create: true, sortField: 'text' });
                     });
                 });
@@ -256,6 +257,7 @@
                         var ad_state = $('#address_state_id');
                         ad_state.selectize()[0].selectize.destroy();
                         ad_state.html(data);
+                        ad_state.removeAttr('disabled');
                         ad_state.selectize({create: true, sortField: 'text' });
                     });
                 });
@@ -266,6 +268,7 @@
                         var shipment_cost = $('#address_shipment_type')
                         shipment_cost.selectize()[0].selectize.destroy();
                         shipment_cost.html(data);
+                        shipment_cost.removeAttr('disabled');
                         shipment_cost.selectize({create: true, sortField: 'text' });
                     });
                 });
