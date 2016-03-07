@@ -138,4 +138,11 @@ ActiveAdmin.register Order do
     f.actions
   end
 
+  controller do
+    def apply_filtering(chain)
+      @search = chain.ransack clean_search_params params[:q]
+      @search.result(distinct: true)
+    end
+  end
+
 end
