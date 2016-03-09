@@ -40,7 +40,8 @@ ActiveAdmin.register TopUp do
     end
   end
 
-  filter :user, member_method: :email
+  filter :user_email, as: :string
+  filter :uid, label: 'Kode Cantik'
   filter :created_at
   filter :active
 
