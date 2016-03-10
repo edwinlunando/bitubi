@@ -21,7 +21,7 @@
             = f.association :state, collection: State.all, label: 'Kecamatan', include_blank: 'Pilih wilayah', input_html: { class: 'select-text', disabled: ''}
             = f.input :shipment_type, as: :select, label: 'Jenis pengiriman', include_blank: 'Pilih pengiriman', input_html: { class: 'select-text', disabled: ''}
             = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text, input_html: {rows: 4}
-            = f.input :special_instructions, label: 'Catatan', placeholder: 'Catatan pemesan', as: :text, input_html: {rows: 4, disabled: ''}
+            = f.input :special_instructions, label: 'Catatan', placeholder: 'Catatan pemesan', as: :text, input_html: {rows: 4}
             = f.input :zipcode, label: 'Kodepos', placeholder: 'Kode Pos'
             = f.input :sender_name, label: 'Nama pengirim', placeholder: 'Nama Pengirim'
             = f.input :sender_phone, label: 'Ponsel pengirim', placeholder: 'Ponsel Pengirim'
