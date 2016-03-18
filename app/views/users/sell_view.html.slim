@@ -113,13 +113,16 @@
                               b Total
                             td align="right"
                               b #{ number_format(@order.total) }
-                          - unless (@order.state == 'done' || @order.state == 'failed')
+
                             tr
-                              td
-                                = link_to sell_cancel_path, class: 'btn btn-red', style: 'width: 90%', method: :post, 'data-confirm' => 'Apakah Anda yakin?'
-                                  i.fa.fa-ban
-                                  span
-                                    |  Batal
+                              - unless (@order.state == 'done' || @order.state == 'failed')
+                                td
+                                  = link_to sell_cancel_path, class: 'btn btn-red', style: 'width: 90%', method: :post, 'data-confirm' => 'Apakah Anda yakin?'
+                                    i.fa.fa-ban
+                                    span
+                                      |  Batal
+                              - else
+                                td
                               td colspan="3" align="right"
                                 b.mgs-10
                                   span.darkorange Nomor resi:

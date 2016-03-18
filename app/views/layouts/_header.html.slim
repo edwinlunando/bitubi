@@ -80,10 +80,6 @@ header.header-main
     .nav-search-bar.inline
       form class="form__row header-form" action="#{ products_path }"
         .block-center.header-form-container
-          / .select-style.inline
-          /   select
-          /     option value="produk" Produk
-          /     option value="vendor" Vendor
           input.form-input.inline type="text" placeholder="Pencarian" name="q" value="#{ params[:q].present? ? params[:q] : '' }"
           button.inline type="submit" class="form-submit-search form-submit-search__vendor"
             i.fa.fa-search

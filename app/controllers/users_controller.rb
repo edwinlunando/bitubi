@@ -224,6 +224,10 @@ class UsersController < ApplicationController
     @order = Order.find(params[:id])
     @order.deliver unless @order.done? || @order.failed?
 
+    unless receipt_params[:receipt_number].present?
+      return redirect_to sell_view_path(@order), notice: 'Nomor resi tidak boleh kosong'
+    end
+
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
       AdminMailer.receipt(@order).deliver_now
