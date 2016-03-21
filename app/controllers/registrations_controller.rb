@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
       list_id = ENV['MAILCHIMP_RESELLER_ID']
     end
-    gibbon.lists(list_id).members.create(body: {email_address: resource.email, status: 'subscribed', merge_fields: {FNAME: resource.first_name, LNAME: resource.last_name}})
+    gibbon.lists(list_id).members.create(body: {email_address: resource.email, status: 'pending', merge_fields: {FNAME: resource.first_name, LNAME: resource.last_name}})
     root_path
   end
 
