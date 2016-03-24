@@ -232,7 +232,8 @@
                 var select = $('.select-text'),
                     province = $('#address_province'),
                     city = $('#address_city'),
-                    state = $('#address_state_id');
+                    state = $('#address_state_id'),
+                    delivery = $('#address_shipment_type');
 
                 // init selectize to all select-text
                 if (select) {
@@ -271,6 +272,10 @@
                         shipment_cost.removeAttr('disabled');
                         shipment_cost.selectize({create: true, sortField: 'text' });
                     });
+                });
+
+                delivery.change(function() {
+                    $('.addr-btn').removeAttr("disabled");
                 });
             }
 
