@@ -8,7 +8,7 @@ ActiveAdmin.register Order do
     end
   end
 
-  permit_params :total, :special_instruction, :state
+  permit_params :total, :special_instruction, :state, :receipt_number
 
   member_action :transfer, method: :put do
     resource.transfer
@@ -130,6 +130,7 @@ ActiveAdmin.register Order do
       f.input :special_instruction
       f.input :state, collection: Order.states
       f.input :user, member_label: :email
+      f.input :receipt_number, label: 'Resi'
       f.has_many :line_items, heading: 'Products' do |a|
         a.input :product
         a.input :quantity
