@@ -30,7 +30,13 @@
           = f.input :email, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'email'}, autofocus: true, label: false, wrapper: false
           = f.label :password, class: 'form-label'
           = f.input :password, required: true, input_html: {class: 'form-input form-input--block', placeholder: 'password'}, label: false, wrapper: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-          = link_to ' Reset password', new_user_password_path
+          br/
+          br/
+          span.black Belum punya akun? 
+          = link_to ' daftar', daftar_path
+          br/
+          span.black Lupa password? 
+          = link_to ' reset password', new_user_password_path
           br/
           br/
           button.btn.btn-green type="submit"  Login
