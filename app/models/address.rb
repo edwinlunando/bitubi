@@ -17,7 +17,7 @@
 
 class Address < ActiveRecord::Base
 
-  attr_accessor :province, :city, :shipment_type
+  attr_accessor :province, :city, :courier, :shipment_type
   belongs_to :state
 
   validates :name, presence: true

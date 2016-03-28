@@ -19,6 +19,7 @@
             = f.input :province, collection: Province.all, label: 'Provinsi', include_blank: 'Pilih provinsi', input_html: { class: 'select-text'}
             = f.input :city, collection: City.all, label: 'Kota', include_blank: 'Pilih kota', input_html: { class: 'select-text', disabled: ''}
             = f.association :state, collection: State.all, label: 'Kecamatan', include_blank: 'Pilih wilayah', input_html: { class: 'select-text', disabled: ''}
+            = f.input :courier, as: :select, collection: [:jne, :pos], label: 'Kurir', include_blank: 'Pilih kurir', input_html: { class: 'select-text', disabled: ''}
             = f.input :shipment_type, as: :select, label: 'Jenis pengiriman', include_blank: 'Pilih pengiriman', input_html: { class: 'select-text', disabled: ''}
             = f.input :name, label: 'Alamat', placeholder: 'Alamat lengkap', as: :text, input_html: {rows: 4}
             = f.input :special_instructions, label: 'Catatan', placeholder: 'Catatan pemesan', as: :text, input_html: {rows: 4}
@@ -27,4 +28,4 @@
             = f.input :sender_phone, label: 'Ponsel pengirim', placeholder: 'Ponsel Pengirim'
             br/
             center
-              button.addr-btn.btn.btn-green type="submit" disabled="disabled" Masukkan Alamat
+              button.addr-btn.btn.btn-green type="submit" disabled="disabled" Lanjutkan Pembayaran

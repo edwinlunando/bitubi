@@ -106,12 +106,12 @@
                     if (scroll > previousScroll){
                         $('.head-contact-info').hide();
                         $('.header-main__top-bar').css('top', 0);
-                        if (notif) 
+                        if (notif)
                             notif.css('top', 50);
                     } else {
                         $('.head-contact-info').show();
                         $('.header-main__top-bar').css('top', 25);
-                        if (notif) 
+                        if (notif)
                             notif.css('top', 75);
                     }
                     previousScroll = scroll;
@@ -180,10 +180,10 @@
             this.saldoInit = function () {
                 var changer = $('#saldo-chg');
                 if(changer) {
-                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
-                    $('#saldo-chg').on('keypress',function(event) { 
+                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));
+                    $('#saldo-chg').on('keypress',function(event) {
                         request = $(this).val() + String.fromCharCode(event.which);
-                        $('#saldo-dest').val(parseInt(request) + parseInt($('#saldo-uid').val()));  
+                        $('#saldo-dest').val(parseInt(request) + parseInt($('#saldo-uid').val()));
                     })
                 }
             },
@@ -233,7 +233,8 @@
                     province = $('#address_province'),
                     city = $('#address_city'),
                     state = $('#address_state_id'),
-                    delivery = $('#address_shipment_type');
+                    delivery = $('#address_shipment_type'),
+                    courier = $('#address_courier');
 
                 // init selectize to all select-text
                 if (select) {
@@ -252,7 +253,7 @@
                     });
                 });
 
-                city.change(function() { 
+                city.change(function() {
                     var val_id = this.value;
                     $.get('/kota?id='+val_id, function(data) {
                         var ad_state = $('#address_state_id');
@@ -263,9 +264,18 @@
                     });
                 });
 
+                var state_id;
+
                 state.change(function() {
-                    var val_id = this.value;
-                    $.get('/biaya_pengiriman?id='+val_id, function(data) {
+                    state_id = this.value;
+                    courier.selectize()[0].selectize.destroy();
+                    courier.removeAttr('disabled');
+                    courier.selectize({create: true, sortField: 'text' });
+                });
+
+                courier.change(function() {
+                    courier_type = this.value;
+                    $.get('/biaya_pengiriman?id='+state_id+'&courier='+courier_type, function(data) {
                         var shipment_cost = $('#address_shipment_type')
                         shipment_cost.selectize()[0].selectize.destroy();
                         shipment_cost.html(data);
@@ -325,7 +335,7 @@
         //     Modernizr.load({
         //         load: assets._elevateZoom,
         //         complete: function() {
-        //             //initiate the plugin and pass the id of the div containing gallery images 
+        //             //initiate the plugin and pass the id of the div containing gallery images
         //             ezoom();
         //         }
         //     });
@@ -355,7 +365,7 @@
                 	var newslider = slider.eq(i);
                     var config =  newslider.data('slick');
                 	// var container = '.'+slider.eq(i).parent().attr('class').replace(' ', '.');
-                	// container = $(container);                	
+                	// container = $(container);
                     if(newslider.hasClass('rsp')) {
                         config.responsive = [
                             {
@@ -367,7 +377,7 @@
                                 }
                             }
                         ];
-                    } 
+                    }
                     // newslider.width(container.width());
                     // slider.eq(i).remove();
                 	newslider.slick(config);
@@ -528,11 +538,11 @@
             }
         ]);
         $(document).on('page:load', Site.init);
-        $(document).on('change', '#prod-img', function() { 
+        $(document).on('change', '#prod-img', function() {
             var frame = $(this).parent().parent().find('img');
             Site.readURL(this, frame);
         });
-        
+
     };
 
     Modernizr.load({

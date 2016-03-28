@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
 
   def shipment_cost
     state = State.find params[:id]
+    courier = params[:courier]
     parameter = {
       key: ENV['RAJA_ONGKIR_KEY'],
       originType: 'city',
@@ -31,7 +32,7 @@ class OrdersController < ApplicationController
       destinationType: 'subdistrict',
       destination: state.raja_ongkir_id,
       weight: @order.total_weight_gram,
-      courier: 'jne'
+      courier: courier
     }
     response = RestClient.post 'http://pro.rajaongkir.com/api/cost', parameter
     json = JSON.parse(response)
@@ -42,6 +43,7 @@ class OrdersController < ApplicationController
 
   def addressing
     @address = Address.new(address_params)
+    courier = address_params[:courier]
     parameter = {
       key: ENV['RAJA_ONGKIR_KEY'],
       originType: 'city',
@@ -49,7 +51,7 @@ class OrdersController < ApplicationController
       destinationType: 'subdistrict',
       destination: @address.state.raja_ongkir_id,
       weight: @order.total_weight_gram,
-      courier: 'jne'
+      courier: courier
     }
     shipment_type = @address.shipment_type
     response = RestClient.post 'http://pro.rajaongkir.com/api/cost', parameter
@@ -58,7 +60,7 @@ class OrdersController < ApplicationController
     shipment = @results.detect { |result| result['service'] == shipment_type }
     @order.shipment_price_value = shipment['cost'].first['value']
     @order.shipment_price_code = shipment['service']
-    @order.shipment_price_courier = 'jne'
+    @order.shipment_price_courier = courier
     @order.shipment_price_name = shipment['description']
     @order.shipment_price_etd = shipment['cost'].first['etd']
     # if StateShipmentPrice.where(state_id: address_params[:state_id]).where(shipment_type_id: address_params[:shipment_type]).count == 0
@@ -138,7 +140,7 @@ class OrdersController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:state_id, :name, :province, :city, :shipment_type, :receiver_name,
+    params.require(:address).permit(:state_id, :name, :province, :city, :courier, :shipment_type, :receiver_name,
                                     :receiver_phone, :sender_name, :sender_phone, :zipcode, :special_instructions)
   end
 
