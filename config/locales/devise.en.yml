@@ -32,7 +32,7 @@ en:
       updated_not_active: "Sandi Anda telah berhasil diganti."
     registrations:
       destroyed: "Dadah! Akun Anda telah berhasil dibatalkan. Sampai jumpa kembali."
-      signed_up: "Selamat datang! Anda berhasil terdaftar."
+      signed_up: "Pendaftaran Berhasil. Silakan Cek Email Anda dan Lakukan Konfirmasi Pada Email yang Kami Kirimkan."
       signed_up_but_inactive: "Anda berhasil terdaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda belum diaktivasi."
       signed_up_but_locked: "Anda berhasil terdaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda terkunci."
       signed_up_but_unconfirmed: "Pesan berisi tautan konfirmasi telah dikirim ke email Anda. SIlakan ikuti tautan untuk mengaktivasi akun Anda."

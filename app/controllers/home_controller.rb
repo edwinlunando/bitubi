@@ -33,7 +33,7 @@ class HomeController < ApplicationController
     rescue Gibbon::MailChimpError => exception
       Raven.capture_exception(exception)
     end
-    return redirect_to root_path, notice: 'Akun vendor berhasil dibuat' if @user.save
+    return redirect_to root_path, notice: 'Pendaftaran Berhasil. Silakan Cek Email Anda dan Lakukan Konfirmasi Pada Email yang Kami Kirimkan.' if @user.save
     render :register_supplier
   end
 
