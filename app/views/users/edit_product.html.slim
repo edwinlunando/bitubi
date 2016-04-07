@@ -36,8 +36,11 @@
                 h3 Gambar
                 div
                   = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
+                  br/
+                  br/
+                  hr/
                   = f.fields_for :product_images do |img|
-                    img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                    img#prod-img-target alt="" src="#{img.object.data.url}" width="200"
                     br/
                     = img.input :data, label: false, input_html: {id: 'prod-img'}
                     br/
