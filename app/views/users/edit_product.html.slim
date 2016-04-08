@@ -42,12 +42,13 @@
                   = f.fields_for :product_images do |img|
                     img#prod-img-target alt="" src="#{img.object.data.url}" width="200"
                     br/
+
                     = img.input :data, label: false, input_html: {id: 'prod-img'}
-                    br/
+                    br
                     = img.link_to_remove class: 'btn' do
                       i.fa.fa-trash
-                    br/
-                    br/
+                    br
+                    br
                     hr
               .grid-flex__col.grid-flex__col--4
                 label.form-label/
