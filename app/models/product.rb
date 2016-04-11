@@ -43,6 +43,7 @@ class Product < ActiveRecord::Base
   validates :price_dropship, presence: true
   validates :category, presence: true
   validates :wholesale_prices, length: { minimum: 1 }
+  validates :stock, numericality: { greater_than_or_equal_to: 0 }
 
   alias_attribute :supplier, :user
 
