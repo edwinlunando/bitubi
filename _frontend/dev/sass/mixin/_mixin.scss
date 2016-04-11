@@ -27,3 +27,9 @@
 	-o-transform: scale($mul);
 	transform: scale($mul);
 }
+
+@mixin shadow-effect($size, $opacity) {
+	-webkit-box-shadow: 0px 0px $size 0px rgba(0,0,0,$opacity);
+	-moz-box-shadow: 0px 0px $size 0px rgba(0,0,0,$opacity);
+	box-shadow: 0px 0px $size 0px rgba(0,0,0,$opacity);
+}
