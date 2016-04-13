@@ -47,8 +47,11 @@
 			background-size: cover;
 		    background-repeat: no-repeat;
 		    background-position: 50% 50%;
-			min-height: 260px;
+		    min-height: 100px;
 			max-height: 260px;
+			@media #{$medium} {
+				min-height: 260px;
+			}
 			width: 100%;
 			overflow: hidden;
 			img {
