@@ -561,6 +561,14 @@ footer {
 		}
 	}
 
+	h3 {
+		margin-bottom: 5px;
+		@media #{$medium} {
+			margin-bottom: 25px;
+		}
+	}
+
+
 	.foot-info-col {
 		flex-basis: 100%;
 		@media #{$medium} {
@@ -572,15 +580,15 @@ footer {
 		font-size: 1em;
 		color: $darkorange;
 	}
-	h3 {
-		margin-bottom: 25px;
-	}
 	hr {
 		width:100%;
+		margin-bottom: 5px;
 		@media #{$medium} {
 			width: 25%;
+			margin-bottom: 20px;
 		}
 	}
+
 	a {
 		color: $black70;
 		@include animate-transition(.25s);
