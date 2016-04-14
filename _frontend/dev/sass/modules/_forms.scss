@@ -291,3 +291,7 @@ $input_bg               : #fff;
 .form-checkbox {
   margin: 20px 5px 20px 0;
 }
+
+.has-error input{
+  border-color: $red !important;
+}

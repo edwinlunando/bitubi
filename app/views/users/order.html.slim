@@ -107,10 +107,15 @@
                               b.black #{ number_format(line_item.price) }
                         - if @order.state_shipment_price.present?
                           tr.highlight-info-2
-                            td
-                            td align="right" Pengiriman:
-                            td  align="right"
-                              b.darkorange #{ @order.shipment_price_name }
+                            td colspan="3"
+                              b.black Pengiriman:  
+                              b.darkonrange #{ @order.shipment_price_name } | #{ @order.shipment_price_courier }
+                              br
+                              b.black Kode: 
+                              b.darkorange #{ @order.shipment_price_code }
+                              br
+                              b.black Waktu Kirim:
+                              b.darkorange #{ @order.shipment_price_etd }
                             td align="right"
                               b.black #{ number_format(@order.shipment_price) }
                         tr.highlight-info
