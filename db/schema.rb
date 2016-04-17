@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216153418) do
+ActiveRecord::Schema.define(version: 20160417062745) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20160216153418) do
   end
 
   add_index "addresses", ["state_id"], name: "index_addresses_on_state_id", using: :btree
+
+  create_table "adjustments", force: :cascade do |t|
+    t.integer  "order_id",    limit: 4
+    t.decimal  "amount",                  precision: 10
+    t.integer  "source_id",   limit: 4
+    t.string   "source_type", limit: 255
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "adjustments", ["order_id"], name: "index_adjustments_on_order_id", using: :btree
+  add_index "adjustments", ["source_type", "source_id"], name: "index_adjustments_on_source_type_and_source_id", using: :btree
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id",    limit: 4
@@ -152,6 +164,19 @@ ActiveRecord::Schema.define(version: 20160216153418) do
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["slug"], name: "index_products_on_slug", using: :btree
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
+
+  create_table "promotions", force: :cascade do |t|
+    t.integer  "action_type",        limit: 4
+    t.integer  "promotion_type",     limit: 4
+    t.string   "code",               limit: 255
+    t.integer  "global_usage_limit", limit: 4
+    t.integer  "user_usage_imit",    limit: 4
+    t.integer  "usage",              limit: 4
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "active"
+    t.decimal  "amount",                         precision: 10
+  end
 
   create_table "provinces", force: :cascade do |t|
     t.string   "name",           limit: 255
@@ -291,6 +316,7 @@ ActiveRecord::Schema.define(version: 20160216153418) do
   end
 
   add_foreign_key "addresses", "states"
+  add_foreign_key "adjustments", "orders"
   add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "orders", "state_shipment_prices"

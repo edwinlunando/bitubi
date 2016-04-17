@@ -56,7 +56,7 @@
                                   span.red #{order.state_simple}
                                 -else
                                   span.darkorange #{order.state_simple}
-                            td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                            td align="right" #{ number_to_currency(order.total_with_adjustments, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
                             td align="center"
                               = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-orange'} do
                                 i.fa.fa-folder-open title="view"

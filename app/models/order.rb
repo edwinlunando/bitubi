@@ -30,6 +30,7 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :line_items
   has_many :products, through: :line_items
   has_many :suppliers, through: :products, source: :user
+  has_many :adjustments
   belongs_to :address
   belongs_to :user
   belongs_to :state_shipment_price
@@ -145,6 +146,14 @@ class Order < ActiveRecord::Base
 
   def total
     total_without_shipment + shipment_price
+  end
+
+  def adjustments_total
+    adjustments.inject(0) { |result, element| result + element.amount }
+  end
+
+  def total_with_adjustments
+    total + adjustments_total
   end
 
   def total_weight_gram

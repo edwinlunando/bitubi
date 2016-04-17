@@ -90,12 +90,19 @@
                         td Ongkos:
                         td #{ number_format(@order.shipment_price) }
                   tfoot
+                    - if @order.adjustments.exists?
+                      tr.highlight-info
+                        td colspan="2"
+                        td
+                          b Diskon:
+                        td
+                          b #{ number_format(@order.adjustments_total) }
                     tr.highlight-info
                       td colspan="2"
                       td
                         b Total:
                       td
-                        b #{ number_format(@order.total) }
+                        b #{ number_format(@order.total_with_adjustments) }
                     tr
                       td colspan="3"
                       td

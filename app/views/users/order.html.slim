@@ -95,7 +95,7 @@
                               .table-products__info
                                 = link_to product_path(line_item.product.slug) do
                                   b.darkorange #{line_item.product.name}
-                                br/
+                                br
                                 b
                                   = link_to vendor_view_path(line_item.product.user.id) do
                                     | vendor:
@@ -118,12 +118,19 @@
                               b.darkorange #{ @order.shipment_price_etd }
                             td align="right"
                               b.black #{ number_format(@order.shipment_price) }
+                        - if @order.adjustments.exists?
+                          tr.highlight-info
+                            td colspan="2"
+                            td align="center"
+                              b Diskon
+                            td align="right"
+                              b #{ number_format(@order.adjustments_total) }
                         tr.highlight-info
                           td colspan="2"
                           td align="center"
                             b Total
                           td align="right"
-                            b #{ number_format(@order.total) }
+                            b #{ number_format(@order.total_with_adjustments) }
                         tr
                           td colspan="3"
                           td align="right"

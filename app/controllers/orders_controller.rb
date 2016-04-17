@@ -78,6 +78,26 @@ class OrdersController < ApplicationController
     end
 
     if @order.save
+      if address_params[:code].present?
+        promotions = Promotion.code.active.where(code: address_params[:code])
+        if promotions.exists?
+          promotion = promotions.first
+          if promotion.eligible? && promotion.free_delivery?
+            @order.adjustments.where(source: promotion).destroy_all
+            discount_value = -@order.shipment_price_value
+            discount_value = -promotion.amount if discount_value < -promotion.amount
+            Adjustment.create(order: @order, source: promotion, amount: discount_value)
+            promotion.usage = promotion.usage + 1
+            promotion.save
+          else
+            flash.now[:notice] = 'Promosi ini sudah tidak berlaku atau sudah mencapai limitnya!'
+            return render action: :address
+          end
+        else
+          flash.now[:notice] = 'Kode promosi tidak ditemukan!'
+          return render action: :address
+        end
+      end
       redirect_to konfirmasi_path
     else
       render action: :address
@@ -111,7 +131,7 @@ class OrdersController < ApplicationController
       @order.pay
       @order.payment_time = Time.zone.now
       @order.save
-      current_user.credit -= @order.total
+      current_user.credit -= @order.total_with_adjustments
       current_user.save
     end
     UserMailer.order_confirmation(@order).deliver_now
@@ -140,7 +160,7 @@ class OrdersController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:state_id, :name, :province, :city, :courier, :shipment_type, :receiver_name,
+    params.require(:address).permit(:state_id, :name, :province, :city, :courier, :shipment_type, :receiver_name, :code,
                                     :receiver_phone, :sender_name, :sender_phone, :zipcode, :special_instructions)
   end
 

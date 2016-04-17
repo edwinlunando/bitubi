@@ -44,6 +44,7 @@ ActiveAdmin.register User do
       f.input :password
       f.input :verified
       f.input :active
+      f.input :credit
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
