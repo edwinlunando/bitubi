@@ -130,6 +130,11 @@ class UsersController < ApplicationController
     redirect_to order_detail_path(@order), notice: 'Pesanan telah diterima!'
   end
 
+  def order_print
+    @order = current_user.orders.find(params[:id])
+    render :layout => false
+  end
+
   def products
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Akun', :account_path

@@ -162,6 +162,7 @@ Rails.application.routes.draw do
   get 'alamat' => 'orders#address'
   post 'pesanan/:id/transfer' => 'users#order_transfer', as: 'order_transfer'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
+  get 'pesanan/:id/cetakinvoice' => 'users#order_print', as: 'order_invoice'
   get 'pesanan' => 'users#orders'
   post 'pesanan' => 'users#order_filter', as: 'order_filter'
   get 'akun' => 'users#account', as: 'account'
