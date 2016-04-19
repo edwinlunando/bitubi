@@ -1,6 +1,6 @@
 div style="width:800px; margin: 0px; font-family: sans;"
   div style="float:left; width:450px; padding-right: 10px"
-    img itempro="name" src="/assets/img/logo.png" alt="Larisni Logo" height="40" style="margin: 10px;"
+    img itempro="name" src="#{ @order.line_items.first.product.user.supplier.image.url }" alt="Larisni Logo" height="60" style="margin: 10px;"
   div style="float:left; width:330px; margin-left: -20px; padding-left: 20px"
     h1 style="font-size: 18px; color:#FF6739;"
      b Nomor Invoice: # #{ @order.id }
@@ -46,7 +46,7 @@ div style="width:800px; margin: 10px; font-family: sans; overflow:auto;"
           b style="color:#333;" Alamat:
         div style="float:left; width:75%" 
           span #{ @order.line_items.first.product.supplier.address }
-div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #333; overflow:auto; padding-top: 5px;font-size:12px;"
+div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; overflow:auto; padding-top: 5px;font-size:12px;"
   table style="width:100%"
     tr
       th style="width:80%; background: #FF6739; color: white; padding: 5px;" Nama Barang
@@ -55,6 +55,3 @@ div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #
       tr
         td style="padding: 5px;" #{ line_item.product.name }
         td style="padding: 5px; text-align: center;" #{ line_item.quantity }
-div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #333; overflow:auto; padding-top: 5px;font-size:12px;"
-  span style="color:#555;" Terima kasih atas kepercayaan Anda berbelanja di 
-  b style="color:#FF6739" Larisni
