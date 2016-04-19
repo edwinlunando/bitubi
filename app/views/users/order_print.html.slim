@@ -1,36 +1,60 @@
 div style="width:800px; margin: 0px; font-family: sans;"
-  div style="float:left; width:480px; padding-right: 10px"
+  div style="float:left; width:450px; padding-right: 10px"
     img itempro="name" src="/assets/img/logo.png" alt="Larisni Logo" height="40" style="margin: 10px;"
-  div style="float:left; width:300px; margin-left: -20px; margin-top: 20px; padding-left: 20px"
-    h1 style="font-size: 20px; color:#FF6739;"
-     b Transaksi: # #{ @order.id }
+  div style="float:left; width:330px; margin-left: -20px; padding-left: 20px"
+    h1 style="font-size: 18px; color:#FF6739;"
+     b Nomor Invoice: # #{ @order.id }
+     br
+     b Resi: #{ @order.receipt_number }
 div style="width:800px; margin: 10px; font-family: sans; overflow:auto;"
-  div style="float:left; width:480px; padding-right: 10px"
+  div style="float:left; width:440px; padding-right: 10px"
     div style="width:100%; margin-bottom: 10px"
       b style="color:#333;" Kepada:
     div style="width:100%; margin-bottom: 5px"
-      div style="float:left; width:30%" 
+      div style="float:left; width:25%" 
         b style="color:#333;" Nama:
-      div style="float:left; width:70%" 
+      div style="float:left; width:75%" 
         span #{ @order.address.receiver_name.capitalize }
     div style="width:100%; margin-bottom: 5px"
-      div style="float:left; width:30%" 
-        b style="color:#333;" No. Telepon:
-      div style="float:left; width:70%" 
+      div style="float:left; width:25%" 
+        b style="color:#333;" Telepon:
+      div style="float:left; width:75%" 
         span #{ @order.address.receiver_phone }
     div style="width:100%; margin-bottom: 5px"
-      div style="float:left; width:30%" 
+      div style="float:left; width:25%" 
         b style="color:#333;" Alamat:
-      div style="float:left; width:70%" 
+      div style="float:left; width:75%" 
         span #{ @order.address.one_line.capitalize }
-  div style="float:left; width:300px; border-left:2px solid black; margin-left: -20px; padding-left: 20px"
+  div style="float:left; width:340px; border-left:2px solid black; margin-left: -20px; padding-left: 20px"
     div style="width:100%; margin-bottom: 10px"
       div style="width:100%; margin-bottom: 10px"
         b style="color:#333;" Pengirim:
       div  
         b #{ @order.line_items.first.product.supplier.name }
-      div  #{ @order.address.sender_name.capitalize }
-      div  #{ @order.address.sender_phone.capitalize }
+      div style="width:100%; margin-bottom: 5px"
+        div style="float:left; width:25%" 
+          b style="color:#333;" Nama:
+        div style="float:left; width:75%" 
+          span #{ @order.address.sender_name.capitalize }
+      div style="width:100%; margin-bottom: 5px"
+        div style="float:left; width:25%" 
+          b style="color:#333;" Telepon:
+        div style="float:left; width:75%" 
+          span #{ @order.address.sender_phone }
+      div style="width:100%; margin-bottom: 5px"
+        div style="float:left; width:25%" 
+          b style="color:#333;" Alamat:
+        div style="float:left; width:75%" 
+          span #{ @order.line_items.first.product.supplier.address }
+div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #333; overflow:auto; padding-top: 5px;font-size:12px;"
+  table style="width:100%"
+    tr
+      th style="width:80%; background: #FF6739; color: white; padding: 5px;" Nama Barang
+      th style="width:20%; background: #FF6739; color: white; padding: 5px;" Jumlah
+    - @order.line_items.each do |line_item|
+      tr
+        td style="padding: 5px;" #{ line_item.product.name }
+        td style="padding: 5px; text-align: center;" #{ line_item.quantity }
 div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #333; overflow:auto; padding-top: 5px;font-size:12px;"
   span style="color:#555;" Terima kasih atas kepercayaan Anda berbelanja di 
   b style="color:#FF6739" Larisni
