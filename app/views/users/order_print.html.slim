@@ -1,12 +1,12 @@
-div style="width:800px; margin: 0px; font-family: sans;"
-  div style="float:left; width:450px; padding-right: 10px"
-    img itempro="name" src="#{ @order.line_items.first.product.user.supplier.image.url }" alt="Larisni Logo" height="60" style="margin: 10px;"
-  div style="float:left; width:330px; margin-left: -20px; padding-left: 20px"
+div style="width:800px; margin: 0px; font-family: sans; display: block;"
+  div style="float:left; width:450px; padding-right: 10px;"
+    img itempro="name" src="#{ @order.line_items.first.product.user.supplier.image.url }" alt="Vendor Logo" height="60" style="margin: 10px;"
+  div style="float:left; width:330px; margin-left: -20px; padding-left: 20px;"
     h1 style="font-size: 18px; color:#FF6739;"
      b Nomor Invoice: # #{ @order.id }
      br
      b Resi: #{ @order.receipt_number }
-div style="width:800px; margin: 10px; font-family: sans; overflow:auto;"
+div style="width:800px; margin: 10px; font-family: sans; overflow:auto; display: block; clear: both;"
   div style="float:left; width:440px; padding-right: 10px"
     div style="width:100%; margin-bottom: 10px"
       b style="color:#333;" Kepada:
@@ -30,7 +30,7 @@ div style="width:800px; margin: 10px; font-family: sans; overflow:auto;"
       div style="width:100%; margin-bottom: 10px"
         b style="color:#333;" Pengirim:
       div  
-        b #{ @order.line_items.first.product.supplier.name }
+        b style="color:#FF6739;" #{ @order.line_items.first.product.supplier.name }
       div style="width:100%; margin-bottom: 5px"
         div style="float:left; width:25%" 
           b style="color:#333;" Nama:
@@ -45,8 +45,8 @@ div style="width:800px; margin: 10px; font-family: sans; overflow:auto;"
         div style="float:left; width:25%" 
           b style="color:#333;" Alamat:
         div style="float:left; width:75%" 
-          span #{ @order.line_items.first.product.supplier.address }
-div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; overflow:auto; padding-top: 5px;font-size:12px;"
+          span #{ @order.line_items.first.product.user.supplier.city.name }
+div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; overflow:auto; padding-top: 5px;font-size:12px; clear: both;"
   table style="width:100%"
     tr
       th style="width:80%; background: #FF6739; color: white; padding: 5px;" Nama Barang
