@@ -82,10 +82,14 @@ class OrdersController < ApplicationController
         promotions = Promotion.code.active.where(code: address_params[:code])
         if promotions.exists?
           promotion = promotions.first
-          if promotion.eligible? && promotion.free_delivery?
+          if promotion.eligible?(current_user)
             @order.adjustments.where(source: promotion).destroy_all
-            discount_value = -@order.shipment_price_value
-            discount_value = -promotion.amount if discount_value < -promotion.amount
+            if promotion.free_delivery?
+              discount_value = -@order.shipment_price_value
+              discount_value = -promotion.amount if discount_value < -promotion.amount
+            else
+              discount_value = 0
+            end
             Adjustment.create(order: @order, source: promotion, amount: discount_value)
             promotion.usage = promotion.usage + 1
             promotion.save
@@ -132,6 +136,12 @@ class OrdersController < ApplicationController
       @order.payment_time = Time.zone.now
       @order.save
       current_user.credit -= @order.total_with_adjustments
+      @order.adjustments.each do |adjustment|
+        if adjustment.source.cashback?
+          current_user.credit += adjustment.source.amount
+          current_user.cashback_promotion_limit = true
+        end
+      end
       current_user.save
     end
     UserMailer.order_confirmation(@order).deliver_now

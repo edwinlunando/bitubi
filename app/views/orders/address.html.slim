@@ -13,7 +13,7 @@
             span.category-title__detailed-description
               | Silahkan mengisi alamat pengiriman dari pesanan Anda
           br/
-          = simple_form_for(@address, url: addressing_path, html: { class: 'order-form' }) do |f|
+          = simple_form_for(@address, url: addressing_path, method: :post, html: { class: 'order-form' }) do |f|
             = f.input :receiver_name, label: 'Nama penerima', placeholder: 'Nama Penerima'
             = f.input :receiver_phone, label: 'Ponsel penerima', placeholder: 'Ponsel Penerima'
             = f.input :province, collection: Province.all, label: 'Provinsi', include_blank: 'Pilih provinsi', input_html: { class: 'select-text'}
