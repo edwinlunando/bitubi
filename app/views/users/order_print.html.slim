@@ -45,13 +45,7 @@ div style="width:800px; margin: 10px; font-family: sans; overflow:auto; display:
         div style="float:left; width:25%" 
           b style="color:#333;" Alamat:
         div style="float:left; width:75%" 
-          span #{ @order.user.supplier.city.name} 
-          br
-          span #{ @order.user.supplier.name}
-          br
           span #{ @order.line_items.first.product.user.supplier.city.name }
-          br
-          span #{ @order.line_items.first.product.user.supplier.name }
 div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; overflow:auto; padding-top: 5px;font-size:12px; clear: both;"
   table style="width:100%"
     tr
