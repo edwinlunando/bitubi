@@ -15,7 +15,12 @@
                 .grid-flex__col.grid-flex__col--10
                   - if current_user.supplier?
                     = f.fields_for :supplier do |supplier|
-                      h2.orange Vendor
+                      .grid-flex--no-pad
+                        .grid-flex__col.grid-flex__col--4
+                          h2.orange Vendor
+                        .grid-flex__col.grid-flex__col--4.align-right--leftonresponsive 
+                          = link_to vendor_view_path(current_user), class: 'btn btn-green' do
+                            span Lihat Toko
                       .grid-flex
                         .grid-flex__col.grid-flex__col--4
                           .form-input--error-message

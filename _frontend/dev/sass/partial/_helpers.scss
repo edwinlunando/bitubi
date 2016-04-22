@@ -57,6 +57,13 @@
     text-align: right;
 }
 
+.align-right--leftonresponsive {
+    @media #{$medium} {
+        text-align: right;
+    }
+    text-align: left;
+}
+
 .flex-bottom {
     align-self: flex-end;
 }
