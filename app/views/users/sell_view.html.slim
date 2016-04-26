@@ -123,6 +123,9 @@
                               /         |  Batal
                               / - else
                               td
+                                = link_to "/pesanan/#{@order.id}/cetakinvoice", {class: 'btn-clear fa-btn btn-green'} do
+                                  i.fa.fa-file title="Cetak Invoice"  
+                                  span  Cetak Invoice
                               td colspan="3" align="right"
                                 b.mgs-10
                                   span.darkorange Nomor resi:
