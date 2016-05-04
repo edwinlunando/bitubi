@@ -63,10 +63,11 @@ class ProductsController < InheritedResources::Base
     line_item.product = product
     line_item.fixed_price = line_item.price_per_quantity
 
-    if order.total + line_item.price > current_user.credit
-      flash[:error] = 'Saldo Anda tidak mencukupi'
-      return render action: :show
-    end
+    # cek saldo cukup atau tidak
+    # if order.total + line_item.price > current_user.credit
+    #   flash[:error] = 'Saldo Anda tidak mencukupi'
+    #   return render action: :show
+    # end
 
     unless order.same_vendor?(line_item)
       flash[:error] = 'Anda hanya dapat membeli barang dari satu toko yang sama'
