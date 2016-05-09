@@ -105,12 +105,12 @@
                     if (scroll > previousScroll){
                         $('.head-contact-info').hide();
                         $('.header-main__top-bar').css('top', 0);
-                        if (notif) 
+                        if (notif)
                             notif.css('top', 50);
                     } else {
                         $('.head-contact-info').show();
                         $('.header-main__top-bar').css('top', 25);
-                        if (notif) 
+                        if (notif)
                             notif.css('top', 75);
                     }
                     previousScroll = scroll;
@@ -176,10 +176,10 @@
             this.saldoInit = function () {
                 var changer = $('#saldo-chg');
                 if(changer) {
-                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));  
-                    $('#saldo-chg').on('keypress',function(event) { 
+                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));
+                    $('#saldo-chg').on('keypress',function(event) {
                         request = $(this).val() + String.fromCharCode(event.which);
-                        $('#saldo-dest').val(parseInt(request) + parseInt($('#saldo-uid').val()));  
+                        $('#saldo-dest').val(parseInt(request) + parseInt($('#saldo-uid').val()));
                     })
                 }
             },
@@ -270,7 +270,7 @@
         //     Modernizr.load({
         //         load: assets._elevateZoom,
         //         complete: function() {
-        //             //initiate the plugin and pass the id of the div containing gallery images 
+        //             //initiate the plugin and pass the id of the div containing gallery images
         //             ezoom();
         //         }
         //     });
@@ -300,7 +300,7 @@
                     var newslider = slider.eq(i);
                     var config =  newslider.data('slick');
                     // var container = '.'+slider.eq(i).parent().attr('class').replace(' ', '.');
-                    // container = $(container);                    
+                    // container = $(container);
                     if(newslider.hasClass('rsp')) {
                         config.responsive = [
                             {
@@ -312,7 +312,7 @@
                                 }
                             }
                         ];
-                    } 
+                    }
                     // newslider.width(container.width());
                     // slider.eq(i).remove();
                     newslider.slick(config);
@@ -472,11 +472,11 @@
             }
         ]);
         $(document).on('page:load', Site.init);
-        $(document).on('change', '#prod-img', function() { 
+        $(document).on('change', '#prod-img', function() {
             var frame = $(this).parent().parent().find('img');
             Site.readURL(this, frame);
         });
-        
+
     };
 
     Modernizr.load({
