@@ -4,6 +4,13 @@ ActiveAdmin.register Withdrawal do
 
   permit_params :name, :amount, :user_id, :approved, :bank
 
+  batch_action :approve do |ids|
+    Withdrawal.find(ids).each do |withdrawal|
+      withdrawal.approve
+    end
+    redirect_to collection_path, alert: "Penarikan berhasil di approve!"
+  end
+
   member_action :approve, method: :put do
     if resource.approve
       redirect_to resource_path, notice: 'Approved!'
