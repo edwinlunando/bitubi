@@ -22,7 +22,7 @@ ActiveAdmin.register Order do
 
   batch_action :transfer do |ids|
     Order.find(ids).each do |order|
-      order.approve
+      order.transfer
     end
     redirect_to collection_path, alert: "Order berhasil ditransfer!"
   end
