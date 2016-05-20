@@ -131,8 +131,8 @@ class UsersController < ApplicationController
   end
 
   def order_print
-    @order = current_user.orders.find(params[:id])
-    render :layout => false
+    @order = Order.find(params[:id])
+    render layout: false
   end
 
   def products

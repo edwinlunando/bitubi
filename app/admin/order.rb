@@ -24,7 +24,7 @@ ActiveAdmin.register Order do
     Order.find(ids).each do |order|
       order.transfer
     end
-    redirect_to collection_path, alert: "Order berhasil ditransfer!"
+    redirect_to collection_path, alert: 'Order berhasil ditransfer!'
   end
 
   index do
