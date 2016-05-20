@@ -1,6 +1,6 @@
 div style="width:800px; margin: 0px; font-family: sans; display: block;"
   div style="float:left; width:450px; padding-right: 10px;"
-    img itempro="name" src="#{ @order.line_items.first.product.user.supplier.image.url }" alt="Vendor Logo" height="60" style="margin: 10px;"
+    img itempro="name" src="#{ @order.suppliers.first.supplier.image.url }" alt="Vendor Logo" height="60" style="margin: 10px;"
   div style="float:left; width:330px; margin-left: -20px; padding-left: 20px;"
     h1 style="font-size: 18px; color:#FF6739;"
      b Nomor Invoice: # #{ @order.id }
@@ -11,40 +11,40 @@ div style="width:800px; margin: 10px; font-family: sans; overflow:auto; display:
     div style="width:100%; margin-bottom: 10px"
       b style="color:#333;" Kepada:
     div style="width:100%; margin-bottom: 5px"
-      div style="float:left; width:25%" 
+      div style="float:left; width:25%"
         b style="color:#333;" Nama:
-      div style="float:left; width:75%" 
-        span #{ @order.address.receiver_name.capitalize }
+      div style="float:left; width:75%"
+        span #{ @order.address.receiver_name.try(:capitalize) }
     div style="width:100%; margin-bottom: 5px"
-      div style="float:left; width:25%" 
+      div style="float:left; width:25%"
         b style="color:#333;" Telepon:
-      div style="float:left; width:75%" 
+      div style="float:left; width:75%"
         span #{ @order.address.receiver_phone }
     div style="width:100%; margin-bottom: 5px"
-      div style="float:left; width:25%" 
+      div style="float:left; width:25%"
         b style="color:#333;" Alamat:
-      div style="float:left; width:75%" 
-        span #{ @order.address.one_line.capitalize }
+      div style="float:left; width:75%"
+        span #{ @order.address.one_line.try(:capitalize) }
   div style="float:left; width:340px; border-left:2px solid black; margin-left: -20px; padding-left: 20px"
     div style="width:100%; margin-bottom: 10px"
       div style="width:100%; margin-bottom: 10px"
         b style="color:#333;" Pengirim:
-      div  
-        b style="color:#FF6739;" #{ @order.line_items.first.product.supplier.name }
+      div
+        b style="color:#FF6739;" #{ @order.line_items.try(:first).product.supplier.name }
       div style="width:100%; margin-bottom: 5px"
-        div style="float:left; width:25%" 
+        div style="float:left; width:25%"
           b style="color:#333;" Nama:
-        div style="float:left; width:75%" 
-          span #{ @order.address.sender_name.capitalize }
+        div style="float:left; width:75%"
+          span #{ @order.address.sender_name.try(:capitalize) }
       div style="width:100%; margin-bottom: 5px"
-        div style="float:left; width:25%" 
+        div style="float:left; width:25%"
           b style="color:#333;" Telepon:
-        div style="float:left; width:75%" 
+        div style="float:left; width:75%"
           span #{ @order.address.sender_phone }
       div style="width:100%; margin-bottom: 5px"
-        div style="float:left; width:25%" 
+        div style="float:left; width:25%"
           b style="color:#333;" Alamat:
-        div style="float:left; width:75%" 
+        div style="float:left; width:75%"
           span #{ @order.line_items.first.product.user.supplier.city.name }
 div style="width:800px; margin: 10px; font-family: sans; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; overflow:auto; padding-top: 5px;font-size:12px; clear: both;"
   table style="width:100%"
