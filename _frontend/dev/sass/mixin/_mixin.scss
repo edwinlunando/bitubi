@@ -33,3 +33,9 @@
 	-moz-box-shadow: 0px 0px $size 0px rgba(0,0,0,$opacity);
 	box-shadow: 0px 0px $size 0px rgba(0,0,0,$opacity);
 }
+
+@mixin translate-transform ($x, $y) {
+    -webkit-transform: translate($x, $y); /* Safari */
+	-moz-transform: translate($x, $y); /* IE 9 */
+    transform: translate($x, $y); /* Standard syntax */
+}

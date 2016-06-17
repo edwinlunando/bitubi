@@ -25,11 +25,16 @@
       width: 25%;
     }
     &:hover .temp1__img-item-description--container {
-      display: block;
+      @include animate-all-transition(.25s);
+      @include translate-transform(0,0);
+      
     }
   }
   .temp1__img-item-main-container {
     width: 60%;
+    .temp1__img-item-description--container {
+      width: 50%;
+    }
     .temp1__img-item-description--content {
       top: 30%;
     }
@@ -46,19 +51,22 @@
       .temp1__img-item-description--content {
         top: 15%;
       }
+      .temp1__img-item-description--container {
+        width: 100%;
+      }
     }
   }
   .temp1__img-item-description--container {
-    @include animate-all-transition(1s);
-    display: none;
+    @include animate-all-transition(.25s);
+    @include translate-transform(100%,0);
+    
     position: absolute;
     right: 0;
-    background: rgba(0, 0, 0, 0.75);
-    width: 50%;
+    background: rgba(255, 255, 255, 0.75);
     height: 100%;
     padding: 15px;
     .temp1__img-item-description--content {
-      color: white;
+      color: $black70;
       text-align: center;
       position: relative;
     }
