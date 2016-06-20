@@ -19,10 +19,10 @@
     position: relative;
     @include animate-all-transition(1s);
     .top-bar, .bot-bar {
-      background: white;
       margin: 0 auto;
       height: 3px;
       width: 25%;
+      background: $black70;
     }
     &:hover .temp1__img-item-description--container {
       @include animate-all-transition(.25s);
@@ -31,16 +31,25 @@
     }
   }
   .temp1__img-item-main-container {
-    width: 60%;
+    width: 100%;
+    @media #{$medium} {
+      width: 60%;
+    }
     .temp1__img-item-description--container {
-      width: 50%;
+      width: 100%;
+      @media #{$medium} {
+        width: 50%;
+      }
     }
     .temp1__img-item-description--content {
       top: 30%;
     }
   }
   .temp1__img-item-children-container {
-    width: 40%;
+    width: 100%;
+    @media #{$medium} {
+      width: 40%;
+    }
     flex-wrap: wrap;
     display: inline-flex;
     .temp1__img-item--child{

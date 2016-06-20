@@ -63,12 +63,12 @@ textarea {
     font-family: $base_font_family;
 }
 
-.orange {color: $green;}
-.darkgreen {color: $darkgreen}
-.orange {color: $orange}
-.darkorange {color: $darkorange}
-.black {color: $black70;}
-.red {color: $warningred;}
+.orange {color: $green !important;}
+.darkgreen {color: $darkgreen !important; }
+.orange {color: $orange !important;}
+.darkorange {color: $darkorange !important;}
+.black {color: $black70 !important;}
+.red {color: $warningred !important;}
 
 /* 3 Header
 --------------------------------------------------------------------------- */

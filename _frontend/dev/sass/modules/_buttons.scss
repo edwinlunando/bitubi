@@ -46,9 +46,17 @@ $BTN_PADDING_SMALL: $space/20 $space;
 }
 
 .fa-btn,
-.btn-green, .btn-black, .btn-orange, .btn-red{
+.btn-green, .btn-black, .btn-orange, .btn-red, .btn-grey{
     color: white;
     @include animate-transition(.15s);
+}
+
+.btn-grey{
+    background: $black60;
+    &:hover {
+        background: $black40;
+        color: white;
+    }
 }
 
 .btn-orange {
