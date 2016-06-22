@@ -1,42 +1,36 @@
-.wrapper.over-auto
-  .temp2__img-container
-    .temp2__img-item-main-container style="background:url('/assets/img/bg-main.jpg')"
-      .temp2__img-item-overlay
-      .temp2__img-item-description--container
-        .temp2__img-item-description--content-title
-          h2 Defining Your Taste, Bit Longer Title
-        .temp2__img-item-description--content-desc
-          .top-bar
-          p Here lies a small description in order to show you the good side of our product. It will be listed here to fill up the layout and make it more "stuffed"
-    .temp2__img-item-children-container
-      .temp2__main-page-title
-        h1.black Here Lies The Main Title of the Page
+.wrapper
+  .temp3__img-container.temp3__highlight-container
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-main.jpg')"
+      .temp3__img-item-description--content
+        h2 Defining Your Taste
         .top-bar
-        p.black Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dictum convallis ornare. In commodo tortor a sapien maximus vulputate. Maecenas quam erat, ultrices a imperdiet eu, molestie quis odio. Phasellus ac finibus lectus, et elementum justo.
-      .temp2__children-image-container
-        .temp2__img-item--child.clearfix
-          .temp2__img-item--child-bg style="background:url('/assets/img/bg-sm-service.jpg')"
-          .temp2__img-item--child-description
-            h3 Simple Title
-            p Simple description a little bit shorter than other usual description
-        .temp2__img-item--child.clearfix
-          .temp2__img-item--child-bg style="background:url('/assets/img/bg-sm-adopt.jpg')"
-          .temp2__img-item--child-description
-            h3 Simple Title
-            p Simple description a little bit shorter than other usual description
-        .temp2__img-item--child.clearfix
-          .temp2__img-item--child-bg style="background:url('/assets/img/bg-sm-foodntools.jpg')"
-          .temp2__img-item--child-description
-            h3 Simple Title
-            p Simple description a little bit shorter than other usual description
-        .temp2__img-item--child.clearfix
-          .temp2__img-item--child-bg style="background:url('/assets/img/bg-sm-transport.jpg')"
-          .temp2__img-item--child-description
-            h3 Simple Title
-            p Simple description a little bit shorter than other usual description
-        
+        p Here lies a small description in order to show you the good side of our product
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-service.jpg')"
+      .temp3__img-item-description--content
+        h2 Other Title 
+        .top-bar
+        p simple description
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-adopt.jpg')"
+      .temp3__img-item-description--content
+        h2 Other Title 2
+        .top-bar
+        p simple description number two
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-foodntools.jpg')"
+      .temp3__img-item-description--content
+        h2 Other Title 3
+        .top-bar
+        p simple description number three
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-transport.jpg')"
+      .temp3__img-item-description--content
+        h2 Other Title 4
+        .top-bar
+        p simple description number four
+
 .parallax-container.wrapper.mg-bot-lg
   section.top-mg.container-med
+    h2.ft-2.black Example Title Lies Here
+    center
+      p.orange.ft-1-5 Your short description subtitile will be placed right here. A bit longer would be better to maintain the layout.
     .ft-1-25
       p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dictum convallis ornare. In commodo tortor a sapien maximus vulputate. Maecenas quam erat, ultrices a imperdiet eu, molestie quis odio. Phasellus ac finibus lectus, et elementum justo. Nunc vehicula scelerisque augue eu feugiat. Etiam vel turpis quis dui pellentesque malesuada. Proin vel libero tortor. Nam at ultrices ante, ultricies efficitur est. Etiam mi risus, bibendum sit amet quam efficitur, dignissim fringilla dolor. Fusce ullamcorper lacinia odio, non cursus enim vehicula sit amet. Sed sollicitudin lorem id convallis pulvinar. Pellentesque euismod sollicitudin mi, ac bibendum magna. Nam et arcu nisi. Praesent finibus augue ut sollicitudin elementum.
       p Suspendisse id venenatis ante. Vivmus vehicula lorem non odio tempus, sit amet rhoncus elit lacinia. Etiam  rhoncus nunc sed euismod vulputate. Pellentesque in urna sit amet arcu ultrices rhoncus a et nisl. Donec accumsan pharetra velit, semper efficitur erat commodo quis. Proin quis sem finibus, volutpat magna et, fermentum arcu. Proin urna odio, eleifend quis enim eget, fermentum pulvinar felis. Phasellus efficitur, elit a mattis congue, metus libero efficitur sem, et tincidunt quam augue sed nisl. Nunc aliquam, nulla vel viverra iaculis, mauris ligula pretium metus, molestie sollicitudin justo orci vitae ante. Nam malesuada sagittis diam. Phasellus mattis imperdiet diam eu cursus. Nunc vel arcu orci.
@@ -53,3 +47,19 @@
       a.btn.btn-orange href=""
         i.fa.fa-cart-plus 
         |  Beli di Larisni
+
+= content_for :pagescript do
+  script type="text/javascript"
+    | $( ".temp3__img-item--child" ).mouseenter(function() {
+    |   $(this).removeClass('temp3--highlight-overlay');
+    | });
+    | $( ".temp3__img-item--child" ).mouseleave(function() {
+    |   $(this).addClass('temp3--highlight-overlay');
+    | });
+    | $( ".temp3__img-item--child" ).click(function() {
+    |   $(this).siblings().removeClass('temp3__img-item--child-expanded');
+    |   $(this).siblings().addClass('temp3__img-item--child-shrinked');
+    |   $(this).removeClass('temp3__img-item--child-shrinked');
+    |   $(this).addClass('temp3__img-item--child-expanded');
+    | });
+end

@@ -4,7 +4,8 @@
 --------------------------------------------------------------------------- */
 
 .temp1__container, .temp1__img-container,
-.temp2__container, .temp2__img-container{
+.temp2__container, .temp2__img-container, 
+.temp3__container, .temp3__img-container {
   margin: 0 !important;
   padding-top: 50px;
 }
@@ -19,7 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   .temp1__img-item-main-container, .temp1__img-item-children-container {
-    @include animate-all-transition(1s);
+    @include animate-all-transition(.25s);
     flex-wrap: wrap;
     height:600px;
     max-height:600px;
@@ -253,5 +254,66 @@
         }
       }
     }
+  }
+}
+
+/* 
+--------------------------------------------------------------------------- 
+  Template 3
+--------------------------------------------------------------------------- */
+
+.temp3__img-container {
+  .temp3__img-item--child {
+    @include animate-all-transition(0.5s);
+    opacity: 1;
+    width: 100%;
+    height:300px;
+    max-height:300px;
+    @media #{$medium} {
+      height:600px;
+      max-height:600px;
+    }
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    position: relative;
+    width: 100%;
+    @media #{$medium} {
+      width: 20%;
+      float: left;
+    }
+  }
+  .temp3__img-item-description--content {
+    min-height: 600px;
+    height: 600px;
+  }
+  .temp3--highlight-overlay {
+    opacity: .7;
+  }
+
+  .temp3__img-item--child-expanded,
+  .temp3__img-item--child-shrinked {
+    width: 100% !important;
+  }
+
+  .temp3__img-item--child-expanded {
+    width: 100% !important;
+    @media #{$medium} {
+      width: 60% !important;
+    }
+  }
+
+  .temp3__img-item--child-shrinked {
+    width: 100% !important;
+    @media #{$medium} {
+      width: 10% !important;
+    }
+  }
+}
+
+.temp3__highlight-container {
+  overflow: hidden;
+  @media #{$medium} {
+    overflow: auto;
   }
 }
