@@ -149,8 +149,8 @@ Rails.application.routes.draw do
   
   # template test
   get 'template-test-1' => 'home#template1', as: 'template1'
-  get 'template-test-1' => 'home#template2', as: 'template2'
-  get 'template-test-1' => 'home#template3', as: 'template3'
+  get 'template-test-2' => 'home#template2', as: 'template2'
+  get 'template-test-3' => 'home#template3', as: 'template3'
   
 
   # get 'test' => 'users#test'
