@@ -10,6 +10,23 @@
   padding-top: 50px;
 }
 
+.template-long-desc__container {
+  blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    &:before {
+      color: #ccc;
+      content: open-quote;
+      font-size: 6em;
+      line-height: 0.1em;
+      margin-right: 0.25em;
+      vertical-align: -0.4em;
+    }
+  }
+}
 
 /* 
 --------------------------------------------------------------------------- 
@@ -265,7 +282,7 @@
 .temp3__img-container {
   .temp3__img-item--child {
     @include animate-all-transition(0.5s);
-    opacity: 1;
+    
     width: 100%;
     height:300px;
     max-height:300px;
@@ -284,11 +301,18 @@
     }
   }
   .temp3__img-item-description--content {
-    min-height: 600px;
-    height: 600px;
-  }
-  .temp3--highlight-overlay {
-    opacity: .7;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background:rgba(255,255,255,0.65);
+    color: $black70;
+    h2 {
+      margin-top: 5%;
+      @media #{$medium} {
+        margin-top: 20%;
+      }
+    }
   }
 
   .temp3__img-item--child-expanded,
@@ -299,14 +323,20 @@
   .temp3__img-item--child-expanded {
     width: 100% !important;
     @media #{$medium} {
-      width: 60% !important;
+      width: 40% !important;
+    }
+    .temp3__img-item-description--content {
+      background: rgba(255, 255, 255, 0) !important;
+      h2, p { 
+        opacity: 0;
+      }
     }
   }
 
   .temp3__img-item--child-shrinked {
     width: 100% !important;
     @media #{$medium} {
-      width: 10% !important;
+      width: 15% !important;
     }
   }
 }
