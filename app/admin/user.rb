@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   actions :all, except: [:destroy]
 
-  permit_params :email, :role, :phone_number, :active, :verified, :credit,
+  permit_params :email, :role, :phone_number, :active, :verified,
                 supplier_attributes: [:id, :name, :description, :address, :bank_account_name,
                                       :bank_account_number, :bank_name, :image, :banner_image, :city_id]
 
@@ -44,7 +44,6 @@ ActiveAdmin.register User do
       f.input :password
       f.input :verified
       f.input :active
-      f.input :credit
       f.input :role, collection: User.roles
       f.semantic_fields_for :supplier do |s|
         s.inputs 'Supplier' do
