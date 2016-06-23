@@ -1,26 +1,26 @@
 .wrapper
   .temp3__img-container.temp3__highlight-container
-    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-main.jpg')"
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('https://images7.alphacoders.com/404/404839.jpg')"
       .temp3__img-item-description--content
         h2 Defining Your Taste
         .top-bar
         p Here lies a small description in order to show you the good side of our product
-    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-service.jpg')"
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('http://www.komputerswiat.pl/media/2010/279/1434007/Razer-maelstrom.jpg')"
       .temp3__img-item-description--content
         h2 Other Title 
         .top-bar
         p simple description
-    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-adopt.jpg')"
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('http://www.desktopimages.org/pictures/2014/0721/2/razer-gaming-computer-game-mouse-pics-216866.jpg')"
       .temp3__img-item-description--content
         h2 Other Title 2
         .top-bar
         p simple description number two
-    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-foodntools.jpg')"
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('http://i.kinja-img.com/gawker-media/image/upload/s--L5Eu8K3i--/c_scale,fl_progressive,q_80,w_800/17lelvj6fncvwjpg.jpg')"
       .temp3__img-item-description--content
         h2 Other Title 3
         .top-bar
         p simple description number three
-    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('/assets/img/bg-sm-transport.jpg')"
+    .temp3__img-item--child.temp3--highlight-overlay  style="background:url('https://images.alphacoders.com/223/223143.jpg')"
       .temp3__img-item-description--content
         h2 Other Title 4
         .top-bar
@@ -56,11 +56,13 @@
   script type="text/javascript"
     | $( ".temp3__img-item--child" ).mouseenter(function() {
     |   $(this).removeClass('temp3--highlight-overlay');
+    |   $(this).siblings().removeClass('temp3__img-item--child-expanded');
+    |   $(this).siblings().addClass('temp3__img-item--child-shrinked');
+    |   $(this).removeClass('temp3__img-item--child-shrinked');
+    |   $(this).addClass('temp3__img-item--child-expanded');
     | });
     | $( ".temp3__img-item--child" ).mouseleave(function() {
     |   $(this).addClass('temp3--highlight-overlay');
-    | });
-    | $( ".temp3__img-item--child" ).click(function() {
     |   $(this).siblings().removeClass('temp3__img-item--child-expanded');
     |   $(this).siblings().addClass('temp3__img-item--child-shrinked');
     |   $(this).removeClass('temp3__img-item--child-shrinked');

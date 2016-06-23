@@ -303,15 +303,15 @@
   .temp3__img-item-description--content {
     padding: 20px;
     text-align: center;
-    height: 100%;
     width: 100%;
+    height: 100%;
     background:rgba(255,255,255,0.65);
-    color: $black70;
-    h2 {
-      margin-top: 5%;
-      @media #{$medium} {
-        margin-top: 20%;
-      }
+    color: black;
+    @media #{$medium} {
+      position: absolute;
+      height: 30%;
+      bottom: 0;
+      @include translate-transform(0,100%);
     }
   }
 
@@ -324,12 +324,13 @@
     width: 100% !important;
     @media #{$medium} {
       width: 40% !important;
+      .temp3__img-item-description--content {
+        @include translate-transform(0,0);
+      }
     }
     .temp3__img-item-description--content {
-      background: rgba(255, 255, 255, 0) !important;
-      h2, p { 
-        opacity: 0;
-      }
+      @include animate-all-transition(.25s);
+      background: rgba(255, 255, 255, 0.7) !important;
     }
   }
 
@@ -343,7 +344,4 @@
 
 .temp3__highlight-container {
   overflow: hidden;
-  @media #{$medium} {
-    overflow: auto;
-  }
 }
