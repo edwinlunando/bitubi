@@ -3,7 +3,7 @@ ActiveAdmin.register User do
   actions :all, except: [:destroy]
 
   permit_params :email, :role, :phone_number, :active, :verified,
-                supplier_attributes: [:id, :name, :description, :address, :bank_account_name,
+                supplier_attributes: [:id, :name, :description, :address, :bank_account_name, :credit,
                                       :bank_account_number, :bank_name, :image, :banner_image, :city_id]
 
   index do
@@ -16,6 +16,7 @@ ActiveAdmin.register User do
     column :active
     column :role
     column :verified
+    column :credit
     column :created_at
     actions do |user|
       item 'Aktivasi', activation_admin_user_path(user), method: :put
