@@ -16,6 +16,7 @@ ActiveAdmin.register User do
     column :active
     column :role
     column :verified
+    column :credit
     column :created_at
     actions do |user|
       item 'Aktivasi', activation_admin_user_path(user), method: :put
