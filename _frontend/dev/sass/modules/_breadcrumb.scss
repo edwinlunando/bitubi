@@ -48,6 +48,7 @@ $bread_separator    : '';
 
 .page-breadcrumb--container,
 .page-notification--container {
+    @include animate-transition(.5s);
     .breadcrumb,
     .page-notification--message {
         background: $lightorange;
@@ -66,7 +67,7 @@ $bread_separator    : '';
 
 .page-notification--container {
     position:fixed;
-    top: 50px;
+    top: 75px;
     width: 100%;
     z-index:100;
     color: white;
@@ -162,6 +163,79 @@ $bread_separator    : '';
             &:last-child {
                 font-weight: bold;
                 color: $darkorange;
+            }
+        }
+    }
+}
+
+/* 
+--------------------------------------------------------------------------- 
+  MAIN DROPSHIP BREADCRUMB
+--------------------------------------------------------------------------- */
+
+.dropship-steps {
+    li {         
+        vertical-align:top;
+        min-height: 75px;
+        @include animate-transition(.15s);
+        padding: 20px;
+        display: inline-block;
+        background: $black20;
+        width: 80%;
+        min-height: 105px;
+        margin-bottom: 10px;
+        margin-right: 40px;
+        @media #{$medium} {
+            width: 40%;vertical-align:top;
+        }
+        @media #{$large} {
+            width: 20%;
+            margin-right: 0px;
+        }
+        position: relative;
+        b {
+            color: $darkorange;
+            font-family: Lato, Arial, Verdana;
+            letter-spacing: .5px;
+            font-weight: bold;
+            font-size: 1.25em !important;
+            margin: 0 0 10px 0;
+        }
+        .dropship-steps__description {
+            margin: 0;
+            display: block;
+            font-size: 1em !important;                                                                              
+        }
+        &:hover {
+            cursor: pointer;
+            background: $orange;
+            b {
+                color: white;
+            }
+            &:after {
+                border-left: 20px solid $darkorange;
+            }
+        }
+        &:after { 
+            content: " "; 
+            width: 0; 
+            height: 0;
+            border-top: 40px solid transparent;           /* Go big on the size, and let overflow hide */
+            border-bottom: 40px solid transparent;
+            border-left: 20px solid $black30;
+            position: absolute;
+            top: 62%;
+            margin-top: -50px; 
+            left: 100%;
+            z-index: 2; 
+            display: none; 
+            @media #{$medium} {
+                display: block; 
+            }
+        }
+        &:last-child {
+            &:after {
+                display: none;
             }
         }
     }

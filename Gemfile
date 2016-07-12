@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use mysql2 as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -11,7 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,7 +44,7 @@ gem 'email_validator'
 # Money
 gem 'money-rails'
 # Admin interface
-gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'activeadmin', '1.0.0.pre1'
 # Slug
 gem 'friendly_id'
 # State machine
@@ -75,8 +75,6 @@ gem 'sentry-raven'
 gem 'spreadsheet'
 # preferences
 gem 'preferences'
-# rich text editor
-gem 'ckeditor'
 # selectize
 gem 'selectize-rails'
 # static pages
@@ -89,11 +87,18 @@ gem 'breadcrumbs_on_rails'
 gem 'mailgun_rails'
 # performance monitoring
 gem 'newrelic_rpm'
+# audited
+gem 'audited-activerecord', '~> 4.0'
+# mailchimp
+gem 'gibbon'
+# rest client
+gem 'rest-client'
 
 group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'awesome_print'
 
 end
 

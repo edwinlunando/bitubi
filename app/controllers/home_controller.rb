@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def index
     @categories = Category.all
-    @products = Product.includes(:product_images, :category).page(params[:page])
+    @products = Product.prioritize.published.includes(:product_images, :category).page(params[:page])
     render controller: :products, action: :index
   end
 
@@ -25,8 +25,15 @@ class HomeController < ApplicationController
 
   def create_supplier
     @user = User.new(supplier_params)
-    @user.active = false
-    return redirect_to root_path, notice: 'Akun vendor berhasil dibuat' if @user.save
+    @user.active = true
+    @user.verified = true
+    begin
+      gibbon = Gibbon::Request.new
+      gibbon.lists(ENV['MAILCHIMP_VENDOR_ID']).members.create(body: { email_address: @user.email, status: 'subscribed' })
+    rescue Gibbon::MailChimpError => exception
+      Raven.capture_exception(exception)
+    end
+    return redirect_to root_path, notice: 'Pendaftaran Berhasil. Silakan Cek Email Anda dan Lakukan Konfirmasi Pada Email yang Kami Kirimkan.' if @user.save
     render :register_supplier
   end
 
@@ -35,7 +42,7 @@ class HomeController < ApplicationController
 
     if @contact_form.valid?
       @contact_form.deliver
-      redirect_to root_path, notice: 'Pesan telah terkirim. Silahkan tunggu balasan dari kami.'
+      return redirect_to root_path, notice: 'Pesan telah terkirim. Silahkan tunggu balasan dari kami.'
     end
 
     render :contact
@@ -56,7 +63,8 @@ class HomeController < ApplicationController
   end
 
   def supplier_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number, supplier_attributes: [:address, :bank_account_number])
+    params.require(:user).permit(:email, :password, :password_confirmation, :phone_number,
+                                 supplier_attributes: [:name, :description, :address, :bank_account_number])
   end
 
 end

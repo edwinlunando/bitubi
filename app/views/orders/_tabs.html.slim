@@ -1,11 +1,22 @@
 ul.nav
   li.nav-one
-    = link_to keranjang_path, class: (params[:action] == 'cart') ? 'current' : '' do
+    = link_to account_profile_path, class: "#{params[:action] == 'account_profile' || params[:action] == 'account_vendor' || params[:action] == 'account' ? 'current' : ''}"
+      i.fa.fa-user
+      span Akun
+  - if current_user.supplier?
+    li.nav-two
+      = link_to dagangan_path, class: "#{params[:action] == 'products' ? 'current' : ''}"
+        i.fa.fa-dropbox
+        span Dagangan
+    li.nav-three
+      = link_to sell_path, class: "#{ (params[:action] == 'sell' || params[:action] == 'sell_view') ? 'current' : ''}"
+        i.fa.fa-archive
+        span Penjualan
+  li.nav-four
+    = link_to keranjang_path, class: "#{ (params[:action] == 'cart') ? 'current' : ''}"
       i.fa.fa-shopping-cart
-      span
-        = ' Keranjang'
-  li.nav-two
-    = link_to pesanan_path, class: (params[:action] == 'orders') ? 'current' : '' do
-      i.fa.fa-phone
-      span
-        = ' Pesanan'
+      span Keranjang
+  li.nav-four
+    = link_to pesanan_path, class: "#{ (params[:action] == 'orders') || (params[:action] == 'order') ? 'current' : ''}"
+      i.fa.fa-book
+      span Pesanan 

@@ -1,0 +1,6 @@
+- if user_signed_in? && !current_user.verified? && request.env['PATH_INFO'] != saldo_path
+  .modals
+    .modals__content
+      h3 Saldo Anda Masih Kosong
+      p Silahkan #{ link_to 'isi saldo perdana', saldo_path } Anda sebesar Rp 50.000,- untuk melakukan transaksi (Anda akan mendapatkan saldo sebesar Rp 50.000,-)
+      button.btn.btn-orange#modal-close Tutup

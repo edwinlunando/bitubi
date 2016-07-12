@@ -1,40 +1,163 @@
 .wrapper.scpp
-  .section-surfari-home.slider.mg-bot-sm data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "lazyLoad": "ondemand", "autoplaySpeed": 2000, "fade": true, "cssEase": "linear"}'
+  .section-surfari-home.slider data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "infinite": true, "centerMode": true, "autoplay": true, "lazyLoad": "ondemand", "autoplaySpeed": 5000, "fade": true, "cssEase": "linear"}'
     .banner-item
       a href=""
-        img alt="" src="/assets/img/bg-main.jpg" /
+        img alt="" src="/assets/img/banner1.jpg" /
+        .banner-caption__container
+          .banner-caption__inner
+            h1.banner-caption__title Larisni
+            p.banner-caption__description
+              b Bisnis Laris, Jualan Praktis
+            p.banner-caption__description-sm
+              b Ribuan produk laris siap dijual online.
+              br
+              b Jual Produknya, Raih Profitnya , Biar Kami kirim ordernya
     .banner-item
       a href=""
-        img alt="" src="/assets/img/bg-sm-transport.jpg" /
-    .banner-item
-      a href=""
-        img alt="" src="/assets/img/bg-sm-foodntools.jpg" /
+        img alt="" src="/assets/img/banner2.jpg" /
+        .banner-caption__container
+          .banner-caption__inner
+            h1.banner-caption__title Ingin Jualan Online tapi Tak Punya Produk?
+            p.banner-caption__description
+              b Larisni Solusinya!
+            p.banner-caption__description-sm
+              b Ribuan produk terlaris tersedia disini
+  .container.bg-dg.hero
+    .grid-flex
+      .grid-flex__col.grid-flex__col--8.sm-center
+        .category-title__title
+          .cta-call
+            | SIAPAPUN BISA BERBISNIS ONLINE
+            p.cta-bg
+              | AYO
+              span MULAI BISNISMU!
+      .grid-flex__col.grid-flex__col--4
+        center
+          = link_to daftar_path, { class: 'btn btn-green cta-btn' } do
+            b DAFTAR SEKARANG
+          = link_to daftar_path, { class: 'btn btn-orange cta-btn' } do
+            b >
+  .parallax-container.wrapper
+    section.top-mg
+        h2.ft-2 Mengapa Bergabung di Larisni?
+        br
+        center
+          b.orange.ft-2sm Keuntungan Sebagai Reseller di Larisni
+          p.black.clear-pm Jika Anda adalah seorang reseller atau seseorang yang akan memulai bisnis Anda.
+        .grid-flex
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-shopping-cart.fa-3x.orange
+            center
+              h3.darkorange Variasi Produk
+              p Lebih dari 5000 produk laris dari berbagai macam kategori yang siap dijual di ratusan vendor. Anda hanya perlu mencari produk yang menarik dari berbagai kategori yang ada. Selalu ada produk baru setiap harinya.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-money.fa-3x.orange
+            center
+              h3.darkorange Transaksi Aman
+              p Pembayaran Anda ditujukan ke rekening Larisni, bukan langsung ke rekening Vendor. Larisni baru rilis pembayaran ke vendor jika produk sudah diterima oleh pembeli.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-magic.fa-3x.orange
+            center
+              h3.darkorange Proses Mudah
+              p Anda bisa mulai berjualan produk di Larisni dalam waktu 5 menit setelah akun Anda aktif. Dengan berbagai fitur yang ada akan membuat bisnis Anda sangat mudah dijalankan.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-truck.fa-3x.orange
+            center
+              h3.darkorange Pengiriman Cepat
+              p Barang yang Anda pesan akan diproses cepat oleh kami sesuai permintaan Anda. Pengiriman dipercayakan pada kurir profesional yang terpercaya di bidangnya sehingga barang yang dipesan akan cepat sampai.
+        hr.container
+        br/
+        center.mg-20
+          center
+            b.orange.ft-2sm Keuntungan Sebagai Vendor di Larisni
+            p.black.clear-pm Jika Kamu seorang produsen atau pemilik merk / distributor / pebisnis UKM yang punya produk yang ingin dijual
+        .grid-flex
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-pencil-square.fa-3x.orange
+            center
+              h3.darkorange Pendaftaran Gratis
+              p Vendor yang mendaftar di Larisni tidak dipungut biaya apapun, 100% daftar gratis dan Anda langsung dapat berjualan memasarkan produknya di Larisni.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-users.fa-3x.orange
+            center
+              h3.darkorange Banyak Reseller
+              p Kami memiliki banyak produk laris dari berbagai kategori dengan permintaan konsumen tinggi. Hal ini tentunya menarik dan banyak diburu oleh reseller kami yang tersebar dimana-mana di seluruh Indonesia.
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-thumbs-up.fa-3x.orange
+            center
+              h3.darkorange Bisnis Laris
+              p Semakin banyak reseller yang membeli di vendor Anda, makin laris produk Anda dan makin cepat roda bisnis. Tunggu apa lagi!
+          .grid-flex__col.grid-flex__col--3
+            .value-desc
+              .circle-container
+                span
+                  i.fa.fa-globe.fa-3x.orange
+            center
+              h3.darkorange Jaringan Luas
+              p Kami bersedia membantu memperluas jangkauan pemasaran Anda dengan strategi marketing dan jaringan kami yang menjangkau seluruh wilayah Indonesia.
+  br/
+  hr.container
+  br/
+  .parallax-container.wrapper
+    section.top-mg
+        h2.ft-2 Kami Juga Menyediakan Jasa Dropship
+        center
+          p.black Bagaimana alur dropship pada Larisni?
+        .grid-flex
+          .grid-flex__col.grid-flex__col--12
+            center
+              ol.dropship-steps
+                li
+                  b 1. Pilih Produk
+                  p.dropship-steps__description Pilih produk yang ingin Anda jual
+                li
+                  b 2. Mulai Berjualan
+                  p.dropship-steps__description Promosikan produk yang Anda pilih
+                li
+                  b 3. Input Order
+                  p.dropship-steps__description Input order produk dan data pembeli
+                li
+                  b 4. Produk Dikirim
+                  p.dropship-steps__description Produk dikirim langsung ke konsumen
+        hr/
   .scap
     center
-      h3.orange Produk berdasarkan kategori
+      h3.darkorange Kategori Produk di Larisni
     .category-slider.slider.rsp data-slick='{"slidesToShow": 7, "slidesToScroll": 2, "infinite": true}'
       - @categories.each do |category|
         .slide-category
           a href='#{ products_path(category_id: category.id) }'
             .slide-category__icon
               i.menu-icon
-                img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
+                = image_tag category.image.url
             .slide-category__name
               = category.name
-          / ul.breadcrumb
-          /   li.mid-menu-breadcrumb--displayer
-          /     span Kategori
-          /   - @categories.each do |category|
-          /     li
-          /       a.list-group-item href='#{ products_path(category_id: category.id) }'
-          /         i.menu-icon
-          /           img alt="logo kategori" src="/assets/img/flat-icon-dog.png"
-          /         = category.name
   .container
     .grid-flex.np-top
       .grid-flex__col.grid-flex__col--12.np-top
         .category-title.np-side
-          h2.category-title__title New Arrivals
+          h2.category-title__title Contoh Produk Kami
           p.category-title__description
             | Barang-barang yang baru saja tercatat dalam platform kami
         .product-cards-container

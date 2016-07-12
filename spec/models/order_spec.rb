@@ -12,6 +12,15 @@
 #  address_id              :integer
 #  state_shipment_price_id :integer
 #  payment_time            :datetime
+#  receipt_number          :string(255)
+#  transfer_time           :datetime
+#  transferred             :boolean
+#  cancel_time             :datetime
+#  shipment_price_value    :decimal(10, )
+#  shipment_price_code     :string(255)
+#  shipment_price_courier  :string(255)
+#  shipment_price_name     :string(255)
+#  shipment_price_etd      :string(255)
 #
 
 require 'rails_helper'

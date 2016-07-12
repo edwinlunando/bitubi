@@ -1,17 +1,21 @@
 doctype html
 /![if IE 8] <html class="no-js lt-ie9" lang="en"
 /! [if gt IE 8]><!
-html.no-js lang="en" 
+html.no-js lang="en"
   /! <![endif]
   head
     = render 'layouts/headstyle'
-    = render 'layouts/headscript'
+    = render 'layouts/socialmeta'
   body
+    = render 'layouts/headscript'
     = render 'layouts/header'
     = render 'layouts/flash_messages'
+    = render 'layouts/modals'
     /![if lt IE 8]
       | <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 
     == yield
+
     = render 'layouts/footer'
+    == yield :pagescript
     = render 'layouts/footscript'

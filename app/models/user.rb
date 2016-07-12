@@ -28,31 +28,44 @@
 #  updated_at             :datetime         not null
 #  credit                 :decimal(10, )    default(0)
 #  supplier_id            :integer
+#  active                 :boolean          default(TRUE)
+#  verified               :boolean
+#  address                :text(65535)
 #
 
-# standard user class with devise
 class User < ActiveRecord::Base
+
+  audited
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # relation
   has_many :line_items, through: :orders
   has_many :products
   has_many :orders
   has_many :top_ups
-  phony_normalize :phone_number, default_country_code: 'ID'
-  validates :phone_number, phony_plausible: true, presence: true
-  enum role: { admin: 'admin', user: 'user', supplier: 'supplier' }
+  has_many :withdrawals
   belongs_to :supplier
   accepts_nested_attributes_for :supplier
+
+  # validation
+  phony_normalize :phone_number, default_country_code: 'ID'
+  validates :phone_number, phony_plausible: true
+  enum role: { admin: 'admin', user: 'user', supplier: 'supplier' }
+
+  # scope
+  scope :supplier, -> { where(role: [:supplier]) }
+  scope :activated, -> { where(active: true) }
 
   # callback
   before_save :default_values
 
   def default_values
     self.role ||= User.roles[:user]
+    self.supplier ||= Supplier.new
   end
 
   def country_code
@@ -66,7 +79,7 @@ class User < ActiveRecord::Base
       order.save
       return order
     else
-      if orders.last.done?
+      if orders.last.done? || orders.last.delivery? || orders.last.failed?
         order = Order.new
         order.user = self
         order.save
@@ -83,6 +96,18 @@ class User < ActiveRecord::Base
 
   def inactive_message
     'Maaf, akun ini belum diaktivasi'
+  end
+
+  def name
+    first_name.to_s + ' ' + last_name.to_s
+  end
+
+  def to_s
+    email
+  end
+
+  def to_label
+    email
   end
 
 end

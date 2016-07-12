@@ -1,0 +1,42 @@
+.wrapper
+  .top-banner
+    img src="#{ @user.supplier.banner_image.present? ? @user.supplier.banner_image.url : '/assets/img/store-dummy.jpg'}"
+    .top-banner--content
+      h1.top-banner--title #{ @user.supplier.name }
+      p
+        | #{ @user.supplier.description }
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12
+      ul.breadcrumb
+        == render_breadcrumbs tag: :li, separator: ''
+        li #{ @user.supplier.name }
+  .container
+    .grid-flex
+      .grid-flex__col.grid-flex__col--3
+        .category-title.np-side.vendor-info
+          h2.category-title__title Info
+          = image_tag @user.supplier.image.url if @user.supplier.image.present?
+          p.category-title__description.vendor-info
+            dl
+              dt.black
+                i.fa.fa-user
+                b.clear-pm Pemilik:
+              dd
+                span.darkorange #{ @user.supplier.name }
+              dt.black
+                i.fa.fa-map-marker
+                b.clear-pm Alamat:
+              dd
+                span.darkorange #{ @user.supplier.address }
+            hr
+      .grid-flex__col.grid-flex__col--9
+        .category-title.np-side
+          h2.category-title__title Produk
+          p.category-title__description
+            | Barang-barang yang baru saja tercatat dalam platform kami
+        .product-cards-container
+          - @products.each do |product|
+            = render 'products/vendorcard', product: product
+
+        div.pagination-container
+          = paginate @products

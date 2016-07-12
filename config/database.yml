@@ -12,7 +12,6 @@ development:
 
 staging:
   <<: *default
-  host: db
   database: <%= ENV['DEV_DB_NAME'] %>
   username: <%= ENV['DEV_DB_USERNAME'] %>
   password: <%= ENV['DEV_DB_PASSWORD'] %>
@@ -22,7 +21,6 @@ staging:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: db
   database: <%= ENV['TEST_DB_NAME'] %>
   username: <%= ENV['TEST_DB_USERNAME'] %>
   password: <%= ENV['TEST_DB_PASSWORD'] %>

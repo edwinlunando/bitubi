@@ -8,7 +8,7 @@ class ProductsController < InheritedResources::Base
     add_breadcrumb 'Produk', :products_path
 
     @categories = Category.all
-    products = Product.all
+    products = Product.published
     if params[:q].present?
       products = products.where('lower(name) LIKE ?', '%' + params[:q].downcase + '%')
     end
@@ -23,14 +23,29 @@ class ProductsController < InheritedResources::Base
     add_breadcrumb 'Home', :root_path
     add_breadcrumb 'Produk', :products_path
 
-    @product = Product.friendly.find(params[:id])
+    @product = Product.friendly.published.find(params[:id])
     @line_item = LineItem.new
+  end
+
+  def vendors
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Daftar Vendor', :vendors_path
+    @vendors = User.activated.supplier.page(params[:page])
+  end
+
+  def vendor
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb 'Daftar Vendor', :vendors_path
+    products = Product.published.where('user_id = ?', params[:id])
+    @user = User.activated.find(params[:id])
+    @products = products.page(params[:page])
   end
 
   def add_to_cart
     @product = product = Product.friendly.find(params[:id])
     order = current_user.last_order
     # find item in line item
+
     if order.line_items.where('line_items.product_id = ?', product.id).exists?
       @line_item = line_item = order.line_items.where('line_items.product_id = ?', product.id).first
       line_item.quantity += line_item_params[:quantity].to_i
@@ -46,10 +61,17 @@ class ProductsController < InheritedResources::Base
 
     line_item.order = order
     line_item.product = product
+    line_item.fixed_price = line_item.price_per_quantity
+
+    # cek saldo cukup atau tidak
+    # if order.total + line_item.price > current_user.credit
+    #   flash[:error] = 'Saldo Anda tidak mencukupi'
+    #   return render action: :show
+    # end
 
     unless order.same_vendor?(line_item)
       flash[:error] = 'Anda hanya dapat membeli barang dari satu toko yang sama'
-      return render action: :show
+      return redirect_to vendor_view_path(order.suppliers.first)
     end
 
     if line_item.save

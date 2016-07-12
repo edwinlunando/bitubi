@@ -25,7 +25,8 @@
 
 @import url(http://fonts.googleapis.com/css?family=Oswald:400,700);
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+// @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 
 /* 2 Basic styles
@@ -67,6 +68,7 @@ textarea {
 .orange {color: $orange}
 .darkorange {color: $darkorange}
 .black {color: $black70;}
+.red {color: $warningred;}
 
 /* 3 Header
 --------------------------------------------------------------------------- */
@@ -79,10 +81,108 @@ textarea {
     margin-bottom: $space;
 }
 
+.modals {
+	background: rgba(0,0,0,0.75);
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	.modals__content {
+		@media #{$medium} {
+			width: 500px;
+			margin: 100px auto;
+	    }
+	    width: 80%;
+	    margin: 20px auto;
+	    border-top: 3px solid $orange;
+	    background: white;
+	    padding: 20px;
+	    h3 {
+	    	color: $darkorange;
+	    	margin-bottom: 10px; 
+	    }
+	    p {
+	    	color: $black70;
+	    }
+	}
+}
+
 /*
 ---------------------------------------------------------------------------
   HOME SORT & FILTER CATEGORY
 --------------------------------------------------------------------------- */
+
+.cta-call {
+	font-weight: bold;
+	color: $black70;
+	padding-left: 40px;
+	font-size: 1em;
+	@media #{$small} {
+		font-size: 1.5em;
+	}
+	.cta-bg {
+		font-size: 1em;
+		@media #{$small} {
+			font-size: 1.5em;
+		}
+		margin: 0;
+		span {
+			color: $darkorange;
+		}
+	}
+}
+
+.cta-btn {
+	padding: 20px 25px;
+	b {
+		font-size: 1.25em;
+	}
+}
+
+.value-desc {
+	display: block;
+	width: 100%;
+	color: $black70;
+	.circle-container {
+		margin: 20px auto;
+		height: 87px;
+		width: 87px;
+		border-radius: 87px;
+		border: 3px solid $orange;
+		text-align: center;
+		display: table;
+		span {
+			display: table-cell;
+			vertical-align: middle;
+			
+		}
+	}
+}
+
+.value-desc-inline {
+	display: block;
+	width: 100%;
+	color: $black70;
+	.circle-container-sm {
+		margin: 20px;
+		height: 60px;
+		width: 60px;
+		border-radius: 87px;
+		border: 3px solid $orange;
+		text-align: center;
+		display: table;
+		span {
+			display: table-cell;
+			vertical-align: middle;
+			
+		}
+	}
+	.value-desc-inline__desc-container {
+		h3 {
+			margin: 0;
+		}
+	}
+}
 
 .filter-container {
 	border-bottom: 1px solid $black30;
@@ -99,9 +199,10 @@ textarea {
 		@media #{$large} {
 			font-size: 2em;
 		}
-		letter-spacing: 2px;
+		font-family: 'Open Sans', sans-serif;
 		text-transform: uppercase;
-		color: $orange;
+		color: $darkorange;
+		// letter-spacing: 2px;
 		margin-bottom: 10px;
 	}
 	.product-title {
@@ -120,6 +221,33 @@ textarea {
 		}
 		span {
 			color: $darkorange;
+		}
+		dl {
+			font-weight: bold;
+			text-align: center;
+			dt, dd {
+				display: inline-block;
+				margin: 0 5px;
+			}
+			dt {
+				color: $black70;
+			}
+			dd {
+				color: $darkorange;
+				&:after {
+					content: '|';
+					color:$black70;
+					margin-left: 5px;
+				}
+			}
+			dd:last-child {
+				&:after {
+					content: '';
+				}
+			}
+		}
+		p {
+			margin-bottom:10px;
 		}
 	}
 
@@ -200,6 +328,34 @@ textarea {
 
 /*
 ---------------------------------------------------------------------------
+  ACCOUNT PAGE
+--------------------------------------------------------------------------- */
+
+.account-menu {
+	li {
+		list-style: none;
+		border-bottom: 1px solid $black30;
+		&:hover {
+			background-color: $orange;
+			span, i {
+				color: white;
+			}
+		}
+	}
+	i {
+		width: 20px;
+		text-align: center;
+	}
+	.active {
+		background: $darkorange;
+		span, i {
+			color: white !important;
+		}
+	}
+}
+
+/*
+---------------------------------------------------------------------------
   PRODUCT DETAIL + STORE DETAIL
 --------------------------------------------------------------------------- */
 
@@ -232,6 +388,21 @@ textarea {
 	p {
 		color: $black70;
 	}
+	.profnprod-viewer__seller-info {
+		margin: 20px 0;
+		figure {
+			div {
+				display: inline-block;
+			}
+			img {
+				width: 90px;
+				padding: 5px;
+				margin-right: 20px;
+				border: 1px solid $black30;
+				float: left;
+			}
+		}
+	}
 	.profnprod-viewer__thumbnails {
 		ul {
 			list-style: none;
@@ -256,6 +427,20 @@ textarea {
 				}
 			}
 		}
+	}
+}
+
+.vendor-info {
+	img {
+		border: 1px solid $black30;
+		padding: 10px;
+		margin-bottom: 10px;
+		max-width: 200px;
+	}
+	i {
+		width: 15px;
+		height: 15px;
+		margin-right: 5px;
 	}
 }
 
@@ -351,6 +536,14 @@ textarea {
 	}
 }
 
+.confirmation-receiver {
+  color: $black70;
+  padding: 5px;
+  p {
+    margin-bottom: .5em;
+  }
+}
+
 
 /* 5 Footer
 --------------------------------------------------------------------------- */
@@ -368,6 +561,14 @@ footer {
 		}
 	}
 
+	h3 {
+		margin-bottom: 5px;
+		@media #{$medium} {
+			margin-bottom: 25px;
+		}
+	}
+
+
 	.foot-info-col {
 		flex-basis: 100%;
 		@media #{$medium} {
@@ -379,15 +580,15 @@ footer {
 		font-size: 1em;
 		color: $darkorange;
 	}
-	h3 {
-		margin-bottom: 25px;
-	}
 	hr {
 		width:100%;
+		margin-bottom: 5px;
 		@media #{$medium} {
 			width: 25%;
+			margin-bottom: 20px;
 		}
 	}
+
 	a {
 		color: $black70;
 		@include animate-transition(.25s);
@@ -437,12 +638,14 @@ footer {
 		margin-right: 10px;
 		font-size: 14pt;
 	}
-	input, select {
+	input, select, textarea {
 		padding: 8px 8px 10px 8px;
 		margin: 5px;
 		color: $black70;
-		height: 40px !important;
 		width: 100%;
+	}
+	input, select {
+		height: 40px !important;
 	}
 	select {
 		background-color: $transwhite;
@@ -548,13 +751,30 @@ footer {
 	li {
 		margin-bottom: 10px;
 		color: $darkorange;
+		display: inline-block;
+		margin: 20px 20px 20px 0;
+		text-align: center;
+		font-size: 18px;
 		div {
 			vertical-align: middle;
 			color: $black80;
+			text-align: left;
+			font-size: 14px;
 			div, img {
 				display: inline-block;
 				margin: 5px;
 			}
 		}
+	}
+}
+
+.instruction-set__withdrawal {
+	padding: 0 10px;
+	li {
+		display: list-item;
+		list-style-type: number_format;
+		color: $black70 !important;
+		margin: 10px;
+		text-align: left;
 	}
 }

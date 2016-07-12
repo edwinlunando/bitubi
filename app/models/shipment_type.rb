@@ -9,8 +9,9 @@
 #  updated_at   :datetime         not null
 #
 
-# model shipment type like JNE OKE, REGULER
 class ShipmentType < ActiveRecord::Base
+
   has_many :state_shipment_prices
   has_many :state, through: :state_shipment_prices
+
 end

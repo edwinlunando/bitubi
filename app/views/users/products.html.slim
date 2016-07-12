@@ -9,34 +9,50 @@
         #surfari-tabs
           == render 'tabs'
           .list-wrap
-            h2.darkorange Produk Anda
-            .table-container
-              p
-                = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
-              table.table
-                thead
-                  tr
-                    th align="center"  Thumbnail
-                    th Item
-                    th Stok
-                    th Weight
-                    th Unit
-                    th align="center"  Action
-                tbody
-                  - @products.each do |product|
-                    tr
-                      td align="center"
-                        - if product.get_first_image.present?
-                          img.lazy alt="" data-original="#{ product.get_first_image.data.url(:thumb) }"
-                      td #{ product.name }
-                      td #{ product.stock }
-                      td #{ product.weight }
-                      td #{ product.unit }
-                      td align="center"
-                        / a href=""
-                        /   i.fa-btn.btn-green.fa.fa-money title="set sold"
-                        = link_to "/dagangan/#{ product.id }/edit" do
-                          i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                        = link_to "/dagangan/#{ product.id }/hapus", {'data-confirm': "Hapus produk #{product.name}?"} do
-                          button.btn-clear type="submit"
-                            i.fa-btn.btn-red.fa.fa-trash title="delete"
+            .grid-flex__col.grid-flex__col--12
+              h2.darkorange.clear-pm Produk Anda
+              .grid-flex
+                .grid-flex__col.grid-flex__col--6.clear-pm
+                  = simple_form_for('', url: dagangan_path, method: :get, html: { class: 'inline-flex' }) do |f|
+                    .grid-flex
+                      .grid-flex__col.grid-flex__col--4
+                        = f.input :name, label: 'Nama', placeholder: 'Cari nama', input_html: { value: @name }
+                      .grid-flex__col.grid-flex__col--4
+                        = f.input :published, collection: [['Pilih kondisi', nil], ["Ya", 1], ["Tidak", 0]], label: 'Aktif', selected: @published
+                      .grid-flex__col.grid-flex__col--4
+                        button.btn.btn-green.btn-bot type="submit" Cari
+                .grid-flex__col.grid-flex__col--6.align-right.flex-bottom
+                  - if !@products.present?
+                    .black.mg-10 colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.
+                  = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
+
+              .table-container
+                - if @products.present?
+                  table.table
+                    thead
+                      tr
+                        th align="center"  Gambar
+                        th Item
+                        th Stok
+                        th Weight
+                        th Unit
+                        th Aktif
+                        th align="center"  Aksi
+                    tbody
+                      - @products.each do |product|
+                        tr
+                          td align="center"
+                            - if product.get_first_image.present?
+                              img.lazy alt="" data-original="#{ product.get_first_image.data.url(:small) }"
+                          td
+                            = link_to "/dagangan/#{ product.id }/edit" do
+                              | #{ product.name }
+                          td #{ product.stock }
+                          td #{ product.weight }
+                          td #{ product.unit }
+                          td #{ product.published ? 'Aktif' : 'Tidak aktif' }
+                          td align="center"
+                            = link_to "/dagangan/#{ product.id }/edit" do
+                              i.fa-btn.btn-yellow.fa.fa-edit title="edit"
+                            = link_to delete_sell_path(product), data: { confirm: "Non-aktifkan produk #{product.name}?" }, method: :delete
+                                i.fa-btn.btn-red.fa.fa-trash title="delete"

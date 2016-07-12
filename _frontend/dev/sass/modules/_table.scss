@@ -61,12 +61,12 @@ $table_border_prop          : "solid 1px " + $table-border;
         padding: $table_cell_padding;
         // border-right: unquote($table_border_prop);
 
-        &:first-child {
-            // border-left: unquote($table_border_prop);
-        }
-        &:last-child{
-            min-width: 120px;
-        }
+        // &:first-child {
+        //    border-left: unquote($table_border_prop);
+        // }
+        // &:last-child{
+        //     min-width: 120px;
+        // }
     }
 }
 
@@ -166,8 +166,43 @@ $table_border_prop          : "solid 1px " + $table-border;
     }
 }
 
-.highlight-info {
-    background-color: $black30;
+.highlight-info, .higlight-info-2 {
     color: $black90;
     font-weight: bold;
+    padding: .4em;
+}
+
+.highlight-info {
+    background-color: $black30;
+}
+
+.highlight-info-2 {
+    background-color: lighten($green, 25%);
+}
+
+.table-products__info {
+    a { b {font-size: 18px;} }
+    b {font-size: 14px;}
+}
+
+.table-products__form {
+    max-width: 200px;
+    text-align: left;
+
+    input {
+        max-width: 100px;
+        padding: 5px;
+    }
+}
+
+.total-price {
+    b {
+        margin-right: 10px;
+        color: $black70;
+    }
+}
+
+.action-delete {
+    min-width: 0 !important;
+    width: 40px !important;
 }

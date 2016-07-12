@@ -8,51 +8,68 @@
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           == render 'tabs'
-          .flex-grid
-            .flex-grid__col.flex-grid__col--12
+          .list-wrap
+            .grid-flex__col.grid-flex__col--12
               h2.darkorange Penjualan
+              .grid-flex
+                = simple_form_for('', url: sell_path, method: :get, html: { class: 'inline-flex' }) do |f|
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :id, label: 'Order id', placeholder: 'Order Id', input_html: { value: @id }
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :receipt_number, label: 'Nomor Resi', placeholder: 'Resi', input_html: { value: @receipt_number }
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :date_from, as: :date, html5: true, label: 'Tanggal (Dari)', placeholder: 'Dari', input_html: { value: @date_from }
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :date_to, as: :date, html5: true, label: 'Tanggal (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }
+                  .grid-flex__col.grid-flex__col--2
+                    button.btn.btn-green.btn-bot type="submit" Cari
               .table-container
-                table.table
-                  thead
-                    tr align="center"
-                      th Order Id
-                      th Pembeli
-                      th Alamat
-                      th Jumlah Item
-                      th Status
-                      th Harga
-                      th Ongkir
-                      th Total
-                      th Action
-                  tbody
-                  - @line_items.each do |line_item|
-                    tr align="center"
-                      td #{ line_item.order.id }
-                      td #{ line_item.order.user.email }
-                      td #{ line_item.order.address.one_line }
-                      td #{ line_item.quantity  }
-                      td #{ line_item.state }
-                      td align="right"  #{ number_format(line_item.price) }
-                      td #{ number_format(line_item.shipping_cost) }
-                      td #{ number_format(line_item.total) }
-                      td align="center"
-                        - if line_item.confirm?
-                          = link_to line_items_approve_path(line_item), method: :post, html_options: { class: 'btn-clear order-expandable' }
-                            i.fa-btn.btn-black.fa.fa-check title="view"
-                        - if line_item.delivery?
-                          - @order_target = "order#{line_item.order.id}"
-                          span.order-expandable data-target="#{@order_target}"
-                            i.fa-btn.btn-yellow.fa.fa-truck title="kirim"
-                        - unless line_item.failed?
-                          = link_to line_items_cancel_path(line_item), method: :post, data: {confirm: 'Apakah Anda yakin?'}
-                            i.fa-btn.btn-red.fa.fa-ban title="batalkan"
-                    tr.highlight-info id="#{@order_target}" style="display:none"
-                      td colspan="6"
-                      td
-                        b Resi
-                      td
-                        input.form-input
-                      td align="center"
-                        = link_to line_items_ship_path(line_item), method: :post, class: 'fa-btn btn-green'
-                          i.fa.fa-truck title="kirim"
-                          |  kirim
+                - if !@orders.present?
+                  span.black
+                    | Belum ada penjualan yang tercatat. Mungkin Anda ingin memeriksa kembali
+                    = link_to 'dagangan', dagangan_path, class: 'btn btn-small btn-orange mgs-10'
+                    | Anda atau memeriksa kembali
+                    = link_to 'Toko', vendor_view_path(current_user.supplier.id), class: 'btn btn-small btn-green mgs-10'
+                    | Anda
+                - else
+                  table.table
+                    thead
+                      tr align="center"
+                        th Order ID
+                        th Pembeli
+                        th Harga
+                        th Status
+                        th Aksi
+                    tbody
+                        - @orders.each do |order|
+                          tr align="center"
+                            td
+                              b.darkorange id: #{ order.id }
+                              br/
+                              small.black #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
+                            td align="left"
+                              b.darkorange #{ order.user.name }
+                              br
+                              span.black #{ order.user.email }
+                              br
+                              small.black #{ order.address.one_line.titleize if order.address.present? }
+                            td.black align="left"
+                              small Biaya: #{ number_format(order.total_without_shipment) }
+                              br/
+                              small Ongkir: #{ number_format(order.shipment_price) }
+                              br/
+                              small
+                                b.darkorange Total: #{ number_format(order.total) }
+                            td
+                              b
+                                -if order.state == 'done'
+                                  span.darkgreen #{ order.state_simple }
+                                -elsif order.state =='failed'
+                                  span.red #{order.state_simple}
+                                -else
+                                  span.darkorange #{order.state_simple}
+                            td align="center"
+                              = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
+                                i.fa.fa-folder-open title="view"
+              div.pagination-container
+                  = paginate @orders

@@ -6,6 +6,7 @@
 ********************************************************************************/
 
 ;(function ( window, document, undefined ) {
+    var previousScroll = 0;
 
     var path = {
         css: myPrefix + '/assets/css/',
@@ -21,7 +22,8 @@
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
         _waitForImages  : path.js + 'jquery.waitforimages.js',
-        _elevateZoom    : path.js + 'jquery.elevatezoom.js',
+        _selectize      : path.js + 'jquery.selectize.js',
+        // _elevateZoom    : path.js + 'jquery.elevatezoom.js',
         // layouting js
         // _dropdown       : path.js + 'jquery.dropdown.min.js', // could conflict with fastclick - optional styling
         _slider         : path.js + 'slick.js',
@@ -66,7 +68,7 @@
             Modernizr.load({
                 load: assets._waitForImages,
                 complete: function() {
-                    console.log('waitforimagesLoaded');
+                    // console.log('waitforimagesLoaded');
                 }
             });
         },
@@ -98,8 +100,26 @@
             // for every layouting that need reinit, could be placed here
 
             this.menuInit = function () {
+                $(window).scroll(function(event){
+                    var scroll = $(this).scrollTop();
+                    var notif = $('.page-notification--container');
+                    if (scroll > previousScroll){
+                        $('.head-contact-info').hide();
+                        $('.header-main__top-bar').css('top', 0);
+                        if (notif)
+                            notif.css('top', 50);
+                    } else {
+                        $('.head-contact-info').show();
+                        $('.header-main__top-bar').css('top', 25);
+                        if (notif)
+                            notif.css('top', 75);
+                    }
+                    previousScroll = scroll;
+                });
+
                 $('.nav-icon').on('click', function() {
                     $('.wrapper').toggleClass('slide');
+                    $('.head-contact-info').toggleClass('open');
                     $('.header-main__top-bar').toggleClass('open');
                     $('.main-navigation').toggleClass('menu-open');
                     var menu = $('.menu-search__container');
@@ -142,6 +162,9 @@
                     $('.overlay').toggleClass('dim');
                     $('.login-register__container').fadeToggle();
                 });
+                $('#modal-close').on('click', function(e) {
+                    $('.modals').fadeOut('fast');
+                });
             },
 
             this.midMenuInit = function () {
@@ -154,6 +177,17 @@
                 }
             },
 
+            this.saldoInit = function () {
+                var changer = $('#saldo-chg');
+                if(changer) {
+                    $('#saldo-dest').val(parseInt(changer.val()) + parseInt($('#saldo-uid').val()));
+                    $('#saldo-chg').on('keypress',function(event) {
+                        request = $(this).val() + String.fromCharCode(event.which);
+                        $('#saldo-dest').val(parseInt(request) + parseInt($('#saldo-uid').val()));
+                    })
+                }
+            },
+
             this.imageViewerInit = function () {
                 $('.profnprod-viewer__thumb img').on('click', function() {
                     var src = $(this).attr('src');
@@ -163,8 +197,8 @@
                     var img = $('<img id="elevate-zoom">');
                     img.attr('src', src);
                     img.attr('data-zoom-image', src);
-                    img.appendTo('.profnprod-viewer__frame');
-                    img.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
+                    img.prependTo('.profnprod-viewer__frame');
+                    // img.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
                 })
             },
 
@@ -192,29 +226,125 @@
                 $('.page-notification--close-btn').click(function() {
                     $('.page-notification--container').fadeToggle('fast');
                 });
-            }
-        },
+            },
 
-        elevateZoom: function () {
-            // reinitiation
-            var _this = this;
-            var $zoom = $('#elevate-zoom');
+            this.selectInit = function () {
+                var select = $('.select-text'),
+                    province = $('#address_province'),
+                    city = $('#address_city'),
+                    state = $('#address_state_id'),
+                    delivery = $('#address_shipment_type'),
+                    courier = $('#address_courier');
 
-            if (!$zoom.length) return;
-
-            Modernizr.load({
-                load: assets._elevateZoom,
-                complete: function() {
-                    //initiate the plugin and pass the id of the div containing gallery images 
-                    ezoom();
+                // init selectize to all select-text
+                if (select) {
+                    select.selectize({create: true, sortField: 'text' });
                 }
-            });
 
-            function ezoom() {
-                $zoom = $('#elevate-zoom');
-                $zoom.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
+                // on change event reinit
+                province.change(function(){
+                    var val_id = this.value;
+                    $.get('/provinsi?id='+val_id, function(data) {
+                        var city = $('#address_city');
+                        city.selectize()[0].selectize.destroy();
+                        city.html(data);
+                        city.removeAttr('disabled');
+                        city.selectize({create: true, sortField: 'text' });
+                    });
+                });
+
+                city.change(function() {
+                    var val_id = this.value;
+                    $.get('/kota?id='+val_id, function(data) {
+                        var ad_state = $('#address_state_id');
+                        ad_state.selectize()[0].selectize.destroy();
+                        ad_state.html(data);
+                        ad_state.removeAttr('disabled');
+                        ad_state.selectize({create: true, sortField: 'text' });
+                    });
+                });
+
+                var state_id;
+
+                state.change(function() {
+                    state_id = this.value;
+                    courier.selectize()[0].selectize.destroy();
+                    courier.removeAttr('disabled');
+                    courier.selectize({create: true, sortField: 'text' });
+                });
+
+                courier.change(function() {
+                    courier_type = this.value;
+                    $.get('/biaya_pengiriman?id='+state_id+'&courier='+courier_type, function(data) {
+                        var shipment_cost = $('#address_shipment_type')
+                        shipment_cost.selectize()[0].selectize.destroy();
+                        shipment_cost.html(data);
+                        shipment_cost.removeAttr('disabled');
+                        shipment_cost.selectize({create: true, sortField: 'text' });
+                    });
+                });
+
+                delivery.change(function() {
+                    $('.addr-btn').removeAttr("disabled");
+                });
+            }
+
+            this.equalHeight = function() {
+                var currentTallest = 0,
+                    currentRowStart = 0,
+                    rowDivs = new Array(),
+                    $el,
+                    topPosition = 0;
+
+                $('.cards').each(function() {
+                    $el = $(this);
+                    topPosition = $el.position().top;
+
+                    if (currentRowStart != topPosition) {
+                        // we just came to a new row.  Set all the heights on the completed row
+                        for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                            rowDivs[currentDiv].height(currentTallest);
+                        }
+                        // set the variables for the new row
+                        rowDivs.length = 0; // empty the array
+                        currentRowStart = topPosition;
+                        currentTallest = $el.height();
+                        rowDivs.push($el);
+
+                    } else {
+                    // another div on the current row.  Add it to the list and check if it's taller
+                    rowDivs.push($el);
+                    currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+                    }
+
+                    // do the last row
+                    for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                        rowDivs[currentDiv].height(currentTallest);
+                    }
+                });
             }
         },
+
+        // elevateZoom: function () {
+        //     // reinitiation
+        //     var _this = this;
+        //     var $zoom = $('#elevate-zoom');
+
+        //     if (!$zoom.length) return;
+
+        //     Modernizr.load({
+        //         load: assets._elevateZoom,
+        //         complete: function() {
+        //             //initiate the plugin and pass the id of the div containing gallery images
+        //             ezoom();
+        //         }
+        //     });
+
+        //     function ezoom() {
+        //         $zoom = $('#elevate-zoom');
+        //         $zoom.elevateZoom({constrainType:"height", constrainSize:274, zoomType: "lens", containLensZoom: true, gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: "active", scrollZoom: true});
+        //     }
+        // },
 
         slider: function() {
             var _this = this;
@@ -235,7 +365,7 @@
                 	var newslider = slider.eq(i);
                     var config =  newslider.data('slick');
                 	// var container = '.'+slider.eq(i).parent().attr('class').replace(' ', '.');
-                	// container = $(container);                	
+                	// container = $(container);
                     if(newslider.hasClass('rsp')) {
                         config.responsive = [
                             {
@@ -247,7 +377,7 @@
                                 }
                             }
                         ];
-                    } 
+                    }
                     // newslider.width(container.width());
                     // slider.eq(i).remove();
                 	newslider.slick(config);
@@ -264,7 +394,7 @@
             // reinitiation
             var _this = this;
             Modernizr.load({
-                load: [assets._throttle, assets._debounce],
+                load: [assets._throttle, assets._debounce, assets._selectize],
                 complete: function() {
                     var ui = new _this.ui();
 
@@ -274,6 +404,9 @@
                     ui.storeManageImageViewerInit();
                     ui.orderTableInit();
                     ui.notifCloseInit();
+                    ui.selectInit();
+                    ui.saldoInit();
+                    ui.equalHeight();
                     // Site.organicTabs("#surfari-tabs");
                 }
             })
@@ -305,10 +438,10 @@
                     cb();
                 },
 
-                function elevateZoom(cb) {
-                    Site.elevateZoom();
-                    cb();
-                },
+                // function elevateZoom(cb) {
+                //     Site.elevateZoom();
+                //     cb();
+                // },
 
                 function resize(cb) {
                     Site.resize();
@@ -405,11 +538,11 @@
             }
         ]);
         $(document).on('page:load', Site.init);
-        $(document).on('change', '#prod-img', function() { 
+        $(document).on('change', '#prod-img', function() {
             var frame = $(this).parent().parent().find('img');
             Site.readURL(this, frame);
         });
-        
+
     };
 
     Modernizr.load({

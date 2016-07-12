@@ -12,9 +12,9 @@ class UserMailer < ApplicationMailer
     mail(to: @order.user.email, subject: 'Konfirmasi Pesanan')
   end
 
-  # def top_up_confirmation(top_up)
-  #   @top_up = top_up
-  #   mail(to: @top_up.user.email, subject: 'Konfirmasi Top Up Saldo')
-  # end
+  def top_up_confirmation(top_up)
+    @top_up = top_up
+    mail(to: @top_up.user.email, subject: 'Konfirmasi Top Up Saldo')
+  end
 
 end
