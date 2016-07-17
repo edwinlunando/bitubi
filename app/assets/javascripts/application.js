@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 
-//= require js/vendor/modernizr
 //= require bitubi
 //= require main
 //= require jquery_nested_form

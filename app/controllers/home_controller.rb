@@ -66,5 +66,14 @@ class HomeController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation, :phone_number,
                                  supplier_attributes: [:name, :description, :address, :bank_account_number])
   end
+  
+  def template1
+  end
+
+  def template2
+  end
+
+  def template3
+  end
 
 end

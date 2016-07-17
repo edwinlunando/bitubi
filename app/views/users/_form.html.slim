@@ -3,7 +3,7 @@
     b
       = f.error_notification
   .grid-flex
-    .grid-flex__col.grid-flex__col--4
+    .grid-flex__col.grid-flex__col--8
       label.form-label/
       h3 Data
       = f.association :category, label: 'Kategori'
@@ -13,21 +13,27 @@
       = f.input :weight, label: 'Berat (dalam gram)'
       = f.input :stock, label: 'Stok (jumlah)'
       = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
-    .grid-flex__col.grid-flex__col--4 style="overflow: hidden"
-      label.form-label/
-      h3 Gambar
-      div
-        = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
-        = f.simple_fields_for :product_images do |img|
-          img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
-          br
-          = img.input :data, label: false, input_html: {id: 'prod-img'}
-          br
-          = img.link_to_remove class: 'btn' do
-            i.fa.fa-trash
-          br
-          br
-          hr
+      br
+      hr
+      .grid-flex
+        .grid-flex__col.grid-flex__col--12 style="overflow: hidden"
+          h3 Gambar
+          = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
+          = f.simple_fields_for :product_images do |img|
+            div style="overflow:auto;"
+              div style="width:33%; float:left;"
+                img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                br
+                = img.input :data, label: false, input_html: {id: 'prod-img'}
+                br
+                = img.link_to_remove class: 'btn' do
+                  i.fa.fa-trash
+              div style="width:66%; float:left;"
+                = f.input :title, label: 'Judul'
+                = f.input :description, label: 'Deskripsi Singkat'
+            br
+            hr
+            br
     .grid-flex__col.grid-flex__col--4
       label.form-label/
       h3 Harga Satuan
@@ -63,5 +69,11 @@
         = f.link_to_add 'Tambah harga grosir', :wholesale_prices, class: 'btn'
   .grid-flex
     .grid-flex__col.grid-flex__col--12
+      hr
       = f.submit 'Simpan', class: 'btn btn-green'
       = link_to 'Batal', products_path, class: 'btn btn-orange'
+
+= content_for :pagescript do
+  script type="text/javascript" src="/assets/ckeditor/ckeditor.js"
+  script type="text/javascript"
+    |   CKEDITOR.replace( 'product[description]');
