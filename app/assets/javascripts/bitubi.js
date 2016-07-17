@@ -17,7 +17,7 @@
         _async          : 'https://cdnjs.cloudflare.com/ajax/libs/async/1.4.2/async.min.js',
         _jquery_cdn     : 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
         _jquery_local   : path.js + 'jquery.js',
-        _fastclick      : path.js + 'fastclick.js',
+        // _fastclick      : path.js + 'fastclick.js',
         _lazyLoad       : path.js + 'jquery.lazyload.js',
         _throttle       : path.js + 'jquery.throttledresize.js',
         _debounce       : path.js + 'jquery.debouncedresize.js',
@@ -37,14 +37,14 @@
             window.Site = Site;
         },
 
-        fastClick: function () {
-            Modernizr.load({
-                load    : assets._fastclick,
-                complete: function () {
-                    FastClick.attach(document.body);
-                }
-            });
-        },
+        // fastClick: function () {
+        //     Modernizr.load({
+        //         load    : assets._fastclick,
+        //         complete: function () {
+        //             FastClick.attach(document.body);
+        //         }
+        //     });
+        // },
 
         enableActiveStateMobile: function () {
             if ( document.addEventListener ) {
@@ -415,8 +415,8 @@
         asyncProcess: function() {
             async.parallel([
                 function fastClick(cb) {
-                    Site.fastClick();
-                    cb();
+                    // Site.fastClick();
+                    // cb();
                 },
 
                 function enableActiveStateMobile(cb) {
