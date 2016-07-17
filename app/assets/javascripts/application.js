@@ -15,6 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 
-//= require bitubi
 //= require main
+//= require bitubi
 //= require jquery_nested_form
