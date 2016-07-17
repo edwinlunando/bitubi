@@ -1,0 +1,58 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          = link_to "Home", root_path
+        li
+          = link_to "Dompet", saldo_path
+  .container
+    .grid-flex
+      = render 'topup_tabs'
+      .grid-flex__col.grid-flex__col--10
+        .static-title.clear-pm
+          center
+            h2.static-title__title Konfirmasi Topup
+            span.category-title__detailed-description
+              | Silahkan konfirmasi pembayaran yang telah Anda lakukan
+        .grid-flex
+          .grid-flex__col.grid-flex__col--12
+            span
+              b.darkorange Saldo kamu:
+              span.darkgreen  #{ number_format(current_user.credit) }
+            .table-container.mg-10
+                table.table
+                  thead
+                    tr
+                      th Tanggal
+                      th Jumlah
+                      th Bank
+                      th Transfer
+                      th Approval
+                      th Aksi
+                  tbody
+                    - @top_ups.each do |top_up|
+                      tr
+                        td #{ top_up.created_at.strftime("%d %B %Y") }
+                        td #{ number_format(top_up.amount) }
+                        td #{ top_up.bank }
+                        td
+                          - if top_up.transfer
+                            b
+                              span.darkgreen Ya
+                          - else
+                            b
+                              span.red Belum
+                        td
+                          - if top_up.approved
+                            b
+                              span.darkgreen Ya
+                          - else
+                            b
+                              span.red Belum
+                        td
+                          - if !top_up.transfer
+                            = link_to top_up_transfer_path(top_up), class: 'btn btn-orange', method: :post
+                              i.fa.fa-check
+                              |  Konfirmasi
+

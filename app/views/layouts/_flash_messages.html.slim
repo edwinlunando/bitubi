@@ -6,3 +6,10 @@
     .page-notification--message
       = message
       span.page-notification--close-btn x
+
+- if user_signed_in? && current_user.supplier? && current_user.supplier.city_id.nil?
+  div class="message-error page-notification--container grid-flex--no-pad"
+    .page-notification--message
+      | Silahkan lengkapi domisili Anda di
+      = link_to ' sini', account_vendor_path
+      span.page-notification--close-btn x

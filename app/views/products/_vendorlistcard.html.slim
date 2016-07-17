@@ -1,0 +1,14 @@
+.cards
+  = link_to vendor_view_path(vendor)
+    figure
+      .cards-image
+        - if vendor.supplier.present? && vendor.supplier.image.present?
+          = image_tag vendor.supplier.image.url
+        - else
+          img.lazy alt="image store logo" data-original="/assets/img/store-thumb.png" /
+      figcaption
+        .cards-information-block
+          center
+            - if vendor.supplier.present?
+              b
+                = link_to vendor.supplier.name, vendor_view_path(vendor)

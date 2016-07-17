@@ -10,26 +10,61 @@
         #surfari-tabs
           == render 'tabs2'
           .list-wrap
-            .flex-grid
-              .flex-grid__col.flex-grid__col--12
-                h2.darkorange PESANANMU
+            .grid-flex
+              .grid-flex__col.grid-flex__col--12
+                h2.darkorange Pesanan
+                .grid-flex
+                  = simple_form_for('', url: pesanan_path, method: :get, html: { class: 'inline-flex' }) do |f|
+                    .grid-flex__col.grid-flex__col--3
+                      = f.input :id, label: 'Order id', placeholder: 'Order Id', input_html: { value: @id }
+                    .grid-flex__col.grid-flex__col--3
+                      = f.input :receipt_number, label: 'Nomor Resi', placeholder: 'Resi', input_html: { value: @receipt_number }
+                    .grid-flex__col.grid-flex__col--3
+                      = f.input :date_from, as: :date, html5: true, label: 'Tanggal Pesan (Dari)', placeholder: 'Dari', input_html: { value: @date_from }
+                    .grid-flex__col.grid-flex__col--3
+                      = f.input :date_to, as: :date, html5: true, label: 'Tanggal Pesan (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }
+                    .grid-flex__col.grid-flex__col--3
+                      button.btn.btn-green.btn-bot type="submit" Cari
                 .table-container
-                  table.table
-                    thead
-                      tr align="center"
-                        th Order Id
-                        th Tanggal Pesan
-                        th Status
-                        th Total
-                        th Action
-                    tbody
-                      - if @orders.present?
+                  - if !@orders.present?
+                    .black
+                      | Anda belum memiliki pesanan. Silahkan
+                      = link_to 'belanja', products_path, class: 'btn btn-small btn-orange mgs-10'
+                      | atau selesaikan transaksi Anda di
+                      = link_to 'keranjang', keranjang_path, class: 'btn btn-small btn-green mgs-10'
+                  - else
+                    table.table
+                      thead
+                        tr align="center"
+                          th Order Id
+                          th Tanggal Pesan
+                          th Nomor Resi
+                          th Status
+                          th Total
+                          th Action
+                      tbody
                         - @orders.each_with_index do |order, index|
                           tr align="center"
                             td #{ order.id }
-                            td #{ order.created_at.strftime("%d %B %Y") }
-                            td #{ order.state }
-                            td align="right" #{ number_to_currency(order.total, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }
+                            td #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
+                            td #{ order.receipt_number }
+                            td
+                              b
+                                -if order.state == 'done'
+                                  span.darkgreen #{ order.state_simple }
+                                -elsif order.state =='failed'
+                                  span.red #{order.state_simple}
+                                -else
+                                  span.darkorange #{order.state_simple}
+                            td align="right" #{ number_to_currency(order.total_with_adjustments, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n') }e
                             td align="center"
-                              = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-green'} do
+                              = link_to "/pesanan/#{order.id}", {class: 'btn-clear fa-btn btn-orange'} do
                                 i.fa.fa-folder-open title="view"
+                              = link_to "/pesanan/#{order.id}/cetakinvoice", {class: 'btn-clear fa-btn btn-green'} do
+                                i.fa.fa-file title="Cetak Invoice"
+                              / Button Terima Barang
+                              / = link_to "/pesanan/#{order.id}/terima", {class: 'btn-clear fa-btn btn-green'} do
+                              /   i.fa.fa-check title="terima"
+
+                div.pagination-container
+                  = paginate @orders

@@ -1,11 +1,22 @@
 ActiveAdmin.register TopUp do
+
+  actions :all, except: [:destroy]
+
   permit_params :name, :amount, :user_id, :approved, :bank
 
   member_action :approve, method: :put do
     if resource.approve
       redirect_to resource_path, notice: 'Approved!'
     else
-      redirect_to collection_path, alert: 'Failed to approved!'
+      redirect_to collection_path, alert: 'Failed to approve!'
+    end
+  end
+
+  member_action :decline, method: :put do
+    if resource.decline
+      redirect_to resource_path, notice: 'Declined!'
+    else
+      redirect_to collection_path, alert: 'Failed to decline!'
     end
   end
 
@@ -14,14 +25,24 @@ ActiveAdmin.register TopUp do
     id_column
     column :name
     column :amount
-    column :user
+    column :uid
+    column :user do |top_up|
+      link_to top_up.user.try(:email), admin_user_path(top_up.user)
+    end
     column :bank
+    column :transfer
     column :approved
     actions do |top_up|
-      link_to 'Approve', approve_admin_top_up_path(top_up), method: :put
+      if top_up.approved.nil?
+        item 'Approve ', approve_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+        item 'Decline', decline_admin_top_up_path(top_up), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+      end
     end
   end
 
+  filter :user_email, as: :string
+  filter :uid, label: 'Kode Cantik'
+  filter :created_at
   filter :active
 
   form do |f|

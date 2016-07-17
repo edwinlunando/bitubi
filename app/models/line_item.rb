@@ -2,17 +2,16 @@
 #
 # Table name: line_items
 #
-#  id            :integer          not null, primary key
-#  product_id    :integer
-#  quantity      :integer
-#  order_id      :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  purchase_type :integer
-#  state         :string(255)
+#  id             :integer          not null, primary key
+#  product_id     :integer
+#  quantity       :integer
+#  order_id       :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  state          :string(255)
+#  receipt_number :string(255)
 #
 
-# model to represent an item in an order/cart
 class LineItem < ActiveRecord::Base
 
   # Relation
@@ -81,7 +80,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def shipping_cost
-    weight_normalized * order.state_shipment_price.price
+    weight_normalized * order.shipment_price
   end
 
   def check_wholesale_price
@@ -90,6 +89,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def price
+    quantity * fixed_price if fixed_price
     quantity * price_per_quantity
   end
 

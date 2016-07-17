@@ -7,27 +7,81 @@
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
-          ul.nav
-            li.nav-one
-              a href="/keranjang"
-                i.fa.fa-shopping-cart
-                span Keranjang
-            li.nav-two
-              a.current href="/pesanan"
-                i.fa.fa-phone
-                span Pesanan
+          == render 'tabs'
           .list-wrap
-            .flex-grid
-              .flex-grid__col.flex-grid__col--12
-                h2.darkorange DETIL PESANANMU : Order - #{ @order.id }
+            .grid-flex
+              .grid-flex__col.grid-flex__col--3
+                .category-title.clear-pm.vendor-info
+                  h3.darkorange Info Pengirim
+                  - if @order.address.present?
+                    p
+                      dl.category-title__description.vendor-info
+                        dt
+                          i.fa.fa-user
+                          b.clear-pm Pengirim:
+                        dd
+                          span.darkorange #{@order.address.sender_name}
+                        dt
+                          i.fa.fa-phone
+                          b.clear-pm Telepon:
+                        dd
+                          span.darkorange #{@order.address.sender_phone}
+                hr
+                .category-title.clear-pm.vendor-info
+                  h3.darkorange Info Penerima
+                  - if @order.address.present?
+                    p
+                      dl.category-title__description.vendor-info
+                          dt
+                            i.fa.fa-user
+                            b.clear-pm Penerima:
+                          dd
+                            span.darkorange #{@order.address.receiver_name}
+                          dt
+                            i.fa.fa-phone
+                            b.clear-pm Telepon:
+                          dd
+                            span.darkorange #{@order.address.receiver_phone}
+                          dt
+                            i.fa.fa-envelope
+                            b.clear-pm Kode Pos:
+                          dd
+                            span.darkorange #{@order.address.zipcode}
+                          dt
+                            i.fa.fa-map-marker
+                            b.clear-pm Alamat Kirim:
+                          dd
+                            span.darkorange #{ @order.address.one_line }
+                          dt
+                            i.fa.fa-truck
+                            b.clear-pm Nomor Resi:
+                          dd
+                            span.darkorange #{ @order.receipt_number }
+                          dt
+                            i.fa.fa-info
+                            b.clear-pm Catatan:
+                          dd
+                            span.darkorange #{ @order.address.special_instructions}
+              .grid-flex__col.grid-flex__col--9
+                .grid-flex--no-pad
+                  .grid-flex--no-gutter.grid-flex__col--6
+                    h2.darkorange Detil Pesanan : Order - #{ @order.id }
+                    span.black Tanggal Pesanan:
+                    b.darkgreen #{' ' + @order.created_at.strftime("%d %B %Y")}
+                  .grid-flex--no-gutter.grid-flex__col--6 align="right"
+                    b.black.mgs-10 Status:
+                    - if (@order.state == 'done')
+                      span.btn.btn-green #{@order.state_simple.capitalize}
+                    - elsif (@order.state == 'failed')
+                      span.btn.btn-red #{@order.state_simple.capitalize}
+                    - else
+                      span.btn.btn-orange #{@order.state_simple.capitalize}
                 .table-container
                   table.table
                     thead
                       tr align="center"
                         th Gambar
                         th Nama
-                        th Status
-                        th Ongkos Kirim
                         th Jumlah
                         th Harga Total
                     tbody
@@ -35,15 +89,55 @@
                         - @order.line_items.each do |line_item|
                           tr
                             td align="center"
-                              = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
-                            td #{ line_item.product.name }
-                            td align="center" #{ line_item.state }
-                            td align="center" #{ number_format(line_item.shipping_cost) }
+                              - if line_item.product.get_first_image.present?
+                                = image_tag line_item.product.get_first_image.data.url(:small), class: 'img-responsive'
+                            td align="left"
+                              .table-products__info
+                                = link_to product_path(line_item.product.slug) do
+                                  b.darkorange #{line_item.product.name}
+                                br
+                                b
+                                  = link_to vendor_view_path(line_item.product.user.id) do
+                                    | vendor:
+                                    = line_item.product.user.supplier.name if line_item.product.user.supplier.present?
+                                br/
+                                b #{ number_format(line_item.product.price_dropship) }
                             td align="center" #{ line_item.quantity }
-                            td align="right" #{ number_format(line_item.price) }
+                            td align="right"
+                              b.black #{ number_format(line_item.price) }
+                        - if @order.state_shipment_price.present?
+                          tr.highlight-info-2
+                            td colspan="3"
+                              b.black Pengiriman:  
+                              b.darkonrange #{ @order.shipment_price_name } | #{ @order.shipment_price_courier }
+                              br
+                              b.black Kode: 
+                              b.darkorange #{ @order.shipment_price_code }
+                              br
+                              b.black Waktu Kirim:
+                              b.darkorange #{ @order.shipment_price_etd }
+                            td align="right"
+                              b.black #{ number_format(@order.shipment_price) }
+                        - if @order.adjustments.exists?
+                          tr.highlight-info
+                            td colspan="2"
+                            td align="center"
+                              b Diskon
+                            td align="right"
+                              b #{ number_format(@order.adjustments_total) }
                         tr.highlight-info
-                          td colspan="4"
+                          td colspan="2"
                           td align="center"
                             b Total
                           td align="right"
-                            b #{ number_format(@order.total) }
+                            b #{ number_format(@order.total_with_adjustments) }
+                        tr
+                          td align="left"
+                            = link_to 'Kembali', pesanan_path, class: 'btn btn-orange'
+                            - if !@order.transferred && @order.done?
+                              = link_to 'Konfirmasi Terima', order_transfer_path(@order), class: 'btn btn-green', method: :post
+                          td colspan="2"
+                          td align="right"
+                            = link_to "/pesanan/#{@order.id}/cetakinvoice", {class: 'btn-clear fa-btn btn-green'} do
+                                i.fa.fa-file title="Cetak Invoice"  
+                                span  Cetak Invoice

@@ -10,43 +10,100 @@
         .static-title.np-top
           center
             h2.static-title__title Form Konfirmasi
-            - if @order.address.present?
-              span.category-title__detailed-description
-                | #{ @order.address.state.city.province.name }, #{ @order.address.state.city.name }, #{ @order.address.state.name },
-                br/
-                | #{ @order.address.name }
-          br/
-          .table-container
-            table.table
-              thead
-                tr
-                  th align="center"  Thumbnail
-                  th Item
-                  th Jumlah
-                  th Harga
-              tbody
-                - @order.line_items.each do |line_item|
-                  tr
-                    td align="center"
-                      = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
-                    td #{ line_item.product.name }
-                    td #{ line_item.quantity } x #{ number_format(line_item.price_per_quantity) }
-                    td #{ number_format(line_item.price) }
-                - if @order.address.present?
-                  tr
-                    td
-                    td align="center" 
-                      b Pengiriman #{ @order.state_shipment_price.shipment_type.display_name }
-                    td #{ number_format(@order.display_weight*@order.state_shipment_price.price) }
-                    td #{ number_format(@order.shipment_price) }
-              tfoot
-                tr.highlight-info
-                  td colspan="2"
-                  td
-                    b Total
-                  td
-                    b #{ number_format(@order.total) }
-                tr
-                  td colspan="3"
-                  td
-                    = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}
+          .grid-flex
+            .grid-flex__col.grid-flex__col--3
+              .category-title.clear-pm.vendor-info
+                h3.darkorange Info Pengirim
+                p
+                  dl.category-title__description.vendor-info
+                    dt
+                      i.fa.fa-user
+                      b.clear-pm Pengirim:
+                    dd
+                      span.darkorange #{@order.address.sender_name}
+                    dt
+                      i.fa.fa-phone
+                      b.clear-pm Telepon:
+                    dd
+                      span.darkorange #{@order.address.sender_phone}
+              hr
+              .category-title.clear-pm.vendor-info
+                h3.darkorange Info Penerima
+                p
+                  dl.category-title__description.vendor-info
+                    - if @order.address.present?
+                      dt
+                        i.fa.fa-user
+                        b.clear-pm Pemesan:
+                      dd
+                        span.darkorange #{@order.address.receiver_name}
+                      dt
+                        i.fa.fa-phone
+                        b.clear-pm Telepon:
+                      dd
+                        span.darkorange #{@order.address.receiver_phone}
+                      dt
+                        i.fa.fa-envelope
+                        b.clear-pm Kode Pos:
+                      dd
+                        span.darkorange #{@order.address.zipcode}
+                      dt
+                        i.fa.fa-map-marker
+                        b.clear-pm Alamat Kirim:
+                      dd
+                        span.darkorange #{ @order.address.one_line }
+                      dt
+                        i.fa.fa-info
+                        b.clear-pm Catatan:
+                      dd
+                        span.darkorange #{ @order.address.special_instructions}
+            .grid-flex__col.grid-flex__col--9
+              h3.darkorange Pesanan
+              .table-container
+                table.table
+                  thead
+                    tr
+                      th align="center"  Thumbnail
+                      th Item
+                      th Jumlah
+                      th Harga
+                  tbody
+                    - @order.line_items.each do |line_item|
+                      tr
+                        td align="center"
+                          = image_tag line_item.product.get_first_image.data.url(:thumb), class: 'img-responsive'
+                        td align="left"
+                          .table-products__info
+                            = link_to product_path(line_item.product.slug) do
+                              b.darkorange #{line_item.product.name}
+                            br/
+                            b
+                              = link_to vendor_view_path(line_item.product.user.id) do
+                                | vendor: #{line_item.product.user.supplier.name}
+                        td #{ line_item.quantity } x #{ number_format(line_item.fixed_price || line_item.price_per_quantity) }
+                        td #{ number_format(line_item.price) }
+                    - if @order.address.present?
+                      tr.highlight-info
+                        td
+                        td align="left"
+                          b.darkorange Pengiriman #{ @order.shipment_price_name }
+                        td Ongkos:
+                        td #{ number_format(@order.shipment_price) }
+                  tfoot
+                    - if @order.adjustments.exists?
+                      tr.highlight-info
+                        td colspan="2"
+                        td
+                          b Diskon:
+                        td
+                          b #{ number_format(@order.adjustments_total) }
+                    tr.highlight-info
+                      td colspan="2"
+                      td
+                        b Total:
+                      td
+                        b #{ number_format(@order.total_with_adjustments) }
+                    tr
+                      td colspan="3"
+                      td
+                        = link_to 'Bayar', finish_path, class: 'btn btn-green', method: :post, html: {style: 'color: white'}

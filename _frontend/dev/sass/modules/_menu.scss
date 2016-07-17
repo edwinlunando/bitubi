@@ -2,6 +2,7 @@
 --------------------------------------------------------------------------- */
 .header-main__top-bar, .menu-search__container{
   background-color: $transwhite;
+  top: 25px;
   height:50px;
   width: 100%;
   position: fixed;
@@ -26,7 +27,7 @@
     input {
       background: none;
       color: $black80;
-      width:80%;
+      width:70%;
       @media #{medium} {
         width:90%;
       }
@@ -35,6 +36,15 @@
       outline: 0;
       border: 0;
       margin: 5px;
+    }
+    select {
+      width: 15%;
+      outline: none;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      background: $black20;
+      color: $black80;
     }
   }
   top: 50px;
@@ -49,7 +59,7 @@
   float: left;
   padding: 4px 10px;
   @media #{$medium} {
-    padding: 8px 20px;
+    padding: 2px 20px;
   }
   a {
     font-size: .75em;
@@ -76,12 +86,21 @@
   .nav-lang__submenu--square {
     width: 50px;
   }
+  #search-menu {
+    display: block;
+    @media #{$large} {
+      display: none;
+    }
+  }
   .nav-lang__submenu {
     border-left: 1px solid $black20;
     display: block;
     height: 50px;
     padding: 13px;
     float:left;
+    i {
+      margin-right: 5px;
+    }
     ul  {
       background-color: $orange;
       li {
@@ -180,6 +199,15 @@
       top: 23px;
       @include rotate-transform(-135deg);
     }
+  }
+}
+
+
+.nav-search-bar {
+  width: 50%;
+  display: none;
+  @media #{$large} {
+    display: block;
   }
 }
 
@@ -384,4 +412,44 @@ nav {
 }
 .menu-icon-grooming {
   content: url('../img/flat-icon-grooming.png');
+}
+
+/* Contact head
+--------------------------------------------------------------------------- */
+.head-contact-info {
+  z-index:998;
+  position: fixed;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  background: $lightorange;
+  width: 100%;
+  ul li {
+    display: inline-block;
+    border: none;
+    font-size: 10px;
+    @media #{$medium} {
+      font-size: 14px;
+    } 
+    b {
+      margin-right: 5px;
+    }
+    span {
+      margin-right: 10px;
+      padding-right: 10px;
+      border-right: 1px solid #888;
+    }
+    &:last-child {
+      span {
+        border: none;
+      }
+    }
+  }
+}
+
+.menu-mobile-hd {
+  display: none !important;
+  @media #{$medium} {
+    display: block !important;
+  } 
 }

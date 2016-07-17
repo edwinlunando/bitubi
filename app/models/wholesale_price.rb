@@ -14,11 +14,13 @@
 
 # wholesale price for products
 class WholesalePrice < ActiveRecord::Base
+
   belongs_to :product
 
   scope :ordered, -> { order(minimum_quantity: :desc) }
   scope :cheapest, -> { order(price: :asc) }
   scope :by_quantity, -> (quantity) { where('(minimum_quantity <= ? AND maximum_quantity >= ?) OR (minimum_quantity <= ?)', quantity, quantity, quantity) }
+  scope :pricing, -> { order(minimum_quantity: :asc) }
 
   validates :minimum_quantity, presence: true
   validates :maximum_quantity, presence: true
@@ -27,4 +29,5 @@ class WholesalePrice < ActiveRecord::Base
   def price_money
     ActionController::Base.helpers.number_to_currency(price, unit: 'IDR', delimiter: '.', precision: 0, format: '%u %n')
   end
+
 end

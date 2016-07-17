@@ -26,6 +26,18 @@ ready = ->
         return
       return
 
+  state = $('#address_state_id')
+
+  if state.length > 0
+    state.change ->
+      $.get(
+        '/biaya_pengiriman?id=' + this.value
+      ).done (result) ->
+        shipment_cost = $('#address_shipment_type')
+        shipment_cost.html(result)
+        return
+      return
+
   # Bootstrap fix for dropdown (turbolinks)
   if $('.dropdown-toggle').length != 0
     $('.dropdown-toggle').click ->

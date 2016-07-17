@@ -1,0 +1,64 @@
+.wrapper
+  .grid-flex--no-pad.page-breadcrumb--container
+    .grid-flex--no-gutter.grid-flex__col--12.top-mg
+      ul.breadcrumb
+        li
+          = link_to "Home", root_path
+        li
+          = link_to "Dompet", saldo_path
+  .container
+    .grid-flex
+      = render 'topup_tabs'
+      .grid-flex__col.grid-flex__col--10
+        .static-title.np-top
+          center
+            h2.static-title__title Penarikan Dompet
+            span.category-title__detailed-description
+              | Silahkan isi form berikut sebagai permohonan penarikan saldo dompet
+        .grid-flex
+          .grid-flex__col.grid-flex__col--5
+            h3.darkorange Form Penarikan
+            div
+              i.fa.fa-money.darkorange.mgr-5
+              b.darkorange  Saldo Kamu:
+              span.darkgreen  #{ number_format(current_user.credit) }
+            div.
+              i.fa.fa-book.darkorange.mgr-5
+              b.darkorange  Nomor Rekening: 
+              span.darkgreen #{ current_user.supplier.bank_account_number }
+            = simple_form_for(@withdrawal, url: withdrawal_new_path) do |f|
+              = f.input :amount, input_html: { placeholder: 'jumlah penarikan'}, label: 'Jumlah'
+              br
+              button.btn.btn-green type="submit" Tarik
+          .grid-flex__col.grid-flex__col--5
+            h3.darkorange Instruksi
+            ol.instruction-set.instruction-set__withdrawal
+              li Minimal penarikan IDR 100.000
+              li Isi form di samping terlebih dahulu untuk permohonan penarikan
+              li Permohonan penarikan akan diproses dalam waktu 1 x 24 jam
+              li Apabila permohonan telah diproses, saldo Anda akan terpotong dari dompet dan di-transfer sesuai jumlah permohonan ke rekening Anda
+
+        hr
+
+        .grid-flex
+          .grid-flex__col.grid-flex__col--12
+            div
+              h3.darkorange Sejarah Penarikan
+              br
+              .table-container
+                  table.table
+                    thead
+                      tr
+                        th Tanggal
+                        th Jumlah
+                        th Konfirmasi
+                    tbody
+                      - if current_user.withdrawals.present?
+                        - current_user.withdrawals.each do |withdrawal|
+                          tr
+                            td #{ withdrawal.created_at.strftime("%d %B %Y") }
+                            td #{ number_format(withdrawal.amount) }
+                            td #{ withdrawal.approved ? 'Ya' : 'Tidak' }
+                      - else
+                        tr
+                          td.black colspan="4" Anda belum pernah melakukan penarikan

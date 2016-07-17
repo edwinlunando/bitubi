@@ -28,6 +28,9 @@
 #  updated_at             :datetime         not null
 #  credit                 :decimal(10, )    default(0)
 #  supplier_id            :integer
+#  active                 :boolean          default(TRUE)
+#  verified               :boolean
+#  address                :text(65535)
 #
 
 require 'rails_helper'
