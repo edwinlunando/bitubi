@@ -1,0 +1,143 @@
+
+/* Setup
+--------------------------------------------------------------------------- */
+
+$BTN_PADDING: $space/3 $space;
+$BTN_PADDING_SMALL: $space/20 $space;
+
+
+/* Base Style
+--------------------------------------------------------------------------- */
+
+.btn-clear{
+    display: inline-block;
+    outline:none;
+    border: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: $BTN_PADDING;
+    border: 0;
+    font-family: inherit;
+    line-height: $base_line_height;
+    text-align: center;
+    vertical-align: middle;
+    color: $black80;
+    background: #ddd;
+
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+    &:focus {
+        outline: none;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+.btn-share {
+    padding: 8px 10px !important;
+}
+
+.btn-small {
+    padding: $BTN_PADDING_SMALL;
+}
+
+.fa-btn,
+.btn-green, .btn-black, .btn-orange, .btn-red, .btn-grey{
+    color: white;
+    @include animate-transition(.15s);
+}
+
+.btn-grey{
+    background: $black60;
+    &:hover {
+        background: $black40;
+        color: white;
+    }
+}
+
+.btn-orange {
+    background: $darkorange;
+    &:hover {
+        background: $orange;
+        color: white;
+    }
+}
+
+.btn-black {
+    background: $black70;
+    &:hover {
+        background: $black30;
+        color: white;
+    }
+}
+
+.btn-facebook {
+    background: #133783;
+    color: white;
+    &:hover {
+        background: #3a5795;
+        color: white;
+    }
+}
+
+.btn-twitter {
+    background: #0084B4;
+    color: white;
+    &:hover {
+        background: #55acee;
+        color: white;
+    }
+}
+
+.btn-green {
+    background: $darkgreen;
+    &:hover {
+        background: $green;
+        color: white;
+    }
+}
+
+.fa-btn {
+    padding: 10px;
+    min-width: 35px;
+    text-align: center;
+}
+
+.btn-yellow {
+    background: $yellow;
+    &:hover {
+        background: $darkeryellow;
+    }
+}
+
+.btn-red {
+    background: $warningred;
+    &:hover {
+        background: $red;
+        color: white;
+    }
+}
+
+
+/* Modifier
+--------------------------------------------------------------------------- */
+
+.btn--block {
+    width: 100%;
+}
+
+.btn-bot {
+    position: relative;
+    @media #{$medium} {
+        top: 30px;
+    }
+}
+
+.btn-icon-share {
+    min-width: 20px;
+    margin-right:4px;
+}

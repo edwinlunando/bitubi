@@ -1,0 +1,138 @@
+
+/* Config
+--------------------------------------------------------------------------- */
+
+$GRID_COUNT     : 12;
+$GRID_GUTTER    : 15px;
+
+@function grid_size($size) {
+    @return $size / $GRID_COUNT * 100%;
+}
+
+/* Style
+--------------------------------------------------------------------------- */
+
+.wrapper {
+  padding-top:26px;
+  width: 100%;
+  // background: #f8f8f8 url(../img/grid_DominikKiss_SubtlePatterns.jpg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  @media screen and (min-width: 75em) {
+      width: 1200px;
+  }
+}
+
+.container-med {
+  width: 80%;
+  margin: 0 auto;
+  @media screen and (min-width: 75em) {
+      width: 1200px;
+  }
+}
+
+%clearfix:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.grid-flex, .grid-flex--no-pad {
+  @extend %clearfix;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.grid-flex {
+  padding-top: 0.5rem;
+}
+
+.grid-flex--no-gutter {
+    margin-left: 0;
+
+    > .grid__col {
+        padding-left: 0;
+    }
+
+}
+
+.grid-flex__col {
+  flex: 1 1 8%;
+  margin: 0 0 0.5rem 0;
+  padding: 0.5em $GRID_GUTTER;
+  box-sizing: border-box;
+  min-height: 1px;    // http://css-tricks.com/make-sure-columns-dont-collapse-horizontally/
+  background-clip: content-box;
+}
+
+/* nested grids */
+.grid-flex .grid-flex, .grid-flex.nested {
+  flex: 1 1 auto;
+  margin-top: -0.5em;
+}
+
+/* full width grids */
+.grid-flex .wide-fit {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* center grids */
+.grid-flex .center {
+  justify-content: center;
+}
+
+.center .grid-flex__col {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+/* vertical middle grids */
+.grid-flex .middle {
+  align-items: center;
+}
+
+/* columns widths */
+
+
+@for $i from 1 through $GRID_COUNT {
+
+    .grid-flex__col--#{$i} {
+        flex-basis: grid_size($i);
+    }
+
+    .grid-flex__col--off-#{$i} {
+        margin-left: grid_size($i);
+    }
+
+}
+
+/* examples */
+
+.fixed-width {
+  flex: 0 0 500px;
+  background-color: rgba(255,0,0,0.1) !important;
+}
+
+@media all and (max-width: 680px) {
+  @for $i from 1 through $GRID_COUNT {
+      .grid-flex__col--#{$i} {
+          @if $i < 4 OR $i > 8{
+            flex-basis: 100%;
+          } @else {
+            flex-basis: 50%;
+          }
+      }
+  }
+  .nested .col {
+    flex-basis: 100%;
+  }
+}

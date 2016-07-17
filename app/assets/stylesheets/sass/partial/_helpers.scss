@@ -1,0 +1,198 @@
+.list-nostyle {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.none {
+    display: none;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    &.focusable:active,
+    &.focusable:focus{
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.block-center {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.align-right--leftonresponsive {
+    @media #{$medium} {
+        text-align: right;
+    }
+    text-align: left;
+}
+
+.flex-bottom {
+    align-self: flex-end;
+}
+
+.list-inline > li{
+    display: inline-block;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.clear-margin {
+    margin: 0 !important;
+}
+
+.clear-padding {
+    padding: 0 !important;
+}
+
+.clear-pm {
+    margin: 0 !important;   
+    padding: 0 !important;
+}
+
+.pad-bot-only {
+    padding-top: 0 !important; 
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.np-top {
+    padding-top: 0 !important;
+}
+
+.np-side {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.top-pd{
+    padding-top: 50px !important;
+}
+
+.top-mg {
+    margin-top: 50px !important;
+}
+
+.pd-10 {
+    padding: 10px;
+}
+
+.mg-10 {
+    margin: 10px auto !important;
+}
+
+.mgs-10 {
+    margin: auto 10px;
+}
+
+.mgr-5 {
+    margin-right: 5px;
+}
+
+
+.mg-20 {
+    margin: 20px auto !important;
+}
+
+.bg-dg {
+    background-color: $black30;
+    width: 100% !important;
+}
+
+.mg-bot-sm {
+    margin-bottom: 15px !important;
+}
+
+.mg-bot-lg {
+    margin-bottom: 30px !important;
+}
+
+.inline {
+  float:left;
+  display:inline-block;
+}
+
+.inline-flex {
+    display: inline-flex !important;
+}
+
+.hero {
+    position:relative;
+}
+
+.hero:after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -50px;
+    width: 0;
+    height: 0;
+    border-top: solid 25px $black30;
+    border-left: solid 25px transparent;
+    border-right: solid 25px transparent;
+}
+
+.ft-2 {
+    font-size: 2.5em !important;
+}
+
+.ft-2sm {
+    clear: both;
+    font-size: 1.75em !important;   
+}
+
+.ft-1-5 {
+    clear: both;
+    font-size: 1.5em !important;   
+}
+
+.ft-1-25 {
+    clear: both;
+    font-size: 1em !important;   
+}
+
+.over-auto {
+    overflow: auto !important;
+}
