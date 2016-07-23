@@ -33,5 +33,6 @@ module Bitubi
       g.test_framework :rspec
     end
 
+    config.tinymce.install = :compile
   end
 end
