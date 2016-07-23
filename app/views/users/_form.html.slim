@@ -8,7 +8,9 @@
       h3 Data
       = f.association :category, label: 'Kategori'
       = f.input :name, label: 'Nama'
-      = f.input :description, label: 'Deskripsi'
+      = tinymce_assets
+      = f.input :description, label: 'Deskripsi', input_html: { class: 'tinymce' }
+      = tinymce
       = f.input :unit, label: 'Satuan (buah, keping, lembar)'
       = f.input :weight, label: 'Berat (dalam gram)'
       = f.input :stock, label: 'Stok (jumlah)'
@@ -28,9 +30,6 @@
                 br
                 = img.link_to_remove class: 'btn' do
                   i.fa.fa-trash
-              div style="width:66%; float:left;"
-                = f.input :title, label: 'Judul'
-                = f.input :description, label: 'Deskripsi Singkat'
             br
             hr
             br
@@ -72,8 +71,3 @@
       hr
       = f.submit 'Simpan', class: 'btn btn-green'
       = link_to 'Batal', products_path, class: 'btn btn-orange'
-
-= content_for :pagescript do
-  script type="text/javascript" src="/assets/ckeditor/ckeditor.js"
-  script type="text/javascript"
-    |   CKEDITOR.replace( 'product[description]');

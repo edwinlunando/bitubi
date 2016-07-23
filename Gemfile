@@ -93,6 +93,8 @@ gem 'audited-activerecord', '~> 4.0'
 gem 'gibbon'
 # rest client
 gem 'rest-client'
+# editor
+gem 'tinymce-rails'
 
 group :development, :test do
 
