@@ -44,7 +44,7 @@ gem 'email_validator'
 # Money
 gem 'money-rails'
 # Admin interface
-gem 'activeadmin', '1.0.0.pre1'
+gem 'activeadmin', '1.0.0.pre4'
 # Slug
 gem 'friendly_id'
 # State machine
