@@ -33,6 +33,7 @@ class Product < ActiveRecord::Base
   has_many :wholesale_prices, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :wholesale_prices, allow_destroy: true, reject_if: :all_blank
+  attr_accessor :template, :blackberry, :whatsapp, :sms
 
   friendly_id :name, use: :slugged
 
