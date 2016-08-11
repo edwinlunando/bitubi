@@ -29,7 +29,7 @@
           = f.simple_fields_for :product_images do |img|
             div style="overflow:auto;"
               div style="width:33%; float:left;"
-                img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                img#prod-img-target alt="" src="#{img.object.data.url}" width="200"
                 br
                 = img.input :data, label: false, input_html: {id: 'prod-img'}
                 br
