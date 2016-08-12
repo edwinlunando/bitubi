@@ -15,7 +15,7 @@
             .profnprod-viewer__seller-info
               - if @product.user.supplier.present?
                 h3.clear-pm
-                  = link_to 'Penjual: ' + @product.user.supplier.name , vendor_view_path(@product.user.id)
+                  / = link_to 'Penjual: ' + @product.user.supplier.name , vendor_view_path(@product.user.id)
               br
               - if @product.user.supplier.present?
                 figure
@@ -95,3 +95,15 @@
           b.clear-pm Deskripsi:
         .black
           = simple_format @product.description
+          - if @product.blackberry.present?
+            a.btn.btn-grey href="" 
+              img src="https://help.blackberry.com/resources/images/products/app-bbm-bb10.png" style="height: 20px"
+              |  Blackberry
+          - if @product.whatsapp.present?
+            a.btn.btn-green href="" 
+              img src="http://icons.iconarchive.com/icons/dtafalonso/android-l/512/WhatsApp-icon.png" style="height: 20px"
+              |  Whatsapp
+          - if @product.sms.present?
+            a.btn.btn-orange href="sms:?body=Pertanyaan%20Produk"  
+              i.fa.fa-phone  
+              |  SMS
