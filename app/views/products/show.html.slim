@@ -30,7 +30,7 @@
 
           .grid-flex__col.grid-flex__col--2.profnprod-viewer__thumbnails
             ul
-              - @product.product_images.each do |image|
+              - @product.product_images.limit(5).each do |image|
                 li.profnprod-viewer__thumb
                   img.lazy alt="" data-original="#{ image.data.url }" data-zoom-image="#{ image.data.url }"
       .grid-flex__col.grid-flex__col--6
@@ -72,24 +72,31 @@
                       b Grosir
                     td #{ price.minimum_quantity }
                     td #{ price.price_money }
-          .category-title__description.mg-10
-            dl
-              dt Stok Produk:
-              dd
+          br
+          h3.darkorange Info Produk
+          .category-title__detailed-description.clear-pm.align-center
+            span
+              b.clear-pm.black Stok Produk:
+              b.darkgreen
                 = ' ' + @product.stock.to_s + ' ' + @product.unit
-              dt Berat Satuan:
-              dd
+          .category-title__detailed-description.clear-pm.align-center
+            span
+              b.clear-pm.black Berat Satuan:
+              b.darkgreen
                 = ' ' + @product.weight.to_s + ' gram'
           - if @product.recommended_price.present?
-            .category-title__detailed-description.clear-pm
+            .category-title__detailed-description.clear-pm.align-center
               span
-                b.clear-pm Rekomendasi Harga Jual:
+                b.clear-pm.black Rekomendasi Harga Jual:
               b.darkgreen #{ @product.recommended_price }
-          .category-title__detailed-description.clear-pm
-            span
-              b.clear-pm Deskripsi:
-            = simple_format @product.description
           hr
+
+    .grid-flex
+      .grid-flex__col.grid-flex__col--12
+        h3.darkorange
+          b.clear-pm Deskripsi:
+        .black
+          = simple_format @product.description
         - if @product.bbm.present?
           a.btn.btn-grey href="bbmi://#{ @product.bbm }"
             img src="https://help.blackberry.com/resources/images/products/app-bbm-bb10.png" style="height: 20px"
@@ -98,3 +105,4 @@
           a.btn.btn-green href="sms: #{ @product.sms }"
             img src="http://icons.iconarchive.com/icons/dtafalonso/android-l/512/WhatsApp-icon.png" style="height: 20px"
             |  SMS
+

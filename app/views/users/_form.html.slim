@@ -13,17 +13,23 @@
       = f.input :unit, label: 'Satuan (buah, keping, lembar)'
       = f.input :weight, label: 'Berat (dalam gram)'
       = f.input :stock, label: 'Stok (jumlah)'
-      = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
+      = f.input :template, label: 'Template', collection: {A: '1', B: '2', C: '3'}
+      br
+      hr
+      h3 Contact Info
+      = f.input :blackberry, label: 'BBM'
+      = f.input :sms, label: 'SMS'
+      = f.input :whatsapp, label: 'Whatsapp'
       br
       hr
       .grid-flex
         .grid-flex__col.grid-flex__col--12 style="overflow: hidden"
-          h3 Gambar
+          h3 Gambar (Max 5)
           = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
           = f.simple_fields_for :product_images do |img|
             div style="overflow:auto;"
               div style="width:33%; float:left;"
-                img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                img#prod-img-target alt="" src="#{img.object.data.url}" width="200"
                 br
                 = img.input :data, label: false, input_html: {id: 'prod-img'}
                 br
@@ -32,8 +38,12 @@
             br
             hr
             br
-    .grid-flex__col.grid-flex__col--4
-      label.form-label/
+    .grid-flex__col.grid-flex__col--4.form-label
+      h3 Harga Jual
+      div
+        = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
+      br
+      hr
       h3 Harga Satuan
       div
         = f.input :price_dropship, placeholder: 'dalam IDR', label: 'Harga Satuan'
