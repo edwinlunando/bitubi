@@ -10,3 +10,19 @@ meta content="Larisni | Partner B2B Anda" name="twitter:title" /
 meta content="http:/larisni.com/assets/img/logo.png" name="twitter:image" /
 meta content="http://larisni.com" name="twitter:url" /
 meta content="Bisnis Laris, Jualan Praktis. Kami menyediakan ribuan barang dari seller terpercaya." name="twitter:description" /
+
+script async="" src="https://platform.twitter.com/widgets.js" type="text/javascript"
+
+javascript:
+  window.fbID = '1731480117084309';
+
+/! Facebook Pixel Code
+javascript:
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','//connect.facebook.net/en_US/fbevents.js');fbq('init', '1691581464391028');fbq('track', "PageView");
+noscript
+  img  height="1" src="https://www.facebook.com/tr?id=1691581464391028&ev=PageView&noscript=1" style="display:none" width="1"
+/! End Facebook Pixel Code
+
+
+javascript:
+  var Social={extend:function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e},facebookPostToFeed:function(e){var t={method:"share",href:window.myPrefix};t=this.extend(t,e),FB.ui(t)}};window.fbAsyncInit=function(){FB.init({appId:window.fbID,xfbml:!0,version:"v2.3"})},function(e,t,n){var r,o=e.getElementsByTagName(t)[0];e.getElementById(n)||(r=e.createElement(t),r.id=n,r.src="//connect.facebook.net/en_US/sdk.js",o.parentNode.insertBefore(r,o))}(document,"script","facebook-jssdk"),window.twttr=function(e,t,n){var r,o,i=e.getElementsByTagName(t)[0];if(!e.getElementById(n))return o=e.createElement(t),o.id=n,o.src="https://platform.twitter.com/widgets.js",i.parentNode.insertBefore(o,i),window.twttr||(r={_e:[],ready:function(e){r._e.push(e)}})}(document,"script","twitter-wjs");
