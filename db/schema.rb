@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422062219) do
+ActiveRecord::Schema.define(version: 20160730045956) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -99,6 +99,22 @@ ActiveRecord::Schema.define(version: 20160422062219) do
     t.integer  "raja_ongkir_id", limit: 4
   end
 
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",    limit: 255, null: false
+    t.string   "data_content_type", limit: 255
+    t.integer  "data_file_size",    limit: 4
+    t.integer  "assetable_id",      limit: 4
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width",             limit: 4
+    t.integer  "height",            limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
     t.integer  "sluggable_id",   limit: 4,   null: false
@@ -176,6 +192,8 @@ ActiveRecord::Schema.define(version: 20160422062219) do
     t.boolean  "published"
     t.decimal  "recommended_price",               precision: 10
     t.integer  "priority",          limit: 4
+    t.string   "bbm",               limit: 255
+    t.string   "sms",               limit: 255
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree

@@ -19,38 +19,39 @@
               b
                 = f.error_notification
             .grid-flex
-              .grid-flex__col.grid-flex__col--4
+              .grid-flex__col.grid-flex__col--8
                 label.form-label/
                 h3 Data
                 = f.association :category, label: 'Kategori'
                 = f.input :name, label: 'Nama'
-                = f.input :description, label: 'Deskripsi'
-                = f.input :unit, label: 'Satuan'
-                = f.input :weight, label: 'Berat'
-                = f.input :stock, label: 'Stok'
+                = f.input :description, label: 'Deskripsi', input_html: { class: 'tinymce' }
+                = tinymce
+                = f.input :unit, label: 'Satuan (buah, keping, lembar)'
+                = f.input :weight, label: 'Berat (dalam gram)'
+                = f.input :stock, label: 'Stok (jumlah)'
                 = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
-                = f.input :published, label: 'Aktif', wrapper: :horizontal_boolean, as: :boolean, input_html: {class: 'form-checkbox'}
-              .grid-flex__col.grid-flex__col--4 style="overflow: hidden"
-                label.form-label
-                h3 Gambar
-                div
-                  = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
-                  br
-                  br
-                  hr
-                  = f.fields_for :product_images do |img|
-                    img#prod-img-target alt="" src="#{img.object.data.url}" width="200"
-                    br
-
-                    = img.input :data, label: false, input_html: {id: 'prod-img'}
-                    br
-                    = img.link_to_remove class: 'btn' do
-                      i.fa.fa-trash
-                    br
-                    br
-                    hr
+                = f.input :bbm, label: 'BBM'
+                = f.input :sms, label: 'No HP'
+                br
+                hr
+                .grid-flex
+                  .grid-flex__col.grid-flex__col--12 style="overflow: hidden"
+                    h3 Gambar
+                    = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
+                    = f.simple_fields_for :product_images do |img|
+                      div style="overflow:auto;"
+                        div style="width:33%; float:left;"
+                          img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                          br
+                          = img.input :data, label: false, input_html: {id: 'prod-img'}
+                          br
+                          = img.link_to_remove class: 'btn' do
+                            i.fa.fa-trash
+                      br
+                      hr
+                      br
               .grid-flex__col.grid-flex__col--4
-                label.form-label
+                label.form-label/
                 h3 Harga Satuan
                 div
                   = f.input :price_dropship, placeholder: 'dalam IDR', label: 'Harga Satuan'
@@ -61,29 +62,31 @@
                   div
                     = f.fields_for :wholesale_prices, WholesalePrice.new do |wp|
                       = wp.input :id, as: :hidden
-                      = wp.input :price, placeholder: 'harga satuan dalam IDR'
-                      = wp.input :minimum_quantity
-                      = wp.input :maximum_quantity
+                      = wp.input :price, placeholder: 'harga satuan dalam IDR', label: 'Harga'
+                      = wp.input :minimum_quantity, label: 'Minimal pembelian'
+                      = wp.input :maximum_quantity, label: 'Maksimal pembelian'
                       end
                       br
                       br
                       hr
                 div
-                  = f.fields_for :wholesale_prices do |wholesale_price|
+                  = f.simple_fields_for :wholesale_prices do |wholesale_price|
                     = wholesale_price.input :id, as: :hidden
-                    = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR'
-                    = wholesale_price.input :minimum_quantity
-                    = wholesale_price.input :maximum_quantity
-                    br
+                    = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR', label: 'Harga'
+                    = wholesale_price.input :minimum_quantity, label: 'Minimal pembelian'
+                    = wholesale_price.input :maximum_quantity, label: 'Maksimal pembelian'
+                    br/
                     = wholesale_price.link_to_remove class: 'btn' do
                       i.fa.fa-trash
                     end
                     br
                     br
                     hr
-                  = f.link_to_add 'Tambah Wholesale', :wholesale_prices, class: 'btn'
+                  = f.link_to_add 'Tambah harga grosir', :wholesale_prices, class: 'btn'
             .grid-flex
               .grid-flex__col.grid-flex__col--12
+                hr
                 = f.submit 'Simpan', class: 'btn btn-green'
-                = link_to 'Batal', dagangan_path, class: 'btn btn-orange'
+                = link_to 'Batal', products_path, class: 'btn btn-orange'
+
 

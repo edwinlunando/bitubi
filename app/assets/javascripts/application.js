@@ -18,3 +18,5 @@
 //= require main
 //= require bitubi
 //= require jquery_nested_form
+//= require tinymce-jquery
+//= require users

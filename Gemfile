@@ -93,6 +93,9 @@ gem 'audited-activerecord', '~> 4.0'
 gem 'gibbon'
 # rest client
 gem 'rest-client'
+# editor
+gem 'tinymce-rails'
+gem 'non-stupid-digest-assets', '~> 1.0', '>= 1.0.8'
 
 group :development, :test do
 

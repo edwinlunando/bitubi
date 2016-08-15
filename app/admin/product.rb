@@ -54,7 +54,7 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs 'Admin Details' do
       f.input :name
-      f.input :description
+      f.input :description, :input_html => { :class => "tinymce" }
       f.input :stock
       f.input :unit
       f.input :weight, placeholder: 'dalam gram'
@@ -64,6 +64,8 @@ ActiveAdmin.register Product do
       f.input :category
       f.input :published
       f.input :priority
+      f.input :bbm
+      f.input :sms
       f.has_many :wholesale_prices, heading: 'Wholesale Prices' do |a|
         a.input :id, as: :hidden
         a.input :price, placeholder: 'harga satuan dalam IDR'

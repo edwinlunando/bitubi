@@ -250,7 +250,7 @@ class UsersController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :slug, :stock, :description, :category_id, :unit, :weight, :price_dropship, :recommended_price, :published,
+    params.require(:product).permit(:name, :slug, :stock, :description, :category_id, :unit, :weight, :price_dropship, :recommended_price, :published, :sms, :bbm,
                                     wholesale_prices_attributes: [:id, :price, :minimum_quantity, :maximum_quantity, :_destroy],
                                     product_images_attributes: [:id, :data, :_destroy])
   end
