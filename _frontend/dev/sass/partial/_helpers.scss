@@ -110,7 +110,7 @@
     padding-top: 50px !important;
 }
 
-.top-mg {
+.    {
     margin-top: 50px !important;
 }
 
@@ -195,4 +195,10 @@
 
 .over-auto {
     overflow: auto !important;
+}
+
+.clear-list {
+    li {
+        list-style: none !important;
+    }
 }

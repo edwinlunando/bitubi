@@ -100,22 +100,22 @@
             // for every layouting that need reinit, could be placed here
 
             this.menuInit = function () {
-                $(window).scroll(function(event){
-                    var scroll = $(this).scrollTop();
-                    var notif = $('.page-notification--container');
-                    if (scroll > previousScroll){
-                        $('.head-contact-info').hide();
-                        $('.header-main__top-bar').css('top', 0);
-                        if (notif)
-                            notif.css('top', 50);
-                    } else {
-                        $('.head-contact-info').show();
-                        $('.header-main__top-bar').css('top', 25);
-                        if (notif)
-                            notif.css('top', 75);
-                    }
-                    previousScroll = scroll;
-                });
+                // $(window).scroll(function(event){
+                //     var scroll = $(this).scrollTop();
+                //     var notif = $('.page-notification--container');
+                //     if (scroll > previousScroll){
+                //         $('.head-contact-info').hide();
+                //         $('.header-main__top-bar').css('top', 0);
+                //         if (notif)
+                //             notif.css('top', 50);
+                //     } else {
+                //         $('.head-contact-info').show();
+                //         $('.header-main__top-bar').css('top', 25);
+                //         if (notif)
+                //             notif.css('top', 75);
+                //     }
+                //     previousScroll = scroll;
+                // });
 
                 $('.nav-icon').on('click', function() {
                     $('.wrapper').toggleClass('slide');

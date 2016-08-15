@@ -196,3 +196,9 @@
 .over-auto {
     overflow: auto !important;
 }
+
+.clear-list {
+    li {
+        list-style: none !important;
+    }
+}
