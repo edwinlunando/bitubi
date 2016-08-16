@@ -15,84 +15,78 @@
       .grid-flex__col.grid-flex__col--12
           h2.orange Ubah Produk
           = simple_nested_form_for @product, method: :post, url: update_sell_path do |f|
-              .form-input--error-message
-                b
-                  = f.error_notification
-              .grid-flex
-                .grid-flex__col.grid-flex__col--8
-                  label.form-label/
-                  h3 Data
-                  = f.association :category, label: 'Kategori'
-                  = f.input :name, label: 'Nama'
-                  = f.input :description, label: 'Deskripsi', input_html: { class: 'tinymce' }
-                  = tinymce
-                  = f.input :unit, label: 'Satuan (buah, keping, lembar)'
-                  = f.input :weight, label: 'Berat (dalam gram)'
-                  = f.input :stock, label: 'Stok (jumlah)'
-                  = f.input :template, label: 'Template', collection: {A: '1', B: '2', C: '3'}
-                  br
-                  hr
-                  h3 Contact Info
-                  = f.input :blackberry, label: 'BBM'
-                  = f.input :sms, label: 'SMS'
-                  = f.input :whatsapp, label: 'Whatsapp'
-                  br
-                  hr
-                  .grid-flex
-                    .grid-flex__col.grid-flex__col--12 style="overflow: hidden"
-                      h3 Gambar (Max 5)
-                      = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
-                      = f.simple_fields_for :product_images do |img|
-                        div style="overflow:auto;"
-                          div style="width:33%; float:left;"
-                            img#prod-img-target alt="" src="#{img.object.data.url}" width="200"
-                            br
-                            = img.input :data, label: false, input_html: {id: 'prod-img'}
-                            br
-                            = img.link_to_remove class: 'btn' do
-                              i.fa.fa-trash
-                        br
-                        hr
-                        br
-                .grid-flex__col.grid-flex__col--4.form-label
-                  h3 Harga Jual
+            .form-input--error-message
+              b
+                = f.error_notification
+            .grid-flex
+              .grid-flex__col.grid-flex__col--8
+                label.form-label/
+                h3 Data
+                = f.association :category, label: 'Kategori'
+                = f.input :name, label: 'Nama'
+                = f.input :description, label: 'Deskripsi', input_html: { class: 'tinymce' }
+                = tinymce
+                = f.input :unit, label: 'Satuan (buah, keping, lembar)'
+                = f.input :weight, label: 'Berat (dalam gram)'
+                = f.input :stock, label: 'Stok (jumlah)'
+                = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
+                = f.input :bbm, label: 'BBM'
+                = f.input :sms, label: 'No HP'
+                br
+                hr
+                .grid-flex
+                  .grid-flex__col.grid-flex__col--12 style="overflow: hidden"
+                    h3 Gambar
+                    = f.link_to_add 'Tambah Gambar', :product_images, class: 'btn'
+                    = f.simple_fields_for :product_images do |img|
+                      div style="overflow:auto;"
+                        div style="width:33%; float:left;"
+                          img#prod-img-target alt="" src="/assets/img/no_image.gif" width="200"
+                          br
+                          = img.input :data, label: false, input_html: {id: 'prod-img'}
+                          br
+                          = img.link_to_remove class: 'btn' do
+                            i.fa.fa-trash
+                      br
+                      hr
+                      br
+              .grid-flex__col.grid-flex__col--4
+                label.form-label/
+                h3 Harga Satuan
+                div
+                  = f.input :price_dropship, placeholder: 'dalam IDR', label: 'Harga Satuan'
+                br
+                hr
+                h3 Harga Grosir
+                - if !@product.wholesale_prices.present?
                   div
-                    = f.input :recommended_price, label: 'Rekomendasi Harga Jual'
-                  br
-                  hr
-                  h3 Harga Satuan
-                  div
-                    = f.input :price_dropship, placeholder: 'dalam IDR', label: 'Harga Satuan'
-                  br
-                  hr
-                  h3 Harga Grosir
-                  - if !@product.wholesale_prices.present?
-                    div
-                      = f.fields_for :wholesale_prices, WholesalePrice.new do |wp|
-                        = wp.input :id, as: :hidden
-                        = wp.input :price, placeholder: 'harga satuan dalam IDR', label: 'Harga'
-                        = wp.input :minimum_quantity, label: 'Minimal pembelian'
-                        = wp.input :maximum_quantity, label: 'Maksimal pembelian'
-                        end
-                        br
-                        br
-                        hr
-                  div
-                    = f.simple_fields_for :wholesale_prices do |wholesale_price|
-                      = wholesale_price.input :id, as: :hidden
-                      = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR', label: 'Harga'
-                      = wholesale_price.input :minimum_quantity, label: 'Minimal pembelian'
-                      = wholesale_price.input :maximum_quantity, label: 'Maksimal pembelian'
-                      br/
-                      = wholesale_price.link_to_remove class: 'btn' do
-                        i.fa.fa-trash
+                    = f.fields_for :wholesale_prices, WholesalePrice.new do |wp|
+                      = wp.input :id, as: :hidden
+                      = wp.input :price, placeholder: 'harga satuan dalam IDR', label: 'Harga'
+                      = wp.input :minimum_quantity, label: 'Minimal pembelian'
+                      = wp.input :maximum_quantity, label: 'Maksimal pembelian'
                       end
                       br
                       br
                       hr
-                    = f.link_to_add 'Tambah harga grosir', :wholesale_prices, class: 'btn'
-              .grid-flex
-                .grid-flex__col.grid-flex__col--12
-                  hr
-                  = f.submit 'Simpan', class: 'btn btn-green'
-                  = link_to 'Batal', products_path, class: 'btn btn-orange'
+                div
+                  = f.simple_fields_for :wholesale_prices do |wholesale_price|
+                    = wholesale_price.input :id, as: :hidden
+                    = wholesale_price.input :price, placeholder: 'harga satuan dalam IDR', label: 'Harga'
+                    = wholesale_price.input :minimum_quantity, label: 'Minimal pembelian'
+                    = wholesale_price.input :maximum_quantity, label: 'Maksimal pembelian'
+                    br/
+                    = wholesale_price.link_to_remove class: 'btn' do
+                      i.fa.fa-trash
+                    end
+                    br
+                    br
+                    hr
+                  = f.link_to_add 'Tambah harga grosir', :wholesale_prices, class: 'btn'
+            .grid-flex
+              .grid-flex__col.grid-flex__col--12
+                hr
+                = f.submit 'Simpan', class: 'btn btn-green'
+                = link_to 'Batal', products_path, class: 'btn btn-orange'
+
+

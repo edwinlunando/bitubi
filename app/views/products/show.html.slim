@@ -49,6 +49,7 @@
                 .grid-flex.grid-flex__col--2
                   button.btn.btn-green type="submit"
                     i.fa.fa-cart-plus
+                      |  Beli
           - else
             center
               = link_to 'Login Untuk Beli', new_user_session_path, class: 'btn btn-green mg-10'
@@ -75,13 +76,13 @@
           h3.darkorange Info Produk
           .category-title__detailed-description.clear-pm.align-center
             span
-              b.clear-pm.black Stok Produk:  
-              b.darkgreen 
+              b.clear-pm.black Stok Produk:
+              b.darkgreen
                 = ' ' + @product.stock.to_s + ' ' + @product.unit
           .category-title__detailed-description.clear-pm.align-center
             span
-              b.clear-pm.black Berat Satuan:  
-              b.darkgreen 
+              b.clear-pm.black Berat Satuan:
+              b.darkgreen
                 = ' ' + @product.weight.to_s + ' gram'
           - if @product.recommended_price.present?
             .category-title__detailed-description.clear-pm.align-center
@@ -89,6 +90,7 @@
                 b.clear-pm.black Rekomendasi Harga Jual:
               b.darkgreen #{ @product.recommended_price }
           hr
+
     .grid-flex
       .grid-flex__col.grid-flex__col--12
         h3.darkorange

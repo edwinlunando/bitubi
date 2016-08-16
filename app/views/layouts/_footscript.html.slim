@@ -1,7 +1,0 @@
-script async="" src="https://platform.twitter.com/widgets.js" type="text/javascript" 
-
-javascript:
-  window.fbID = '1731480117084309';
-  
-javascript:
-  var Social={extend:function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e},facebookPostToFeed:function(e){var t={method:"share",href:window.myPrefix};t=this.extend(t,e),FB.ui(t)}};window.fbAsyncInit=function(){FB.init({appId:window.fbID,xfbml:!0,version:"v2.3"})},function(e,t,n){var r,o=e.getElementsByTagName(t)[0];e.getElementById(n)||(r=e.createElement(t),r.id=n,r.src="//connect.facebook.net/en_US/sdk.js",o.parentNode.insertBefore(r,o))}(document,"script","facebook-jssdk"),window.twttr=function(e,t,n){var r,o,i=e.getElementsByTagName(t)[0];if(!e.getElementById(n))return o=e.createElement(t),o.id=n,o.src="https://platform.twitter.com/widgets.js",i.parentNode.insertBefore(o,i),window.twttr||(r={_e:[],ready:function(e){r._e.push(e)}})}(document,"script","twitter-wjs");
