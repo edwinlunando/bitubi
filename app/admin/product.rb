@@ -80,4 +80,28 @@ ActiveAdmin.register Product do
     f.actions
   end
 
+  csv do
+    column('No') { |product| product.id }
+    column('Source page') { |product| product_url(product) }
+    column('Nama produk') { |product| product.name }
+    column('Harga grosir 1') { |product| product.wholesale_prices.try(:first).try(:price) }
+    column('Harga grosir 2') { |product| product.wholesale_prices.try(:second).try(:price) }
+    column('Harga grosir 3') { |product| product.wholesale_prices.try(:third).try(:price) }
+    column('Harga grosir 4') { |product| product.wholesale_prices.try(:fourth).try(:price) }
+    column('Min order 1') { |product| product.wholesale_prices.try(:first).try(:minimum_quantity) }
+    column('Min order 2') { |product| product.wholesale_prices.try(:second).try(:minimum_quantity) }
+    column('Min order 3') { |product| product.wholesale_prices.try(:third).try(:minimum_quantity) }
+    column('Min order 4') { |product| product.wholesale_prices.try(:fourth).try(:minimum_quantity) }
+    column('Harga pasar') { |product| product.recommended_price }
+    column('Deskripsi') { |product| product.description }
+    column('Berat') { |product| product.weight }
+    column('Stok') { |product| product.stock }
+    column('Penjual') { |product| product.supplier.try(:name) }
+    column('Link penjual') { |product| vendor_view_url(product.user) }
+    column('Lokasi') { |product| product.user.try(:supplier).try(:city).try(:name) }
+    column('Gambar 1') { |product| asset_url(product.product_images.try(:first).try(:data).try(:url)) }
+    column('Gambar 2') { |product| asset_url(product.product_images.try(:second).try(:data).try(:url)) }
+    column('Gambar 3') { |product| asset_url(product.product_images.try(:third).try(:data).try(:url)) }
+  end
+
 end
