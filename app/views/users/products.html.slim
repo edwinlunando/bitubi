@@ -33,6 +33,7 @@
                       tr
                         th align="center"  Gambar
                         th Item
+                        th Kode
                         th Stok
                         th Weight
                         th Unit
@@ -47,6 +48,7 @@
                           td
                             = link_to "/dagangan/#{ product.id }/edit" do
                               | #{ product.name }
+                          td #{ product.slug }
                           td #{ product.stock }
                           td #{ product.weight }
                           td #{ product.unit }

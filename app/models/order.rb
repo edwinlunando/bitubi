@@ -35,6 +35,8 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :state_shipment_price
 
+  attr_accessor :manual_text
+
   # scope
   scope :vendor, -> { where(state: [:delivery, :done, :failed]) }
   scope :created, -> { order(created_at: :desc) }
@@ -194,6 +196,65 @@ class Order < ActiveRecord::Base
 
   def valid_with_credit
     user.credit < total
+  end
+
+  def parse
+    ActiveRecord::Base.transaction do
+      self.save
+      self.state = :payment
+      lines = manual_text.lines.map(&:strip)
+
+      # line 1 - receiver_name
+      self.address = Address.new
+      self.address.receiver_name = lines[0]
+
+      # line 2 - receiver_phone
+      self.address.receiver_phone = lines[1]
+
+      # line 3 - name
+      self.address.name = lines[2]
+
+      # line 4 - state
+      # byebug
+      states = State.where("lower(name) LIKE ?", "%#{ lines[3].downcase }%")
+      self.errors.add(:state, "No State found") if states.count < 1
+      self.address.state = states.first
+
+      # line 5 - zipcode
+      self.address.zipcode = lines[4]
+
+      # line 6 - sender_name
+      self.address.sender_name = lines[5]
+
+      # line 7 - sender_phone
+      self.address.sender_phone = lines[6]
+
+      self.address.save
+
+      # line 8 - bank
+      self.bank_transfer = lines[7]
+
+      # line 9 - bank_transfer
+      self.bank_amount = lines[8]
+
+      # line 10 - number of products
+      numbers = lines[9].to_i
+
+      i = 10
+      numbers.times do
+        line_item = LineItem.new
+        quantity = lines[i].to_i
+        i += 1
+        product = Product.find_by(slug: lines)
+        line_item.quantity = quantity
+        line_item.product = product
+        line_item.order = self
+        self.line_items << line_item
+        i += 1
+      end
+
+    end
+
   end
 
 end

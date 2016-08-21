@@ -113,6 +113,19 @@ class UsersController < ApplicationController
     @order = Order.new
   end
 
+  def order_manual
+    @order = Order.new(manual_order_params)
+    @order.user = current_user
+    @order.parse
+    if @order.save
+      redirect_to pesanan_path, notice: 'Berhasil bikin order manual'
+    else
+      @orders = current_user.orders.created.includes(:line_items)
+      @orders = @orders.page(params[:page]).per(20)
+      render :orders
+    end
+  end
+
   def order
     @order = current_user.orders.find(params[:id])
 
@@ -205,6 +218,7 @@ class UsersController < ApplicationController
     end
 
     @orders = @orders.order(created_at: :desc).uniq.page(params[:page]).per(20)
+
   end
 
   def sell_view
@@ -244,6 +258,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def manual_order_params
+    params.require(:order).permit(:manual_text)
+  end
 
   def receipt_params
     params.require(:order).permit(:receipt_number)

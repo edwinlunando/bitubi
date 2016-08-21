@@ -25,6 +25,12 @@
                       = f.input :date_to, as: :date, html5: true, label: 'Tanggal Pesan (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }
                     .grid-flex__col.grid-flex__col--3
                       button.btn.btn-green.btn-bot type="submit" Cari
+                .grid-flex
+                = simple_form_for(@order, url: order_manual_path, method: :post, html: { class: 'inline-flex' }) do |f|
+                  .grid-flex__col.grid-flex__col--4
+                    = f.input :manual_text, as: :text, label: 'Manual Order', input_html: { rows: '5', cols: '50' }
+                  .grid-flex__col.grid-flex__col--3
+                    button.btn.btn-green.btn-bot type="submit" Kirim Manual
                 .table-container
                   - if !@orders.present?
                     .black

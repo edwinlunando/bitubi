@@ -146,12 +146,12 @@ Rails.application.routes.draw do
     end
 
   end
-  
+
   # template test
   get 'template-test-1' => 'home#template1', as: 'template1'
   get 'template-test-2' => 'home#template2', as: 'template2'
   get 'template-test-3' => 'home#template3', as: 'template3'
-  
+
 
   # get 'test' => 'users#test'
   get 'daftar-vendor' => 'products#vendors', as: 'vendors'
@@ -169,6 +169,7 @@ Rails.application.routes.draw do
   post 'pesanan/:id/transfer' => 'users#order_transfer', as: 'order_transfer'
   get 'pesanan/:id' => 'users#order', as: 'order_detail'
   get 'pesanan/:id/cetakinvoice' => 'users#order_print', as: 'order_invoice'
+  post 'pesanan/manual' => 'users#order_manual', as: 'order_manual'
   get 'pesanan' => 'users#orders'
   post 'pesanan' => 'users#order_filter', as: 'order_filter'
   get 'akun' => 'users#account', as: 'account'
