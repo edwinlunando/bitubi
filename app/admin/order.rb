@@ -60,10 +60,10 @@ ActiveAdmin.register Order do
     column :payment_time
     actions do |order|
       if order.payment?
-        item 'Paid', paid_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin konfirmasi?'
+        item 'Paid ', paid_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin konfirmasi?'
       end
       if !order.transferred && order.done?
-        item 'Transfer', transfer_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+        item 'Transfer ', transfer_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
       if order.delivery? || order.payment?
         item 'Cancel', cancel_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin melakukan pembatalan?'
