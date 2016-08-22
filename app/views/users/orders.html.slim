@@ -29,6 +29,8 @@
                 = simple_form_for(@order, url: order_manual_path, method: :post, html: { class: 'inline-flex' }) do |f|
                   .grid-flex__col.grid-flex__col--4
                     = f.input :manual_text, as: :text, label: 'Manual Order', input_html: { rows: '5', cols: '50' }
+                    - if @order.errors.count > 0
+                      = @order.errors.to_a.flatten.join(', ')
                   .grid-flex__col.grid-flex__col--3
                     button.btn.btn-green.btn-bot type="submit" Kirim Manual
                 .table-container

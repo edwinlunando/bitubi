@@ -10,6 +10,11 @@ ActiveAdmin.register Order do
 
   permit_params :total, :special_instruction, :state, :receipt_number
 
+  member_action :paid, method: :put do
+    resource.confirm
+    redirect_to collection_path, notice: 'Berhasil Konfirmasi Transfer'
+  end
+
   member_action :transfer, method: :put do
     resource.transfer
     redirect_to collection_path, notice: 'Berhasil transfer'
@@ -54,11 +59,14 @@ ActiveAdmin.register Order do
     column :created_at
     column :payment_time
     actions do |order|
+      if order.payment?
+        item 'Paid', paid_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin konfirmasi?'
+      end
       if !order.transferred && order.done?
         item 'Transfer', transfer_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
       end
-      if order.delivery?
-        item 'Cancel', cancel_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin?'
+      if order.delivery? || order.payment?
+        item 'Cancel', cancel_admin_order_path(order), method: :put, 'data-confirm' => 'Apakah Anda yakin melakukan pembatalan?'
       end
     end
   end

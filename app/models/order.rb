@@ -198,6 +198,11 @@ class Order < ActiveRecord::Base
     user.credit < total
   end
 
+  def confirm
+    self.pay
+    save
+  end
+
   def parse
     ActiveRecord::Base.transaction do
       self.save
@@ -217,25 +222,30 @@ class Order < ActiveRecord::Base
       # line 4 - state
       # byebug
       states = State.where("lower(name) LIKE ?", "%#{ lines[3].downcase }%")
-      self.errors.add(:state, "No State found") if states.count < 1
+      self.errors.add(:kecamatan, "tidak ditemukan") if states.count < 1
       self.address.state = states.first
 
       # line 5 - zipcode
       self.address.zipcode = lines[4]
+      self.errors.add(:kode_pos, "tidak ditemukan") if lines[4].nil?
 
       # line 6 - sender_name
       self.address.sender_name = lines[5]
+      self.errors.add(:nama_pengirim, "tidak ditemukan") if lines[5].nil?
 
       # line 7 - sender_phone
       self.address.sender_phone = lines[6]
+      self.errors.add(:no_hp_pengirim, "tidak ditemukan") if lines[6].nil?
 
       self.address.save
 
       # line 8 - bank
       self.bank_transfer = lines[7]
+      self.errors.add(:bank_transfer, "tidak ditemukan") if lines[7].nil?
 
       # line 9 - bank_transfer
       self.bank_amount = lines[8]
+      self.errors.add(:jumlah_transfer, "tidak ditemukan") if lines[8].nil?
 
       # line 10 - number of products
       numbers = lines[9].to_i
@@ -252,6 +262,11 @@ class Order < ActiveRecord::Base
         self.line_items << line_item
         i += 1
       end
+
+      raise ActiveRecord::Rollback if self.errors.count > 0
+      # return false if self.errors.count > 0
+
+      self.save
 
     end
 

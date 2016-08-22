@@ -116,8 +116,8 @@ class UsersController < ApplicationController
   def order_manual
     @order = Order.new(manual_order_params)
     @order.user = current_user
-    @order.parse
-    if @order.save
+
+    if @order.parse
       redirect_to pesanan_path, notice: 'Berhasil bikin order manual'
     else
       @orders = current_user.orders.created.includes(:line_items)
