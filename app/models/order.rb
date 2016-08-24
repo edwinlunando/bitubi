@@ -255,7 +255,7 @@ class Order < ActiveRecord::Base
         line_item = LineItem.new
         quantity = lines[i].to_i
         i += 1
-        product = Product.find_by(slug: lines)
+        product = Product.find_by(slug: lines[i])
         line_item.quantity = quantity
         line_item.product = product
         line_item.order = self
