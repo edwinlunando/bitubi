@@ -202,3 +202,10 @@
         list-style: none !important;
     }
 }
+
+.flex-block-changer {
+    @media #{$medium} {
+        display: flex !important;
+    }
+    display: block !important;
+}

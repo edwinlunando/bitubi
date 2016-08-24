@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20160821043537) do
   create_table "cities", force: :cascade do |t|
     t.string   "name",           limit: 255
     t.integer  "province_id",    limit: 4
-<<<<<<< HEAD
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "raja_ongkir_id", limit: 4
@@ -92,12 +91,12 @@ ActiveRecord::Schema.define(version: 20160821043537) do
     t.string   "type",              limit: 30
     t.integer  "width",             limit: 4
     t.integer  "height",            limit: 4
-=======
->>>>>>> 10768d50ede03f980b332ca6b5dc488e08b974b1
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "raja_ongkir_id", limit: 4
   end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false

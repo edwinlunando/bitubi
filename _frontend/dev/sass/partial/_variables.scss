@@ -62,6 +62,8 @@ $medium             : "screen and (min-width: 48em)";
 $medium_portrait    : "screen and (min-width: 48em) and (orientation: portrait)";
 $medium_landscape   : "screen and (min-width: 48em) and (orientation: landscape)";
 
+$medium_lte			: "screen and (max-width: 48em)";
+
 $large              : "screen and (min-width: 60em)";
 $large2				: "screen and (min-width: 65em)";
 
