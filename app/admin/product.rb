@@ -2,7 +2,7 @@ ActiveAdmin.register Product do
 
   actions :all, except: [:destroy]
 
-  permit_params :name, :description, :price_dropship, :stock, :weight, :unit, :category_id, :user_id, :published,
+  permit_params :name, :description, :price_dropship, :stock, :weight, :slug, :unit, :category_id, :user_id, :published,
                 :recommended_price, :priority,
                 wholesale_prices_attributes: [:id, :price, :minimum_quantity, :maximum_quantity, :_destroy],
                 product_images_attributes: [:id, :data, :_destroy]
@@ -11,7 +11,7 @@ ActiveAdmin.register Product do
     selectable_column
     id_column
     column :name
-    column :slug
+    column 'Kode barang', :slug
     column :published
     column :priority
     column :user do |product|
@@ -55,6 +55,7 @@ ActiveAdmin.register Product do
     f.inputs 'Admin Details' do
       f.input :name
       f.input :description, :input_html => { :class => "tinymce" }
+      f.input :slug, label: 'Kode barang'
       f.input :stock
       f.input :unit
       f.input :weight, placeholder: 'dalam gram'
