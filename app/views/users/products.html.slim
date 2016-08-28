@@ -4,7 +4,7 @@
       ul.breadcrumb
         == render_breadcrumbs tag: :li, separator: ''
   .container
-    .grid-flex
+    .grid-flex.flex-block-changer
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           == render 'tabs'
@@ -25,36 +25,37 @@
                   - if !@products.present?
                     .black.mg-10 colspan="6" Anda belum memiliki barang dagangan. Silahkan tambah barang dagangan untuk dijual.
                   = link_to 'Tambah Produk', new_sell_path, class: "btn btn-orange"
-
-              .table-container
-                - if @products.present?
-                  table.table
-                    thead
-                      tr
-                        th align="center"  Gambar
-                        th Item
-                        th Kode
-                        th Stok
-                        th Weight
-                        th Unit
-                        th Aktif
-                        th align="center"  Aksi
-                    tbody
-                      - @products.each do |product|
-                        tr
-                          td align="center"
-                            - if product.get_first_image.present?
-                              img.lazy alt="" data-original="#{ product.get_first_image.data.url(:small) }"
-                          td
-                            = link_to "/dagangan/#{ product.id }/edit" do
-                              | #{ product.name }
-                          td #{ product.slug }
-                          td #{ product.stock }
-                          td #{ product.weight }
-                          td #{ product.unit }
-                          td #{ product.published ? 'Aktif' : 'Tidak aktif' }
-                          td align="center"
-                            = link_to "/dagangan/#{ product.id }/edit" do
-                              i.fa-btn.btn-yellow.fa.fa-edit title="edit"
-                            = link_to delete_sell_path(product), data: { confirm: "Non-aktifkan produk #{product.name}?" }, method: :delete
-                                i.fa-btn.btn-red.fa.fa-trash title="delete"
+              .grid-flex.flex-block-changer
+                .grid-flex__col.grid-flex__col--12
+                  .table-container
+                    - if @products.present?
+                      table.table
+                        thead
+                          tr
+                            th align="center"  Gambar
+                            th Item
+                            th Kode
+                            th Stok
+                            th Weight
+                            th Unit
+                            th Aktif
+                            th align="center"  Aksi
+                        tbody
+                          - @products.each do |product|
+                            tr
+                              td align="center"
+                                - if product.get_first_image.present?
+                                  img.lazy alt="" data-original="#{ product.get_first_image.data.url(:small) }"
+                              td
+                                = link_to "/dagangan/#{ product.id }/edit" do
+                                  | #{ product.name }
+                              td #{ product.slug }
+                              td #{ product.stock }
+                              td #{ product.weight }
+                              td #{ product.unit }
+                              td #{ product.published ? 'Aktif' : 'Tidak aktif' }
+                              td align="center"
+                                = link_to "/dagangan/#{ product.id }/edit" do
+                                  i.fa-btn.btn-yellow.fa.fa-edit title="edit"
+                                = link_to delete_sell_path(product), data: { confirm: "Non-aktifkan produk #{product.name}?" }, method: :delete
+                                    i.fa-btn.btn-red.fa.fa-trash title="delete"

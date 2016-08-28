@@ -1,5 +1,5 @@
 .wrapper
-  .top-banner
+  .top-banner.mg-20
     img src="#{ @user.supplier.banner_image.present? ? @user.supplier.banner_image.url : '/assets/img/store-dummy.jpg'}"
     .top-banner--content
       h1.top-banner--title #{ @user.supplier.name }

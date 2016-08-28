@@ -8,7 +8,7 @@ header.header-main
           - if user_signed_in?
             li.panel-profile
               a
-                figure
+                figure.figure-name-container
                   figcaption Selamat Datang, #{ current_user.email }
             li
               = link_to 'Profil', account_profile_path

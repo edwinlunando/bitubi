@@ -252,7 +252,7 @@ nav {
     a {
       padding: 10px 20px;
       display: block;
-      color: $darkorange;
+      color: $black70;
       font-size: 0.75em;
       @media #{medium} {
         font-size: 0.9em;
@@ -282,25 +282,37 @@ nav {
       }
       .panel-profile {
         padding: 0px;
-        figure {
-          div {
-            width: 100px;
-            height: 100px;
-            border: 2px solid rgba(0,0,0,0.15);
-            overflow: hidden;
-            border-radius: 60px;
-            margin: 10px auto;
-            img {
-              width: 100px;
-              height: 100px;
-            }
+        .figure-name-container {
+          @media #{$medium_lte} {
+            margin: 3px auto !important;
           }
           figcaption {
-            @include animate-transition(.5s);
-            text-align: center;
-            color: $darkorange;
-            font-size: 1.25em;
-            text-decoration: none;
+            @media #{$medium_lte} {
+              text-align: left !important;
+              font-size: 1em !important;
+            }
+          }
+        }
+        a {
+          figure {
+            div {
+              width: 100px;
+              height: 100px;
+              border: 2px solid rgba(0,0,0,0.15);
+              overflow: hidden;
+              border-radius: 60px;
+              img {
+                width: 100px;
+                height: 100px;
+              }
+            }
+            figcaption {
+              @include animate-transition(.5s);
+              text-align: center;
+              color: $darkorange;
+              font-size: 1.25em;
+              text-decoration: none;
+            }
           }
         }
       }
