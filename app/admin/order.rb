@@ -104,6 +104,8 @@ ActiveAdmin.register Order do
           link_to supplier, admin_user_path(supplier)
         end
       end
+      row :bank_transfer
+      row :bank_amount
       row :created_at
       row :payment_time
     end
