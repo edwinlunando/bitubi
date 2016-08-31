@@ -23,6 +23,10 @@
                     = f.input :date_to, as: :date, html5: true, label: 'Tanggal (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }
                   .grid-flex__col.grid-flex__col--2
                     button.btn.btn-green.btn-bot type="submit" Cari
+                  .grid-flex__col.grid-flex__col--2
+                    = link_to "", {class: 'btn-clear fa-btn btn-orange btn-bot', id: 'print-target'} do
+                      i.fa.fa-print title="Cetak Sekaligus"
+                      span   Multi Print
               .table-container
                 - if !@orders.present?
                   span.black
@@ -35,6 +39,7 @@
                   table.table
                     thead
                       tr align="center"
+                        th
                         th Order ID
                         th Pembeli
                         th Harga
@@ -44,10 +49,12 @@
                         - @orders.each do |order|
                           tr align="center"
                             td
+                              input class="print-checker" type="checkbox" value="#{order.id}" /
+                            td
                               b.darkorange id: #{ order.id }
                               br/
                               small.black #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
-                            td align="left"
+                            td align="left" width="50%"
                               b.darkorange #{ order.user.name }
                               br
                               span.black #{ order.user.email }
@@ -71,5 +78,7 @@
                             td align="center"
                               = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
                                 i.fa.fa-folder-open title="view"
+                              = link_to "/pesanan/#{order.id}&/cetakinvoice", {class: 'btn-clear fa-btn btn-orange'} do
+                                  i.fa.fa-print title="Cetak Invoice"  
               div.pagination-container
                   = paginate @orders

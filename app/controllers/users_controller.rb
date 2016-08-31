@@ -144,7 +144,8 @@ class UsersController < ApplicationController
   end
 
   def order_print
-    @order = Order.find(params[:id])
+    parameters = params[:id]
+    @orders = Order.find params[:id].split('&')
     render layout: false
   end
 
