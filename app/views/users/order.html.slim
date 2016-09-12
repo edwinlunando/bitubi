@@ -138,6 +138,6 @@
                               = link_to 'Konfirmasi Terima', order_transfer_path(@order), class: 'btn btn-green', method: :post
                           td colspan="2"
                           td align="right"
-                            = link_to "/pesanan/#{@order.id}/cetakinvoice", {class: 'btn-clear fa-btn btn-green'} do
+                            = link_to "/pesanan/#{@order.id}&/cetakinvoice", {class: 'btn-clear fa-btn btn-green'} do
                                 i.fa.fa-file title="Cetak Invoice"  
                                 span  Cetak Invoice

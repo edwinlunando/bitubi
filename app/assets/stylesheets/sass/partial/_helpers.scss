@@ -209,3 +209,12 @@
     }
     display: block !important;
 }
+
+// min-width helper
+.mw-200 {
+    min-width: 200px;
+}
+
+.mw-350 {
+    min-width: 350px;
+}

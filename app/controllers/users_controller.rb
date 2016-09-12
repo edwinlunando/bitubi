@@ -144,7 +144,12 @@ class UsersController < ApplicationController
   end
 
   def order_print
-    @order = Order.find(params[:id])
+    parameters = params[:id]
+    @orders = Order.find params[:id].split('&')
+    @orders.each do |order|
+      order.printed_at = Time.now
+      order.save
+    end
     render layout: false
   end
 
@@ -200,10 +205,18 @@ class UsersController < ApplicationController
     add_breadcrumb 'Akun', :account_path
     add_breadcrumb 'Penjualan', :sell_path
 
+    @filter = 1
+
     @orders = Order.vendor.joins(line_items: [:product])
                    .includes(:line_items)
                    .where('products.user_id = ?', current_user.id)
                    .where(state: [:delivery, :done, :failed])
+
+    if (params[:filter] == 'tertunda')
+      @orders = @orders.where(printed_at: nil)
+    elsif (params[:filter] == 'tercetak')
+      @orders = @orders.where.not(printed_at: nil)
+    end
 
     @id = params[:id]
     @receipt_number = params[:receipt_number]

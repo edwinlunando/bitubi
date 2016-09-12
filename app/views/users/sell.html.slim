@@ -4,15 +4,33 @@
       ul.breadcrumb
         == render_breadcrumbs tag: :li, separator: ''
   .container
-    .grid-flex
+    .grid-flex.flex-block-changer
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           == render 'tabs'
           .list-wrap
             .grid-flex__col.grid-flex__col--12
-              h2.darkorange Penjualan
               .grid-flex
-                = simple_form_for('', url: sell_path, method: :get, html: { class: 'inline-flex' }) do |f|
+                .grid-flex__col.grid-flex__col--2
+                  h2.darkorange Penjualan
+                .grid-flex__col.grid-flex__col--5
+                  b.black.mgr-5 Filter Invoice:  
+                  = link_to "/penjualan", {class: 'btn-clear btn-ico-only fa-btn btn-grey', title: 'Tandai Belum Dibaca'} do
+                    i.mgr-5.fa.fa-envelope title="Tandai Belum Dibaca"
+                    span Semua
+                  = link_to "/penjualan?filter=tertunda", {class: 'btn-clear btn-ico-only fa-btn btn-black', title: 'Tertunda'} do
+                    i.mgr-5.fa.fa-folder title="Tertunda"  
+                    span Tertunda
+                  = link_to "/penjualan?filter=tercetak", {class: 'btn-clear btn-ico-only fa-btn btn-grey', title: 'Tercetak'} do
+                    i.mgr-5.fa.fa-folder-open title="Tercetak"  
+                    span Tercetak
+                .grid-flex__col.grid-flex__col--5
+                  b.black.mgr-5 Aksi:  
+                  = link_to "", {class: 'btn-clear fa-btn btn-orange', id: 'print-target', title: 'Multi Print'} do
+                      i.fa.fa-print title="Cetak Sekaligus"  
+                      span  Cetak Sekaligus
+              .grid-flex
+                = simple_form_for('', url: sell_path, method: :get, html: { class: 'flex-block-changer' }) do |f|
                   .grid-flex__col.grid-flex__col--2
                     = f.input :id, label: 'Order id', placeholder: 'Order Id', input_html: { value: @id }
                   .grid-flex__col.grid-flex__col--2
@@ -32,9 +50,10 @@
                     = link_to 'Toko', vendor_view_path(current_user.supplier.id), class: 'btn btn-small btn-green mgs-10'
                     | Anda
                 - else
-                  table.table
+                  table.table.table-sales
                     thead
                       tr align="center"
+                        th
                         th Order ID
                         th Pembeli
                         th Harga
@@ -42,25 +61,31 @@
                         th Aksi
                     tbody
                         - @orders.each do |order|
-                          tr align="center"
+                          tr align="center" class="#{ (order.printed_at) ? 'read' : '' }"
                             td
+                              input class="print-checker" type="checkbox" value="#{order.id}" /
+                            td.mw-200
                               b.darkorange id: #{ order.id }
                               br/
                               small.black #{ order.payment_time.present? ? order.payment_time.strftime("%d %B %Y") : order.created_at.strftime("%d %B %Y")  }
-                            td align="left"
+                              br /
+                              small
+                               b.black Tercetak: 
+                              small.black #{ (order.printed_at) ? order.printed_at.strftime("%B %d, %Y") : 'belum'}
+                            td.mw-350 align="left" width="50%"
                               b.darkorange #{ order.user.name }
                               br
                               span.black #{ order.user.email }
                               br
                               small.black #{ order.address.one_line.titleize if order.address.present? }
-                            td.black align="left"
+                            td.mw-200.black align="left"
                               small Biaya: #{ number_format(order.total_without_shipment) }
                               br/
                               small Ongkir: #{ number_format(order.shipment_price) }
                               br/
                               small
                                 b.darkorange Total: #{ number_format(order.total) }
-                            td
+                            td.mw-200
                               b
                                 -if order.state == 'done'
                                   span.darkgreen #{ order.state_simple }
@@ -71,5 +96,7 @@
                             td align="center"
                               = link_to "/penjualan/#{order.id}", {class: 'btn-clear fa-btn btn-green'}
                                 i.fa.fa-folder-open title="view"
+                              = link_to "/pesanan/#{order.id}&/cetakinvoice", {class: 'btn-clear fa-btn btn-orange'} do
+                                  i.fa.fa-print title="Cetak Invoice"  
               div.pagination-container
                   = paginate @orders

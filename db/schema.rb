@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821043537) do
+ActiveRecord::Schema.define(version: 20160907042051) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "name",                 limit: 255
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20160821043537) do
     t.string   "shipment_price_etd",      limit: 255
     t.string   "bank_transfer",           limit: 255
     t.decimal  "bank_amount",                           precision: 10
+    t.datetime "printed_at"
   end
 
   add_index "orders", ["state_shipment_price_id"], name: "index_orders_on_state_shipment_price_id", using: :btree

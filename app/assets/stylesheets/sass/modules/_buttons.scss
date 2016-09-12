@@ -141,3 +141,12 @@ $BTN_PADDING_SMALL: $space/20 $space;
     min-width: 20px;
     margin-right:4px;
 }
+
+.btn-ico-only {
+    span {
+        display: none;
+        @media #{$medium} {
+            display: inline-block;
+        }
+    }
+}

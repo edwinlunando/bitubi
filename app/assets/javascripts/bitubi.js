@@ -165,6 +165,22 @@
                 $('#modal-close').on('click', function(e) {
                     $('.modals').fadeOut('fast');
                 });
+                $('.print-checker').on('click', function(e) {
+                    var checkedValues = $('.print-checker:checkbox:checked').map(function() {
+                        return this.value;
+                    }).get();
+                    var target = $('#print-target');
+                    var href = '/pesanan/';
+                    if(checkedValues.length) {
+                        for (x in checkedValues) {
+                            href += checkedValues[x] + '&';
+                        }
+                        href += '/cetakinvoice';
+                    } else {
+                        href = '';
+                    }
+                    target.attr('href', href);
+                });
             },
 
             this.midMenuInit = function () {

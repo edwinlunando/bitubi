@@ -206,3 +206,9 @@ $table_border_prop          : "solid 1px " + $table-border;
     min-width: 0 !important;
     width: 40px !important;
 }
+
+.table-sales {
+    .read {
+        background: #eee;
+    }
+}
