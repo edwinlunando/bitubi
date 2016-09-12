@@ -128,9 +128,19 @@ class Order < ActiveRecord::Base
 
   def transfer
     ActiveRecord::Base.transaction do
+      # send money to supplier first
       supplier = suppliers.first
       supplier.credit += total
       supplier.save
+
+      # send money to reseller
+      if bank_amount.present?
+        user_commision = commision
+        user.credit += user_commision if user_commision > 0
+        user.save
+      end
+
+      # save timestamp
       self.transferred = true
       self.transfer_time = Time.zone.now
       save
@@ -176,6 +186,10 @@ class Order < ActiveRecord::Base
       weight = weight.ceil
     end
     weight
+  end
+
+  def commision
+    bank_amount - total
   end
 
   def shipment_price
@@ -257,8 +271,10 @@ class Order < ActiveRecord::Base
       i = 12
       numbers.times do
         line_item = LineItem.new
+        # jumlah barang
         quantity = lines[i].to_i
         i += 1
+        # kode barang
         product = Product.find_by(slug: lines[i])
         line_item.quantity = quantity
         line_item.product = product
