@@ -97,6 +97,8 @@ gem 'rest-client'
 gem 'tinymce-rails'
 gem 'non-stupid-digest-assets', '~> 1.0', '>= 1.0.8'
 
+gem 'lograge'
+
 group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

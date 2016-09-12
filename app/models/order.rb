@@ -179,9 +179,6 @@ class Order < ActiveRecord::Base
   end
 
   def shipment_price
-    # return 0 if state_shipment_price.nil?
-    # weight = display_weight
-    # weight * state_shipment_price.price
     if shipment_price_value.present?
       return shipment_price_value
     elsif state_shipment_price.present?
@@ -247,10 +244,17 @@ class Order < ActiveRecord::Base
       self.bank_amount = lines[8]
       self.errors.add(:jumlah_transfer, "tidak ditemukan") if lines[8].nil?
 
-      # line 10 - number of products
-      numbers = lines[9].to_i
+      # line 10 - kurir OKE/YES/POS
+      self.shipment_price_name = lines[9]
+      self.errors.add(:kurir, "tidak ditemukan") if lines[9].nil?
 
-      i = 10
+      # line 11- kurir biaya
+      self.shipment_price_value = lines[10]
+
+      # line 12 - number of products
+      numbers = lines[11].to_i
+
+      i = 12
       numbers.times do
         line_item = LineItem.new
         quantity = lines[i].to_i

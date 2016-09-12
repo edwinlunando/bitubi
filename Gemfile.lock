@@ -317,6 +317,10 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.10.0)
     libv8 (3.16.14.13)
+    lograge (0.4.1)
+      actionpack (>= 4, < 5.1)
+      activesupport (>= 4, < 5.1)
+      railties (>= 4, < 5.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -551,6 +555,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
+  lograge
   mail_form
   mailgun_rails
   money-rails

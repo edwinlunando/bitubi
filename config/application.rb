@@ -34,5 +34,8 @@ module Bitubi
     end
 
     config.tinymce.install = :compile
+
+    config.lograge.enabled = true
+
   end
 end

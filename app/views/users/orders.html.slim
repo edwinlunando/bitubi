@@ -16,7 +16,7 @@
                   b Menu Pesanan
                 ul.account-menu
                   li.tab-menu data-target="#tab1"
-                    a href="#" 
+                    a href="#"
                       b style="width:100%; height:100%;"
                         i.fa.fa-book.darkorange
                         span.darkorange  Daftar Pesanan
@@ -85,6 +85,38 @@
                                     /   i.fa.fa-check title="terima"
                 #tab2 style="display:none"
                   h2.darkorange Manual Order
+                  .grid-flex
+                    .grid-flex__col.grid-flex__col--9
+                      p
+                        | Panduan Format:
+                        br
+                        | 1. Nama Penerima
+                        br
+                        | 2. HP Penerima
+                        br
+                        | 3. Alamat Penerima
+                        br
+                        | 4. Kecamatan
+                        br
+                        | 5. Kodepos
+                        br
+                        | 6. Nama Pengirim
+                        br
+                        | 7. HP Pengirim
+                        br
+                        | 8. Bank
+                        br
+                        | 9. Jumlah Transfer
+                        br
+                        | 10. Kurir
+                        br
+                        | 11. Biaya kurir
+                        br
+                        | 12. Jumlah jenis barang
+                        br
+                        | 13. Nama barang
+                        br
+                        | 14. Jumlah barang
                   .grid-flex
                     = simple_form_for(@order, url: order_manual_path, method: :post, html: { class: 'inline-flex' }) do |f|
                       .grid-flex__col.grid-flex__col--9
