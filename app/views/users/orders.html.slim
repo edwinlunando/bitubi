@@ -114,9 +114,9 @@
                         br
                         | 12. Jumlah jenis barang
                         br
-                        | 13. Nama barang
+                        | 13. Jumlah barang
                         br
-                        | 14. Jumlah barang
+                        | 14. Kode barang
                     .grid-flex__col.grid-flex__col--6
                       p
                         | Contoh:
@@ -145,9 +145,9 @@
                         br
                         | 1
                         br
-                        | phytoskin
-                        br
                         | 2
+                        br
+                        | phytoskin
                   .grid-flex
                     = simple_form_for(@order, url: order_manual_path, method: :post, html: { class: 'inline-flex' }) do |f|
                       .grid-flex__col.grid-flex__col--9
