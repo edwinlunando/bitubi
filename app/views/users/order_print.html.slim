@@ -3,14 +3,19 @@
     div style="float:left; width:450px; padding-right: 25px;"
       img itempro="name" src="#{ order.suppliers.first.supplier.image.url }" alt="Vendor Logo" height="60" style="margin: 10px;"
     div style="float:left; width:300px; margin-left: -20px; padding-left: 20px;"
-      h1 style="font-size: 18px; color:#FF6739;"
-       b Nomor Invoice: # #{ order.id }
-       br
-       b Resi: #{ order.receipt_number }
+      h1 style="font-size: 18px;"
+        b style=" color:#FF6739;" Nomor Invoice:  
+        b  # #{ order.id }
+        br
+        b style=" color:#FF6739;" Tipe Pengiriman:  
+        b  #{ order.shipment_price_name }
+        br
+        b style=" color:#FF6739;" Resi:  
+        b  #{ order.receipt_number }
   div style="width:800px; margin: 10px; font-family: sans; overflow:auto; display: block; clear: both;"
     div style="float:left; width:440px; padding-right: 40px"
       div style="width:100%; margin-bottom: 10px"
-        b style="color:#333;" Kepada:
+        b style=" color:#FF6739;" Kepada:
       div style="width:100%; margin-bottom: 5px"
         div style="float:left; width:25%"
           b style="color:#333;" Nama:
@@ -29,7 +34,7 @@
     div style="float:left; width:300px; border-left:2px solid black; margin-left: -20px; padding-left: 20px"
       div style="width:100%; margin-bottom: 10px"
         div style="width:100%; margin-bottom: 10px"
-          b style="color:#333;" Pengirim:
+          b style=" color:#FF6739;" Pengirim:
         div
           b style="color:#FF6739;" #{ order.line_items.try(:first).product.supplier.name }
         div style="width:100%; margin-bottom: 5px"
@@ -56,6 +61,10 @@
         tr
           td style="padding: 5px;" #{ line_item.product.name }
           td style="padding: 5px; text-align: center;" #{ line_item.quantity }
+  div style="padding: 0 10px"
+    small 
+      b style=" color:#FF6739;" Catatan: 
+      span #{ order.address.special_instructions }
   br
   br
   br
