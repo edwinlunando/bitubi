@@ -23,7 +23,7 @@ class Address < ActiveRecord::Base
   validates :name, presence: true
 
   def one_line
-    [state.city.province.name, state.city.name, state.name, name].join(', ')
+    [name, state.name, state.city.name, state.city.province.name].join(', ')
   end
 
 end
