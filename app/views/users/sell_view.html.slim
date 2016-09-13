@@ -4,12 +4,12 @@
       ul.breadcrumb
         == render_breadcrumbs tag: :li, separator: ''
   .container
-    .grid-flex
+    .grid-flex.flex-block-changer
       .grid-flex__col.grid-flex__col--12
         #surfari-tabs
           == render 'tabs'
           .list-wrap
-            .grid-flex
+            .grid-flex.flex-block-changer
               .grid-flex__col.grid-flex__col--3
                 .category-title.clear-pm.vendor-info
                   h3.darkorange Info Pengirim
@@ -131,9 +131,16 @@
                                   span.darkorange Nomor resi:
                                 = f.text_field :receipt_number, placeholder: 'Masukkan Resi', class: 'form-input'
                               td align="center"
-                                button.btn.btn-green type='submit' style="width: 90%;"
-                                  i.fa.fa-truck title="kirim"
-                                  |
-                                  span  Kirim
+                                - if @order.receipt_number.present?
+                                  button.btn.btn-green type='submit' style="width: 90%;" onClick="confirm('Ubah nomor resi?')"
+                                    i.fa.fa-edit title="kirim"
+                                    |
+                                    span  Ubah
+                                - else
+                                  button.btn.btn-green type='submit' style="width: 90%;"
+                                    i.fa.fa-truck title="kirim"
+                                    |
+                                    span  Kirim
+
                   center.mg-20
                     = link_to 'Kembali', sell_path, class: 'btn btn-orange'
