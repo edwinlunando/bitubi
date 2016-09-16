@@ -244,6 +244,10 @@
                 });
             },
 
+            this.selectizeInit = function() {
+                $('.selectize').selectize();
+            }
+
             this.selectInit = function () {
                 var select = $('.select-text'),
                     province = $('#address_province'),
@@ -420,6 +424,7 @@
                     ui.storeManageImageViewerInit();
                     ui.orderTableInit();
                     ui.notifCloseInit();
+                    ui.selectizeInit();
                     ui.selectInit();
                     ui.saldoInit();
                     ui.equalHeight();

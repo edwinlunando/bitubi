@@ -144,12 +144,20 @@ class UsersController < ApplicationController
   end
 
   def order_print
+    require 'barby'
+    require 'barby/barcode'
+    require 'barby/barcode/code_128'
+    require 'barby/outputter/html_outputter'
+
     parameters = params[:id]
     @orders = Order.find params[:id].split('&')
     @orders.each do |order|
       order.printed_at = Time.now
       order.save
+      barcode = Barby::Code128B.new(order.receipt_number)
+      order.outputter = Barby::HtmlOutputter.new(barcode)
     end
+
     render layout: false
   end
 

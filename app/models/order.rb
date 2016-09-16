@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :state_shipment_price
 
-  attr_accessor :manual_text
+  attr_accessor :manual_text, :outputter
 
   # scope
   scope :vendor, -> { where(state: [:delivery, :done, :failed]) }

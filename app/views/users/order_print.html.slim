@@ -1,7 +1,13 @@
+style
+  |  table.barby-barcode { border-spacing: 0; min-height:50px; margin-top:20px;} tr.barby-row {} td.barby-cell { width: 3px; height: 3px; } td.barby-cell.on { background: #000; } 
+
 - @orders.each do |order|
   div style="width:800px; margin: 0px; font-family: sans; display: block;"
     div style="float:left; width:450px; padding-right: 25px;"
-      img itempro="name" src="#{ order.suppliers.first.supplier.image.url }" alt="Vendor Logo" height="60" style="margin: 10px;"
+      div style="width:40%; float: left"
+        img itempro="name" src="#{ order.suppliers.first.supplier.image.url }" alt="Vendor Logo" height="60" style="margin: 10px;"
+      div style="width:60%; float: left; min-height: 100px;"
+        = raw order.outputter.to_html
     div style="float:left; width:300px; margin-left: -20px; padding-left: 20px;"
       h1 style="font-size: 18px;"
         b style=" color:#FF6739;" Nomor Invoice:  
