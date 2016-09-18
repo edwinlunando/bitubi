@@ -87,75 +87,77 @@
                   h2.darkorange Manual Order
                   .grid-flex
                     .grid-flex__col.grid-flex__col--6
-                      p
-                        | Panduan Format:
-                        br
-                        | 1. Nama Penerima
-                        br
-                        | 2. HP Penerima
-                        br
-                        | 3. Alamat Penerima
-                        br
-                        | 4. Kecamatan
-                        br
-                        | 5. Kodepos
-                        br
-                        | 6. Nama Pengirim
-                        br
-                        | 7. HP Pengirim
-                        br
-                        | 8. Bank
-                        br
-                        | 9. Jumlah Transfer
-                        br
-                        | 10. Kurir
-                        br
-                        | 11. Biaya kurir
-                        br
-                        | 12. Jumlah jenis barang
-                        br
-                        | 13. Jumlah barang
-                        br
-                        | 14. Kode barang
+                      = simple_form_for(@order, url: order_manual_path, method: :post) do |f|
+                        div
+                          = f.input :manual_text, as: :text, label: 'Manual Order', input_html: { rows: '15', cols: '50' }
+                          - if @order.errors.count > 0
+                            = @order.errors.to_a.flatten.join(', ')
+                        div
+                          button.btn.btn-green.btn-bot type="submit" Kirim Manual
                     .grid-flex__col.grid-flex__col--6
-                      p
-                        | Contoh:
-                        br
-                        | Gondes
-                        br
-                        | 088812345678
-                        br
-                        | Jalan Jatinegara
-                        br
-                        | pancoran
-                        br
-                        | 12345
-                        br
-                        | Saba Merica
-                        br
-                        | 081812333211
-                        br
-                        | BCA
-                        br
-                        | 125000
-                        br
-                        | JNEOKE
-                        br
-                        | 9000
-                        br
-                        | 1
-                        br
-                        | 2
-                        br
-                        | phytoskin
-                  .grid-flex
-                    = simple_form_for(@order, url: order_manual_path, method: :post, html: { class: 'inline-flex' }) do |f|
-                      .grid-flex__col.grid-flex__col--9
-                        = f.input :manual_text, as: :text, label: 'Manual Order', input_html: { rows: '5', cols: '50' }
-                        - if @order.errors.count > 0
-                          = @order.errors.to_a.flatten.join(', ')
-                        br/
-                        button.btn.btn-green.btn-bot type="submit" Kirim Manual
+                      .grid-flex
+                        .grid-flex__col.grid-flex__col--6
+                          p
+                            | Panduan Format:
+                            br
+                            | 1. Nama Penerima
+                            br
+                            | 2. HP Penerima
+                            br
+                            | 3. Alamat Penerima
+                            br
+                            | 4. Kecamatan
+                            br
+                            | 5. Kodepos
+                            br
+                            | 6. Nama Pengirim
+                            br
+                            | 7. HP Pengirim
+                            br
+                            | 8. Bank
+                            br
+                            | 9. Jumlah Transfer
+                            br
+                            | 10. Kurir
+                            br
+                            | 11. Biaya kurir
+                            br
+                            | 12. Jumlah jenis barang
+                            br
+                            | 13. Jumlah barang
+                            br
+                            | 14. Kode barang
+                        .grid-flex__col.grid-flex__col--6
+                          p
+                            | Contoh:
+                            br
+                            | Gondes
+                            br
+                            | 088812345678
+                            br
+                            | Jalan Jatinegara
+                            br
+                            | pancoran
+                            br
+                            | 12345
+                            br
+                            | Saba Merica
+                            br
+                            | 081812333211
+                            br
+                            | BCA
+                            br
+                            | 125000
+                            br
+                            | JNEOKE
+                            br
+                            | 9000
+                            br
+                            | 1
+                            br
+                            | 2
+                            br
+                            | phytoskin
                 div.pagination-container
                   = paginate @orders
 

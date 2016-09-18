@@ -96,6 +96,10 @@ gem 'rest-client'
 # editor
 gem 'tinymce-rails'
 gem 'non-stupid-digest-assets', '~> 1.0', '>= 1.0.8'
+# qrcode and barcode editor
+gem 'barby'
+gem 'rqrcode'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
 
 gem 'lograge'
 
