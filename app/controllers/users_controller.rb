@@ -118,6 +118,7 @@ class UsersController < ApplicationController
     @order.user = current_user
 
     if @order.parse
+      AdminMailer.new_order(@order).deliver_now
       redirect_to pesanan_path, notice: 'Berhasil bikin order manual'
     else
       @orders = current_user.orders.created.includes(:line_items)

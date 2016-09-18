@@ -16,6 +16,11 @@ class AdminMailer < ApplicationMailer
     mail(to: finance, subject: 'Ada Penarikan baru!')
   end
 
+  def new_order(order)
+    @order = order
+    mail(to: more_admin, subject: 'Ada Pesanan Manual Baru! #' + @order.id.to_s)
+  end
+
   private
 
   def admin
@@ -24,6 +29,10 @@ class AdminMailer < ApplicationMailer
 
   def finance
     'finance@larisni.com'
+  end
+
+  def more_admin
+    'vendorpasutri@larisni.com'
   end
 
 end
