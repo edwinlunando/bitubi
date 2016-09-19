@@ -155,7 +155,7 @@ class UsersController < ApplicationController
     @orders.each do |order|
       order.printed_at = Time.now
       order.save
-      barcode = Barby::Code128B.new(order.receipt_number)
+      barcode = Barby::Code128B.new(order.id)
       order.outputter = Barby::HtmlOutputter.new(barcode)
     end
 

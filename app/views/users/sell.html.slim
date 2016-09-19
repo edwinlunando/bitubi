@@ -77,7 +77,9 @@
                               br
                               span.black #{ order.user.email }
                               br
-                              small.black #{ order.address.one_line.titleize if order.address.present? }
+                              / small.black #{ order.address.one_line.titleize if order.address.present? }
+                              b.black Pengiriman:  
+                              b.darkorange  #{ order.shipment_price_name }
                             td.mw-200.black align="left"
                               small Biaya: #{ number_format(order.total_without_shipment) }
                               br/
