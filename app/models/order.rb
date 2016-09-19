@@ -60,7 +60,7 @@ class Order < ActiveRecord::Base
   end
 
   def cancel_order
-    if state == 'delivery'
+    if state == 'delivery' || state == 'payment'
       cancel
       self.cancel_time = Time.zone.now
       user.credit += total
