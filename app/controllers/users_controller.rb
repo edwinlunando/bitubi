@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
     @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
 
-    @orders = current_user.orders.created.updated.includes(:line_items)
+    @orders = current_user.orders.created.includes(:line_items)
 
     @orders = @orders.where(id: @id) if @id.present?
     @orders = @orders.where(receipt_number: @receipt_number) if @receipt_number.present?
@@ -118,6 +118,7 @@ class UsersController < ApplicationController
     @order.user = current_user
 
     if @order.parse
+      AdminMailer.new_order(@order).deliver_now
       redirect_to pesanan_path, notice: 'Berhasil bikin order manual'
     else
       @orders = current_user.orders.created.includes(:line_items)
@@ -313,3 +314,4 @@ class UsersController < ApplicationController
   end
 
 end
+>>>>>>> 6e1e61f43112284fcec22c417d2096c0a3198620

@@ -56,6 +56,8 @@ ActiveAdmin.register Order do
         link_to supplier, admin_user_path(supplier)
       end
     end
+    column :bank_transfer
+    column :bank_amount
     column :created_at
     column :payment_time
     actions do |order|
