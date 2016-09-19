@@ -36,4 +36,3 @@ class AdminMailer < ApplicationMailer
   end
 
 end
->>>>>>> 6e1e61f43112284fcec22c417d2096c0a3198620
