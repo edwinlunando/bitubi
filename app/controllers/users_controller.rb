@@ -153,8 +153,10 @@ class UsersController < ApplicationController
     parameters = params[:id]
     @orders = Order.find params[:id].split('&')
     @orders.each do |order|
-      order.printed_at = Time.now
-      order.save
+      if order.user_id == current_user.id
+        order.printed_at = Time.now
+        order.save
+      end
       barcode = Barby::Code128B.new(order.id)
       order.outputter = Barby::HtmlOutputter.new(barcode)
     end
