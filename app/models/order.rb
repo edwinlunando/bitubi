@@ -233,9 +233,9 @@ class Order < ActiveRecord::Base
 
       # line 4 - state
       # byebug
-      states = State.where("lower(name) LIKE ?", "%#{ lines[3].downcase }%")
-      self.errors.add(:kecamatan, "tidak ditemukan") if states.count < 1
-      self.address.state = states.first
+      # states = State.where("lower(name) LIKE ?", "%#{ lines[3].downcase }%")
+      # self.errors.add(:kecamatan, "tidak ditemukan") if states.count < 1
+      # self.address.state = states.first
 
       # line 5 - zipcode
       self.address.zipcode = lines[4]
