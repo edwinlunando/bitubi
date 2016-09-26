@@ -220,16 +220,20 @@ class Order < ActiveRecord::Base
       self.save
       self.state = :payment
       lines = manual_text.lines.map(&:strip)
+      counter_line = 0
 
       # line 1 - receiver_name
       self.address = Address.new
-      self.address.receiver_name = lines[0]
+      self.address.receiver_name = lines[counter_line]
+      counter_line += 1
 
       # line 2 - receiver_phone
-      self.address.receiver_phone = lines[1]
+      self.address.receiver_phone = lines[counter_line]
+      counter_line += 1
 
       # line 3 - name
-      self.address.name = lines[2]
+      self.address.name = lines[counter_line]
+      counter_line += 1
 
       # line 4 - state
       # byebug
@@ -238,38 +242,46 @@ class Order < ActiveRecord::Base
       # self.address.state = states.first
 
       # line 5 - zipcode
-      self.address.zipcode = lines[4]
-      self.errors.add(:kode_pos, "tidak ditemukan") if lines[4].nil?
+      self.address.zipcode = lines[counter_line]
+      self.errors.add(:kode_pos, "tidak ditemukan") if lines[counter_line].nil?
+      counter_line += 1
 
       # line 6 - sender_name
-      self.address.sender_name = lines[5]
-      self.errors.add(:nama_pengirim, "tidak ditemukan") if lines[5].nil?
+      self.address.sender_name = lines[counter_line]
+      self.errors.add(:nama_pengirim, "tidak ditemukan") if lines[counter_line].nil?
+      counter_line += 1
 
       # line 7 - sender_phone
-      self.address.sender_phone = lines[6]
-      self.errors.add(:no_hp_pengirim, "tidak ditemukan") if lines[6].nil?
+      self.address.sender_phone = lines[counter_line]
+      self.errors.add(:no_hp_pengirim, "tidak ditemukan") if lines[counter_line].nil?
+      counter_line += 1
 
       self.address.save
 
       # line 8 - bank
-      self.bank_transfer = lines[7]
-      self.errors.add(:bank_transfer, "tidak ditemukan") if lines[7].nil?
+      self.bank_transfer = lines[counter_line]
+      self.errors.add(:bank_transfer, "tidak ditemukan") if lines[counter_line].nil?
+      counter_line += 1
 
       # line 9 - bank_transfer
-      self.bank_amount = lines[8]
-      self.errors.add(:jumlah_transfer, "tidak ditemukan") if lines[8].nil?
+      self.bank_amount = lines[counter_line]
+      self.errors.add(:jumlah_transfer, "tidak ditemukan") if lines[counter_line].nil?
+      counter_line += 1
 
       # line 10 - kurir OKE/YES/POS
-      self.shipment_price_name = lines[9]
-      self.errors.add(:kurir, "tidak ditemukan") if lines[9].nil?
+      self.shipment_price_name = lines[counter_line]
+      self.errors.add(:kurir, "tidak ditemukan") if lines[counter_line].nil?
+      counter_line += 1
 
       # line 11- kurir biaya
-      self.shipment_price_value = lines[10]
+      self.shipment_price_value = lines[counter_line]
+      counter_line += 1
 
       # line 12 - number of products
-      numbers = lines[11].to_i
+      numbers = lines[counter_line].to_i
+      counter_line += 1
 
-      i = 12
+      i = counter_line
       numbers.times do
         line_item = LineItem.new
         # jumlah barang
