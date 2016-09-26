@@ -27,6 +27,7 @@ class Address < ActiveRecord::Base
       [name, state.name, state.city.name, state.city.province.name].join(', ')
     else
       name
+    end
   end
 
 end
