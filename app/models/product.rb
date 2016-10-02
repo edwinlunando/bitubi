@@ -37,6 +37,7 @@ class Product < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
+  validates :slug, uniqueness: true
   validates :name, presence: true
   validates :weight, presence: true
   validates :stock, presence: true

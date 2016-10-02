@@ -32,6 +32,13 @@ ActiveAdmin.register Order do
     redirect_to collection_path, alert: 'Order berhasil ditransfer!'
   end
 
+  batch_action :paid do |ids|
+    Order.find(ids).each do |order|
+      order.confirm
+    end
+    redirect_to collection_path, alert: 'Order berhasil dikonfirmasi!'
+  end
+
   index do
     selectable_column
     id_column

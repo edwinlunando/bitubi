@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
     @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
 
-    @orders = current_user.orders.created.includes(:line_items)
+    @orders = current_user.orders.created.includes(:adjustments, :state_shipment_price, line_items: [:product])
 
     @orders = @orders.where(id: @id) if @id.present?
     @orders = @orders.where(receipt_number: @receipt_number) if @receipt_number.present?
@@ -219,7 +219,7 @@ class UsersController < ApplicationController
     @filter = 1
 
     @orders = Order.vendor.joins(line_items: [:product])
-                   .includes(:line_items)
+                   .includes(:line_items, :user, :state_shipment_price)
                    .where('products.user_id = ?', current_user.id)
                    .where(state: [:delivery, :done, :failed])
 
