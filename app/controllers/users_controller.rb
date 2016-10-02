@@ -153,7 +153,7 @@ class UsersController < ApplicationController
     parameters = params[:id]
     @orders = Order.find params[:id].split('&')
     @orders.each do |order|
-      if order.user_id == current_user.id
+      if order.user_id != current_user.id
         order.printed_at = Time.now
         order.save
       end
