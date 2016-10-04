@@ -97,6 +97,10 @@ class UsersController < ApplicationController
 
     @id = params[:id]
     @receipt_number = params[:receipt_number]
+    @state = params[:state]
+    @name = params[:name]
+    @users = User.where('first_name LIKE ? or last_name LIKE ?', "%#{@name}%", "%#{@name}%").pluck(:id) if @name.present?
+
     @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
     @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
 
@@ -104,6 +108,8 @@ class UsersController < ApplicationController
 
     @orders = @orders.where(id: @id) if @id.present?
     @orders = @orders.where(receipt_number: @receipt_number) if @receipt_number.present?
+    @orders = @orders.where(state: @state) if @state.present?
+    @orders = @orders.where(user_id: @users) if @users.present?
 
     if @date_from.present? && @date_to.present?
       @orders = @orders.where(payment_time: @date_from..@date_to)
@@ -174,7 +180,7 @@ class UsersController < ApplicationController
     @name = params[:name]
     @published = params[:published].present? ? params[:published].to_i : nil
 
-    @products = @products.where('name LIKE ?', @name) if @name.present?
+    @products = @products.where('name LIKE ?', "%#{@name}%") if @name.present?
     @products = @products.where(published: @published) if @published.present?
   end
 
@@ -231,6 +237,8 @@ class UsersController < ApplicationController
 
     @id = params[:id]
     @receipt_number = params[:receipt_number]
+    @userIds = User.where('name LIKE ?', "%{@name}%") if @name.present?
+
     @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
     @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
 
