@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Orders") do |sheet|
+  sheet.add_row ['Nomor order', 'Nomor resi', 'Nama penerima', 'Nama pengirim']
+  @orders.each do |order|
+    sheet.add_row [order.id, order.receipt_number, order.address&.receiver_name, order.address&.sender_name]
+  end
+end

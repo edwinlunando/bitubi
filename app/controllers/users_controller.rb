@@ -264,6 +264,17 @@ class UsersController < ApplicationController
     redirect_to sell_view_path(@order)
   end
 
+  def sell_xls
+    @orders = Order.vendor.joins(line_items: [:product])
+                   .includes(:line_items, :user, :state_shipment_price)
+                   .where('products.user_id = ?', current_user.id)
+                   .where(state: [:delivery, :done, :failed])
+    @orders = @orders.order(created_at: :desc).uniq.page(params[:page]).per(20)
+    respond_to do |format|
+      format.xlsx
+    end
+  end
+
   def receipt
     @order = Order.find(params[:id])
     @order.deliver unless @order.done? || @order.failed?

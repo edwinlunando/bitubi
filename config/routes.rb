@@ -178,6 +178,7 @@ Rails.application.routes.draw do
   get 'akun/vendor' => 'users#account_vendor', as: 'account_vendor'
   post 'akun/simpan' => 'users#account_edit', as: 'account_update'
   post 'penjualan/:id/batal' => 'users#sell_cancel', as: 'sell_cancel'
+  get 'penjualan/cetak' => 'users#sell_xls', as: 'sell_xls'
   get 'penjualan' => 'users#sell', as: 'sell'
   get 'penjualan/:id' => 'users#sell_view', as: 'sell_view'
   patch 'penjualan/:id/receipt' => 'users#receipt', as: 'sell_receipt'
