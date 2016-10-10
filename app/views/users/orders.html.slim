@@ -35,12 +35,17 @@
                       .grid-flex__col.grid-flex__col--2
                         = f.input :receipt_number, label: 'Nomor Resi', placeholder: 'Resi', input_html: { value: @receipt_number }
                       .grid-flex__col.grid-flex__col--2
-                        = f.input :date_from, as: :date, html5: true, label: 'Tanggal Pesan (Dari)', placeholder: 'Dari', input_html: { value: @date_from }
+                        = f.input :name, label: 'Pembeli', placeholder: 'Nama', input_html: { value: @name }
                       .grid-flex__col.grid-flex__col--2
-                        = f.input :date_to, as: :date, html5: true, label: 'Tanggal Pesan (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }
+                        = f.input :state, collection: [['Keranjang','cart'], ['Isi Alamat','address'], ['Pembayaran','payment'], ['Pengiriman','delivery'], ['Selesai','done'], ['Batal','failed']], label: 'Status', placeholder: 'Status', input_html: { value: @state }
                     .grid-flex
-                      .grid-flex__col.grid-flex__col-12
-                        button.btn.btn-green type="submit" Cari
+                      .grid-flex__col.grid-flex__col--4
+                        = f.input :date_from, as: :date, html5: true, label: 'Tanggal Pesan (Dari)', placeholder: 'Dari', input_html: { value: @date_from }
+                      .grid-flex__col.grid-flex__col--4
+                        = f.input :date_to, as: :date, html5: true, label: 'Tanggal Pesan (Hingga)', placeholder: 'Hingga', input_html: { value: @date_to }
+                      .grid-flex__col.grid-flex__col--4
+                        button.btn.btn-green.btn-bot type="submit" Cari
+                      .grid-flex__col.grid-flex__col--2
                   .grid-flex.flex-block-changer
                     .grid-flex__col.grid-flex__col--12
                       .table-container
