@@ -236,15 +236,18 @@ class UsersController < ApplicationController
     end
 
     @id = params[:id]
+    @orders = @orders.where(id: @id) if @id.present?
+    
     @receipt_number = params[:receipt_number]
-    @userIds = User.where('name LIKE ?', "%{@name}%") if @name.present?
+    @orders = @orders.where("orders.receipt_number LIKE ?", "%{@receipt_number}%") if @receipt_number.present?
+
+    @email = params[:email]
+    if @email.present?
+      @orders.joins(:users).where("users.email like ?", "%{@email}%")
+    end
 
     @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
     @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
-
-    @orders = @orders.where(id: @id) if @id.present?
-    @orders = @orders.where(receipt_number: @receipt_number) if @receipt_number.present?
-
     if @date_from.present? && @date_to.present?
       @orders = @orders.where(payment_time: @date_from..@date_to)
     end

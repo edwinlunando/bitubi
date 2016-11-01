@@ -24,7 +24,7 @@ class Address < ActiveRecord::Base
 
   def one_line
     if state.present?
-      [name, state.name, state.city.name, state.city.province.name].join(', ')
+      [name, state.name, state.city.name, state.city.province.name, zipcode].join(', ')
     else
       name
     end
