@@ -152,7 +152,6 @@ Rails.application.routes.draw do
   get 'template-test-2' => 'home#template2', as: 'template2'
   get 'template-test-3' => 'home#template3', as: 'template3'
 
-
   # get 'test' => 'users#test'
   get 'daftar-vendor' => 'products#vendors', as: 'vendors'
   get 'vendor/:id' => 'products#vendor', as: 'vendor_view'
