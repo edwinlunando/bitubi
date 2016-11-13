@@ -50,7 +50,7 @@ gem 'friendly_id'
 # State machine
 gem 'aasm'
 # SMS API
-gem 'twilio-ruby', '~> 4.2.1'
+gem 'twilio-ruby', '~> 4.11.1'
 # Phone validation
 gem 'phony_rails'
 # Environment variable
@@ -107,6 +107,9 @@ gem 'lograge'
 gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
+
+# SMS
+gem 'nexmo'
 
 group :development, :test do
 

@@ -294,6 +294,15 @@ class UsersController < ApplicationController
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
       AdminMailer.receipt(@order).deliver_now
+      @client = Twilio::REST::Client.new
+      address = @order.address
+      receiver_phone = PhonyRails.normalize_number(address.receiver_phone, country_code: 'ID')
+      receiver_name = address.receiver_name
+      @client.messages.create(
+          from: '+12053796624 ',
+          to: receiver_phone,
+          body: "#{receiver_name}, pesanan kamu telah terkirim dengan nomor resi ##{@order.receipt_number}"
+      )
       redirect_to sell_view_path, notice: 'Berhasil memasukkan nomor resi'
     else
       render :sell, notice: 'Gagal memasukkan nomor resi'
