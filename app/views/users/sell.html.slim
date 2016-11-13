@@ -32,12 +32,19 @@
                   = link_to sell_xls_path(:xlsx), {class: 'btn-clear fa-btn btn-orange', id: 'print-target', title: 'Cetak excel'} do
                       i.fa.fa-print title="Cetak excel"
                       span  Cetak excel
-              .grid-flex
-                = simple_form_for('', url: sell_path, method: :get, html: { class: 'flex-block-changer' }) do |f|
-                  .grid-flex__col.grid-flex__col--2
+              = simple_form_for('', url: sell_path, method: :get) do |f|
+                .grid-flex
+                  .grid-flex__col.grid-flex__col--4
                     = f.input :id, label: 'Order id', placeholder: 'Order Id', input_html: { value: @id }
-                  .grid-flex__col.grid-flex__col--2
+                  .grid-flex__col.grid-flex__col--4
                     = f.input :receipt_number, label: 'Nomor Resi', placeholder: 'Resi', input_html: { value: @receipt_number }
+                  .grid-flex__col.grid-flex__col--4
+                    = f.input :email, label: 'User Email', placeholder: 'Email', input_html: { value: @email }
+                .grid-flex
+                  .grid-flex__col.grid-flex__col--2
+                    = f.input :ordering, collection: {menaik: 'asc', menurun: 'desc'}, label: 'Pengurutan', placeholder: 'Pengurutan', input_html: { value: @ordering }
+                  .grid-flex__col.grid-flex__col--1
+                    = f.input :orderby, collection: {id: 'id', email: 'email', status: 'state'}, label: 'Berdasarkan', placeholder: 'Berdasarkan', input_html: { value: @orderby }
                   .grid-flex__col.grid-flex__col--2
                     = f.input :date_from, as: :date, html5: true, label: 'Tanggal (Dari)', placeholder: 'Dari', input_html: { value: @date_from }
                   .grid-flex__col.grid-flex__col--2
@@ -53,15 +60,15 @@
                     = link_to 'Toko', vendor_view_path(current_user.supplier.id), class: 'btn btn-small btn-green mgs-10'
                     | Anda
                 - else
-                  table.table.table-sales
+                  table.table.table-sales#table-sales data-source="${ sell_path(format: :json) }"
                     thead
                       tr align="center"
                         th
-                        th Order ID
-                        th Pembeli
-                        th Harga
-                        th Status
-                        th Aksi
+                        th data-name="id" Order ID
+                        th data-name="user.email" Pembeli
+                        th data-name="" Harga
+                        th data-name="state" Status
+                        th data-name="" Aksi
                     tbody
                         - @orders.each do |order|
                           tr align="center" class="#{ (order.printed_at) ? 'read' : '' }"
@@ -104,4 +111,17 @@
                               = link_to "/pesanan/#{order.id}&/cetakinvoice", {class: 'btn-clear fa-btn btn-orange'} do
                                   i.fa.fa-print title="Cetak Invoice"
               div.pagination-container
-                  = paginate @orders
+                = paginate @orders
+
+/ = content_for :pagescript do
+/   script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"
+/   script type="text/javascript"
+/     | $(document).ready(function() {
+/     |   $('#table-sales').DataTable({
+/     |     "pagingType": 'full_numbers',
+/     |     "searching": false,
+/     |     "processing": true,
+/     |     "serverSide": true,
+/     |     "ajax": '#{sell_path(format: :json)}',
+/     |   });
+/     | });

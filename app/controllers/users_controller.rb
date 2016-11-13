@@ -218,39 +218,46 @@ class UsersController < ApplicationController
   end
 
   def sell
-    add_breadcrumb 'Home', :root_path
-    add_breadcrumb 'Akun', :account_path
-    add_breadcrumb 'Penjualan', :sell_path
+      add_breadcrumb 'Home', :root_path
+      add_breadcrumb 'Akun', :account_path
+      add_breadcrumb 'Penjualan', :sell_path
+    
+      @orders = Order.vendor.joins(line_items: [:product])
+                     .includes(:line_items, :user, :state_shipment_price)
+                     .where('products.user_id = ?', current_user.id)
+                     .where(state: [:delivery, :done, :failed])
 
-    @filter = 1
+      if (params[:filter] == 'tertunda')
+        @orders = @orders.where(printed_at: nil)
+      elsif (params[:filter] == 'tercetak')
+        @orders = @orders.where.not(printed_at: nil)
+      end
 
-    @orders = Order.vendor.joins(line_items: [:product])
-                   .includes(:line_items, :user, :state_shipment_price)
-                   .where('products.user_id = ?', current_user.id)
-                   .where(state: [:delivery, :done, :failed])
+      @id = params[:id]
+      @orders = @orders.where(id: @id) if @id.present?
+      
+      @receipt_number = params[:receipt_number]
+      @orders = @orders.where("orders.receipt_number LIKE ?", "%{@receipt_number}%") if @receipt_number.present?
 
-    if (params[:filter] == 'tertunda')
-      @orders = @orders.where(printed_at: nil)
-    elsif (params[:filter] == 'tercetak')
-      @orders = @orders.where.not(printed_at: nil)
-    end
+      @email = params[:email]
+      if @email.present?
+        @orders.joins(:users).where("users.email like ?", "%{@email}%")
+      end
 
-    @id = params[:id]
-    @receipt_number = params[:receipt_number]
-    @userIds = User.where('name LIKE ?', "%{@name}%") if @name.present?
+      @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
+      @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
+      if @date_from.present? && @date_to.present?
+        @orders = @orders.where(payment_time: @date_from..@date_to)
+      end
 
-    @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
-    @date_to = params[:date_to].present? ? Date.parse(params[:date_to]) : nil
+      @orderby = params[:orderby]
+      if @orderby.present?
+        @ordering = params[:ordering] ? params[:ordering] : 'desc'
+        @filter = [@orderby => @ordering]
+        @orders = @orders.order(@filter)
+      end
 
-    @orders = @orders.where(id: @id) if @id.present?
-    @orders = @orders.where(receipt_number: @receipt_number) if @receipt_number.present?
-
-    if @date_from.present? && @date_to.present?
-      @orders = @orders.where(payment_time: @date_from..@date_to)
-    end
-
-    @orders = @orders.order(created_at: :desc).uniq.page(params[:page]).per(20)
-
+      @orders = @orders.order(created_at: :desc).uniq.page(params[:page]).per(10)
   end
 
   def sell_view

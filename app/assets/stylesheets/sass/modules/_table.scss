@@ -212,3 +212,8 @@ $table_border_prop          : "solid 1px " + $table-border;
         background: #eee;
     }
 }
+
+.dataTables_length {
+    color: $black70 !important;
+    margin-bottom: 10px !important;
+}
