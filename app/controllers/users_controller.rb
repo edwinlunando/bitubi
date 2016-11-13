@@ -305,10 +305,11 @@ class UsersController < ApplicationController
       address = @order.address
       receiver_phone = PhonyRails.normalize_number(address.receiver_phone, country_code: 'ID')
       receiver_name = address.receiver_name
+      sender_name = address.sender_name
       @client.messages.create(
           from: '+12053796624 ',
           to: receiver_phone,
-          body: "#{receiver_name}, pesanan kamu telah terkirim dengan nomor resi ##{@order.receipt_number}"
+          body: "Hai, #{receiver_name}, Pesanan Anda tlh dkrm dgn No Resi #{@order.receipt_number}. Lacak Kiriman Anda di www.cekresi.com, #{sender_name}"
       )
       redirect_to sell_view_path, notice: 'Berhasil memasukkan nomor resi'
     else
