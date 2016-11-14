@@ -221,7 +221,7 @@ class UsersController < ApplicationController
       add_breadcrumb 'Home', :root_path
       add_breadcrumb 'Akun', :account_path
       add_breadcrumb 'Penjualan', :sell_path
-    
+
       @orders = Order.vendor.joins(line_items: [:product])
                      .includes(:line_items, :user, :state_shipment_price)
                      .where('products.user_id = ?', current_user.id)
@@ -235,7 +235,7 @@ class UsersController < ApplicationController
 
       @id = params[:id]
       @orders = @orders.where(id: @id) if @id.present?
-      
+
       @receipt_number = params[:receipt_number]
       @orders = @orders.where("orders.receipt_number LIKE ?", "%{@receipt_number}%") if @receipt_number.present?
 
@@ -307,7 +307,7 @@ class UsersController < ApplicationController
       receiver_name = address.receiver_name
       sender_name = address.sender_name
       @client.messages.create(
-          from: '+12053796624 ',
+          from: '+12053796624',
           to: receiver_phone,
           body: "Hai, #{receiver_name}, Pesanan Anda tlh dkrm dgn No Resi #{@order.receipt_number}. Lacak Kiriman Anda di www.cekresi.com, #{sender_name}"
       )
