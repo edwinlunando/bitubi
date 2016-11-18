@@ -221,7 +221,7 @@ class UsersController < ApplicationController
       add_breadcrumb 'Home', :root_path
       add_breadcrumb 'Akun', :account_path
       add_breadcrumb 'Penjualan', :sell_path
-    
+
       @orders = Order.vendor.joins(line_items: [:product])
                      .includes(:line_items, :user, :state_shipment_price)
                      .where('products.user_id = ?', current_user.id)
@@ -235,7 +235,7 @@ class UsersController < ApplicationController
 
       @id = params[:id]
       @orders = @orders.where(id: @id) if @id.present?
-      
+
       @receipt_number = params[:receipt_number]
       if @receipt_number.present?
         @orders = @orders.where("orders.receipt_number like ?", "%#{@receipt_number}%")
@@ -304,6 +304,19 @@ class UsersController < ApplicationController
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
       AdminMailer.receipt(@order).deliver_now
+      @client = Twilio::REST::Client.new
+      address = @order.address
+      receiver_phone = PhonyRails.normalize_number(address.receiver_phone, country_code: 'ID')
+      receiver_name = address.receiver_name
+      sender_name = address.sender_name
+      sender_phone = address.sender_phone
+      unless receiver_phone.phony_formatted(strict: true).nil?
+        @client.messages.create(
+            from: '+12053796624',
+            to: receiver_phone,
+            body: "Hai, #{receiver_name}, Pesanan Anda tlh dkrm dgn No Resi #{@order.receipt_number}. Lacak Kiriman Anda di www.cekresi.com, #{sender_name} #{sender_phone}"
+        )
+      end
       redirect_to sell_view_path, notice: 'Berhasil memasukkan nomor resi'
     else
       render :sell, notice: 'Gagal memasukkan nomor resi'
