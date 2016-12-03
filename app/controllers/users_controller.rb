@@ -237,11 +237,13 @@ class UsersController < ApplicationController
       @orders = @orders.where(id: @id) if @id.present?
 
       @receipt_number = params[:receipt_number]
-      @orders = @orders.where("orders.receipt_number LIKE ?", "%{@receipt_number}%") if @receipt_number.present?
+      if @receipt_number.present?
+        @orders = @orders.where("orders.receipt_number like ?", "%#{@receipt_number}%")
+      end
 
       @email = params[:email]
       if @email.present?
-        @orders.joins(:users).where("users.email like ?", "%{@email}%")
+        @orders = @orders.joins(:user).where("users.email like ?", "%#{@email}%")
       end
 
       @date_from = params[:date_from].present? ? Date.parse(params[:date_from]) : nil
@@ -256,6 +258,7 @@ class UsersController < ApplicationController
         @filter = [@orderby => @ordering]
         @orders = @orders.order(@filter)
       end
+      ActiveRecord::Base.logger = Logger.new(STDOUT)
 
       @orders = @orders.order(created_at: :desc).uniq.page(params[:page]).per(10)
   end
