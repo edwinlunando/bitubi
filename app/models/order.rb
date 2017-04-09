@@ -273,7 +273,7 @@ class Order < ActiveRecord::Base
       self.errors.add(:kurir, "tidak ditemukan") if lines[counter_line].nil?
       counter_line += 1
 
-      # line 11- kurir biaya
+      # line 11 - kurir biaya
       self.shipment_price_value = lines[counter_line]
       counter_line += 1
 
@@ -296,9 +296,15 @@ class Order < ActiveRecord::Base
         i += 1
       end
 
+      # line 13 - catatan
+      if lines[counter_line].present? # optional
+        self.address.special_instruction = lines[counter_line]
+        counter_line += 1
+      end
+
       raise ActiveRecord::Rollback if self.errors.count > 0
       # return false if self.errors.count > 0
-
+      self.address.save
       self.save
 
     end

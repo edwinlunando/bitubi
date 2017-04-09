@@ -304,19 +304,11 @@ class UsersController < ApplicationController
     if @order.update(receipt_params)
       OrderMailer.receipt(@order).deliver_now
       AdminMailer.receipt(@order).deliver_now
-      @client = Twilio::REST::Client.new
       address = @order.address
       receiver_phone = PhonyRails.normalize_number(address.receiver_phone, country_code: 'ID')
       receiver_name = address.receiver_name
       sender_name = address.sender_name
       sender_phone = address.sender_phone
-      unless receiver_phone.phony_formatted(strict: true).nil?
-        @client.messages.create(
-            from: '+12053796624',
-            to: receiver_phone,
-            body: "Hai, #{receiver_name}, Pesanan Anda tlh dkrm dgn No Resi #{@order.receipt_number}. Lacak Kiriman Anda di www.cekresi.com, #{sender_name} #{sender_phone}"
-        )
-      end
       redirect_to sell_view_path, notice: 'Berhasil memasukkan nomor resi'
     else
       render :sell, notice: 'Gagal memasukkan nomor resi'
