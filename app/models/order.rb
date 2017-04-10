@@ -298,7 +298,7 @@ class Order < ActiveRecord::Base
 
       # line 13 - catatan
       if lines[counter_line].present? # optional
-        self.address.special_instruction = lines[counter_line]
+        self.address.special_instructions = lines[counter_line]
         counter_line += 1
       end
 
