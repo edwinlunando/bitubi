@@ -297,9 +297,8 @@ class Order < ActiveRecord::Base
       end
 
       # line 13 - catatan
-      if lines[counter_line].present? # optional
-        self.address.special_instructions = lines[counter_line]
-        counter_line += 1
+      if lines[i].present? # optional
+        self.address.special_instructions = lines[i]
       end
 
       raise ActiveRecord::Rollback if self.errors.count > 0
