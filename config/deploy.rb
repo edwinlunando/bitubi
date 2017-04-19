@@ -6,7 +6,9 @@ set :repo_url, 'git@github.com:edwinlunando/bitubi.git'
 set :user,            'ubuntu'
 
 # Default branch is :master
-ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+
+set :branch, 'migration-to-puma'
 
 # Default deploy_to directory is /var/www/my_app_name
 
@@ -68,7 +70,7 @@ namespace :deploy do
       unless `git rev-parse HEAD` == `git rev-parse origin/master`
         puts "WARNING: HEAD is not the same as origin/master"
         puts "Run `git push` to sync changes."
-        exit
+        # exit
       end
     end
   end
