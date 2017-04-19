@@ -69,6 +69,7 @@ gem 'web-console', '~> 2.0'
 gem 'better_errors'
 # web server
 gem 'unicorn'
+gem 'puma'
 # error reporting
 gem 'sentry-raven'
 # spreadsheet
@@ -127,7 +128,7 @@ group :development do
 
   # Capistrano for deployment
   gem 'capistrano-rails'
-  gem 'capistrano-passenger'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-rvm'
 
   # performance
