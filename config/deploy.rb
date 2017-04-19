@@ -49,19 +49,7 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 set :rvm_type, :user                     # Defaults to: :auto
-set :rvm_ruby_version, '2.3.0'      # Defaults to: 'default'
-
-namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
-  task :make_dirs do
-    on roles(:app) do
-      execute "mkdir #{shared_path}/tmp/sockets -p"
-      execute "mkdir #{shared_path}/tmp/pids -p"
-    end
-  end
-
-  before :start, :make_dirs
-end
+set :rvm_ruby_version, '2.3.0@bitubi'      # Defaults to: 'default'
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."

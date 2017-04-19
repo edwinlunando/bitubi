@@ -71,10 +71,6 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (6.0.3)
-    asset_sync (1.1.0)
-      activemodel
-      fog (>= 1.8.0)
-      unf
     audited (4.2.0)
       rails-observers (~> 0.1.2)
     audited-activerecord (4.2.0)
@@ -550,7 +546,6 @@ DEPENDENCIES
   activeadmin (= 1.0.0.pre1)
   activeadmin_settings_cached
   annotate
-  asset_sync
   audited-activerecord (~> 4.0)
   awesome_print
   aws-sdk (< 2.0)

@@ -63,7 +63,7 @@ gem 'activeadmin_settings_cached'
 # AWS S3
 gem 'aws-sdk', '< 2.0'
 gem 'fog'
-gem 'asset_sync'
+# gem 'asset_sync'
 # opsworks workaround
 gem 'web-console', '~> 2.0'
 gem 'better_errors'
