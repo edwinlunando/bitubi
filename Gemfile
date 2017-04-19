@@ -94,9 +94,6 @@ gem 'audited-activerecord', '~> 4.0'
 gem 'gibbon'
 # rest client
 gem 'rest-client'
-# editor
-gem 'tinymce-rails'
-gem 'non-stupid-digest-assets', '~> 1.0', '>= 1.0.8'
 # qrcode and barcode editor
 gem 'barby'
 gem 'rqrcode'
@@ -109,8 +106,6 @@ gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
 
-# SMS
-gem 'nexmo'
 
 group :development, :test do
 
