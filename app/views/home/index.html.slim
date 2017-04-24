@@ -150,7 +150,7 @@
           a href='#{ products_path(category_id: category.id) }'
             .slide-category__icon
               i.menu-icon
-                = image_tag category.image.url
+                = image_tag category.image.url(:thumb)
             .slide-category__name
               = category.name
   .container
