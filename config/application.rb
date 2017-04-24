@@ -33,8 +33,6 @@ module Bitubi
       g.test_framework :rspec
     end
 
-    config.tinymce.install = :compile
-
     config.lograge.enabled = true
 
   end

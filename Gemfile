@@ -63,12 +63,13 @@ gem 'activeadmin_settings_cached'
 # AWS S3
 gem 'aws-sdk', '< 2.0'
 gem 'fog'
-gem 'asset_sync'
+# gem 'asset_sync'
 # opsworks workaround
 gem 'web-console', '~> 2.0'
 gem 'better_errors'
 # web server
 gem 'unicorn'
+gem 'puma'
 # error reporting
 gem 'sentry-raven'
 # spreadsheet
@@ -93,9 +94,6 @@ gem 'audited-activerecord', '~> 4.0'
 gem 'gibbon'
 # rest client
 gem 'rest-client'
-# editor
-gem 'tinymce-rails'
-gem 'non-stupid-digest-assets', '~> 1.0', '>= 1.0.8'
 # qrcode and barcode editor
 gem 'barby'
 gem 'rqrcode'
@@ -108,8 +106,6 @@ gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
 
-# SMS
-gem 'nexmo'
 
 group :development, :test do
 
@@ -127,7 +123,7 @@ group :development do
 
   # Capistrano for deployment
   gem 'capistrano-rails'
-  gem 'capistrano-passenger'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-rvm'
 
   # performance
