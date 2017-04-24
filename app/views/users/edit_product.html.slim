@@ -24,8 +24,7 @@
                 h3 Data
                 = f.association :category, label: 'Kategori'
                 = f.input :name, label: 'Nama'
-                = f.input :description, label: 'Deskripsi', input_html: { class: 'tinymce' }
-                = tinymce
+                = f.input :description, label: 'Deskripsi'
                 = f.input :slug, label: 'Kode Barang'
                 = f.input :unit, label: 'Satuan (buah, keping, lembar)'
                 = f.input :weight, label: 'Berat (dalam gram)'

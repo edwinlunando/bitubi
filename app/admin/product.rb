@@ -54,7 +54,7 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs 'Admin Details' do
       f.input :name
-      f.input :description, :input_html => { :class => "tinymce" }
+      f.input :description
       f.input :slug, label: 'Kode barang'
       f.input :stock
       f.input :unit
