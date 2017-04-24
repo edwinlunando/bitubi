@@ -8,7 +8,7 @@ set :user,            'ubuntu'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :branch, 'migration-to-puma'
+set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
 
